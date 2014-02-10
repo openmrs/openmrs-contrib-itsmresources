@@ -4,8 +4,7 @@
 # Required modules: puppetlabs/apt, kayak/bamboo_agent
 ##
 # Vars
-$bamboo_server = "ci.example.com"
-$mod_dir = "puppet:///modules/openmrs-bamboo-agent"
+$bamboo_server = "ci-stg.openmrs.org"
 
 # Ensure the ppa repo is installed before installing maven3 package
 class prepare {
@@ -38,13 +37,13 @@ class configs {
   file { '/etc/maven2/settings.xml' :
     ensure  => file,
     mode    => 644,
-    source  => '$mod_dir/settings.xml.mvn2',
+    source  => 'puppet:///modules/openmrs-bamboo-agent/settings.xml.mvn2',
     require => Class['install'],
   }
   file { '/usr/share/maven3/conf/settings.xml' :
     ensure  => file,
     mode    => 644,
-    source  => '$mod_dir/settings.xml.mvn3',
+    source  => 'puppet:///modules/openmrs-bamboo-agent/settings.xml.mvn3',
     require => Class['install'],
   }
   file { 'ssh-keys' :
@@ -54,7 +53,16 @@ class configs {
     mode    => 600,
     owner   => 'bamboo',
     group   => 'bamboo',
-    source  => '$mod_dir/bamboo-ssh-deploy',
+    source  => 'puppet:///modules/openmrs-bamboo-agent/bamboo-ssh-deploy',
+  }
+    file { 'bamboo-ssh-keys' :
+    ensure  => directory,
+    path    => '/home/bamboo/.ssh',
+    recurse => true,
+    mode    => 600,
+    owner   => 'bamboo',
+    group   => 'bamboo',
+    source  => 'puppet:///modules/openmrs-bamboo-agent/ssh/',
   }
   file { '/opt/scripts' :
     ensure  => directory,
@@ -63,7 +71,7 @@ class configs {
     mode    => 700,
     owner   => 'bamboo',
     group   => 'bamboo',
-    source  => '$mod_dir/scripts',
+    source  => 'puppet:///modules/openmrs-bamboo-agent/scripts',
   }
 }
 include configs
