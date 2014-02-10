@@ -1,6 +1,3 @@
-# ignore configs
-files
-
 ## OSX
 .DS_Store
 .AppleDouble
