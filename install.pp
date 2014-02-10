@@ -1,5 +1,5 @@
 ##
-# openmrs-bamboo-agent
+# openmrs-contrib-bambooagent
 # Required OS: Ubuntu
 # Required modules: puppetlabs/apt, kayak/bamboo_agent
 ##
@@ -37,13 +37,13 @@ class configs {
   file { '/etc/maven2/settings.xml' :
     ensure  => file,
     mode    => 644,
-    source  => 'puppet:///modules/openmrs-bamboo-agent/settings.xml.mvn2',
+    source  => 'puppet:///modules/openmrs-contrib-bambooagent/settings.xml.mvn2',
     require => Class['install'],
   }
   file { '/usr/share/maven3/conf/settings.xml' :
     ensure  => file,
     mode    => 644,
-    source  => 'puppet:///modules/openmrs-bamboo-agent/settings.xml.mvn3',
+    source  => 'puppet:///modules/openmrs-contrib-bambooagent/settings.xml.mvn3',
     require => Class['install'],
   }
   file { 'ssh-keys' :
@@ -53,7 +53,7 @@ class configs {
     mode    => 600,
     owner   => 'bamboo',
     group   => 'bamboo',
-    source  => 'puppet:///modules/openmrs-bamboo-agent/bamboo-ssh-deploy',
+    source  => 'puppet:///modules/openmrs-contrib-bambooagent/bamboo-ssh-deploy',
   }
     file { 'bamboo-ssh-keys' :
     ensure  => directory,
@@ -62,7 +62,7 @@ class configs {
     mode    => 600,
     owner   => 'bamboo',
     group   => 'bamboo',
-    source  => 'puppet:///modules/openmrs-bamboo-agent/ssh/',
+    source  => 'puppet:///modules/openmrs-contrib-bambooagent/ssh/',
   }
   file { '/opt/scripts' :
     ensure  => directory,
@@ -71,7 +71,7 @@ class configs {
     mode    => 700,
     owner   => 'bamboo',
     group   => 'bamboo',
-    source  => 'puppet:///modules/openmrs-bamboo-agent/scripts',
+    source  => 'puppet:///modules/openmrs-contrib-bambooagent/scripts',
   }
 }
 include configs
