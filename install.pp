@@ -73,6 +73,12 @@ class configs {
     group   => 'bamboo',
     source  => 'puppet:///modules/openmrs-contrib-bambooagent/scripts',
   }
+  file { '/opt/bamboo-home' :
+    ensure => "directory",
+    owner  => "bamboo",
+    group  => "bamboo",
+    mode   => 700,
+    }
 }
 include configs
 
