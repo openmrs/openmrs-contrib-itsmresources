@@ -90,6 +90,9 @@ class { 'bamboo_agent':
   install_dir             => '/opt/bamboo-agent',
   agent_defaults          => {
     'manage_capabilities' => true,
+    'wrapper_conf_properties' => {
+         'wrapper.app.parameter.2' => "https://${bamboo_server}/agentServer/",
+      }
   },
   default_capabilities             => {
     'system.builder.command.Bash'  => '/bin/bash',
