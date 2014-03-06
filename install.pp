@@ -4,7 +4,7 @@
 # Required modules: puppetlabs/apt, kayak/bamboo_agent
 ##
 # Vars
-$bamboo_server = "ci-stg.openmrs.org"
+$bamboo_server = "ci.openmrs.org"
 
 # Ensure the ppa repo is installed before installing maven3 package
 class prepare {
