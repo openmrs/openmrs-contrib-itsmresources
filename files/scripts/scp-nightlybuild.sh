@@ -25,7 +25,6 @@ cp ${builddir}/webapp/target/openmrs.war ${nightlydatedirwithbranch}
 cp ${builddir}/webapp/target/openmrs/WEB-INF/lib/openmrs-api-*.jar ${nightlydatedirwithbranch}
 
 # Rsync nightly build to sourceforge
-# ** TEMPORARY for TESTING!!
 rsync -avOP -e 'ssh -i /home/bamboo/bamboo-ssh-deploy/id_rsa' ${nightlydir} openmrs,openmrsdev@frs.sourceforge.net:/home/frs/project/o/op/openmrs/
 
 #echo Undeploying the $webapp webapp on $domain
