@@ -12,12 +12,13 @@ class prepare {
     always_apt_update    => true,
   }
   apt::ppa { 'ppa:natecarlson/maven3': }
+  apt::ppa { 'ppa:chris-lea/node.js' : }
 }
 include prepare
 
 # Install packages needed for building
 class install {
-  $JavaPackages = [ 'maven2','maven3','ant','git','openjdk-7-jre','openjdk-6-jdk','subversion' ]
+  $JavaPackages = [ 'maven2','maven3','ant','git','openjdk-7-jre','openjdk-6-jdk','subversion','nodejs' ]
   package { $JavaPackages :
     ensure  => present,
     require => Class['prepare'],
@@ -28,6 +29,21 @@ class install {
   package { $TestPackages :
     ensure  => latest,
     require => Class['prepare'],
+  }
+# Extract and install grails and softlink it to /opt/grails
+  $GrailsVersion = "2.3.7"
+  exec { 'fetch grails' :
+    command => "wget http://dist.springframework.org.s3.amazonaws.com/release/GRAILS/grails-$GrailsVersion.zip",
+    cwd     => '/opt',
+  }
+  exec { 'extract grails' :
+    command => "unzip -o grails-$GrailsVersion.zip",
+    cwd     => '/opt',
+    require => Exec['fetch grails'],
+  }
+  exec { 'link grails' :
+    command => "ln -s /opt/grails-$GrailsVersion /opt/grails",
+    require => Exec['extract grails'],
   }
 }
 include install
@@ -98,6 +114,8 @@ class { 'bamboo_agent':
     'system.builder.command.Bash'  => '/bin/bash',
     'hostname'                     => $::hostname,
     'reserved'                     => false,
+    'nodejs'                       => '/usr/bin/nodejs',
+    'grails'                       => '/opt/grails/bin/grails',
     'system.jdk.openjdk-6-jdk'     => '/usr/lib/jvm/java-6-openjdk-amd64',
     'system.jdk.openjdk-7-jdk'     => '/usr/lib/jvm/java-7-openjdk-amd64',
     'system.builder.mvn3.Maven3'   => '/usr/share/maven3',
