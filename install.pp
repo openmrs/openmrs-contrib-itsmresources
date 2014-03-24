@@ -33,16 +33,16 @@ class install {
 # Extract and install grails and softlink it to /opt/grails
   $GrailsVersion = "2.3.7"
   exec { 'fetch grails' :
-    command => "wget http://dist.springframework.org.s3.amazonaws.com/release/GRAILS/grails-$GrailsVersion.zip",
+    command => "/usr/bin/wget http://dist.springframework.org.s3.amazonaws.com/release/GRAILS/grails-$GrailsVersion.zip",
     cwd     => '/opt',
   }
   exec { 'extract grails' :
-    command => "unzip -o grails-$GrailsVersion.zip",
+    command => "/usr/bin/unzip -o grails-$GrailsVersion.zip",
     cwd     => '/opt',
     require => Exec['fetch grails'],
   }
   exec { 'link grails' :
-    command => "ln -s /opt/grails-$GrailsVersion /opt/grails",
+    command => "/bin/ln -s /opt/grails-$GrailsVersion /opt/grails",
     require => Exec['extract grails'],
   }
 }
