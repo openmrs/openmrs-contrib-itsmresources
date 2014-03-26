@@ -5,6 +5,7 @@
 ##
 # Vars
 $bamboo_server = "ci.openmrs.org"
+$GrailsVersion = "2.3.7"
 
 # Ensure the ppa repo is installed before installing maven3 package
 class prepare {
@@ -31,7 +32,6 @@ class install {
     require => Class['prepare'],
   }
 # Extract and install grails and softlink it to /opt/grails
-  $GrailsVersion = "2.3.7"
   exec { 'fetch grails' :
     command => "/usr/bin/wget http://dist.springframework.org.s3.amazonaws.com/release/GRAILS/grails-$GrailsVersion.zip",
     cwd     => '/opt',
@@ -46,7 +46,7 @@ class install {
   file { 'link grails' :
     path   => '/opt/grails',
     ensure => 'link',
-    target => "/opt/grails-$GrailVersion",    
+    target => "/opt/grails-$GrailsVersion",    
     require => Exec['extract grails'],
   }
 }
@@ -114,15 +114,16 @@ class { 'bamboo_agent':
          'wrapper.app.parameter.2' => "https://${bamboo_server}/agentServer/",
       }
   },
-  default_capabilities                                    => {
-    'system.builder.command.Bash'                         => '/bin/bash',
-    'hostname'                                            => $::hostname,
-    'reserved'                                            => false,
-    'system.jdk.openjdk-6-jdk'                            => '/usr/lib/jvm/java-6-openjdk-amd64',
-    'system.jdk.openjdk-7-jdk'                            => '/usr/lib/jvm/java-7-openjdk-amd64',
-    'system.builder.mvn3.Maven3'                          => '/usr/share/maven3',
-    'system.builder.mvn2.Maven\ 2'                        => '/usr/share/maven2',
-    "system.builder.grailsBuilder.Grails\ $GrailsVersion" => '/opt/grails',
-    'system.builder.node.Node.js'                         => '/usr/bin/nodejs',
+  default_capabilities                                     => {
+    'system.builder.command.Bash'                          => '/bin/bash',
+    'hostname'                                             => $::hostname,
+    'reserved'                                             => false,
+    'system.jdk.openjdk-6-jdk'                             => '/usr/lib/jvm/java-6-openjdk-amd64',
+    'system.jdk.openjdk-7-jdk'                             => '/usr/lib/jvm/java-7-openjdk-amd64',
+    'system.builder.mvn3.Maven3'                           => '/usr/share/maven3',
+    'system.builder.mvn2.Maven\ 2'                         => '/usr/share/maven2',
+    "system.builder.grailsBuilder.Grails\\ $GrailsVersion" => '/opt/grails',
+    'system.builder.node.Node.js'                          => '/usr/bin/nodejs',
+    'system.builder.grailsBuilder.Grails\ 2'               => '/opt/grails',
   }
 }
