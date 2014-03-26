@@ -35,14 +35,18 @@ class install {
   exec { 'fetch grails' :
     command => "/usr/bin/wget http://dist.springframework.org.s3.amazonaws.com/release/GRAILS/grails-$GrailsVersion.zip",
     cwd     => '/opt',
+    creates => "/opt/grails-$GrailsVersion.zip",
   }
   exec { 'extract grails' :
     command => "/usr/bin/unzip -o grails-$GrailsVersion.zip",
     cwd     => '/opt',
+    creates => "/opt/grails-$GrailsVersion",
     require => Exec['fetch grails'],
   }
-  exec { 'link grails' :
-    command => "/bin/ln -s /opt/grails-$GrailsVersion /opt/grails",
+  file { 'link grails' :
+    path   => '/opt/grails',
+    ensure => 'link',
+    target => "/opt/grails-$GrailVersion",    
     require => Exec['extract grails'],
   }
 }
