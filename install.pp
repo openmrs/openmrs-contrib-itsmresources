@@ -110,15 +110,15 @@ class { 'bamboo_agent':
          'wrapper.app.parameter.2' => "https://${bamboo_server}/agentServer/",
       }
   },
-  default_capabilities             => {
-    'system.builder.command.Bash'  => '/bin/bash',
-    'hostname'                     => $::hostname,
-    'reserved'                     => false,
-    'nodejs'                       => '/usr/bin/nodejs',
-    'grails'                       => '/opt/grails/bin/grails',
-    'system.jdk.openjdk-6-jdk'     => '/usr/lib/jvm/java-6-openjdk-amd64',
-    'system.jdk.openjdk-7-jdk'     => '/usr/lib/jvm/java-7-openjdk-amd64',
-    'system.builder.mvn3.Maven3'   => '/usr/share/maven3',
-    'system.builder.mvn2.Maven\ 2' => '/usr/share/maven2',
+  default_capabilities                                    => {
+    'system.builder.command.Bash'                         => '/bin/bash',
+    'hostname'                                            => $::hostname,
+    'reserved'                                            => false,
+    'system.jdk.openjdk-6-jdk'                            => '/usr/lib/jvm/java-6-openjdk-amd64',
+    'system.jdk.openjdk-7-jdk'                            => '/usr/lib/jvm/java-7-openjdk-amd64',
+    'system.builder.mvn3.Maven3'                          => '/usr/share/maven3',
+    'system.builder.mvn2.Maven\ 2'                        => '/usr/share/maven2',
+    "system.builder.grailsBuilder.Grails\ $GrailsVersion" => '/opt/grails',
+    'system.builder.node.Node.js'                         => '/usr/bin/nodejs',
   }
 }
