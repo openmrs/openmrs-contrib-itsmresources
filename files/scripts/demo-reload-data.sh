@@ -5,7 +5,7 @@
 #wait
 
 echo Connecting to demo server for data reload
-ssh -i /home/bamboo/.ssh/id_rsa bamboo@bafoussam.openmrs.org /opt/scripts/demo-db.sh
+ssh -i /home/bamboo/.ssh/id_rsa bamboo@bafoussam.openmrs.org /opt/scripts/dbreset/demo_db_reload.sh
 wait
 
 #echo Starting demo site
