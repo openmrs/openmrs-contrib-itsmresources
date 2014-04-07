@@ -6,4 +6,4 @@ version=$2
 mkdir -p ${builddir}
 mkdir -p ${builddir}/target/apidocs
 mv ${builddir}/target/apidocs ${builddir}/target/$2
-scp -r -P 22 ${builddir}/target/$2 ${targetuser}@${targethost}:${targetpath}/
+scp -r -P 22 ${builddir}/target/$2 ${targetuser}@${targethost}:${targetpath}
