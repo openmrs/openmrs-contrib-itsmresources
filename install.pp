@@ -75,6 +75,17 @@ class configs {
     group   => 'bamboo',
     source  => 'puppet:///modules/openmrs-contrib-bambooagent/bamboo-ssh-deploy',
   }
+
+  file { 'ssh-keys-github' :
+    ensure  => directory,
+    path    => '/home/bamboo/bamboo-github-key',
+    recurse => true,
+    mode    => 600,
+    owner   => 'bamboo',
+    group   => 'bamboo',
+    source  => 'puppet:///modules/openmrs-contrib-bambooagent/bamboo-github-key',
+  }
+
     file { 'bamboo-ssh-keys' :
     ensure  => directory,
     path    => '/home/bamboo/.ssh',
