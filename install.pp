@@ -60,16 +60,28 @@ class configs {
     source  => 'puppet:///modules/openmrs-contrib-bambooagent/settings.xml.mvn2',
     require => Class['install'],
   }
+
   file { '/usr/share/maven3/conf/settings.xml' :
     ensure  => file,
     mode    => 644,
     source  => 'puppet:///modules/openmrs-contrib-bambooagent/settings.xml.mvn3',
     require => Class['install'],
   }
+
+  file { '/home/bamboo/.gitconfig' :
+    ensure => file,
+    mode   => 600,
+    owner  => 'bamboo',
+    group  => 'bamboo',
+    source => 'puppet:///modules/openmrs-contrib-bambooagent/gitconfig',
+  }
+
   file { 'ssh-keys' :
     ensure  => directory,
     path    => '/home/bamboo/bamboo-ssh-deploy',
     recurse => true,
+    purge   => true, # remove unmanaged files
+    force   => true, # remove unmanaged subdirectories and files
     mode    => 600,
     owner   => 'bamboo',
     group   => 'bamboo',
@@ -80,6 +92,8 @@ class configs {
     ensure  => directory,
     path    => '/home/bamboo/bamboo-github-key',
     recurse => true,
+    purge   => true, # remove unmanaged files
+    force   => true, # remove unmanaged subdirectories and files
     mode    => 600,
     owner   => 'bamboo',
     group   => 'bamboo',
@@ -90,6 +104,8 @@ class configs {
     ensure  => directory,
     path    => '/home/bamboo/.ssh',
     recurse => true,
+    purge   => true, # remove unmanaged files
+    force   => true, # remove unmanaged subdirectories and files
     mode    => 600,
     owner   => 'bamboo',
     group   => 'bamboo',
