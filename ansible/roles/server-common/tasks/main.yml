@@ -1,0 +1,12 @@
+---
+# Add users/groups/ssh keys
+- include: users.yml
+  when: add_users
+
+# Manage sudoers
+- include: sudo.yml
+  when: manage_sudoers
+
+# Manage ssh 
+- include: ssh.yml
+  when: manage_ssh

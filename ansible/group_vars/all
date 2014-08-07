@@ -1,0 +1,37 @@
+---
+# Group variables for ALL hosts.
+
+# Users and group we want to add to all hosts (sysadmins)
+othergroups:
+ - groupname: admin
+   gid: 8001
+
+users:
+ - username: ryan
+   name: Ryan Yates
+   groups: ['admin']
+   uid: 9001
+   ssh_key:
+     - "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCwq6UcIsPMDLFqvfeUqkXlo1nlA7rI+siYX0dfc70gZU7rRQ5ZRyArErTQzLfWKlowXgBnvclFqOKITr8Fm4FezHRKXHUzzY51icgHwb4fW2wLFje9BXkimVgl9akCuzwSXg1r6ex5zaZtWFO85LfWFkm+spj92Gz1Tb187QbgY8/HbW+ekIfQ4AZ1mhM43MK76wlySU7Dqsbr8T1NEvgYNTGO3TOwrTkiS8iVI5SkdgRcRUYKK6gTjI18Qu/wDhXxzEAC6BPYedLDUWMCHAVh7ZtcgdmY3XQP+djpioEOlp38gTXMJUVu2HD0g/hb/eUaD/sq8fZpb0oTQqyHeK9D ryan@openmrs.org"
+ - username: mjdowney
+   name: Michael Downey
+   groups: ['admin']
+   uid: 9002
+   ssh_key:
+    - "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCwq6UcIsPMDLFqvfeUqkXlo1nlA7rI+siYX0dfc70gZU7rRQ5ZRyArErTQzLfWKlowXgBnvclFqOKITr8Fm4FezHRKXHUzzY51icgHwb4fW2wLFje9BXkimVgl9akCuzwSXg1r6ex5zaZtWFO85LfWFkm+spj92Gz1Tb187QbgY8/HbW+ekIfQ4AZ1mhM43MK76wlySU7Dqsbr8T1NEvgYNTGO3TOwrTkiS8iVI5SkdgRcRUYKK6gTjI18Qu/wDhXxzEAC6BPYedLDUWMCHAVh7ZtcgdmY3XQP+djpioEOlp38gTXMJUVu2HD0g/hb/eUaD/sq8fZpb0oTQqyHeK9D ryan@openmrs.org"
+ - username: herooftime
+   name: Elliot Williams
+   groups: ['admin']
+   uid: 9003
+   ssh_key:
+    - "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEA3Gwh/t0w0EkGOIZN4MJ3acyI27ycfATlFIL47rLCAVhwgJrwlVN8X7i/9p8kbNWb7TQf4i2O4e1JUwLhquSzwekuRO74ID0L0VCv3JkQ6sO86FuK9Si4g/C814mxcCl0XTnVARjCYBGvxNuz8UqzQgnh4ALaYNhvz3HaIFscv4Ex9djtek1NfE43dw+ZO0nHw961kOByyYt7KpEKaMFkzbFqZlPds5JB3kvRYYbrZzn287T2IMc+bozjsAnVFn4TkHKa12T85v6hbj5OpjX7tiGH9N1TZBL0nTPnpFORHhhWuxGW5dWjFtSkWvI0jPFifz+SwC2qeYC5wLJZWwIKLw== herooftime@149-166-217-33.dhcp-in.iupui.edu"
+
+# Uncomment variables below to disbale functions of server-common
+# Add users/groups/ssh keys
+# add_users: false
+#
+# Manage ssh
+# manage_ssh: false
+#
+# Manage sudoers
+# manage_sudoers: false

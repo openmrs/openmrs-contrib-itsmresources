@@ -1,0 +1,13 @@
+---
+# defaults file for server-common
+# Var to add users/groups/ssh keys
+add_users: true
+
+# Var to manage ssh
+manage_ssh: true
+
+# Var to manage sudoers
+manage_sudoers: true
+
+# Default shell (if not specified)
+users_default_shell: /bin/bash

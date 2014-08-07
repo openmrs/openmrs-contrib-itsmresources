@@ -1,0 +1,6 @@
+---
+- name:   Install sudo
+  apt:   name=sudo state=present
+
+- name:   Insert sudoers file
+  template:   src=sudoers.j2 dest=/etc/sudoers backup=yes validate='visudo -cf %s'
