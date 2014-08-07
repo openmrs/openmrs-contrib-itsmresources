@@ -15,3 +15,5 @@ Icon
 *~
 *.swp
 *.swo
+# ignore ansible testing files
+ansible/hosttest
