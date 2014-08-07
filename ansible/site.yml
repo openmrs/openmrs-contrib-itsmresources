@@ -1,3 +1,5 @@
 ---
 # Master Playbook
-
+- hosts: all
+  roles:
+   - server-common
