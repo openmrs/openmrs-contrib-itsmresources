@@ -1,38 +1,70 @@
 Role Name
 ========
 
-A brief description of the role goes here.
-
-Requirements
-------------
-
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
+server-common
 
 Role Variables
 --------------
 
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
+Variables below are used to control what the role does during a run.  By default these are on.  You can adjust these either in group_vars or host_vars.
+- add_users
+- manage_ssh
+- manage_sudoers
 
-Dependencies
-------------
+If the add_users variable is true then it will add users that are defined in the way below.
+othergroups:
+ - groupname: newgroup
+   gid: 1001
 
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
+users:
+ - username: user
+   name: Me
+   groups: ['newgroup']
+   uid: 1001
+   ssh_key:
+     - "ssh-rsa "AAAA.....ZZZZ"
 
 Example Playbook
 -------------------------
 
-Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
 
-    - hosts: servers
-      roles:
-         - { role: username.rolename, x: 42 }
+
+# Group vars example
+# Users and group we want to add to all hosts (sysadmins)
+othergroups:
+ - groupname: testadmin
+   gid: 2001
+
+users:
+ - username: test1
+   name: Test 1
+   groups: ['testadmin']
+   uid: 1001
+   ssh_key:
+     - "ssh-rsa AAAA...ZZZZ test1@example.com"
+ - username: test2
+   name: Test 2
+   groups: ['testadmin']
+   uid: 1002
+   ssh_key:
+    - "ssh-rsa AAAA...ZZZZ test2@example.com
+
+# Uncomment variables below to disable functions of server-common
+# Add users/groups/ssh keys
+#add_users: false
+#
+# Manage ssh
+#manage_ssh: false
+#
+# Manage sudoers
+#manage_sudoers: false
 
 License
 -------
 
-BSD
+Apache
 
 Author Information
 ------------------
 
-An optional section for the role authors to include contact information, or a website (HTML is not allowed).
+Ryan Yates, ryan@openmrs.org
