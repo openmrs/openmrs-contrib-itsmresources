@@ -11,7 +11,8 @@ Variables below are used to control what the role does during a run.  By default
 - manage_ssh
 - manage_sudoers
 
-If the add_users variable is true then it will add users that are defined in the way below.
+If the add_users variable is true then it will add users and groups that are defined in the way below.
+```
 othergroups:
  - groupname: newgroup
    gid: 1001
@@ -23,13 +24,21 @@ users:
    uid: 1001
    ssh_key:
      - "ssh-rsa "AAAA.....ZZZZ"
+```
 
 Example Playbook
 -------------------------
+### playbook.yml
+```
+---
+- hosts: all
+  roles:
+  - server-common
 
+```
 
-
-# Group vars example
+### group_vars/all
+```
 # Users and group we want to add to all hosts (sysadmins)
 othergroups:
  - groupname: testadmin
@@ -58,6 +67,7 @@ users:
 #
 # Manage sudoers
 #manage_sudoers: false
+```
 
 License
 -------
