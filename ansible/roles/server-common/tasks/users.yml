@@ -33,3 +33,15 @@
     - users
     - ssh_key
   tags: ['users','ssh-key']
+
+- name: Deleted user removal
+  user: name="{{item.username}}" state=absent
+  with_items: users_deleted
+  when: users_deleted is defined
+  tags: ['users']
+
+- name: Deleted per-user group removal
+  group: name="{{item.username}}" state=absent
+  with_items: users_deleted
+  when: users_deleted is defined
+  tags: ['users','groups']
