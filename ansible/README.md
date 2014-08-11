@@ -7,7 +7,7 @@ Master playbook that should be run on all servers.
 
 ## Requirements
 * This repo.
-* ansible installed on the same machine the repo is cloned to.
+* ansible  1.5+ installed on the same machine the repo is cloned to.
 
 ## How to use this
 To run this on a set of machines , currently (production, staging, testing).
