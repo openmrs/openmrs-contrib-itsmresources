@@ -1,47 +1,47 @@
 ---
 # Add users/groups/ssh keys
 - name: Create user groups
-  group: name="{{item.username}}" 
-         {% if item.uid is defined %}
-         "gid={{item.uid}}"
+  group: name="{{item.key}}" 
+         {% if item.value.uid is defined %}
+         "gid={{item.value.uid}}"
          {% endif %}
-  with_items: users
+  with_dict: users
   tags: ['users','groups']
 
 - name: Create other groups
-  group: name="{{item.groupname}}" gid="{{item.gid}}"
-  with_items: othergroups
+  group: name="{{item.key}}" gid="{{item.value.gid}}"
+  with_dict: othergroups
   tags: ['users','groups']
+  when: othergroups is defined
 
 
 - name: Create users
-  user: name="{{item.username}}"
-        group="{{item.username}}"
-        groups="{{item.groups | join(',')}}"
-        shell={{item.shell if item.shell is defined else users_default_shell}}
-        comment="{{item.name}}"
-        {% if item.uid is defined %}
-        "uid={{item.uid}}"
+  user: name="{{item.key}}"
+        group="{{item.key}}"
+        groups="{{item.value.groups | join(',')}}"
+        shell={{item.value.shell if item.value.shell is defined else users_default_shell}}
+        comment="{{item.value.name}}"
+        {% if item.value.uid is defined %}
+        "uid={{item.value.uid}}"
         {% endif %}
         createhome="yes"
-  with_items: users
+        state=present
+  with_dict: users
   tags: ['users','groups']
 
 - name: SSH Keys
-  authorized_key: user="{{item.0.username}}" key="{{item.1}}"
-  with_subelements:
-    - users
-    - ssh_key
+  authorized_key: user="{{item.key}}" key="{{item.value.ssh_key}}"
+  with_dict: users
   tags: ['users','ssh-key']
 
 - name: Deleted user removal
-  user: name="{{item.username}}" state=absent
+  user: name="{{item}}" state=absent
   with_items: users_deleted
   when: users_deleted is defined
   tags: ['users']
 
 - name: Deleted per-user group removal
-  group: name="{{item.username}}" state=absent
+  group: name="{{item}}" state=absent
   with_items: users_deleted
   when: users_deleted is defined
   tags: ['users','groups']
