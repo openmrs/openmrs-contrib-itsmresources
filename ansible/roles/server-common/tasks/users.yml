@@ -3,7 +3,7 @@
 - name: Create user groups
   group: name="{{item.key}}" 
          {% if item.value.uid is defined %}
-         "gid={{item.value.uid}}"
+          "gid={{item.value.uid}}"
          {% endif %}
   with_dict: users
   tags: ['users','groups']
@@ -17,14 +17,30 @@
 
 - name: Create users
   user: name="{{item.key}}"
-        group="{{item.key}}"
-        groups="{{item.value.groups | join(',')}}"
-        shell={{item.value.shell if item.value.shell is defined else users_default_shell}}
-        comment="{{item.value.name}}"
-        {% if item.value.uid is defined %}
-        "uid={{item.value.uid}}"
+        {% if users_default_create_user_group %}
+         "group={{item.key}}"
         {% endif %}
-        createhome="yes"
+        groups="{{item.value.groups | join(',')}}"
+         shell={{item.value.shell if item.value.shell is defined else users_default_shell}}
+        {% if item.value.name is defined %}
+         "comment={{item.value.comment}}"
+        {% endif %}
+        {% if item.value.uid is defined %}
+         "uid={{item.value.uid}}"
+        {% endif %}
+         createhome={{item.value.createhome if item.value.createhome is defined else users_default_createhome}}
+        {% if item.value.generate_ssh_key is defined %}
+         "generate_ssh_key={{item.value.generate_ssh_key}}"
+        {% endif %}
+        {% if item.value.home is defined %}
+         "home={{item.value.home}}"
+        {% endif %}
+        {% if item.value.password is defined %}
+         "password={{item.value.password}}"
+        {% endif %}
+        {% if item.value.ssh_key_bits is defined %}
+         "ssh_key_bits={{item.value.ssh_key_bits}}"
+        {% endif %}
         state=present
   with_dict: users
   tags: ['users','groups']

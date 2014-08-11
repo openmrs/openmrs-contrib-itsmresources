@@ -14,16 +14,15 @@ Variables below are used to control what the role does during a run.  By default
 If the add_users variable is true then it will add users and groups that are defined in the way below.
 ```
 othergroups:
- - groupname: newgroup
+ newgroup:
    gid: 1001
 
 users:
- - username: user
-   name: Me
+ user:
+   comment: Me
    groups: ['newgroup']
    uid: 1001
-   ssh_key:
-     - "ssh-rsa "AAAA.....ZZZZ"
+   ssh_key: "ssh-rsa "AAAA.....ZZZZ me@example.com"
 ```
 
 Example Playbook
@@ -41,22 +40,24 @@ Example Playbook
 ```
 # Users and group we want to add to all hosts (sysadmins)
 othergroups:
- - groupname: testadmin
+ testadmin:
    gid: 2001
-
+# The first users is the minimum required. The second user is using all options.
 users:
- - username: test1
-   name: Test 1
+ test1:
    groups: ['testadmin']
-   uid: 1001
-   ssh_key:
-     - "ssh-rsa AAAA...ZZZZ test1@example.com"
- - username: test2
-   name: Test 2
-   groups: ['testadmin']
-   uid: 1002
-   ssh_key:
-    - "ssh-rsa AAAA...ZZZZ test2@example.com
+ test2:
+    groups: ['testadmin']
+    comment: Test User 2
+    shell: "/bin/zsh"
+    uid: 3000
+    createhome: no
+    generate_ssh_key: yes
+    home: /opt/test2
+    password: "$6...A."
+    ssh_key_bits: 4096
+
+
 
 # Uncomment variables below to disable functions of server-common
 # Add users/groups/ssh keys

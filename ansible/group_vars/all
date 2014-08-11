@@ -8,17 +8,17 @@ othergroups:
 
 users:
  ryan:
-   name: Ryan Yates
+   comment: Ryan Yates
    groups: ['admin']
    uid: 9001 
    ssh_key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCwq6UcIsPMDLFqvfeUqkXlo1nlA7rI+siYX0dfc70gZU7rRQ5ZRyArErTQzLfWKlowXgBnvclFqOKITr8Fm4FezHRKXHUzzY51icgHwb4fW2wLFje9BXkimVgl9akCuzwSXg1r6ex5zaZtWFO85LfWFkm+spj92Gz1Tb187QbgY8/HbW+ekIfQ4AZ1mhM43MK76wlySU7Dqsbr8T1NEvgYNTGO3TOwrTkiS8iVI5SkdgRcRUYKK6gTjI18Qu/wDhXxzEAC6BPYedLDUWMCHAVh7ZtcgdmY3XQP+djpioEOlp38gTXMJUVu2HD0g/hb/eUaD/sq8fZpb0oTQqyHeK9D ryan@openmrs.org"
  mjdowney:
-   name: Michael Downey
+   comment: Michael Downey
    groups: ['admin']
    uid: 9002
    ssh_key: "ssh-dss AAAAB3NzaC1kc3MAAACBANYDZ18EDoAlrYw0svZkby4YnMoqFqofO4Q3YSoPtscVC0gv4qcwN1FVz0V8uobEoOK4FHYeEL6cnwUi0W0DB7AHIm6/9QunDrNi9eWDrsUoorwy0fBOlIGxX8Z+JC08WqGgtjmEJ0+3stOP3ePYhsw+g/2rasiwE3dNcNBShEmLAAAAFQCxF8LBU3kZAxm72Nu80xmn9SKuCQAAAIEAycIHn0GKhvbXs9T/le5K3C9JF7MdiouoJgbu9M6kOvLmNGcWVw1xw8lmWwDr/+IlPan5x+bIVeul6SVDyJucw/yEV9OKgGPsNpwug/QvpqmIU+QXo3Orwf5RByiPO5hKG28CnV7QXHCtpgHSp5cGEtS2qy5kwTvYNSdkJJTirogAAACBAMo79MnoWO6O0KUJST9ElsRSMkHcO1Cb7cKcIIBk8B1ccbQ+hB5iFQnWSdiY33U0xO5tnaB7oqz8zIIxfE7vBXfZHwlEatwuHrlKWewwRFQrLzo5ntV7IQ6olMYQsDYN9ZYh8gkv5LaHv7c0pFeV7BPYXeilp0hjCyGcCZmOmYvz mjdowney@149-166-219-10.dhcp-in.iupui.edu"
  herooftime:
-   name: Elliot Williams
+   comment: Elliot Williams
    groups: ['admin']
    uid: 9003
    ssh_key: "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEA3Gwh/t0w0EkGOIZN4MJ3acyI27ycfATlFIL47rLCAVhwgJrwlVN8X7i/9p8kbNWb7TQf4i2O4e1JUwLhquSzwekuRO74ID0L0VCv3JkQ6sO86FuK9Si4g/C814mxcCl0XTnVARjCYBGvxNuz8UqzQgnh4ALaYNhvz3HaIFscv4Ex9djtek1NfE43dw+ZO0nHw961kOByyYt7KpEKaMFkzbFqZlPds5JB3kvRYYbrZzn287T2IMc+bozjsAnVFn4TkHKa12T85v6hbj5OpjX7tiGH9N1TZBL0nTPnpFORHhhWuxGW5dWjFtSkWvI0jPFifz+SwC2qeYC5wLJZWwIKLw== herooftime@149-166-217-33.dhcp-in.iupui.edu"
