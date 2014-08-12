@@ -10,9 +10,8 @@
 
 - name: Create other groups
   group: name="{{item.key}}" gid="{{item.value.gid}}"
-  with_dict: othergroups
+  with_dict: othergroups | default({})
   tags: ['users','groups']
-  when: othergroups is defined
 
 
 - name: Create users
@@ -52,12 +51,10 @@
 
 - name: Deleted user removal
   user: name="{{item}}" state=absent
-  with_items: users_deleted
-  when: users_deleted is defined
+  with_dict: users_deleted | default({})
   tags: ['users']
 
 - name: Deleted per-user group removal
   group: name="{{item}}" state=absent
-  with_items: users_deleted
-  when: users_deleted is defined
+  with_dict: users_deleted | default({})
   tags: ['users','groups']

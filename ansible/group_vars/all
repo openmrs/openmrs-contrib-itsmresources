@@ -25,7 +25,8 @@ users:
 
 # List of users to ensure are deleted.
 #users_deleted:
-# - test2
+#  test2:
+#  test3:
 
 # Uncomment variables below to disbale functions of server-common
 # Add users/groups/ssh keys
