@@ -50,11 +50,13 @@
   tags: ['users','ssh-key']
 
 - name: Deleted user removal
-  user: name="{{item}}" state=absent
+  user: name="{{item.key}}"
+        remove={{item.value.removehome if item.value.removehome is defined else users_default_removehome}}
+        state=absent
   with_dict: users_deleted | default({})
   tags: ['users']
 
 - name: Deleted per-user group removal
-  group: name="{{item}}" state=absent
+  group: name="{{item.key}}" state=absent
   with_dict: users_deleted | default({})
   tags: ['users','groups']

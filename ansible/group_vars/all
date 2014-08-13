@@ -27,6 +27,7 @@ users:
 #users_deleted:
 #  test2:
 #  test3:
+#    removehome: yes
 
 # Uncomment variables below to disbale functions of server-common
 # Add users/groups/ssh keys
