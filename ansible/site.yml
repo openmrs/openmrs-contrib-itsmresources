@@ -8,3 +8,4 @@
    - ufw
 #   - timezone
 #   - ntp
+#   - ssl-keys
