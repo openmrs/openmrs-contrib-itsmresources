@@ -1,0 +1,7 @@
+---
+# Manage ufw and make sure OS is ubuntu or debian and is not an openvz vm
+- include: ufw.yml
+  when: 
+   - manage_ufw
+   - ansible_os_family == 'Debian'
+   - ansible_virtualization_type is not defined or not (ansible_virtualization_type == 'openvz' and ansible_virtualization_role == 'guest')

@@ -1,0 +1,25 @@
+---
+# Installs ufw and configures rules
+- name: Ensure ufw is installed
+  apt: name=ufw
+       state=present
+       update_cache=yes
+       cache_valid_time=3600
+
+- name: Manage ufw rules
+  ufw: delete={{item.value.delete | default('no')}}
+       log={{item.value.log | default('no')}}
+       port={{item.value.port | default()}}
+       proto={{item.value.proto | default('any')}}
+       rule={{item.value.rule | default('allow')}}
+  with_dict: ufw_rules
+  when: ufw_rules is defined
+
+- name: Manage ufw config
+  ufw: direction={{item.value.direction | default('incoming')}}
+       logging={{item.value.logging | default('low')}}
+       policy={{item.value.policy | default('reject')}}
+       state={{item.value.state | default('enable')}}
+  with_dict: ufw_config
+  when: ufw_config is defined
+       
