@@ -1,0 +1,5 @@
+---
+# Enable this roles, turn this off by defualt to minimize risk of exposing keys
+manage_ssl: false
+# Directory ssl keys will be copied to unless specified
+ssl_key_dir: /etc/ssl/private/
