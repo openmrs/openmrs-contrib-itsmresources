@@ -2,8 +2,6 @@
 users:
  kjoseph:
    comment: Joseph Kaweesi
-   groups: ['admin']
+   groups: 'admin'
    ssh_key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCl0+7QHLer3Eitr8dGcE46FSeD3AL1euDsll+kNKnvuqSnNMo/jPcxgot5T0GORTjcVlbrqmIJfIxvo98bBSewzfzRn1OXpXIbZ3eV+06TVL8tBOi48UeCCJFVHwFLozO2c8xGZh02jFiQBipBbpg0XrKywpjCKJ7eJug7JVjnfAdsv9uIUGp/qmvQJqE6NodJvuSUeyyodEqNWLYb2L8MJwVJNbQCWCRZkNS4pxbpjIpQy9OzH67V3Rk/SHKNkUmuEvFhinJQtB+PhKQoxKAG1V261Ao8U2tD88BtlkT4UeSwv7i/t0yZs6+IriNrgZmW/f7PPyWXfnOkX6cdKmht k-joseph@joseph"
 
-# users_deleted:
-#  
