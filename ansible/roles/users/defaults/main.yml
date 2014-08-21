@@ -1,0 +1,15 @@
+---
+# Manage users/groups/ssh keys
+manage_users: true
+
+# Default shell.
+users_default_shell: "/bin/bash"
+
+# Create home for users created.
+users_default_createhome: yes
+
+# When creating users, also create groups with their user name.
+users_default_create_user_group: yes
+
+# When removing a user delete their home directory too.
+users_default_removehome: no

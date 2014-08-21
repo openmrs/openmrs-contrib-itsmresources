@@ -2,4 +2,9 @@
 # Master Playbook
 - hosts: all
   roles:
-   - server-common
+   - users
+   - sudo
+   - sshd
+   - ufw
+#   - timezone
+#   - ntp

@@ -1,0 +1,4 @@
+---
+# Manage sshd
+- include: ssh.yml
+  when: manage_sshd
