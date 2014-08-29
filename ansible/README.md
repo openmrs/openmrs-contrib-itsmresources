@@ -1,6 +1,17 @@
 OpenMRS Infrastructure Ansible Master Playbook
 ======================
-Master playbook that should be run on all servers.
+Master playbook that should be run on all servers. **This repo uses submodules** If you are cloning this for the first time you will need to either:
+* `git clone --recursive https://github.com/openmrs/openmrs-contrib-itsmresources.git`
+* ```
+
+    git clone https://github.com/openmrs/openmrs-contrib-itsmresources.git
+    cd openmrs-contrib-itsmresources/ansible
+    git submodule update --init --recursive
+
+  ```
+
+To pull the latest modules you will need to run this.
+`git submodule foreach git pull`
 
 ## Roles currently configured
 * users

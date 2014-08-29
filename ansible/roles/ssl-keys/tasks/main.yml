@@ -1,3 +1,0 @@
----
-- include: ssl.yml
-  when: manage_ssl
