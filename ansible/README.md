@@ -1,16 +1,23 @@
 OpenMRS Infrastructure Ansible Master Playbook
 ======================
-Master playbook that should be run on all servers. **This repo uses submodules** If you are cloning this for the first time you will need to either:
-* `git clone --recursive https://github.com/openmrs/openmrs-contrib-itsmresources.git`
-* ```
+Master playbook that should be run on all servers.
 
-    git clone https://github.com/openmrs/openmrs-contrib-itsmresources.git
-    cd openmrs-contrib-itsmresources/ansible
-    git submodule update --init --recursive
+**This repo uses submodules!** If you are cloning this for the first time you will need to either run:
+ `git clone --recursive https://github.com/openmrs/openmrs-contrib-itsmresources.git`
 
-  ```
+or
 
-To pull the latest modules you will need to run this.
+```
+git clone https://github.com/openmrs/openmrs-contrib-itsmresources.git
+
+cd openmrs-contrib-itsmresources/ansible
+
+git submodule update --init --recursive
+
+```
+
+If you already have this repo cloned: To pull the latest versions of modules you will need to run this.
+
 `git submodule foreach git pull`
 
 ## Roles currently configured
@@ -22,7 +29,7 @@ More coming soon!
 
 ## Requirements
 * This repo.
-* ansible  1.5+ installed on the same machine the repo is cloned to.
+* ansible  1.6+ installed on the same machine the repo is cloned to.
 
 ## How to use this
 To run this on a set of machines , currently (production, staging, testing).
@@ -36,7 +43,7 @@ Look into each role in the roles directroy to find out what each role does.
 ## Running example ad-hoc commands
 #### Updating all packages on staging servers
 
-`ansible -i staging all -m apt -a "update_cache=yes upgrade=yes" --sudo` 
+`ansible -i staging all -m apt -a "update_cache=yes upgrade=yes" --sudo`
 
 You may also want to add `--check` to do a dry run before to make sure you really want to upgrade the intended packages.
 
@@ -45,4 +52,3 @@ You may also want to add `--check` to do a dry run before to make sure you reall
 `ansible -i production all -m apt -a "update_cache=yes name=openssl state=latest" --sudo`
 
 This will only update the package to the latest version if it is already installed.  It will not install the openssl package on hosts that do not have it installed.
-
