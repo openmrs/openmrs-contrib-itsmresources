@@ -40,6 +40,23 @@ This will run all roles against the inventory you specified. This will also assu
 
 Look into each role in the roles directroy to find out what each role does.
 
+## Example tasks
+### Adding a user to a specific host
+If we want to add the user `john` to only the host `dschang.openmrs.org`, with sudo privileges via the `admin` group, you would do the following.
+
+edit `host_vars/dschang.openmrs.org` and add this hash under `users:` if it doesn't already exist.  **Remember: white space is important**
+
+    ---
+    users:
+      john:
+        comment: John Johnson
+        groups: 'admin'
+        ssh_key: "ssh-rsa AAAA...Uvbf john@john.net"
+
+Then run the playbook
+
+`ansible-playbook -i testing site.yml --sudo`
+
 ## Running example ad-hoc commands
 #### Updating all packages on staging servers
 
