@@ -1,8 +1,5 @@
 ---
 users:
- kjoseph:
-   state=absent
-
  djazayeri:
    comment: Darius Jazayeri
    groups: 'admin'
