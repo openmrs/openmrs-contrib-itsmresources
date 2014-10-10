@@ -19,3 +19,6 @@
 [submodule "ansible/roles/ntp"]
 	path = ansible/roles/ntp
 	url = https://github.com/yatesr/ntp.git
+[submodule "ansible/roles/mysql"]
+	path = ansible/roles/mysql
+	url = https://github.com/yatesr/ansible-mysql

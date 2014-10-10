@@ -9,3 +9,7 @@
 #   - timezone
 #   - ntp
 #   - ssl-keys
+
+- hosts: mysql
+  roles:
+   - mysql
