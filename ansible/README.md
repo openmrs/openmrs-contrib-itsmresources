@@ -59,11 +59,11 @@ Then run the playbook
 
 ## Running example ad-hoc commands
 #### Updating all packages on staging servers
+#### New Update play book
+This will do a dry run of updating all packages on the staging boxes.
+`ansible-playbook -i staging update.yml --check -v`
 
-`ansible -i staging all -m apt -a "update_cache=yes upgrade=yes" --sudo`
-
-You may also want to add `--check` to do a dry run before to make sure you really want to upgrade the intended packages.
-
+When satisfied this will not breaking anything drop the `--check` and it will update all servers int he inventory.
 #### Update a ceratin package to latest version on production
 
 `ansible -i production all -m apt -a "update_cache=yes name=openssl state=latest" --sudo`
