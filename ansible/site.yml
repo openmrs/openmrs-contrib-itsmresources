@@ -13,3 +13,7 @@
 - hosts: mysql
   roles:
    - mysql
+
+- hosts: www
+  roles:
+   - ssl-keys
