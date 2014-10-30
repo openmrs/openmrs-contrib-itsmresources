@@ -25,7 +25,7 @@ If you already have this repo cloned: To pull the latest versions of modules you
 * sshd
 * sudo
 * ufw
-More coming soon!
+* ssl-keys
 
 ## Requirements
 * This repo.
@@ -61,6 +61,7 @@ Then run the playbook
 #### Updating all packages on staging servers
 #### New Update play book
 This will do a dry run of updating all packages on the staging boxes.
+
 `ansible-playbook -i staging update.yml --check -v`
 
 When satisfied this will not breaking anything drop the `--check` and it will update all servers int he inventory.
