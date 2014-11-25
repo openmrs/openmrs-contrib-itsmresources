@@ -1,6 +1,6 @@
 #!/bin/sh
 
-builddir=/opt/bamboo-home/xml-data/build-dir
+builddir=~/bamboo-agent/xml-data/build-dir
 builddir=${builddir}/$1
 domain=$2
 domainwithoutport=${domain%%:*}
