@@ -1,14 +1,15 @@
 ##
 # openmrs-contrib-bambooagent
-# Required OS: Ubuntu 12.04
+# Required OS: Ubuntu 14.04
 # Required modules should be installed previously with librarian-puppet
-# $ gem install librarian-puppet -v 0.9.17 --no-ri --no-rdoc
+# $ apt-get install git ruby-dev
+# $ gem install librarian-puppet --no-ri --no-rdoc
 # $ cp Puppetfile /etc/puppet/
 # $ cd /etc/puppet/; librarian-puppet install
 
 ##
 # Vars
-$bamboo_server = "https://ci.openmrs.org/"
+$bamboo_server = "https://ci-stg.openmrs.org"
 $GrailsVersion = "2.3.7"
 $bamboo_user_1="bamboo-agent-1"
 $bamboo_user_home_1 = "/home/bamboo-agent-1"
@@ -21,7 +22,12 @@ class prepare {
   class { 'apt':
     always_apt_update    => true,
   }
-  apt::ppa { 'ppa:natecarlson/maven3': }
+  # This repo doesn't have a 'trusty' distro, so using 'precise' instead
+  #apt::source { 'ppa:natecarlson':
+  #  location          => 'http://ppa.launchpad.net/natecarlson/maven3/ubuntu',
+  #  release           => 'precise',
+  #  repos             => 'main',
+  #}
   apt::ppa { 'ppa:chris-lea/node.js' : }
 
   user { $bamboo_user_1:
@@ -42,7 +48,7 @@ include prepare
 
 # Install packages needed for building
 class install {
-  $JavaPackages = [ 'maven2','maven3','ant','git','openjdk-7-jre','openjdk-6-jdk','subversion','nodejs' ]
+  $JavaPackages = [ 'maven2','ant','git','openjdk-7-jre','openjdk-6-jdk','subversion','nodejs' ]
   package { $JavaPackages :
     ensure  => present,
     require => Class['prepare'],
@@ -201,7 +207,7 @@ class { 'bamboo_agent':
     'reserved'                                             => false,
     'system.jdk.openjdk-6-jdk'                             => '/usr/lib/jvm/java-6-openjdk-amd64',
     'system.jdk.openjdk-7-jdk'                             => '/usr/lib/jvm/java-7-openjdk-amd64',
-    'system.builder.mvn3.Maven3'                           => '/usr/share/maven3',
+    'system.builder.mvn3.Maven\ 3'                         => '/usr/share/maven3',
     'system.builder.mvn2.Maven\ 2'                         => '/usr/share/maven2',
     "system.builder.grailsBuilder.Grails\\ $GrailsVersion" => '/opt/grails',
     'system.builder.node.Node.js'                          => '/usr/bin/nodejs',

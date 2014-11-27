@@ -7,20 +7,19 @@ VAGRANTFILE_API_VERSION = "2"
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   # canonical Ubuntu basebox
-  config.vm.box = "canonical-ubuntu-12.04"
-  config.vm.box_url = "http://cloud-images.ubuntu.com/vagrant/precise/current/precise-server-cloudimg-amd64-vagrant-disk1.box"
+  config.vm.box = "canonical-ubuntu-14.04"
+  config.vm.box_url = "https://cloud-images.ubuntu.com/vagrant/trusty/current/trusty-server-cloudimg-amd64-vagrant-disk1.box"
   config.vm.hostname = "bamboo-agent.vagrant.openmrs.org"
 
   config.vm.synced_folder "files", "/etc/puppet/modules/openmrs-contrib-bambooagent/files"
 
-  # Canonical basebox comes with an old puppet; uninstalling it. 
-  # Also, git is required by librarian puppet. 
+  # git is required by librarian puppet; ruby-dev is required to install gems 
   config.vm.provision "shell",
-   inline: "echo 'Installing git and removing installed puppet'; apt-get -q -y install git; apt-get remove -y puppet; apt-get remove -y facter"
+   inline: "echo 'Installing git and ruby-dev'; apt-get -q -y install git; apt-get install -y ruby-dev; apt-get -y autoremove"
   
   # Installing puppet and librarian-puppet
   config.vm.provision "shell",
-    inline: "echo 'Installing puppet and librarian-puppet'; gem install puppet -v 3.1.1 --no-ri --no-rdoc; gem install librarian-puppet -v 0.9.17 --no-ri --no-rdoc"
+    inline: "echo 'Installing librarian-puppet; it can take a few minutes'; gem install librarian-puppet --no-ri --no-rdoc"
 
   # Running librarian-puppet to download all puppet modules dependencies defined in Puppetfile
   config.vm.provision "shell",

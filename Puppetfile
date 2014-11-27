@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-forge "http://forge.puppetlabs.com"
+forge "https://forgeapi.puppetlabs.com"
 
 mod 'puppetlabs/apt'
 mod 'puppetlabs/stdlib'
