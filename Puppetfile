@@ -6,6 +6,7 @@ mod 'puppetlabs/apt'
 mod 'puppetlabs/stdlib'
 mod 'puppetlabs/java'
 mod 'kayak/r9util'
+mod 'maestrodev/wget'
 
 # this module is a fork of kayak-bamboo_agent
 # to handle one user per bamboo agent

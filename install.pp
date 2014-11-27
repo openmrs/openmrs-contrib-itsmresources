@@ -11,6 +11,7 @@
 # Vars
 $bamboo_server = "https://ci-stg.openmrs.org"
 $GrailsVersion = "2.3.7"
+$Maven3Version = "3.2.3"
 $bamboo_user_1="bamboo-agent-1"
 $bamboo_user_home_1 = "/home/bamboo-agent-1"
 $bamboo_user_2="bamboo-agent-2"
@@ -22,12 +23,7 @@ class prepare {
   class { 'apt':
     always_apt_update    => true,
   }
-  # This repo doesn't have a 'trusty' distro, so using 'precise' instead
-  #apt::source { 'ppa:natecarlson':
-  #  location          => 'http://ppa.launchpad.net/natecarlson/maven3/ubuntu',
-  #  release           => 'precise',
-  #  repos             => 'main',
-  #}
+ 
   apt::ppa { 'ppa:chris-lea/node.js' : }
 
   user { $bamboo_user_1:
@@ -48,7 +44,7 @@ include prepare
 
 # Install packages needed for building
 class install {
-  $JavaPackages = [ 'maven2','ant','git','openjdk-7-jre','openjdk-6-jdk','subversion','nodejs' ]
+  $JavaPackages = [ 'ant','git','openjdk-7-jre','openjdk-6-jdk','subversion','nodejs' ]
   package { $JavaPackages :
     ensure  => present,
     require => Class['prepare'],
@@ -64,10 +60,9 @@ class install {
     ensure  => latest,
     require => Class['prepare'],
   }
-  exec { 'fetch grails' :
-    command => "/usr/bin/wget http://dist.springframework.org.s3.amazonaws.com/release/GRAILS/grails-$GrailsVersion.zip",
-    cwd     => '/opt',
-    creates => "/opt/grails-$GrailsVersion.zip",
+  wget::fetch { 'fetch grails' :
+    source  => "http://dist.springframework.org.s3.amazonaws.com/release/GRAILS/grails-$GrailsVersion.zip",
+    destination => "/opt/grails-$GrailsVersion.zip",
     timeout     => 1800,
     require => Package['unzip']
   }
@@ -75,7 +70,7 @@ class install {
     command => "/usr/bin/unzip -o grails-$GrailsVersion.zip",
     cwd     => '/opt',
     creates => "/opt/grails-$GrailsVersion",
-    require => Exec['fetch grails'],
+    require => Wget::Fetch['fetch grails'],
   }
   file { 'link grails' :
     path   => '/opt/grails',
@@ -83,6 +78,26 @@ class install {
     target => "/opt/grails-$GrailsVersion",    
     require => Exec['extract grails'],
   }
+
+  # install maven 3
+  wget::fetch { 'fetch maven 3':
+    source      => "http://apache.mirrors.pair.com/maven/maven-3/${Maven3Version}/binaries/apache-maven-${Maven3Version}-bin.tar.gz",
+    destination => '/tmp/mvn3.tgz',
+  }
+
+  exec { 'extract maven 3':
+    command => "/bin/tar xf /tmp/mvn3.tgz",
+    cwd     => "/usr/share/",
+    creates => "/usr/share/apache-maven-${Maven3Version}/",
+    require =>  Wget::Fetch['fetch maven 3']
+  }
+  file { 'link mvn' :
+    path   => '/bin/mvn3',
+    ensure => 'link',
+    target => "/usr/share/apache-maven-${Maven3Version}/bin/mvn",    
+    require => Exec['extract maven 3'],
+  }
+
 }
 include install
 
@@ -203,8 +218,6 @@ class { 'bamboo_agent':
   }, 
   default_capabilities                                     => {
     'system.builder.command.Bash'                          => '/bin/bash',
-    'hostname'                                             => $::hostname,
-    'reserved'                                             => false,
     'system.jdk.openjdk-6-jdk'                             => '/usr/lib/jvm/java-6-openjdk-amd64',
     'system.jdk.openjdk-7-jdk'                             => '/usr/lib/jvm/java-7-openjdk-amd64',
     'system.builder.mvn3.Maven\ 3'                         => '/usr/share/maven3',

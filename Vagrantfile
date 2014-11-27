@@ -13,6 +13,11 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.vm.synced_folder "files", "/etc/puppet/modules/openmrs-contrib-bambooagent/files"
 
+  config.vm.provider "virtualbox" do |v|
+    v.memory = 1024
+    v.cpus = 2
+  end
+
   # git is required by librarian puppet; ruby-dev is required to install gems 
   config.vm.provision "shell",
    inline: "echo 'Installing git and ruby-dev'; apt-get -q -y install git; apt-get install -y ruby-dev; apt-get -y autoremove"
