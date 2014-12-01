@@ -44,7 +44,7 @@ include prepare
 
 # Install packages needed for building
 class install {
-  $JavaPackages = [ 'ant','git','openjdk-7-jre','openjdk-6-jdk','subversion','nodejs' ]
+  $JavaPackages = [ 'maven2', 'ant','git','openjdk-7-jre','openjdk-6-jdk','subversion','nodejs' ]
   package { $JavaPackages :
     ensure  => present,
     require => Class['prepare'],
@@ -81,12 +81,13 @@ class install {
 
   # install maven 3
   wget::fetch { 'fetch maven 3':
-    source      => "http://apache.mirrors.pair.com/maven/maven-3/${Maven3Version}/binaries/apache-maven-${Maven3Version}-bin.tar.gz",
-    destination => '/tmp/mvn3.tgz',
+    source      => "http://apache.mirrors.pair.com/maven/maven-3/${Maven3Version}/binaries/apache-maven-${Maven3Version}-bin.zip",
+    destination => '/tmp/mvn3.zip',
+    require => Package['unzip']
   }
 
   exec { 'extract maven 3':
-    command => "/bin/tar xf /tmp/mvn3.tgz",
+    command => "/usr/bin/unzip -o /tmp/mvn3.zip",
     cwd     => "/usr/share/",
     creates => "/usr/share/apache-maven-${Maven3Version}/",
     require =>  Wget::Fetch['fetch maven 3']
