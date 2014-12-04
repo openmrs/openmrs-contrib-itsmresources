@@ -22,3 +22,6 @@
 [submodule "ansible/roles/mysql"]
 	path = ansible/roles/mysql
 	url = https://github.com/yatesr/ansible-mysql
+[submodule "ansible/roles/crontab"]
+	path = ansible/roles/crontab
+	url = https://github.com/yatesr/ansible-crontab.git
