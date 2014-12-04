@@ -2,13 +2,14 @@ openmrs-contrib-bambooagent
 ===========================
 
 ## Requirements
-- Ubuntu 12.04
+- Ubuntu 14.04
 - Puppet 3.x
+- Git, make, ruby-dev
 
 ## Install Instructions
 - Install required modules
 ```
-gem install librarian-puppet -v 0.9.17 --no-ri --no-rdoc
+gem install librarian-puppet  --no-ri --no-rdoc
 # Copy puppetfile from this repository using, for example, scp
 cp Puppetfile /etc/puppet/
 cd /etc/puppet/; librarian-puppet install
