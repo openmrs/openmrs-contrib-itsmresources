@@ -9,7 +9,7 @@
 
 ##
 # Vars
-$bamboo_server = "https://ci-stg.openmrs.org"
+$bamboo_server = "https://ci.openmrs.org"
 $GrailsVersion = "2.3.7"
 $Maven3Version = "3.2.3"
 $bamboo_user_1="bamboo-agent-1"
