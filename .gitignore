@@ -15,3 +15,10 @@ Icon
 *~
 *.swp
 *.swo
+
+# Vagrant
+.vagrant/
+.tmp/
+modules/
+.librarian/
+ssl/

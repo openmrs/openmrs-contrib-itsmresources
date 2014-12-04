@@ -8,15 +8,23 @@ openmrs-contrib-bambooagent
 ## Install Instructions
 - Install required modules
 ```
-# puppet module install puppetlabs/apt
-# puppet module install kayak/bamboo_agent
+gem install librarian-puppet -v 0.9.17 --no-ri --no-rdoc
+# Copy puppetfile from this repository using, for example, scp
+cp Puppetfile /etc/puppet/
+cd /etc/puppet/; librarian-puppet install
 ```
-- Add this to root's ssh config ( /root/.ssh/config ) for easy pulling
+- Add a ssh key to root user
+```
+mkdir -p /root/.ssh
+#copy files/bamboo-github-key/id_rsa from this repository using, for example, scp
+cp files/bamboo-github-key/id_rsa /root/.ssh/
+```
+- Create a /root/.ssh/config file
 ```
 Host github.com
 	HostName github.com
 	PreferredAuthentications publickey
-	IdentityFile /home/bamboo/.ssh/id_rsa
+	IdentityFile /root/.ssh/id_rsa
 ```
 - Change into module directory
 ```
@@ -24,9 +32,8 @@ cd /etc/puppet/modules
 ```
 - Clone this repo into the modules directory
 ```
-# git clone git@github.com:downeym/openmrs-contrib-bambooagent.git
+# git clone git@github.com:openmrs/openmrs-contrib-bambooagent.git
 ```
-- Configure bamboo server and number of agents in `install.pp`
 - Apply the puppet module
 ```
 # puppet apply install.pp

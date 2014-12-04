@@ -1,47 +1,76 @@
 ##
 # openmrs-contrib-bambooagent
-# Required OS: Ubuntu
-# Required modules: puppetlabs/apt, kayak/bamboo_agent
+# Required OS: Ubuntu 14.04
+# Required modules should be installed previously with librarian-puppet
+# $ apt-get install git ruby-dev
+# $ gem install librarian-puppet --no-ri --no-rdoc
+# $ cp Puppetfile /etc/puppet/
+# $ cd /etc/puppet/; librarian-puppet install
+
 ##
 # Vars
-$bamboo_server = "ci.openmrs.org"
+$bamboo_server = "https://ci-stg.openmrs.org"
 $GrailsVersion = "2.3.7"
+$Maven3Version = "3.2.3"
+$bamboo_user_1="bamboo-agent-1"
+$bamboo_user_home_1 = "/home/bamboo-agent-1"
+$bamboo_user_2="bamboo-agent-2"
+$bamboo_user_home_2 = "/home/bamboo-agent-2"
 
 # Ensure the ppa repo is installed before installing maven3 package
 class prepare {
+  
   class { 'apt':
     always_apt_update    => true,
   }
-  apt::ppa { 'ppa:natecarlson/maven3': }
+ 
   apt::ppa { 'ppa:chris-lea/node.js' : }
+
+  user { $bamboo_user_1:
+    ensure     => 'present',
+    managehome => true,
+    home       => $bamboo_user_home_1, 
+  }
+
+  user { $bamboo_user_2:
+    ensure     => 'present',
+    managehome => true,
+    home       => $bamboo_user_home_2, 
+  }
+
 }
 include prepare
 
+
 # Install packages needed for building
 class install {
-  $JavaPackages = [ 'maven2','maven3','ant','git','openjdk-7-jre','openjdk-6-jdk','subversion','nodejs' ]
+  $JavaPackages = [ 'maven2', 'ant','git','openjdk-7-jre','openjdk-6-jdk','subversion','nodejs' ]
   package { $JavaPackages :
     ensure  => present,
     require => Class['prepare'],
   }
-
-  # Install packages needed for tests
+  #Install packages needed for tests
   $TestPackages = [ 'chromium-browser','firefox','xvfb' ]
   package { $TestPackages :
     ensure  => latest,
     require => Class['prepare'],
   }
-# Extract and install grails and softlink it to /opt/grails
-  exec { 'fetch grails' :
-    command => "/usr/bin/wget http://dist.springframework.org.s3.amazonaws.com/release/GRAILS/grails-$GrailsVersion.zip",
-    cwd     => '/opt',
-    creates => "/opt/grails-$GrailsVersion.zip",
+   # Other helper packages
+  package { 'unzip' :
+    ensure  => latest,
+    require => Class['prepare'],
+  }
+  wget::fetch { 'fetch grails' :
+    source  => "http://dist.springframework.org.s3.amazonaws.com/release/GRAILS/grails-$GrailsVersion.zip",
+    destination => "/opt/grails-$GrailsVersion.zip",
+    timeout     => 1800,
+    require => Package['unzip']
   }
   exec { 'extract grails' :
     command => "/usr/bin/unzip -o grails-$GrailsVersion.zip",
     cwd     => '/opt',
     creates => "/opt/grails-$GrailsVersion",
-    require => Exec['fetch grails'],
+    require => Wget::Fetch['fetch grails'],
   }
   file { 'link grails' :
     path   => '/opt/grails',
@@ -49,108 +78,154 @@ class install {
     target => "/opt/grails-$GrailsVersion",    
     require => Exec['extract grails'],
   }
+
+  # install maven 3
+  wget::fetch { 'fetch maven 3':
+    source      => "http://apache.mirrors.pair.com/maven/maven-3/${Maven3Version}/binaries/apache-maven-${Maven3Version}-bin.zip",
+    destination => '/tmp/mvn3.zip',
+    require => Package['unzip']
+  }
+
+  exec { 'extract maven 3':
+    command => "/usr/bin/unzip -o /tmp/mvn3.zip",
+    cwd     => "/usr/share/",
+    creates => "/usr/share/apache-maven-${Maven3Version}/",
+    require =>  Wget::Fetch['fetch maven 3']
+  }
+  file { 'link mvn' :
+    path   => '/bin/mvn3',
+    ensure => 'link',
+    target => "/usr/share/apache-maven-${Maven3Version}/bin/mvn",    
+    require => Exec['extract maven 3'],
+  }
+
 }
 include install
 
-# Configs for maven, ssh keys.  Place these in the files directory in module directory
-class configs {
-  file { '/etc/maven2/settings.xml' :
-    ensure  => file,
+define bamboo_agent_home_config(
+  $home = $title,
+  $user,
+  $group,
+){
+
+  file { "$home/.m2/" :
+    ensure  => directory,
     mode    => 644,
-    source  => 'puppet:///modules/openmrs-contrib-bambooagent/settings.xml.mvn2',
-    require => Class['install'],
+    owner   => $user,
+    group   => $group,
+    require => User[$user],
   }
 
-  file { '/usr/share/maven3/conf/settings.xml' :
-    ensure  => file,
-    mode    => 644,
-    source  => 'puppet:///modules/openmrs-contrib-bambooagent/settings.xml.mvn3',
-    require => Class['install'],
-  }
-
-  file { '/home/bamboo/.gitconfig' :
+  file { "$home/.gitconfig" :
     ensure => file,
     mode   => 600,
-    owner  => 'bamboo',
-    group  => 'bamboo',
+    owner   => $user,
+    group   => $group,
     source => 'puppet:///modules/openmrs-contrib-bambooagent/gitconfig',
+    require => User[$user],
   }
 
-  file { 'ssh-keys' :
+  file { "$home/.m2/settings.xml" :
+    ensure => file,
+    mode   => 600,
+    owner  => $user,
+    group  => $group,
+    source => 'puppet:///modules/openmrs-contrib-bambooagent/mvn_settings.xml',
+  }
+
+  file { "$home/bamboo-ssh-deploy" :
     ensure  => directory,
-    path    => '/home/bamboo/bamboo-ssh-deploy',
     recurse => true,
     purge   => true, # remove unmanaged files
     force   => true, # remove unmanaged subdirectories and files
     mode    => 600,
-    owner   => 'bamboo',
-    group   => 'bamboo',
+    owner   => $user,
+    group   => $group,
     source  => 'puppet:///modules/openmrs-contrib-bambooagent/bamboo-ssh-deploy',
+    require => User[$user],
   }
 
-  file { 'ssh-keys-github' :
+  file { "$home/bamboo-github-key" :
     ensure  => directory,
-    path    => '/home/bamboo/bamboo-github-key',
     recurse => true,
     purge   => true, # remove unmanaged files
     force   => true, # remove unmanaged subdirectories and files
     mode    => 600,
-    owner   => 'bamboo',
-    group   => 'bamboo',
-    source  => 'puppet:///modules/openmrs-contrib-bambooagent/bamboo-github-key',
+    owner   => $user,
+    group   => $group,
+    require => User[$user],
+    source  => 'puppet:///modules/openmrs-contrib-bambooagent/bamboo-github-key', 
   }
 
-    file { 'bamboo-ssh-keys' :
+  file { "$home/.ssh" :
     ensure  => directory,
-    path    => '/home/bamboo/.ssh',
     recurse => true,
     purge   => true, # remove unmanaged files
     force   => true, # remove unmanaged subdirectories and files
     mode    => 600,
-    owner   => 'bamboo',
-    group   => 'bamboo',
+    owner   => $user,
+    group   => $group,
+    require => User[$user],
     source  => 'puppet:///modules/openmrs-contrib-bambooagent/ssh/',
+  }
+}
+
+# Configs for maven, ssh keys.  Place these in the files directory in module directory
+class configs {
+
+  bamboo_agent_home_config { $bamboo_user_home_1:
+    user   => $bamboo_user_1,
+    group  => $bamboo_user_1,
+  }
+
+  bamboo_agent_home_config { $bamboo_user_home_2:
+    user   => $bamboo_user_2,
+    group  => $bamboo_user_2,
   }
   file { '/opt/scripts' :
     ensure  => directory,
-    path    => '/opt/scripts',
     recurse => true,
-    mode    => 700,
-    owner   => 'bamboo',
-    group   => 'bamboo',
+    mode    => 755,
+    owner   => 'root',
+    group   => 'root',
     source  => 'puppet:///modules/openmrs-contrib-bambooagent/scripts',
   }
-  file { '/opt/bamboo-home' :
-    ensure => "directory",
-    owner  => "bamboo",
-    group  => "bamboo",
-    mode   => 700,
-    }
 }
 include configs
 
+
 # Install bamboo remote agents. Adjust agents accordingly
 class { 'bamboo_agent':
-  require                 => Class['install'],
-  server                  => $bamboo_server,
-  agents                  => [1,2],
-  install_dir             => '/opt/bamboo-agent',
+  require                 => Class['configs'],
+  server_url              => $bamboo_server,
+  manage_user             => false, 
+  install_dir             => "/opt/bamboo-agent",
+  user_name               => 'root', 
   agent_defaults          => {
     'manage_capabilities' => true,
-    'wrapper_conf_properties' => {
-         'wrapper.app.parameter.2' => "https://${bamboo_server}/agentServer/",
-      }
+    'refresh_service'     => true,
   },
+  agents     => {
+    '1' => {
+        'home'       => "$bamboo_user_home_1/bamboo-agent",
+        'user_name'  => $bamboo_user_1,
+        'group'      => $bamboo_user_1,
+    },
+    '2' => {
+        'home'       => "$bamboo_user_home_2/bamboo-agent",
+        'user_name'  => $bamboo_user_2,
+        'group'      => $bamboo_user_2,
+    }
+  }, 
   default_capabilities                                     => {
     'system.builder.command.Bash'                          => '/bin/bash',
-    'hostname'                                             => $::hostname,
-    'reserved'                                             => false,
     'system.jdk.openjdk-6-jdk'                             => '/usr/lib/jvm/java-6-openjdk-amd64',
     'system.jdk.openjdk-7-jdk'                             => '/usr/lib/jvm/java-7-openjdk-amd64',
-    'system.builder.mvn3.Maven3'                           => '/usr/share/maven3',
+    'system.builder.mvn3.Maven\ 3'                         => '/usr/share/maven3',
     'system.builder.mvn2.Maven\ 2'                         => '/usr/share/maven2',
     "system.builder.grailsBuilder.Grails\\ $GrailsVersion" => '/opt/grails',
     'system.builder.node.Node.js'                          => '/usr/bin/nodejs',
     'system.builder.grailsBuilder.Grails\ 2'               => '/opt/grails',
   }
 }
+
