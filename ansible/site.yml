@@ -17,3 +17,7 @@
 - hosts: www
   roles:
    - ssl-keys
+
+- hosts: bamboo-agent
+  roles:
+   - crontab
