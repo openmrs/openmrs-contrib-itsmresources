@@ -45,11 +45,11 @@
                     <snapshots>
                         <enabled>true</enabled>
                         <updatePolicy>always</updatePolicy>
-                        <checksumPolicy>fail</checksumPolicy>
+                        <checksumPolicy>warn</checksumPolicy>
                     </snapshots>
                     <releases>
                         <enabled>true</enabled>
-                        <checksumPolicy>fail</checksumPolicy>
+                        <checksumPolicy>warn</checksumPolicy>
                         <updatePolicy>always</updatePolicy>
                     </releases>
                 </repository>

@@ -223,7 +223,7 @@ class { 'bamboo_agent':
     'system.builder.command.Bash'                          => '/bin/bash',
     'system.jdk.openjdk-6-jdk'                             => '/usr/lib/jvm/java-6-openjdk-amd64',
     'system.jdk.openjdk-7-jdk'                             => '/usr/lib/jvm/java-7-openjdk-amd64',
-    'system.builder.mvn3.Maven\ 3'                         => '/usr/share/apache-maven-${Maven3Version}',
+    'system.builder.mvn3.Maven\ 3'                         => "/usr/share/apache-maven-${Maven3Version}",
     'system.builder.mvn2.Maven\ 2'                         => '/usr/share/maven2',
     "system.builder.grailsBuilder.Grails\\ $GrailsVersion" => '/opt/grails',
     'system.builder.node.Node.js'                          => '/usr/bin/nodejs',
