@@ -49,6 +49,12 @@ class install {
     ensure  => present,
     require => Class['prepare'],
   }
+  exec { 'install bower':
+    command => "/usr/bin/npm install bower -g",
+    creates => "/usr/bin/bower",
+    require => Package["nodejs"],
+  }
+
   #Install packages needed for tests
   $TestPackages = [ 'chromium-browser','firefox','xvfb' ]
   package { $TestPackages :
