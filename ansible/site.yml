@@ -18,8 +18,3 @@
   roles:
    - ssl-keys
 
-- hosts: bamboo-agent
-  roles:
-   - crontab
-  tasks:
-   - include: bamboo-agents.yml
