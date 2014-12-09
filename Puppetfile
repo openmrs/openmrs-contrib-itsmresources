@@ -13,5 +13,5 @@ mod 'maestrodev/wget'
 # https://github.com/kayakco/puppet-bamboo_agent/pull/4
 mod 'puppet/bamboo_agent',
   :git => 'https://github.com/cintiadr/puppet-bamboo_agent',
-  :ref => 'a6896831686ab67fcb115f81f85bd38e8b050c56'
+  :ref => '01a38f4a5c943098d8b17bd946f7009a8ed481a9'
 
