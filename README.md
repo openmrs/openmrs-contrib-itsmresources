@@ -1,5 +1,11 @@
 openmrs-contrib-bambooagent
 ===========================
+## Running locally with vagrant
+Exactly as described in https://wiki.openmrs.org/x/CIC3Ag:
+ - Virtualbox
+ - Vagrant
+ - $ vagrant up
+
 
 ## Requirements
 - Ubuntu 14.04
