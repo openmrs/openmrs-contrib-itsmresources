@@ -237,3 +237,10 @@ class { 'bamboo_agent':
   }
 }
 
+ cron { '/tmp':
+    minute  => 15,
+    hour    => 4,
+    command => "/usr/sbin/tmpreaper 1d /tmp -a -T 120",
+    require => Package['tmpreaper'],
+  }
+
