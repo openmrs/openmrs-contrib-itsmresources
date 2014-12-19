@@ -60,7 +60,7 @@
                     <id>openmrs-repo</id>
                     <url>http://mavenrepo.openmrs.org/nexus/content/repositories/public</url>
                     <releases>
-                        <checksumPolicy>fail</checksumPolicy>
+                        <checksumPolicy>warn</checksumPolicy>
                         <enabled>true</enabled>
                         <updatePolicy>always</updatePolicy>
                     </releases>
