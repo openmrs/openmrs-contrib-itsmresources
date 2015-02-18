@@ -1,0 +1,6 @@
+---
+users:
+ bamboo:
+   comment: Bamboo CI user
+   groups: 'admin'
+   ssh_key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDVlcLNk+zPdd3R2kqr8uukUdrNr8Xwzs+U9EdZolLLyHgA02SaNyg3/Eb3BvRTWMoonypou3XPCzeNd4l9NmPKtx+Cl7wKHy31JL4hF3/+3But41+R4/bAvpa+L8BUnFiWdoDfxBugGQXT1aUG5Fo3Rfrj81Zmw3C4IPAU1EJYCCH/IvXcNB3mCeTV5+n9cFPFwO4L+KB9BORNEsoyj6F2bcHTDiB+pKPbLfmKHvKgFcjWtX3BWIz9rjdkwGuaGkoDTNTCM4zMg2ZpHo2aVKe7DeTKV3vxr2yJDiuSOrMmzMF3T99wrwIH/VNjqsqwEOabfgJIhFb5LKKAQXvZYV3t bambooagent"
