@@ -1,0 +1,7 @@
+---
+users:
+ maurya:
+   comment: Maurya
+   groups: 'admin'
+   ssh_key: "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAreYskQtz/k18JsbxnzQszOGILjvhKPw1IAq4j47G1yzmB3ZD7R+SeVq9D461CGEwWYKVK0bBroReoWepFwvJN0KKpr5itrVhwbwPFAqLdxMQyamFCKKW9drIFOR/A5iY9Y7gtx5h5am/WbRRA0PvPOj3CVPIUlydASZWZB1Q98Bjlqgx+gCVtiRuhkPJtMwO81EbBGuONXxvIvHE7+TTRko1gv+5tNbVJvSiYMHSxMjRZGJQIY6ExmkVcugiDi/Tfr1KOux33oTMHD4yzoYl0MiI6rykK77WVu005/vtnoSbxQlqiHYjr2dpLnKWqkObLrhP9m+owZCL0LleTj0Cyw== maurya"
+
