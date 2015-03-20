@@ -18,3 +18,8 @@
   roles:
    - ssl-keys
 
+- hosts: bamboo
+  roles: 
+   - timezone
+  vars:
+   timezone: UTC
