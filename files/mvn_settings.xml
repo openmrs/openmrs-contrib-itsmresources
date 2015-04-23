@@ -16,6 +16,11 @@
       <username>ci</username>
       <password>restricts7904956(overabundantly</password>
     </server>
+    <server>
+      <id>openmrs-repo-contrib</id>
+      <username>ci</username>
+      <password>restricts7904956(overabundantly</password>
+    </server>
   </servers>
 
   <profiles>
