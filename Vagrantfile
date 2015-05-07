@@ -20,7 +20,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   # git is required by librarian puppet; ruby-dev is required to install gems 
   config.vm.provision "shell",
-   inline: "echo 'Installing git and ruby-dev'; apt-get -q -y install git; apt-get install -y ruby-dev; apt-get -y autoremove"
+   inline: "echo 'Installing git and ruby-dev'; apt-get update; apt-get -q -y install git; apt-get install -y ruby-dev; apt-get -y autoremove"
   
   # Installing puppet and librarian-puppet
   config.vm.provision "shell",
