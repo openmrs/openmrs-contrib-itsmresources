@@ -11,7 +11,7 @@
 # Vars
 $bamboo_server = "https://ci.openmrs.org"
 $GrailsVersion = "2.3.7"
-$Maven3Version = "3.2.3"
+$Maven3Version = "3.2.5"
 $bamboo_user_1="bamboo-agent-1"
 $bamboo_user_home_1 = "/home/bamboo-agent-1"
 $bamboo_user_2="bamboo-agent-2"

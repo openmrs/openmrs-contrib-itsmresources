@@ -2,11 +2,11 @@
 
 forge "https://forgeapi.puppetlabs.com"
 
-mod 'puppetlabs/apt'
-mod 'puppetlabs/stdlib'
-mod 'puppetlabs/java'
-mod 'kayak/r9util'
-mod 'maestrodev/wget'
+mod 'puppetlabs/apt', '1.7.0'
+mod 'puppetlabs/stdlib', '4.4.0'
+mod 'puppetlabs/java', '1.2.0'
+mod 'kayak/r9util', '0.0.4'
+mod 'maestrodev/wget', '1.5.6'
 
 # this module is a fork of kayak-bamboo_agent
 # to handle one user per bamboo agent
