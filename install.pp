@@ -25,6 +25,7 @@ class prepare {
   }
  
   apt::ppa { 'ppa:chris-lea/node.js' : }
+  apt::ppa { 'ppa:openjdk-r/ppa' : }
 
   user { $bamboo_user_1:
     ensure     => 'present',
@@ -44,7 +45,7 @@ include prepare
 
 # Install packages needed for building
 class install {
-  $JavaPackages = [ 'maven2', 'ant','git','openjdk-7-jre','openjdk-6-jdk','subversion','nodejs' ]
+  $JavaPackages = [ 'maven2', 'ant','git','openjdk-7-jre','openjdk-6-jdk', 'openjdk-8-jdk', 'subversion','nodejs' ]
   package { $JavaPackages :
     ensure  => present,
     require => Class['prepare'],
@@ -107,6 +108,12 @@ class install {
 
 }
 include install
+
+
+exec{ "update-java-alternatives -s java-1.7.0-openjdk":
+    path    => ["/usr/bin", "/usr/sbin"],
+    require => Class['install'],
+}
 
 define bamboo_agent_home_config(
   $home = $title,
@@ -229,6 +236,7 @@ class { 'bamboo_agent':
     'system.builder.command.Bash'                          => '/bin/bash',
     'system.jdk.openjdk-6-jdk'                             => '/usr/lib/jvm/java-6-openjdk-amd64',
     'system.jdk.openjdk-7-jdk'                             => '/usr/lib/jvm/java-7-openjdk-amd64',
+    'system.jdk.openjdk-8-jdk'                             => '/usr/lib/jvm/java-8-openjdk-amd64',
     'system.builder.mvn3.Maven\ 3'                         => "/usr/share/apache-maven-${Maven3Version}",
     'system.builder.mvn2.Maven\ 2'                         => '/usr/share/maven2',
     "system.builder.grailsBuilder.Grails\\ $GrailsVersion" => '/opt/grails',
