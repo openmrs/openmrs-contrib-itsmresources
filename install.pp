@@ -106,6 +106,8 @@ class install {
     require => Exec['extract maven 3'],
   }
 
+  include 'docker'
+
 }
 include install
 
