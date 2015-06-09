@@ -31,12 +31,15 @@ class prepare {
     ensure     => 'present',
     managehome => true,
     home       => $bamboo_user_home_1, 
+    groups     => ['docker'],
   }
 
   user { $bamboo_user_2:
     ensure     => 'present',
     managehome => true,
     home       => $bamboo_user_home_2, 
+    groups     => ['docker'],
+
   }
 
 }
