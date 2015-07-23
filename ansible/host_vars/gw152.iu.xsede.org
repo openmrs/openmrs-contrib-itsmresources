@@ -1,12 +1,7 @@
 ---
 users:
- maurya:
-   comment: Maurya
+ kjoseph:
+   comment: Jospeh Kaweesi
    groups: 'admin'
-   ssh_key: "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAreYskQtz/k18JsbxnzQszOGILjvhKPw1IAq4j47G1yzmB3ZD7R+SeVq9D461CGEwWYKVK0bBroReoWepFwvJN0KKpr5itrVhwbwPFAqLdxMQyamFCKKW9drIFOR/A5iY9Y7gtx5h5am/WbRRA0PvPOj3CVPIUlydASZWZB1Q98Bjlqgx+gCVtiRuhkPJtMwO81EbBGuONXxvIvHE7+TTRko1gv+5tNbVJvSiYMHSxMjRZGJQIY6ExmkVcugiDi/Tfr1KOux33oTMHD4yzoYl0MiI6rykK77WVu005/vtnoSbxQlqiHYjr2dpLnKWqkObLrhP9m+owZCL0LleTj0Cyw== maurya"
-
- djazayeri:
-   comment: Darius Jazayeri
-   groups: 'admin'
-   ssh_key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC0ted8ZbMokU7mjwoNHhNRuPKyIr2T4NDtatZSHZa/A6e0t+tDi8K1znFMbgZ3ZcVQQh0czcrnwTMMUprTiVyn5WB16Qs0WrfiHfr83/HDkcJA9LbQ3s1bM/f9QJ9Uo5vP5TMpJL8gGueKiSMP1+x6JwJ4EuUZKdsUz+q/WtzxU10ImECWOeOnwGaUkmitPREBzbJSIv8pciq4QJ/fHuYeuvRZOmUYC+V+Rn3C1XEJf1jhRIBahT5KhV02wfmbfXchIAd/WrIbqvVQ5YGg8UwqdN47cxHvNwR5BCqpTY1C3XyCrj13NqflPCGyYyj6+mxs74EMJYAh0nDT/ZSeUvbf jazayeri@alum.mit.edu"
-
+   ssh_key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDF3U5dTIiDg3FgaLezYKkNbD0STjLirgC6qrTPfc5mZJYlIGeR57WVTgjUjxwnXS7aWQ4Kaq//+UI/dRCsRW8t5two/0WKMJyNRydPch0VSjOsntJP+LwqjcODODzMhBaZypAkvBZG8vZlACieYlD1BawiWqeM40/nOw/r+x2dPC8tCdxRQsMU53E7VOGPwMzMrpBccw8h68cBRrbIiKK/S0i+lTqn+LLB8RggYZLHELkfOg3mQ8R0pIKLNEWfLzZepVk0bs6zbFOMaA/zYeRyaTWwIhmdJtzlYkHKx4HsypWcatqpsGDSCzSGYooQcNTXvrAvhPXi+sF7yU9oh2Sl kaweesi.joseph2012@gmail.com"
+   
