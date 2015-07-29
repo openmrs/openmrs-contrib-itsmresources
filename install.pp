@@ -151,18 +151,6 @@ define bamboo_agent_home_config(
     source => 'puppet:///modules/openmrs-contrib-bambooagent/mvn_settings.xml',
   }
 
-  file { "$home/bamboo-ssh-deploy" :
-    ensure  => directory,
-    recurse => true,
-    purge   => true, # remove unmanaged files
-    force   => true, # remove unmanaged subdirectories and files
-    mode    => 600,
-    owner   => $user,
-    group   => $group,
-    source  => 'puppet:///modules/openmrs-contrib-bambooagent/bamboo-ssh-deploy',
-    require => User[$user],
-  }
-
   file { "$home/bamboo-github-key" :
     ensure  => directory,
     recurse => true,
