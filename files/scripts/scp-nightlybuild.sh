@@ -20,4 +20,4 @@ cp ${builddir}/openmrs.war ${nightlydatedirwithbranch}
 cp ${builddir}/openmrs-api-*.jar ${nightlydatedirwithbranch}
 
 # Rsync nightly build to sourceforge
-rsync -avOP -e "ssh -i $HOME/bamboo-ssh-deploy/id_rsa" ${nightlydir} openmrs,openmrsdev@frs.sourceforge.net:/home/frs/project/o/op/openmrs/
+rsync -avOP -e "ssh -i $HOME/.ssh/id_rsa" ${nightlydir} openmrs,openmrsdev@frs.sourceforge.net:/home/frs/project/o/op/openmrs/
