@@ -1,0 +1,10 @@
+DELIMITER ;;
+CREATE TRIGGER users_update BEFORE UPDATE ON users FOR EACH ROW
+IF OLD.user_id = 1 THEN
+SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'admin user account is locked';
+END IF;;
+CREATE TRIGGER users_delete BEFORE DELETE ON users FOR EACH ROW
+IF OLD.user_id = 1 THEN
+SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'admin user account is locked';
+END IF;;
+DELIMITER ;

@@ -13,3 +13,7 @@ gw122.iu.xsede.org
 gw145.iu.xsede.org
 gw123.iu.xsede.org
 gw152.iu.xsede.org
+
+[dbreset]
+devtest01.openmrs.org
+devtest02.openmrs.org

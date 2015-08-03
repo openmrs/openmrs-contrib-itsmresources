@@ -23,3 +23,14 @@
    - timezone
   vars:
    timezone: UTC
+
+# TODO: make own roles for this
+- hosts: dbreset
+  tasks:
+   - name: Insert dbreset scripts 
+     synchronize: archive=no
+                  dest=/opt/scripts/
+                  mode=push
+                  perms=yes
+                  recursive=yes
+                  src=../scripts/dbreset
