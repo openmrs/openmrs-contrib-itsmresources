@@ -1,3 +1,6 @@
 ---
 mysql_root_password: OpenMRS42!
-
+mysql_users:
+  bamboo_admin:
+    password: OpenMRSDeploy42!
+    priv: "*.*:ALL"
