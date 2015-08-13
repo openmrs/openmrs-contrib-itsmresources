@@ -55,7 +55,7 @@ edit `host_vars/dschang.openmrs.org` and add this hash under `users:` if it does
 
 Then run the playbook
 
-`ansible-playbook -i testing site.yml --sudo`
+`ansible-playbook -i staging site.yml --sudo`
 
 ## Running example ad-hoc commands
 #### Updating all packages on staging servers
