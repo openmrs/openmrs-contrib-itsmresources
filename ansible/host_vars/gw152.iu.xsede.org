@@ -1,7 +1,7 @@
 ---
 users:
- kjoseph:
-   comment: Jospeh Kaweesi
+ tharunya:
+   comment: Tharunya Pati
    groups: 'admin'
-   ssh_key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDF3U5dTIiDg3FgaLezYKkNbD0STjLirgC6qrTPfc5mZJYlIGeR57WVTgjUjxwnXS7aWQ4Kaq//+UI/dRCsRW8t5two/0WKMJyNRydPch0VSjOsntJP+LwqjcODODzMhBaZypAkvBZG8vZlACieYlD1BawiWqeM40/nOw/r+x2dPC8tCdxRQsMU53E7VOGPwMzMrpBccw8h68cBRrbIiKK/S0i+lTqn+LLB8RggYZLHELkfOg3mQ8R0pIKLNEWfLzZepVk0bs6zbFOMaA/zYeRyaTWwIhmdJtzlYkHKx4HsypWcatqpsGDSCzSGYooQcNTXvrAvhPXi+sF7yU9oh2Sl kaweesi.joseph2012@gmail.com"
+   ssh_key: "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAptqJmM5je2jenbbYqiiAbsCG6wpzR4MZ/WbUX/tJc65zzAcuYnyrvnevztqXias7zJyMeJ+LaDQIuHok9JTFm1lX15Hn2j9PBhE6hdVFi87oY/OXoPNtqtRyCniEVO6lRGjmNymREjSc25kiAEgt4g9PpL1Htf269Bam5VbVQ50QsYCPzTH9S/gz2heBpdnAmXeUTTb6u9ITCrlsc5yofbL3o0Mgb1rWNpu10MqqmxQLysPb44BRN2mkj21XrWoqME9iujjHYK7gTZHAThtnckoa1ClguiRl4RSCon4bTxiohWtIP5KEiJrfNp8bUoyS5YRk1kJaJuawJ1ngGYrYfQ=="
    
