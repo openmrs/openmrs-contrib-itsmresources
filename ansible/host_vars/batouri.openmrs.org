@@ -4,7 +4,3 @@ users:
     comment: Weihua Cheung
     groups: 'admin'
     ssh_key: "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAynDvPrmWNc7c+NzSPCL4hhEJzCtv6P7gWIxv+Omk2eNaouKDYAufd+Y6q2G/zF+Gwvvpzckq5YNNIaqCYomgw/kGJ5R2rjabAbWrNcK4o16yDaIF2bb8U6O1rwdZbPBPT+Rtwt73kdc0q1c1dmKc/WpEhZC93CUj1yB7UFo097BTXUbo3JtgH/+glz7bTQN6HGD1bfm35+byJPbB4o6HNXZfbHHQ6AweBBhr4EeiAFBUECKGr3HVWYJU7X6mU0OG9hAMCXtFxPmP2RqvjdG2760vC6eTCnIcdC5I6xnK/aklEnAlcDNwBHgwMxJVMt7jVhMPw+lsXh1xHDDyTKlLsQ== Ply_py@PLY_PY-PC"
-  rob:
-   comment: Robby OConnor
-   groups: 'admin'
-   ssh_key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCmyHZtFikT7VE9QUU9qQqfn6c5zeGpeTfjZS65GRJrLDVLjNcCrCoufEV/SbeYBtJYKqCh5uHnsTz50433rmRW7UQ3VNr5quDzZ6z7Q/ANg5zPYPEkmx5oOsvRlw+MhnIEFMI55fUltmIt8U+Aln0oxOC6p6w4PC9qoi1pVex8uAaXLsi8n2/D7rjvbEG0+J68SJ8lnuCkHZJx97E1A0JGuT0P4/6MyvIqQu2TA8Y5XIRq9l2QHtsYQn2juNWm7xnO8ZU6ibLog8YjuVTse1MMAPXqMADw+VViU4RLPJ8ApzC1G3BxabBEvzGY32Ys871nSGYb+nGyJIfuhUlH2sbj rob@rob-HP"
