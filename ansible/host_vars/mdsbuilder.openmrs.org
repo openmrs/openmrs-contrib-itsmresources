@@ -11,4 +11,4 @@ users:
  ball:
     comment: Ellen Ball
     groups: 'admin'
-    ssh_key "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCTKNfnXs0WCG8NBvbKfpp0IES7BBtzlyWw0K99CYo+YUXYQwooI7RjDVmh+GS3rtyknrvsx5Yl68HebGFQD14ljl6zyBgMSlJ0WOjQfYGTWSgd+LHgEM4L9dC4iozgEMzxicB/eHduHagLzPHDarPYs8APJ8/ZxfrCgJWmzC8xvcxtWSbYU+V54PqCMmdxGoNWaWpvLWwmuQhrPBEmW/11yHn6+EV45cvoWCH1ff+Hsb2bnqbE95azwkvJRfeWqmvxpQwe4pnogTcPcJYc8x+zcuGHZm1cYCafalHOK163T07l1fiUpZrR+jFpOq8+ulz/33CG/KZrBozAsV1l7wrp ball@ball-ThinkPadT450-2015"
+    ssh_key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCTKNfnXs0WCG8NBvbKfpp0IES7BBtzlyWw0K99CYo+YUXYQwooI7RjDVmh+GS3rtyknrvsx5Yl68HebGFQD14ljl6zyBgMSlJ0WOjQfYGTWSgd+LHgEM4L9dC4iozgEMzxicB/eHduHagLzPHDarPYs8APJ8/ZxfrCgJWmzC8xvcxtWSbYU+V54PqCMmdxGoNWaWpvLWwmuQhrPBEmW/11yHn6+EV45cvoWCH1ff+Hsb2bnqbE95azwkvJRfeWqmvxpQwe4pnogTcPcJYc8x+zcuGHZm1cYCafalHOK163T07l1fiUpZrR+jFpOq8+ulz/33CG/KZrBozAsV1l7wrp ball@ball-ThinkPadT450-2015"
