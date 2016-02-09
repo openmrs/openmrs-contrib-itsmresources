@@ -12,3 +12,7 @@ users:
     comment: Ellen Ball
     groups: 'admin'
     ssh_key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCTKNfnXs0WCG8NBvbKfpp0IES7BBtzlyWw0K99CYo+YUXYQwooI7RjDVmh+GS3rtyknrvsx5Yl68HebGFQD14ljl6zyBgMSlJ0WOjQfYGTWSgd+LHgEM4L9dC4iozgEMzxicB/eHduHagLzPHDarPYs8APJ8/ZxfrCgJWmzC8xvcxtWSbYU+V54PqCMmdxGoNWaWpvLWwmuQhrPBEmW/11yHn6+EV45cvoWCH1ff+Hsb2bnqbE95azwkvJRfeWqmvxpQwe4pnogTcPcJYc8x+zcuGHZm1cYCafalHOK163T07l1fiUpZrR+jFpOq8+ulz/33CG/KZrBozAsV1l7wrp ball@ball-ThinkPadT450-2015"
+ jdegraft:
+   comment: James deGraft-Johnson
+   groups: 'admin'
+   ssh_key: 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDdBOFkfRcwQmzumD/V9ZhkGhbI+PFbiZNpxSTOMD35cl87CvS/qgWBvuZaE9VmLA6CPsCTBZ9r1Grhs/+Mx/hdXEHJTcn7nO8JhRdY9H0mpVf/A5A3FmMwgfx06tVMNCd+/2S6oVY34v7Zo6PWjEYznlYtDZMEK+tJW4M342nJvpX0En1RuemfHmiqSynJwEDBrk1uWxHhxpH/lx2TXx0g2BmMRNPr8NGtzXJJ/Ih/D47DtdlSDyhk718dhmBGIM1rwUybDyTxkJ7avTty0Wt8yP8JZbqTZKD6pRapm5SJfR6fLLmCK904MCdXezKz8VRjZ3x0ERRiUkLK7EyatssJ xcodeclub@XCodeClubs-Mac-5.local'
