@@ -24,8 +24,6 @@ users:
    ssh_key: "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEA3Gwh/t0w0EkGOIZN4MJ3acyI27ycfATlFIL47rLCAVhwgJrwlVN8X7i/9p8kbNWb7TQf4i2O4e1JUwLhquSzwekuRO74ID0L0VCv3JkQ6sO86FuK9Si4g/C814mxcCl0XTnVARjCYBGvxNuz8UqzQgnh4ALaYNhvz3HaIFscv4Ex9djtek1NfE43dw+ZO0nHw961kOByyYt7KpEKaMFkzbFqZlPds5JB3kvRYYbrZzn287T2IMc+bozjsAnVFn4TkHKa12T85v6hbj5OpjX7tiGH9N1TZBL0nTPnpFORHhhWuxGW5dWjFtSkWvI0jPFifz+SwC2qeYC5wLJZWwIKLw== herooftime@149-166-217-33.dhcp-in.iupui.edu"
 
 # Users that should be removed from all hosts
- breeze:
-  state: absent
 
 # Sudo users, % for groups. Default to nopasswd.
 sudo_users:
