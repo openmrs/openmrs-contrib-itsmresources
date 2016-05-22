@@ -1,0 +1,2 @@
+---
+profiles::bamboo_agent::bamboo_server: "https://ci.openmrs.org"

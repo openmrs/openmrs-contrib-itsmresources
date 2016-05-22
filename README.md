@@ -1,54 +1,72 @@
 openmrs-contrib-bambooagent
 ===========================
-## Running locally with vagrant
-Exactly as described in https://wiki.openmrs.org/x/CIC3Ag:
- - Virtualbox
- - Vagrant
- - $ vagrant up
+Installation of Bamboo Agents.
+
+## Development environment
+
+### Setting up
+  - [Virtualbox](https://www.virtualbox.org/)
+  - [Vagrant](https://www.vagrantup.com/)
+  - git
+  - ruby (2.1 recommended. Use rvm or renv for easier installation)
 
 
-## Requirements
-- Ubuntu 14.04
-- Puppet 3.x
-- Git, make, ruby-dev
+[Geppeto IDE](https://puppetlabs.github.io/geppetto/index.html) is recommended, but not necessary. 
 
-## Install Instructions
-- Install required modules
+## Running locally
+
+Install required gems
 ```
-gem install librarian-puppet  --no-ri --no-rdoc
-# Copy puppetfile from this repository using, for example, scp
-cp Puppetfile /etc/puppet/
-cd /etc/puppet/; librarian-puppet install
+$ gem install bundler
+$ bundle install 
 ```
-- Add a ssh key to root user
+
+Download the correct versions of third party modules into 'modules' folder:
+```$ librarian-puppet install```
+When updating the `Puppetfile`, you'll need to rerun this command. 
+
+ 
+To run an Ubuntu 14.04 VM:
+```$ vagrant up ```
+.... and go grab a coffee. Or two. Maybe a shower. While waiting for it to finish downloading the internet. 
+Other vagrant commands can be found in [Confluence](https://wiki.openmrs.org/x/CIC3Ag)
+
+
+## Production/Staging environments
+
+### Requirements
+  - Ubuntu 14.04
+  - Puppet 3.x/Hiera/facter
+This tree doesn't work with puppet 4. 
+
+### Setting up new machine
+#### Configuring git SSH
 ```
 mkdir -p /root/.ssh
-#copy files/bamboo-github-key/id_rsa from this repository using, for example, scp
-cp files/bamboo-github-key/id_rsa /root/.ssh/
-```
-- Create a /root/.ssh/config file
-```
-Host github.com
-	HostName github.com
-	PreferredAuthentications publickey
-	IdentityFile /root/.ssh/id_rsa
-```
-- Change into module directory
-```
-cd /etc/puppet/modules
-```
-- Clone this repo into the modules directory
-```
-# git clone git@github.com:openmrs/openmrs-contrib-bambooagent.git
-```
-- Apply the puppet module
-```
-# puppet apply install.pp
 ```
 
-## Updating Agent
+From your machine:
 ```
-cd /etc/puppet/modules/openmrs-contrib-bambooagent
-sudo git pull
-sudo puppet apply install.pp
+# copy files from this repository using, for example, scp
+scp files/bamboo-github-key/id_rsa $SERVER:/root/.ssh/
+scp files/ssh/config $SERVER:/root/.ssh/
+```
+
+#### Clone this repository into puppet folder
+```
+$ cd /etc
+$ mv puppet puppet_old
+$ git clone git@github.com:openmrs/openmrs-contrib-bambooagent.git puppet
+```
+
+### Installing more dependencies
+```
+$ /etc/puppet/bin/first-boot.sh
+$ gem install librarian-puppet
+```
+
+
+### Running puppet
+```
+$ /etc/puppet/bin/run-puppet.sh
 ```

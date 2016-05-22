@@ -1,0 +1,3 @@
+Host github.com
+	IdentityFile ~/.ssh/bamboo-github-key/id_rsa
+	StrictHostKeyChecking no
