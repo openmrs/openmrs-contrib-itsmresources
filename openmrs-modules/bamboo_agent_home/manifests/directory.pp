@@ -2,7 +2,7 @@ define bamboo_agent_home::directory (
   $bamboo_user_1 = hiera('bamboo_agent_home::bamboo_user_1'),
   $bamboo_user_2 = hiera('bamboo_agent_home::bamboo_user_2'),
   $destination = $name,
-  $mode   = '750',
+  $mode   = '700',
   $recurse = false,
   $purge = false,
   $force = false,
