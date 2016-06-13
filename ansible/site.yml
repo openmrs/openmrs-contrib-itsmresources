@@ -10,9 +10,9 @@
 #   - ntp
 #   - ssl-keys
 
-- hosts: mysql
-  roles:
-   - mysql
+#- hosts: mysql
+#  roles:
+#   - mysql
 
 - hosts: www
   roles:
