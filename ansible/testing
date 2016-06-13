@@ -1,6 +1,6 @@
 [test]
-devtest01.openmrs.org
-devtest02.openmrs.org
+gw65.iu.xsede.org  #old devtest01.openmrs.org, now int02.openmrs.org
+gw25.iu.xsede.org  #old devtest02.openmrs.org, now qa01.openmrs.org
 mdsbuilder.openmrs.org
 gw122.iu.xsede.org #qa01.openmrs.org
 gw123.iu.xsede.org #devtest04.openmrs.org
@@ -15,5 +15,6 @@ gw123.iu.xsede.org
 gw152.iu.xsede.org
 
 [dbreset]
-devtest01.openmrs.org
-devtest02.openmrs.org
+gw65.iu.xsede.org  #old devtest01.openmrs.org, now int02.openmrs.org
+gw25.iu.xsede.org  #old devtest02.openmrs.org, now qa01.openmrs.org
+
