@@ -15,13 +15,14 @@ users:
  rob:
    comment: Robby O\'Connor
    groups: 'admin'
-   uid: 9004
    ssh_key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCkl1zknE7Jc5RTHqDZ4k0L94CENHXxb2ttxihpjLV06JN1tgAUEl25QSSRQxGAesb5Ky6haKo4gCwNjuC73W8+qUgNdXoQ8Eolkf9s1z7B46SG6gujU8GNdKexfwo8DLmMJkEcv+y+SxydfY6sG9doDSK4RowCb2RnJS6gQTkC11yP6ZMHcEOvGvDFVuhnFAm9Eg8350+hwELvEs9CuqafdMTrfbjpSqr9MLQaYFv0U1mPBq+5ohgM+fUJhsKkw7cJfZl4FtBFOFAM7xF8wFgb0+7H2ghsyIjMvBjF4DTHGvieV6GZKY6HJ/uzSpBNP2tGr7ntCcom+JHUCt+Gv7DP rob@rob-HP"  
 
 # Users that should be removed from all hosts
  mjdowney:
    state: absent
  herooftime:
+   state: absent
+ elliott:
    state: absent
 
 # Sudo users, % for groups. Default to nopasswd.
