@@ -2,6 +2,48 @@ openmrs-contrib-bambooagent
 ===========================
 Installation of Bamboo Agents.
 
+
+
+## Updating Production/Staging machines
+```
+$ /etc/puppet/bin/run-puppet.sh
+```
+
+## New Production/Staging machines
+
+### Requirements
+  - Ubuntu 14.04
+  - Puppet 3.x/Hiera/facter
+This tree doesn't work with puppet 4. 
+
+### Setting up new machine
+#### Configuring git SSH
+```
+mkdir -p /root/.ssh
+```
+
+From your machine:
+```
+# copy files from this repository using, for example, scp
+scp files/bamboo-github-key/id_rsa $SERVER:/root/.ssh/
+scp files/ssh/config $SERVER:/root/.ssh/
+```
+
+#### Clone this repository into puppet folder
+```
+$ cd /etc
+$ mv puppet puppet_old
+$ git clone git@github.com:openmrs/openmrs-contrib-bambooagent.git puppet
+```
+
+### Running puppet for the first time
+```
+$ /etc/puppet/bin/first-boot.sh
+$ gem install librarian-puppet
+$ /etc/puppet/bin/run-puppet.sh
+```
+
+
 ## Development environment
 
 ### Setting up
@@ -32,41 +74,5 @@ To run an Ubuntu 14.04 VM:
 Other vagrant commands can be found in [Confluence](https://wiki.openmrs.org/x/CIC3Ag)
 
 
-## Production/Staging environments
-
-### Requirements
-  - Ubuntu 14.04
-  - Puppet 3.x/Hiera/facter
-This tree doesn't work with puppet 4. 
-
-### Setting up new machine
-#### Configuring git SSH
-```
-mkdir -p /root/.ssh
-```
-
-From your machine:
-```
-# copy files from this repository using, for example, scp
-scp files/bamboo-github-key/id_rsa $SERVER:/root/.ssh/
-scp files/ssh/config $SERVER:/root/.ssh/
-```
-
-#### Clone this repository into puppet folder
-```
-$ cd /etc
-$ mv puppet puppet_old
-$ git clone git@github.com:openmrs/openmrs-contrib-bambooagent.git puppet
-```
-
-### Installing more dependencies
-```
-$ /etc/puppet/bin/first-boot.sh
-$ gem install librarian-puppet
-```
 
 
-### Running puppet
-```
-$ /etc/puppet/bin/run-puppet.sh
-```
