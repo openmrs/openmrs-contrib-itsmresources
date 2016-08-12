@@ -64,8 +64,9 @@ This will do a dry run of updating all packages on the staging boxes.
 
 `ansible-playbook -i staging update.yml --check -v`
 
-When satisfied this will not breaking anything drop the `--check` and it will update all servers int he inventory.
-#### Update a ceratin package to latest version on production
+When satisfied this will not breaking anything drop the `--check` and it will update all servers int the inventory.
+
+#### Update a certain package to latest version on production
 
 `ansible -i production all -m apt -a "update_cache=yes name=openssl state=latest" --sudo`
 
