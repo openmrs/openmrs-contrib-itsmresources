@@ -2,8 +2,8 @@ class profiles::basic_configuration {
   class { 'apt':
     always_apt_update    => true,
   }
-  
-  package { ['unzip', 'curl', 'wget', 'tmpreaper'] :
+
+  package { ['unzip', 'wget', 'tmpreaper'] :
     ensure  => latest,
   }
   
