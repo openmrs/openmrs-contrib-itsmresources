@@ -7,14 +7,14 @@ define bamboo_agent_home::directory (
   $purge = false,
   $force = false,
   $source = undef,
-){ 
+){
   include ::bamboo_agent_home
-  
+
   file { "/home/${bamboo_user_1}/${destination}":
     ensure  => directory,
     mode    => $mode,
     recurse => $recurse,
-    purge   => $purge, 
+    purge   => $purge,
     force   => $force,
     source  => $source,
     owner   => $bamboo_user_1,
@@ -26,7 +26,7 @@ define bamboo_agent_home::directory (
     ensure  => directory,
     mode    => $mode,
     recurse => $recurse,
-    purge   => $purge, 
+    purge   => $purge,
     force   => $force,
     source  => $source,
     owner   => $bamboo_user_2,

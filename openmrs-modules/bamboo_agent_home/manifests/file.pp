@@ -4,9 +4,9 @@ define bamboo_agent_home::file (
   $content,
   $destination = $name,
   $mode   = '600',
-){ 
+){
   include ::bamboo_agent_home
-  
+
   file { "/home/${bamboo_user_1}/${destination}":
     mode    => $mode,
     owner   => $bamboo_user_1,

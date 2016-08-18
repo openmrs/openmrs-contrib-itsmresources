@@ -16,9 +16,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     v.cpus = 2
   end
 
-  config.vm.provision "shell", :path => 'bin/first-boot.sh' 
-  
-  # And running puppet 
+  config.vm.provision "shell", :path => 'bin/first-boot.sh'
+
+  # And running puppet
   config.vm.provision "puppet" do |puppet|
     puppet.module_path = [ 'modules', 'openmrs-modules' ]
     puppet.manifest_file = 'site.pp'

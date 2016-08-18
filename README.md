@@ -14,7 +14,7 @@ $ /etc/puppet/bin/run-puppet.sh
 ### Requirements
   - Ubuntu 14.04
   - Puppet 3.x/Hiera/facter
-This tree doesn't work with puppet 4. 
+This tree doesn't work with puppet 4.
 
 ### Setting up new machine
 #### Configuring git SSH
@@ -53,26 +53,22 @@ $ /etc/puppet/bin/run-puppet.sh
   - ruby (2.1 recommended. Use rvm or renv for easier installation)
 
 
-[Geppeto IDE](https://puppetlabs.github.io/geppetto/index.html) is recommended, but not necessary. 
+[Geppeto IDE](https://puppetlabs.github.io/geppetto/index.html) is recommended, but not necessary.
 
 ## Running locally
 
 Install required gems
 ```
 $ gem install bundler
-$ bundle install 
+$ bundle install
 ```
 
 Download the correct versions of third party modules into 'modules' folder:
 ```$ librarian-puppet install```
-When updating the `Puppetfile`, you'll need to rerun this command. 
+When updating the `Puppetfile`, you'll need to rerun this command.
 
- 
+
 To run an Ubuntu 14.04 VM:
 ```$ vagrant up ```
-.... and go grab a coffee. Or two. Maybe a shower. While waiting for it to finish downloading the internet. 
+.... and go grab a coffee. Or two. Maybe a shower. While waiting for it to finish downloading the internet.
 Other vagrant commands can be found in [Confluence](https://wiki.openmrs.org/x/CIC3Ag)
-
-
-
-

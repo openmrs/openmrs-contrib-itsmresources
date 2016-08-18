@@ -59,7 +59,7 @@
                     </releases>
                 </repository>
             </repositories>
-            
+
             <pluginRepositories>
                 <pluginRepository>
                     <id>openmrs-repo</id>
@@ -74,7 +74,7 @@
                     </snapshots>
                 </pluginRepository>
             </pluginRepositories>
-      </profile> 
+      </profile>
   </profiles>
-  
+
 </settings>

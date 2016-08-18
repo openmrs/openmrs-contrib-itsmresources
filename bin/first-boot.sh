@@ -2,7 +2,7 @@
 
 GUARD_FILE="/tmp/first_boot.log"
 
-if [ -f "$GUARD_FILE" ]; then 
+if [ -f "$GUARD_FILE" ]; then
 	echo "Not first boot; skipping basic installation.... "
 	exit 0
 fi
@@ -14,5 +14,4 @@ apt-get -q -y install git
 apt-get install -y ruby-dev make
 apt-get -y autoremove
 
-touch $GUARD_FILE   
-    
+touch $GUARD_FILE

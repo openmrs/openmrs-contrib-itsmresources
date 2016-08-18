@@ -6,7 +6,7 @@ class profiles::basic_configuration {
   package { ['unzip', 'wget', 'tmpreaper'] :
     ensure  => latest,
   }
-  
+
   cron { '/tmp':
     minute  => 15,
     hour    => 4,
