@@ -12,10 +12,6 @@ users:
    groups: 'admin'
    uid: 9001
    ssh_key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCwq6UcIsPMDLFqvfeUqkXlo1nlA7rI+siYX0dfc70gZU7rRQ5ZRyArErTQzLfWKlowXgBnvclFqOKITr8Fm4FezHRKXHUzzY51icgHwb4fW2wLFje9BXkimVgl9akCuzwSXg1r6ex5zaZtWFO85LfWFkm+spj92Gz1Tb187QbgY8/HbW+ekIfQ4AZ1mhM43MK76wlySU7Dqsbr8T1NEvgYNTGO3TOwrTkiS8iVI5SkdgRcRUYKK6gTjI18Qu/wDhXxzEAC6BPYedLDUWMCHAVh7ZtcgdmY3XQP+djpioEOlp38gTXMJUVu2HD0g/hb/eUaD/sq8fZpb0oTQqyHeK9D ryan@openmrs.org"
- rob:
-   comment: Robby O\'Connor
-   groups: 'admin'
-   ssh_key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCkl1zknE7Jc5RTHqDZ4k0L94CENHXxb2ttxihpjLV06JN1tgAUEl25QSSRQxGAesb5Ky6haKo4gCwNjuC73W8+qUgNdXoQ8Eolkf9s1z7B46SG6gujU8GNdKexfwo8DLmMJkEcv+y+SxydfY6sG9doDSK4RowCb2RnJS6gQTkC11yP6ZMHcEOvGvDFVuhnFAm9Eg8350+hwELvEs9CuqafdMTrfbjpSqr9MLQaYFv0U1mPBq+5ohgM+fUJhsKkw7cJfZl4FtBFOFAM7xF8wFgb0+7H2ghsyIjMvBjF4DTHGvieV6GZKY6HJ/uzSpBNP2tGr7ntCcom+JHUCt+Gv7DP rob@rob-HP"
  maany:
    comment: Mayank
    groups: 'admin'
@@ -32,6 +28,8 @@ users:
  herooftime:
    state: absent
  elliott:
+   state: absent
+ rob:
    state: absent
 
 # Sudo users, % for groups. Default to nopasswd.
