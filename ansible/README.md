@@ -29,7 +29,7 @@ If you already have this repo cloned: To pull the latest versions of modules you
 
 ## Requirements
 * This repo.
-* ansible  1.6+ installed on the same machine the repo is cloned to.
+* ansible  2.1+ installed on the same machine the repo is cloned to.
 
 ## How to use this
 To run this on a set of machines , currently (production, staging, testing).
