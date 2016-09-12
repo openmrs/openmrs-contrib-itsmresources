@@ -8,3 +8,8 @@ ufw_rules:
     port: 443
     proto: tcp
     rule: allow
+users:
+ chagara:
+   comment: Cha'gara Casanova
+   groups: 'admin'
+   ssh_key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDRf7+bQG/2n7hb36affxUESxgk6NH1TgyNtTSdPMoRni6zvSHVp/HKLmCNIteVSYnFFfNLF/qrPnzi8WnVi9QDprtGuX2o53dGRQxBZwoSJMJGnK7W9cYtC9zLKU2WZMhdOUuQnxDhYHgrcyclLdHn0op5eewu1C2Ykco8FhbAPBGuh7dN4rHcfbntQHuqr/z686oKEN7nf7ydNNULV23W1mcQO/zdcJrX59wVy8dGWxbcA+cKammgPifIr3/OxjP8kVewmYlmRBmoO+0taBUypmkkI6YM0aOR7BKGvtIN0jGHtIJ0mMX/Lr9YJrvPXyTbhH3OInHbeIMKaGMFK/1oVtLwyHg9rwFb+wi7TMWQvXr0GeP3ofy2kxusjAPcHaoa0gx4s/JnRvCcZCEla16DjNweJLPmJYoCtD1u+oSDuIgguiKG41e4hSu+iEusw1axFYN3v+eLZ2N5iUCrHtPrqTfMrNs0NNWKsdzpQgBVZFNDjt20W7rNhLoiOdrAwQI0HaToGwxzK/p3X5xy2axuU6T8VlFAqT/zRQzrP5U7M4PJwM8S7a47Z7KOoZgb9WPmerFiEmmjWF0vGWf2NsTq9XEh2mErPqLdCBS7XY1mwsuNea01jORX3163nOLcaSM+RqpDk071KVekIV7sadZ0vu+6g63uNrmrveS2gu0Jdw== chagara@openmrs.org"
