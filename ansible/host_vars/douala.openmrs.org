@@ -1,5 +1,5 @@
 ---
-# Wiki, Maven Repo (Nexus)
+# Wiki, Maven Repo Staging (Nexus)
 users:
  raff:
    comment: Rafal
