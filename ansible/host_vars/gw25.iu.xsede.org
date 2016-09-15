@@ -1,0 +1,11 @@
+---
+# Reference Application QA (qa01.openmrs.org)
+users:
+ dkayiwa:
+   comment: Daniel Kayiwa
+   groups: 'admin'
+   ssh_key: "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAx+1orGXyy5xp1vM1uDUIa/sj0/3Z04n0x2EBJvSGAs98LitJbrucMGOoC2o3vmDbQLhgjDDIp9WcXyNX2CRF9Ez3ZQFY3UYErA87zfXC3aUCXH72PypaiTngNYI/z2Z7r1xVlcsogxW4IeGitk144J4CD3rSA3hO2uTjnc1Vblrj92VjNLv+/0y9yRUgM7EF0hxKrb4NTYXRSAEM95KoJqzGKz8Kb9MPT4NsjBdOynVUGTaNv9mTV5QOZa+4n2W24zDPoRirws7koib8vbAj8J+IilBvOtXWzJdgEokbUmzbooaGT4OCjEwMpt0JUrBWrMlwazeiZEWaZVNgS97ubQ== danielkayiwa@Daniel-Kayiwas-MacBook-Pro.local"
+ djazayeri:
+   comment: Darius Jazayeri
+   groups: 'admin'
+   ssh_key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC0ted8ZbMokU7mjwoNHhNRuPKyIr2T4NDtatZSHZa/A6e0t+tDi8K1znFMbgZ3ZcVQQh0czcrnwTMMUprTiVyn5WB16Qs0WrfiHfr83/HDkcJA9LbQ3s1bM/f9QJ9Uo5vP5TMpJL8gGueKiSMP1+x6JwJ4EuUZKdsUz+q/WtzxU10ImECWOeOnwGaUkmitPREBzbJSIv8pciq4QJ/fHuYeuvRZOmUYC+V+Rn3C1XEJf1jhRIBahT5KhV02wfmbfXchIAd/WrIbqvVQ5YGg8UwqdN47cxHvNwR5BCqpTY1C3XyCrj13NqflPCGyYyj6+mxs74EMJYAh0nDT/ZSeUvbf jazayeri@alum.mit.edu"

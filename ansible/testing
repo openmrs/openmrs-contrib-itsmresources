@@ -1,20 +1,19 @@
 [test]
-gw65.iu.xsede.org  #old devtest01.openmrs.org, now int02.openmrs.org
-gw25.iu.xsede.org  #old devtest02.openmrs.org, now qa01.openmrs.org
+gw145.iu.xsede.org	# int01.openmrs.org
+gw65.iu.xsede.org	# int02.openmrs.org
+gw122.iu.xsede.org	# qa01.openmrs.org
+gw152.iu.xsede.org	# uat01.openmrs.org
+gw122.iu.xsede.org	# uat02.openmrs.org
 mdsbuilder.openmrs.org
-gw122.iu.xsede.org #qa01.openmrs.org
-gw123.iu.xsede.org #devtest04.openmrs.org
-gw92.iu.xsede.org #devtest03.openmrs.org
-gw145.iu.xsede.org #int01.openmrs.org
-gw152.iu.xsede.org # uat01.openmrs.org
+gw92.iu.xsede.org	# devtest03.openmrs.org
+gw123.iu.xsede.org	# devtest04.openmrs.org
 
 [mysql]
-gw122.iu.xsede.org
-gw145.iu.xsede.org
-gw123.iu.xsede.org
-gw152.iu.xsede.org
+gw145.iu.xsede.org	# int01.openmrs.org
+gw122.iu.xsede.org	# qa01.openmrs.org
+gw152.iu.xsede.org	# uat01.openmrs.org
+gw123.iu.xsede.org	# devtest04.openmrs.org
 
 [dbreset]
-gw65.iu.xsede.org  #old devtest01.openmrs.org, now int02.openmrs.org
-gw25.iu.xsede.org  #old devtest02.openmrs.org, now qa01.openmrs.org
-
+gw65.iu.xsede.org	# int02.openmrs.org
+gw122.iu.xsede.org	# qa01.openmrs.org

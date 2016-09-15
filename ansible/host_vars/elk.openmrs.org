@@ -1,4 +1,5 @@
 ---
+# OpenMRS Logs
 ufw_rules:
   http:
     port: 80
