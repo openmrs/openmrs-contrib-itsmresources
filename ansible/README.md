@@ -18,7 +18,7 @@ git submodule update --init --recursive
 
 If you already have this repo cloned: To pull the latest versions of modules you will need to run this.
 
-`git submodule foreach git pull`
+`git submodule foreach git pull origin master`
 
 ## Roles currently configured
 * users
