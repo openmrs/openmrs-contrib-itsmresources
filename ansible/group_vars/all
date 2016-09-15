@@ -27,14 +27,8 @@ users:
 
 
 # Users that should be removed from all hosts
- mjdowney:
-   state: absent
- herooftime:
-   state: absent
- elliott:
-   state: absent
- rob:
-   state: absent
+# username:
+#   state: absent
 
 # Sudo users, % for groups. Default to nopasswd.
 sudo_users:
