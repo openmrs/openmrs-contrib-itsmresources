@@ -79,7 +79,29 @@
              "Principal" : {
                 "AWS" : { "Fn::GetAtt" : [ "batouriuser", "Arn" ] }
              }
-          }]
+          },
+          {
+            "Sid" : "UploadAccesstalk",
+            "Action" : [ "s3:PutObject", "s3:ListMultipartUploadParts", "s3:AbortMultipartUpload" ],
+            "Effect" : "Allow",
+            "Resource" : { "Fn::Join" : [
+                  "", [ "arn:aws:s3:::", { "Ref" : "openmrsbackup" } , "/talk/*" ]
+               ] },
+            "Principal" : {
+               "AWS" : { "Fn::GetAtt" : [ "talkuser", "Arn" ] }
+            }
+         },
+         {
+           "Sid" : "UploadAccessNdu",
+           "Action" : [ "s3:PutObject", "s3:ListMultipartUploadParts", "s3:AbortMultipartUpload" ],
+           "Effect" : "Allow",
+           "Resource" : { "Fn::Join" : [
+                 "", [ "arn:aws:s3:::", { "Ref" : "openmrsbackup" } , "/ndu/*" ]
+              ] },
+           "Principal" : {
+              "AWS" : { "Fn::GetAtt" : [ "nduuser", "Arn" ] }
+           }
+        }]
         },
         "Bucket" : { "Ref" : "openmrsbackup" }
        }
@@ -90,11 +112,23 @@
         "UserName": "bafia-backups"
       }
     },
+    "bafiakey": {
+       "Type": "AWS::IAM::AccessKey",
+       "Properties": {
+          "UserName": { "Ref" : "bafiauser" }
+       }
+    },
     "bamendauser" : {
       "Type": "AWS::IAM::User",
       "Properties": {
         "UserName": "bamenda-backups"
       }
+    },
+    "bamendakey": {
+       "Type": "AWS::IAM::AccessKey",
+       "Properties": {
+          "UserName": { "Ref" : "bamendauser" }
+       }
     },
     "bafoussamuser" : {
       "Type": "AWS::IAM::User",
@@ -102,11 +136,23 @@
         "UserName": "bafoussam-backups"
       }
     },
+    "bafoussamkey": {
+       "Type": "AWS::IAM::AccessKey",
+       "Properties": {
+          "UserName": { "Ref" : "bafoussamuser" }
+       }
+    },
     "bafutuser" : {
       "Type": "AWS::IAM::User",
       "Properties": {
         "UserName": "bafut-backups"
       }
+    },
+    "bafutkey": {
+       "Type": "AWS::IAM::AccessKey",
+       "Properties": {
+          "UserName": { "Ref" : "bafutuser" }
+       }
     },
     "banyouser" : {
       "Type": "AWS::IAM::User",
@@ -114,11 +160,114 @@
         "UserName": "banyo-backups"
       }
     },
+    "banyokey": {
+       "Type": "AWS::IAM::AccessKey",
+       "Properties": {
+          "UserName": { "Ref" : "banyouser" }
+       }
+    },
     "batouriuser" : {
       "Type": "AWS::IAM::User",
       "Properties": {
         "UserName": "batouri-backups"
       }
     },
+    "batourikey": {
+       "Type": "AWS::IAM::AccessKey",
+       "Properties": {
+          "UserName": { "Ref" : "batouriuser" }
+       }
+    },
+    "talkuser" : {
+      "Type": "AWS::IAM::User",
+      "Properties": {
+        "UserName": "talk-backups"
+      }
+    },
+    "talkkey": {
+       "Type": "AWS::IAM::AccessKey",
+       "Properties": {
+          "UserName": { "Ref" : "talkuser" }
+       }
+    },
+    "nduuser" : {
+      "Type": "AWS::IAM::User",
+      "Properties": {
+        "UserName": "ndu-backups"
+      }
+    },
+    "ndukey": {
+       "Type": "AWS::IAM::AccessKey",
+       "Properties": {
+          "UserName": { "Ref" : "nduuser" }
+       }
+    }
+  },
+  "Outputs" : {
+    "bafiaaccesskey" : {
+      "Description": " AccessKeyId for bafia",
+      "Value" : { "Ref" : "bafiakey" },
+    },
+    "bafiasecretkey" : {
+      "Description": "SecretAccessKey for bafia",
+      "Value" : { "Fn::GetAtt" : [ "bafiakey", "SecretAccessKey" ]},
+    },
+    "bamendaaccesskey" : {
+      "Description": " AccessKeyId for bamenda",
+      "Value" : { "Ref" : "bamendakey" },
+    },
+    "bamendasecretkey" : {
+      "Description": "SecretAccessKey for bamenda",
+      "Value" : { "Fn::GetAtt" : [ "bamendakey", "SecretAccessKey" ]},
+    },
+    "bafoussamaccesskey" : {
+      "Description": " AccessKeyId for bafoussam",
+      "Value" : { "Ref" : "bafoussamkey" },
+    },
+    "bafoussamsecretkey" : {
+      "Description": "SecretAccessKey for bafoussam",
+      "Value" : { "Fn::GetAtt" : [ "bafoussamkey", "SecretAccessKey" ]},
+    },
+    "bafutaccesskey" : {
+      "Description": " AccessKeyId for bafut",
+      "Value" : { "Ref" : "bafutkey" },
+    },
+    "bafutsecretkey" : {
+      "Description": "SecretAccessKey for bafut",
+      "Value" : { "Fn::GetAtt" : [ "bafutkey", "SecretAccessKey" ]},
+    },
+    "banyoaccesskey" : {
+      "Description": " AccessKeyId for banyo",
+      "Value" : { "Ref" : "banyokey" },
+    },
+    "banyosecretkey" : {
+      "Description": "SecretAccessKey for banyo",
+      "Value" : { "Fn::GetAtt" : [ "banyokey", "SecretAccessKey" ]},
+    },
+    "batouriaccesskey" : {
+      "Description": " AccessKeyId for batouri",
+      "Value" : { "Ref" : "batourikey" },
+    },
+    "batourisecretkey" : {
+      "Description": "SecretAccessKey for batouri",
+      "Value" : { "Fn::GetAtt" : [ "batourikey", "SecretAccessKey" ]},
+    },
+    "talkaccesskey" : {
+      "Description": " AccessKeyId for talk",
+      "Value" : { "Ref" : "talkkey" },
+    },
+    "talksecretkey" : {
+      "Description": "SecretAccessKey for talk",
+      "Value" : { "Fn::GetAtt" : [ "talkkey", "SecretAccessKey" ]},
+    },
+    "nduaccesskey" : {
+      "Description": " AccessKeyId for ndu",
+      "Value" : { "Ref" : "ndukey" },
+    },
+    "ndusecretkey" : {
+      "Description": "SecretAccessKey for ndu",
+      "Value" : { "Fn::GetAtt" : [ "ndukey", "SecretAccessKey" ]},
+    },
+
   }
 }
