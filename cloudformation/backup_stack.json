@@ -1,0 +1,48 @@
+{
+  "AWSTemplateFormatVersion" : "2010-09-09",
+  "Description" : "Stack for OpenMRS servers backups",
+  "Resources" : {
+    "openmrsbackup" : {
+      "Type" : "AWS::S3::Bucket",
+      "Properties" : {
+        "BucketName" : "openmrs-backup"
+      }
+    },
+    "bafiauser" : {
+      "Type": "AWS::IAM::User",
+      "Properties": {
+        "UserName": "bafia-backups"
+      }
+    },
+    "bamendauser" : {
+      "Type": "AWS::IAM::User",
+      "Properties": {
+        "UserName": "bamenda-backups"
+      }
+    },
+    "bafoussamuser" : {
+      "Type": "AWS::IAM::User",
+      "Properties": {
+        "UserName": "bafoussam-backups"
+      }
+    },
+    "bafutuser" : {
+      "Type": "AWS::IAM::User",
+      "Properties": {
+        "UserName": "bafut-backups"
+      }
+    },
+    "banyouser" : {
+      "Type": "AWS::IAM::User",
+      "Properties": {
+        "UserName": "banyo-backups"
+      }
+    },
+    "batouriuser" : {
+      "Type": "AWS::IAM::User",
+      "Properties": {
+        "UserName": "batouri-backups"
+      }
+    },
+  }
+}
