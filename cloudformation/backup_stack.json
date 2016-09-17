@@ -8,6 +8,82 @@
         "BucketName" : "openmrs-backup"
       }
     },
+    "openmrsbackupbucketpolicy" : {
+       "Type" : "AWS::S3::BucketPolicy",
+       "Properties" : {
+          "PolicyDocument" : {
+             "Id" : "allow-backup-upload",
+             "Version": "2012-10-17",
+             "Statement" : [ {
+                  "Sid" : "UploadAccessBafia",
+                  "Action" : [ "s3:PutObject", "s3:ListMultipartUploadParts", "s3:AbortMultipartUpload" ],
+                  "Effect" : "Allow",
+                  "Resource" : { "Fn::Join" : [
+                        "", [ "arn:aws:s3:::", { "Ref" : "openmrsbackup" } , "/bafia/*" ]
+                     ] },
+                  "Principal" : {
+                     "AWS" : { "Fn::GetAtt" : [ "bafiauser", "Arn" ] }
+                  }
+               },
+               {
+                 "Sid" : "UploadAccessBamenda",
+                 "Action" : [ "s3:PutObject", "s3:ListMultipartUploadParts", "s3:AbortMultipartUpload" ],
+                 "Effect" : "Allow",
+                 "Resource" : { "Fn::Join" : [
+                       "", [ "arn:aws:s3:::", { "Ref" : "openmrsbackup" } , "/bamenda/*" ]
+                    ] },
+                 "Principal" : {
+                    "AWS" : { "Fn::GetAtt" : [ "bamendauser", "Arn" ] }
+                 }
+              },
+              {
+                "Sid" : "UploadAccessBafoussam",
+                "Action" : [ "s3:PutObject", "s3:ListMultipartUploadParts", "s3:AbortMultipartUpload" ],
+                "Effect" : "Allow",
+                "Resource" : { "Fn::Join" : [
+                      "", [ "arn:aws:s3:::", { "Ref" : "openmrsbackup" } , "/bafoussam/*" ]
+                   ] },
+                "Principal" : {
+                   "AWS" : { "Fn::GetAtt" : [ "bafoussamuser", "Arn" ] }
+                }
+             },
+             {
+               "Sid" : "UploadAccessBafut",
+               "Action" : [ "s3:PutObject", "s3:ListMultipartUploadParts", "s3:AbortMultipartUpload" ],
+               "Effect" : "Allow",
+               "Resource" : { "Fn::Join" : [
+                     "", [ "arn:aws:s3:::", { "Ref" : "openmrsbackup" } , "/bafut/*" ]
+                  ] },
+               "Principal" : {
+                  "AWS" : { "Fn::GetAtt" : [ "bafutuser", "Arn" ] }
+               }
+            },
+            {
+              "Sid" : "UploadAccessBanyo",
+              "Action" : [ "s3:PutObject", "s3:ListMultipartUploadParts", "s3:AbortMultipartUpload" ],
+              "Effect" : "Allow",
+              "Resource" : { "Fn::Join" : [
+                    "", [ "arn:aws:s3:::", { "Ref" : "openmrsbackup" } , "/banyo/*" ]
+                 ] },
+              "Principal" : {
+                 "AWS" : { "Fn::GetAtt" : [ "banyouser", "Arn" ] }
+              }
+           },
+           {
+             "Sid" : "UploadAccessBatouri",
+             "Action" : [ "s3:PutObject", "s3:ListMultipartUploadParts", "s3:AbortMultipartUpload" ],
+             "Effect" : "Allow",
+             "Resource" : { "Fn::Join" : [
+                   "", [ "arn:aws:s3:::", { "Ref" : "openmrsbackup" } , "/batouri/*" ]
+                ] },
+             "Principal" : {
+                "AWS" : { "Fn::GetAtt" : [ "batouriuser", "Arn" ] }
+             }
+          }]
+        },
+        "Bucket" : { "Ref" : "openmrsbackup" }
+       }
+    },
     "bafiauser" : {
       "Type": "AWS::IAM::User",
       "Properties": {
