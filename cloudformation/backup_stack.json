@@ -5,7 +5,18 @@
     "openmrsbackup" : {
       "Type" : "AWS::S3::Bucket",
       "Properties" : {
-        "BucketName" : "openmrs-backup"
+        "BucketName" : "openmrs-backup",
+        "LifecycleConfiguration": {
+          "Rules": [{
+             "Id": "archive-and-delete",
+             "Status": "Enabled",
+             "ExpirationInDays": 180,
+             "Transitions": [{
+                "StorageClass" : "GLACIER",
+                "TransitionInDays" : 30
+              }]
+            }]
+        },
       }
     },
     "openmrsbackupbucketpolicy" : {
