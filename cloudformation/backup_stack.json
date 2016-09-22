@@ -5,7 +5,24 @@
     "openmrsbackup" : {
       "Type" : "AWS::S3::Bucket",
       "Properties" : {
-        "BucketName" : "openmrs-backup",
+        "BucketName" : "openmrs-backups",
+        "LifecycleConfiguration": {
+          "Rules": [{
+             "Id": "archive-and-delete",
+             "Status": "Enabled",
+             "ExpirationInDays": 180,
+             "Transitions": [{
+                "StorageClass" : "GLACIER",
+                "TransitionInDays" : 30
+              }]
+            }]
+        },
+      }
+    },
+    "openmrstalkbackup" : {
+      "Type" : "AWS::S3::Bucket",
+      "Properties" : {
+        "BucketName" : "openmrs-talk-backup",
         "LifecycleConfiguration": {
           "Rules": [{
              "Id": "archive-and-delete",
@@ -90,31 +107,41 @@
              "Principal" : {
                 "AWS" : { "Fn::GetAtt" : [ "batouriuser", "Arn" ] }
              }
-          },
-          {
-            "Sid" : "UploadAccesstalk",
-            "Action" : [ "s3:PutObject", "s3:ListMultipartUploadParts", "s3:AbortMultipartUpload" ],
-            "Effect" : "Allow",
-            "Resource" : { "Fn::Join" : [
-                  "", [ "arn:aws:s3:::", { "Ref" : "openmrsbackup" } , "/talk/*" ]
-               ] },
-            "Principal" : {
-               "AWS" : { "Fn::GetAtt" : [ "talkuser", "Arn" ] }
-            }
-         },
-         {
-           "Sid" : "UploadAccessNdu",
-           "Action" : [ "s3:PutObject", "s3:ListMultipartUploadParts", "s3:AbortMultipartUpload" ],
-           "Effect" : "Allow",
-           "Resource" : { "Fn::Join" : [
-                 "", [ "arn:aws:s3:::", { "Ref" : "openmrsbackup" } , "/ndu/*" ]
-              ] },
-           "Principal" : {
-              "AWS" : { "Fn::GetAtt" : [ "nduuser", "Arn" ] }
-           }
-        }]
+           },
+           {
+             "Sid" : "UploadAccessNdu",
+             "Action" : [ "s3:PutObject", "s3:ListMultipartUploadParts", "s3:AbortMultipartUpload" ],
+             "Effect" : "Allow",
+             "Resource" : { "Fn::Join" : [
+                   "", [ "arn:aws:s3:::", { "Ref" : "openmrsbackup" } , "/ndu/*" ]
+                ] },
+             "Principal" : {
+                "AWS" : { "Fn::GetAtt" : [ "nduuser", "Arn" ] }
+             }
+          }]
         },
         "Bucket" : { "Ref" : "openmrsbackup" }
+       }
+    },
+    "openmrstalkbackupbucketpolicy" : {
+       "Type" : "AWS::S3::BucketPolicy",
+       "Properties" : {
+          "PolicyDocument" : {
+             "Id" : "allow-backup-upload",
+             "Version": "2012-10-17",
+             "Statement" : [{
+                "Sid" : "UploadAccesstalk",
+                "Action" : [ "s3:PutObject", "s3:ListMultipartUploadParts", "s3:AbortMultipartUpload" ],
+                "Effect" : "Allow",
+                "Resource" : { "Fn::Join" : [
+                      "", [ "arn:aws:s3:::", { "Ref" : "openmrstalkbackup" } , "/*" ]
+                   ] },
+                "Principal" : {
+                   "AWS" : { "Fn::GetAtt" : [ "talkuser", "Arn" ] }
+                }
+             }]
+          },
+        "Bucket" : { "Ref" : "openmrstalkbackup" }
        }
     },
     "bafiauser" : {
