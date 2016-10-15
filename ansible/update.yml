@@ -1,7 +1,7 @@
 ---
 # Update playbook, Run with --check -v first to determine packages being upgraded
 - hosts: all
-  sudo: yes
+  become: true
 
   tasks:
     - name: Update Debian based distros
