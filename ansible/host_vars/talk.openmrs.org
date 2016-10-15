@@ -1,2 +1,3 @@
 ---
 # Discourse
+ssl_key_dir: /var/discourse/shared/web-only/ssl/
