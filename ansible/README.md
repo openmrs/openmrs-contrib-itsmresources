@@ -68,6 +68,6 @@ When satisfied this will not breaking anything drop the `--check` and it will up
 
 #### Update a certain package to latest version on production
 
-`ansible -i production all -m apt -a "update_cache=yes name=openssl state=latest" --sudo`
+`ansible -i production all -m apt -a "update_cache=yes name=openssl state=latest" --become`
 
 This will only update the package to the latest version if it is already installed.  It will not install the openssl package on hosts that do not have it installed.
