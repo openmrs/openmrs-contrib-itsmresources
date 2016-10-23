@@ -1,0 +1,16 @@
+Bafang: 
+
+/etc/network/interfaces:
+
+
+iface eth1 inet static
+    address 134.68.246.14
+    netmask 255.255.255.0
+    gateway 134.68.246.100
+
+/etc/resolv.conf
+
+search openmrs.org
+nameserver 134.68.1.9
+nameserver 134.68.1.2
+
