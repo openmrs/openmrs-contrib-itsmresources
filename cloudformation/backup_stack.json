@@ -36,6 +36,23 @@
         },
       }
     },
+    "openmrsmanualbackup" : {
+      "Type" : "AWS::S3::Bucket",
+      "Properties" : {
+        "BucketName" : "openmrs-manual-backup",
+        "LifecycleConfiguration": {
+          "Rules": [{
+             "Id": "archive-and-delete",
+             "Status": "Enabled",
+             "ExpirationInDays": 180,
+             "Transitions": [{
+                "StorageClass" : "GLACIER",
+                "TransitionInDays" : 30
+              }]
+            }]
+        },
+      }
+    },
     "openmrsbackupbucketpolicy" : {
        "Type" : "AWS::S3::BucketPolicy",
        "Properties" : {
