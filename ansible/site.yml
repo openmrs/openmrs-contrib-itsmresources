@@ -24,6 +24,11 @@
   vars:
    timezone: UTC
 
+- hosts: docker
+  roles:
+    - docker
+    - docker-compose
+
 # TODO: make own roles for this
 - hosts: dbreset
   tasks:
