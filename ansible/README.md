@@ -2,23 +2,6 @@ OpenMRS Infrastructure Ansible Playbooks
 ======================
 Ansible playbooks that should be run on all servers.
 
-**This repo uses submodules!** If you are cloning this for the first time you will need to either run:
- `git clone --recursive https://github.com/openmrs/openmrs-contrib-itsmresources.git`
-
-or
-
-```
-git clone https://github.com/openmrs/openmrs-contrib-itsmresources.git
-
-cd openmrs-contrib-itsmresources/ansible
-
-git submodule update --init --recursive
-
-```
-
-If you already have this repo cloned: To pull the latest versions of modules you will need to run this.
-
-`git submodule foreach git pull origin master`
 
 ## Roles currently configured
 * users
@@ -30,9 +13,10 @@ If you already have this repo cloned: To pull the latest versions of modules you
 ## Requirements
 * This repo.
 * ansible  2.1+ installed on the same machine the repo is cloned to.
+* Run `cd ansible && ansible-galaxy install --roles-path=roles --role-file=roles/roles-requirements.yml --force --ignore-errors` to retrieve all roles
 
 ## How to use this
-To run this on a set of machines , currently (production, staging, testing).
+To run this on a set of machines ('inventory'), currently (production, staging, testing).
 
 `ansible-playbook -i testing site.yml`
 

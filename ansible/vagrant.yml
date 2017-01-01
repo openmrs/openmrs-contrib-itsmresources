@@ -1,3 +1,5 @@
 - hosts: docker
+  become: true
   roles:
-   - dochang.docker
+   - docker
+   - docker-compose
