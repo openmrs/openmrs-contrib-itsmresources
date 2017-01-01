@@ -1,3 +1,6 @@
 *.swp
 roles/.git
 site.retry
+.vagrant/
+*.log
+roles/dochang*

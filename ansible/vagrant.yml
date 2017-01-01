@@ -1,0 +1,3 @@
+- hosts: docker
+  roles:
+   - dochang.docker

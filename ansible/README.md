@@ -1,6 +1,6 @@
-OpenMRS Infrastructure Ansible Master Playbook
+OpenMRS Infrastructure Ansible Playbooks
 ======================
-Master playbook that should be run on all servers.
+Ansible playbooks that should be run on all servers.
 
 **This repo uses submodules!** If you are cloning this for the first time you will need to either run:
  `git clone --recursive https://github.com/openmrs/openmrs-contrib-itsmresources.git`
@@ -38,7 +38,7 @@ To run this on a set of machines , currently (production, staging, testing).
 
 This will run all roles against the inventory you specified. This will also assume you want to log into the server using your current user. use the `-u` switch to specify another user. The use of `--sudo` will use sudo when needed as well.
 
-Look into each role in the roles directroy to find out what each role does.
+Look into each role in the roles directory to find out what each role does.
 
 ## Example tasks
 ### Adding a user to a specific host
