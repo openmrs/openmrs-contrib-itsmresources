@@ -1,6 +1,7 @@
 ---
 # Master Playbook
 - hosts: all
+  become: true
   roles:
    - users
    - sudo
@@ -24,6 +25,7 @@
    timezone: UTC
 
 - hosts: docker
+  become: true
   roles:
     - docker
     - docker-compose
