@@ -11,18 +11,28 @@ end
 Vagrant.configure(2) do |config|
   config.vm.box = "ubuntu/xenial64"
 
+  # config.vm.network "forwarded_port", guest: 8080, host: 8081
+  #
+  # config.vm.provider "virtualbox" do |v|
+  #   v.memory = 2048
+  #   v.cpus = 2
+  # end
+
   config.vm.provision "shell", inline: <<-SHELL
     set -x
     sudo apt-get update
     sudo apt-get -y install python python-pip
   SHELL
 
-  config.vm.define "docker" do |docker|
+  config.vm.define "docker-host" do |docker|
     docker.vm.provision "ansible" do |ansible|
       ansible.verbose = "v"
       ansible.galaxy_role_file = 'roles/roles-requirements.yml'
       ansible.galaxy_command = "ansible-galaxy install --role-file=%{role_file} --roles-path=%{roles_path} --force --ignore-errors"
       ansible.playbook = "vagrant.yml"
+      ansible.groups = {
+        "docker" => ["docker-host"]
+      }
     end
     docker.vm.provision :serverspec do |spec|
       spec.pattern = 'spec/docker_spec.rb'
