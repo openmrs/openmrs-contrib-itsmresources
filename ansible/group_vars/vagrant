@@ -1,0 +1,7 @@
+---
+# Sudo users, % for groups. Default to nopasswd.
+sudo_users:
+  - root
+  - "%wheel"
+  - "%admin"
+  - ubuntu

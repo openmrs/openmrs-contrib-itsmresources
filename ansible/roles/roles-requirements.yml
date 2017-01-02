@@ -15,11 +15,11 @@
   src: https://github.com/yatesr/ansible-sshd.git
   version: aa6f9b5686d1c97deff456af641ac7e55fcbff8d
 - name: ssl-keys
-  src: https://github.com/yatesr/ansible-sslkeys.git
-  version: a83dfbbc053be9d7f3ead06229f7347f4473697c
+  src: https://github.com/cintiadr/ansible-sslkeys.git
+  version: 49292d68ca1309c9ed78c6a3404f0aaf3ad9829b
 - name: sudo
-  src: https://github.com/yatesr/ansible-sudo.git
-  version: 42ebeaa13d611189cbf6764ec3cb54fdffa6656e
+  src: https://github.com/cintiadr/ansible-sudo.git
+  version: 17215cb95018aae1810b826e544fb7280c7d0443
 - name: timezone
   src: https://github.com/yatesr/ansible-timezone.git
   version: 854af629e6740c92b9098026148906643a13465c

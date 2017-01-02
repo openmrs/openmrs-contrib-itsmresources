@@ -1,0 +1,4 @@
+---
+docker_compose_version: 1.9.0
+docker_opts: "--storage-driver=overlay2"
+docker_pkg_name: docker-engine=1.12.5-*

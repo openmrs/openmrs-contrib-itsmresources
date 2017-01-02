@@ -6,9 +6,6 @@
    - sudo
    - sshd
    - ufw
-#   - timezone
-#   - ntp
-#   - ssl-keys
 
 #- hosts: mysql
 #  roles:
@@ -17,9 +14,11 @@
 - hosts: www
   roles:
    - ssl-keys
+  vars:
+   ssl_key_loc: ~/omrs-cert/
 
 - hosts: bamboo
-  roles: 
+  roles:
    - timezone
   vars:
    timezone: UTC
@@ -32,7 +31,7 @@
 # TODO: make own roles for this
 - hosts: dbreset
   tasks:
-   - name: Insert dbreset scripts 
+   - name: Insert dbreset scripts
      synchronize: archive=no
                   dest=/opt/scripts/
                   mode=push

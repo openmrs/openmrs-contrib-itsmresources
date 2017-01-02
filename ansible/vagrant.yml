@@ -1,3 +1,10 @@
+# this playbook will be eventually deleted and vagrant will use the main one
+
+- hosts: all
+  become: true
+  roles:
+   - sudo
+
 - hosts: docker
   become: true
   roles:

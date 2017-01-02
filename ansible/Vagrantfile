@@ -8,15 +8,19 @@ required_plugins.each do |plugin|
     exec "vagrant plugin install #{plugin};vagrant #{ARGV.join(" ")}" unless Vagrant.has_plugin? plugin || ARGV[0] == 'plugin'
 end
 
+# Vagrant VMs.
+# vm => group (in ansible)
+servers = { "docker-host" => "docker", }
+
 Vagrant.configure(2) do |config|
   config.vm.box = "ubuntu/xenial64"
 
   # config.vm.network "forwarded_port", guest: 8080, host: 8081
   #
-  # config.vm.provider "virtualbox" do |v|
-  #   v.memory = 2048
-  #   v.cpus = 2
-  # end
+  config.vm.provider "virtualbox" do |v|
+    v.memory = 2048
+    v.cpus = 2
+  end
 
   config.vm.provision "shell", inline: <<-SHELL
     set -x
@@ -24,18 +28,20 @@ Vagrant.configure(2) do |config|
     sudo apt-get -y install python python-pip
   SHELL
 
-  config.vm.define "docker-host" do |docker|
-    docker.vm.provision "ansible" do |ansible|
-      ansible.verbose = "v"
-      ansible.galaxy_role_file = 'roles/roles-requirements.yml'
-      ansible.galaxy_command = "ansible-galaxy install --role-file=%{role_file} --roles-path=%{roles_path} --force --ignore-errors"
-      ansible.playbook = "vagrant.yml"
-      ansible.groups = {
-        "docker" => ["docker-host"]
-      }
-    end
-    docker.vm.provision :serverspec do |spec|
-      spec.pattern = 'spec/docker_spec.rb'
+  servers.each do | srv, group |
+    config.vm.define srv do |host|
+      host.vm.provision "ansible" do |ansible|
+        ansible.verbose = "v"
+        ansible.galaxy_role_file = 'roles/roles-requirements.yml'
+        ansible.playbook = "vagrant.yml"
+        ansible.groups = {
+          group => [srv],
+          "vagrant" => [srv]
+        }
+      end
+      host.vm.provision :serverspec do |spec|
+        spec.pattern = "spec/#{group}_spec.rb"
+      end
     end
   end
 end
