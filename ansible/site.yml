@@ -1,14 +1,12 @@
 ---
 # Master Playbook
 - hosts: all
+  become: true
   roles:
    - users
    - sudo
    - sshd
    - ufw
-#   - timezone
-#   - ntp
-#   - ssl-keys
 
 #- hosts: mysql
 #  roles:
@@ -17,17 +15,30 @@
 - hosts: www
   roles:
    - ssl-keys
+  vars:
+   ssl_key_loc: ~/omrs-cert/
 
 - hosts: bamboo
-  roles: 
+  roles:
    - timezone
   vars:
    timezone: UTC
 
+- hosts: docker
+  become: true
+  roles:
+   - docker
+   - docker-compose
+  tasks:
+   - name: Restart docker service
+     shell: systemctl restart docker
+
+
+
 # TODO: make own roles for this
 - hosts: dbreset
   tasks:
-   - name: Insert dbreset scripts 
+   - name: Insert dbreset scripts
      synchronize: archive=no
                   dest=/opt/scripts/
                   mode=push

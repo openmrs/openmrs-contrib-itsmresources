@@ -4,7 +4,6 @@
   become: true
 
   tasks:
-
     - name: Get aptitude for upgrade
       apt: pkg=aptitude state=present
       when: ansible_os_family == 'Debian'

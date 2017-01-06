@@ -1,7 +1,0 @@
----
-# Master Playbook
-- hosts: all
-  roles:
-   - ssl-keys
-  vars:
-   ssl_key_loc: ~/omrs-cert/
