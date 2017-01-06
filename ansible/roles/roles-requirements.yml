@@ -1,5 +1,5 @@
 - name: docker
-  src: angstwad.docker_ubuntu
+  src: andrewrothstein.docker
 - name: docker-compose
   src: franklinkim.docker-compose
 - name: crontab

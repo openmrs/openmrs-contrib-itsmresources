@@ -27,8 +27,13 @@
 - hosts: docker
   become: true
   roles:
-    - docker
-    - docker-compose
+   - docker
+   - docker-compose
+  tasks:
+   - name: Restart docker service
+     shell: systemctl restart docker
+
+
 
 # TODO: make own roles for this
 - hosts: dbreset
