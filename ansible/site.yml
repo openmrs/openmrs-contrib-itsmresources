@@ -30,9 +30,12 @@
    - docker
    - docker-compose
   tasks:
+   - name: Check if docker was restarted yet
+     command: docker info
+     register: docker_restarted
    - name: Restart docker service
      shell: systemctl restart docker
-
+     when: docker_restarted.stdout.find('overlay2') == -1
 
 
 # TODO: make own roles for this
