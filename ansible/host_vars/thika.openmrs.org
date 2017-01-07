@@ -1,0 +1,8 @@
+---
+# quizgrader
+
+ufw_rules:
+  http:
+    port: 80
+    proto: tcp
+    rule: allow

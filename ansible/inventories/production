@@ -11,6 +11,7 @@ garissa.openmrs.org
 lamu.openmrs.org
 ndu.openmrs.org
 talk.openmrs.org
+thika.openmrs.org
 yaounde.openmrs.org
 
 [www]
@@ -28,3 +29,4 @@ banyo.openmrs.org
 
 [docker]
 lamu.openmrs.org
+thika.openmrs.org
