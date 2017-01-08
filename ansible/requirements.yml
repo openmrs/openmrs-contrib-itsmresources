@@ -1,7 +1,10 @@
+# from Ansible Galaxy
 - name: docker
   src: andrewrothstein.docker
 - name: docker-compose
   src: franklinkim.docker-compose
+
+# from git
 - name: crontab
   src: https://github.com/yatesr/ansible-crontab.git
   version: dd8944f44675af0d2e14741619043fd60a921dd5

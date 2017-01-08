@@ -13,7 +13,10 @@ Ansible playbooks that should be run on all servers.
 ## Requirements
 * This repo.
 * ansible  2.1+ installed on the same machine the repo is cloned to.
-* Run `cd ansible && ansible-galaxy install --roles-path=roles --role-file=roles/roles-requirements.yml --force` to retrieve all roles
+
+The following assumes you are in the `ansible` directory:
+
+* Run `ansible-galaxy install -p roles -r requirements.yml --force` to retrieve all roles
 
 ## How to use this
 To run this on a set of machines ('inventory'), currently (production, staging, testing).
