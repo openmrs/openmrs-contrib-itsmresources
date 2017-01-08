@@ -10,6 +10,11 @@ Ansible playbooks that should be run on all servers.
 * ufw
 * ssl-keys
 
+### Roles only configured on select hosts
+
+* docker
+* docker-compose
+
 ## Requirements
 * This repo.
 * ansible  2.1+ installed on the same machine the repo is cloned to.
