@@ -12,11 +12,11 @@
 #  roles:
 #   - mysql
 
-- hosts: www
-  roles:
-   - ssl-keys
-  vars:
-   ssl_key_loc: ~/omrs-cert/
+#- hosts: www
+#  roles:
+#   - ssl-keys
+  #vars:
+   #ssl_key_loc: ~/omrs-cert/
 
 - hosts: bamboo
   roles:
@@ -29,7 +29,8 @@
   roles:
    - docker
    - docker-compose
-  tasks:
+   - docker-compose-openmrs
+  tasks: # https://github.com/andrewrothstein/ansible-docker/issues/8
    - name: Check if docker was restarted yet
      command: docker info
      register: docker_restarted

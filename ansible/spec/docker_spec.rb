@@ -10,4 +10,7 @@ describe 'docker machine' do
   it 'should have docker-compose command' do
     expect(command('docker-compose version').stdout).to include('1.9.0')
   end
+  it 'should have demo running' do
+    expect(command('cd /root/demo && docker-compose ps').stdout).to include('Up')
+  end
 end

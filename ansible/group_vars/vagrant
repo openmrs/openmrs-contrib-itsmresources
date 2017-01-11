@@ -5,3 +5,6 @@ sudo_users:
   - "%wheel"
   - "%admin"
   - ubuntu
+
+docker_deployment:
+   - demo
