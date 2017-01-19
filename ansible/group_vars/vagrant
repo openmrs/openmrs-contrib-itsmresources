@@ -8,3 +8,14 @@ sudo_users:
 
 docker_deployment:
    - demo
+
+nginx_vhosts:
+  - listen: "80 default_server"
+    server_name: "something.openmrs.org"
+    extra_parameters: |
+      access_log /var/log/nginx/demo_access.log;
+      error_log /var/log/nginx/demo_error.log;
+      root /usr/share/nginx/html;
+      location / {
+        proxy_pass http://127.0.0.1:8080/;
+      }

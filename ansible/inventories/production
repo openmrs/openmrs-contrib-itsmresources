@@ -14,7 +14,7 @@ talk.openmrs.org
 thika.openmrs.org
 yaounde.openmrs.org
 
-[www]
+[ssl]
 bafoussam.openmrs.org
 bamenda.openmrs.org
 banyo.openmrs.org
@@ -30,3 +30,6 @@ banyo.openmrs.org
 [docker]
 lamu.openmrs.org
 thika.openmrs.org
+
+[web]
+lamu.openmrs.org

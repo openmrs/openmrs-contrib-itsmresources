@@ -12,11 +12,25 @@
 #  roles:
 #   - mysql
 
-#- hosts: www
+#- hosts: ssl
 #  roles:
 #   - ssl-keys
   #vars:
    #ssl_key_loc: ~/omrs-cert/
+
+- hosts: web
+  become: true
+  roles:
+   - nginx
+  tasks:
+   - hostname:
+       name: "{{ inventory_hostname_short }}"
+   - name: "Build hosts file"
+     lineinfile:
+       dest: /etc/hosts
+       regexp: '^127\.0\.0\.1'
+       line: "127.0.0.1 {{ inventory_hostname }} {{ inventory_hostname_short }} localhost"
+       state: present
 
 - hosts: bamboo
   roles:
@@ -34,10 +48,10 @@
    - name: Check if docker was restarted yet
      command: docker info
      register: docker_restarted
+     changed_when: docker_restarted.stdout.find('overlay2') == -1
    - name: Restart docker service
      shell: systemctl restart docker
      when: docker_restarted.stdout.find('overlay2') == -1
-
 
 # TODO: make own roles for this
 - hosts: dbreset

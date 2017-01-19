@@ -10,7 +10,9 @@ end
 
 # Vagrant VMs.
 # vm => group (in ansible)
-servers = { 'docker-host' => 'docker' }
+servers = {
+  'docker' => ['docker', 'web'],
+}
 
 Vagrant.configure(2) do |config|
   config.vm.box = 'ubuntu/xenial64'
@@ -25,22 +27,22 @@ Vagrant.configure(2) do |config|
   config.vm.provision 'shell', inline: <<-SHELL
     set -x
     sudo apt-get update
+    sudo apt-get -y upgrade
     sudo apt-get -y install python python-pip
   SHELL
 
-  servers.each do |srv, group|
+  servers.each do |srv, groups|
     config.vm.define srv do |host|
       host.vm.provision 'ansible' do |ansible|
         ansible.verbose = 'v'
-       ansible.galaxy_role_file = 'requirements.yml'
+        ansible.galaxy_role_file = 'requirements.yml'
         ansible.playbook = 'site.yml'
-        ansible.groups = {
-          group => [srv],
-          'vagrant' => [srv]
-        }
+        ansible.groups = groups.map{ |g| { g => [srv]}  }
+          .reduce{ |h, v| h.merge v }
+          .merge('vagrant' => [srv])
       end
       host.vm.provision :serverspec do |spec|
-        spec.pattern = "spec/#{group}_spec.rb"
+        spec.pattern = "spec/#{srv}_spec.rb"
       end
     end
   end

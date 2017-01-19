@@ -3,13 +3,15 @@
   src: andrewrothstein.docker
 - name: docker-compose
   src: franklinkim.docker-compose
+- name: nginx
+  src: geerlingguy.nginx
 
 # from git
 - name: crontab
   src: https://github.com/yatesr/ansible-crontab.git
   version: dd8944f44675af0d2e14741619043fd60a921dd5
 - name: docker-compose-openmrs
-  src: https://github.com/cintiadr/ansible-docker-compose-openmrs.git
+  src: https://github.com/openmrs/ansible-docker-compose-openmrs.git
 - name: mysql
   src: https://github.com/yatesr/ansible-mysql
   version: 2f2a5a6134769a5b338fbbe26826801643043bca
@@ -20,11 +22,11 @@
   src: https://github.com/yatesr/ansible-sshd.git
   version: aa6f9b5686d1c97deff456af641ac7e55fcbff8d
 - name: ssl-keys
-  src: https://github.com/cintiadr/ansible-sslkeys.git
-  version: 49292d68ca1309c9ed78c6a3404f0aaf3ad9829b
+  src: https://github.com/yatesr/ansible-sslkeys.git
+  version: 1fdf13bd502d57c337aa76916e294c3b63ec4446
 - name: sudo
-  src: https://github.com/cintiadr/ansible-sudo.git
-  version: 17215cb95018aae1810b826e544fb7280c7d0443
+  src: https://github.com/yatesr/ansible-sudo.git
+  version: 2a55007541a2f340eec57e4e5a7efa1c3fc73d74
 - name: timezone
   src: https://github.com/yatesr/ansible-timezone.git
   version: 854af629e6740c92b9098026148906643a13465c

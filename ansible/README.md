@@ -8,12 +8,13 @@ Ansible playbooks that should be run on all servers.
 * sshd
 * sudo
 * ufw
-* ssl-keys
 
 ### Roles only configured on select hosts
 
 * docker
 * docker-compose
+* ssl-keys
+* nginx
 
 ## Requirements
 * This repo.
