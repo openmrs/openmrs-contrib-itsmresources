@@ -11,7 +11,7 @@
   src: https://github.com/yatesr/ansible-crontab.git
   version: dd8944f44675af0d2e14741619043fd60a921dd5
 - name: docker-compose-openmrs
-  src: https://github.com/openmrs/ansible-docker-compose-openmrs.git
+  src: https://github.com/openmrs/openmrs-contrib-ansible-docker-compose.git
 - name: mysql
   src: https://github.com/yatesr/ansible-mysql
   version: 2f2a5a6134769a5b338fbbe26826801643043bca
