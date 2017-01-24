@@ -1,5 +1,5 @@
 ---
-# Reference Application Automated Testing (int-refapp)
+# Reference Application QA (qa01.openmrs.org/qa-refapp)
 users:
  dkayiwa:
    comment: Daniel Kayiwa

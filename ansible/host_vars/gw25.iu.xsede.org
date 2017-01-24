@@ -1,5 +1,5 @@
 ---
-# Reference Application QA (qa01.openmrs.org)
+# devtest02.openmrs.org
 users:
  dkayiwa:
    comment: Daniel Kayiwa
