@@ -1,5 +1,5 @@
 ---
-docker_compose_version: 1.9.0
+docker_compose_version: 1.10.0
 docker_storage_driver: overlay2
 docker_remote: False
 docker_tls: False
