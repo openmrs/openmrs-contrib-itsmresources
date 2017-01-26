@@ -44,14 +44,8 @@
    - docker
    - docker-compose
    - docker-compose-openmrs
-  tasks: # https://github.com/andrewrothstein/ansible-docker/issues/8
-   - name: Check if docker was restarted yet
-     command: docker info
-     register: docker_restarted
-     changed_when: docker_restarted.stdout.find('overlay2') == -1
-   - name: Restart docker service
-     shell: systemctl restart docker
-     when: docker_restarted.stdout.find('overlay2') == -1
+  tasks:
+   - include: docker-install-hacks.yml
 
 # TODO: make own roles for this
 - hosts: dbreset
