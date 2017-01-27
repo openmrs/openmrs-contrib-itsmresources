@@ -1,6 +1,7 @@
 OpenMRS Infrastructure Ansible Playbooks
 ======================
 Ansible playbooks that should be run on all servers.
+This repository has vagrant configured.
 
 
 ## Roles currently configured
@@ -19,6 +20,7 @@ Ansible playbooks that should be run on all servers.
 ## Requirements
 * This repo.
 * ansible  2.1+ installed on the same machine the repo is cloned to.
+* Create a `~/.vault` file with the vault password defined in LP.
 
 The following assumes you are in the `ansible` directory:
 
@@ -27,7 +29,7 @@ The following assumes you are in the `ansible` directory:
 ## How to use this
 To run this on a set of machines ('inventory'), currently (production, staging, testing).
 
-`ansible-playbook -i inventories/testing site.yml`
+`ansible-playbook -i inventories/testing --vault-password-file ~/.vault site.yml`
 
 This will run all roles against the inventory you specified. This will also assume you want to log into the server using your current user. use the `-u` switch to specify another user. The use of `-b` will use sudo when needed as well.
 
@@ -46,9 +48,11 @@ edit `host_vars/dschang.openmrs.org` and add this hash under `users:` if it does
         groups: 'admin'
         ssh_key: "ssh-rsa AAAA...Uvbf john@john.net"
 
-Then run the playbook
-
+Then run the playbook to all machines in staging:
 `ansible-playbook -i inventories/staging site.yml -b`
+
+To run against a single server:
+`ansible-playbook -i inventories/staging --limit djoum.openmrs.org site.yml `
 
 ## Running example ad-hoc commands
 #### Updating all packages on staging servers
