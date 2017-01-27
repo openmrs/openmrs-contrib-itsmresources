@@ -1,5 +1,5 @@
 ---
-# Demo (in jetstream)
+# Demo and addons (in jetstream)
 users:
   bamboo:
    comment: CI Bamboo User
@@ -8,6 +8,7 @@ users:
 
 docker_deployment:
    - demo
+   - addons-stg
 
 nginx_vhosts:
   - listen: "80 default_server"
@@ -21,4 +22,13 @@ nginx_vhosts:
       }
       location /openmrs {
         proxy_pass http://127.0.0.1:8080/openmrs;
+      }
+  - listen: "80"
+    server_name: "addons-stg.openmrs.org"
+    extra_parameters: |
+      access_log /var/log/nginx/addons_access.log;
+      error_log /var/log/nginx/addons_error.log;
+      root /usr/share/nginx/html;
+      location / {
+        proxy_pass http://127.0.0.1:8081/;
       }
