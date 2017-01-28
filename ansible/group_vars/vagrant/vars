@@ -9,6 +9,10 @@ sudo_users:
 docker_deployment:
    - demo
 
+docker_deployable_images:
+  - repository: openmrs-reference-application-distro
+    compose: demo
+
 nginx_vhosts:
   - listen: "80 default_server"
     server_name: "something.openmrs.org"
