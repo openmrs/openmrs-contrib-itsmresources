@@ -17,6 +17,9 @@ docker_deployment:
 docker_deployable_images:
   - repository: openmrs-reference-application-distro
     compose: demo
+  - repository: addonindex
+    compose: addons-stg
+
 
 nginx_vhosts:
   - listen: "80 default_server"

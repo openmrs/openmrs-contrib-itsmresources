@@ -11,7 +11,7 @@ describe 'docker machine' do
     expect(command('docker-compose version').stdout).to include('1.10.0')
   end
   it 'should have demo running' do
-    expect(command('cd /root/demo && docker-compose ps').stdout).to include('Up')
+    expect(command('cd /root/docker/demo && docker-compose ps').stdout).to include('Up')
   end
   it 'should have port 80 listening' do
     expect(port('80')).to be_listening
