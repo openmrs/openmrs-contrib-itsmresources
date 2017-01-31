@@ -33,3 +33,9 @@ thika.openmrs.org
 
 [web]
 lamu.openmrs.org
+
+[ldap]
+batouri.openmrs.org
+
+[mongodb]
+batouri.openmrs.org

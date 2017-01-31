@@ -57,3 +57,31 @@
                   perms=yes
                   recursive=yes
                   src=../scripts/dbreset
+
+
+# TODO: make a role
+- hosts: ldap
+  tasks:
+    - name: Insert ldap backup
+      copy:
+        owner: root
+        group: root
+        mode: 0700
+        src: ../scripts/ldap-backup.sh
+        dest: /opt/scripts/ldap-backup.sh
+      tags:
+        - backup
+
+
+# TODO: make a role
+- hosts: mongodb
+  tasks:
+   - name: Insert mongo backup
+     copy:
+       owner: root
+       group: root
+       mode: 0700
+       src: ../scripts/mongo-backup.sh
+       dest: /opt/scripts/mongo-backup.sh
+     tags:
+       - backup
