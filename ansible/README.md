@@ -19,8 +19,9 @@ This repository has vagrant configured.
 
 ## Requirements
 * This repo.
-* ansible  2.1+ installed on the same machine the repo is cloned to.
-* Create a `~/.vault` file with the vault password defined in LP.
+* ansible 2.1+ installed on the same machine the repo is cloned to.
+* Install [git-crypt](https://www.agwa.name/projects/git-crypt/) and run `git-crypt unlock`.
+* If you are not part of git-crypt by any reason, you'll need to retrieve the vault password file from LP or ask to be added in git-crypt.
 
 The following assumes you are in the `ansible` directory:
 
@@ -29,7 +30,7 @@ The following assumes you are in the `ansible` directory:
 ## How to use this
 To run this on a set of machines ('inventory'), currently (production, staging, testing).
 
-`ansible-playbook -i inventories/testing --vault-password-file ~/.vault site.yml`
+`ansible-playbook -i inventories/testing site.yml`
 
 This will run all roles against the inventory you specified. This will also assume you want to log into the server using your current user. use the `-u` switch to specify another user. The use of `-b` will use sudo when needed as well.
 
