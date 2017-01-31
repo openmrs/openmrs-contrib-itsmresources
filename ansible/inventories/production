@@ -31,8 +31,5 @@ banyo.openmrs.org
 lamu.openmrs.org
 thika.openmrs.org
 
-[docker-deployer]
-lamu.openmrs.org
-
 [web]
 lamu.openmrs.org
