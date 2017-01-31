@@ -2,6 +2,7 @@
 # Simple script to backup mongodb nightly
 TIMESTAMP=$(date +%Y%m%d-%H%M%S)
 BACKUP_PATH="/var/backups/mongodb/${TIMESTAMP}"
+source "$HOME/.cronfile"
 
 mkdir -p "${BACKUP_PATH}"
 # backup the database
