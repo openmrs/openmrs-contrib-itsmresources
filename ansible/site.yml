@@ -43,9 +43,13 @@
   roles:
    - docker
    - docker-compose
-   - docker-compose-openmrs
   tasks:
    - include: docker-install-hacks.yml
+
+- hosts: docker-deployer
+  become: true
+  roles:
+   - docker-compose-openmrs
 
 # TODO: make own roles for this
 - hosts: dbreset
