@@ -10,7 +10,8 @@ mkdir -p ${BACKUP_PATH}
 
 # backup the database
 /usr/bin/nice /usr/sbin/slapcat -n 1 > ${BACKUP_PATH}/openmrs_ldap_backup.ldif
-chmod 640 ${BACKUP_PATH}/*.ldif
 
 tar cpjf ${BACKUP_PATH}/etc_ldap.tbz2 /etc/ldap >/dev/null 2>&1
 tar cpjf ${BACKUP_PATH}/var_lib_ldap.tbz2 /var/lib/ldap >/dev/null 2>&1
+
+chmod 640 -R ${BACKUP_PATH}
