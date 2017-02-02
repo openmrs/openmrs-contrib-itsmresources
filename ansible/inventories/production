@@ -34,6 +34,9 @@ thika.openmrs.org
 [web]
 lamu.openmrs.org
 
+[web-tls]
+lamu.openmrs.org
+
 [ldap]
 batouri.openmrs.org
 

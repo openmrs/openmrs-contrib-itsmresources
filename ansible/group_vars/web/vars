@@ -5,5 +5,9 @@ ufw_rules:
      port: 80
      proto: tcp
      rule: allow
+   https:
+     port: 443
+     proto: tcp
+     rule: allow
 
 nginx_remove_default_vhost: true

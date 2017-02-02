@@ -5,6 +5,8 @@
   src: franklinkim.docker-compose
 - name: nginx
   src: geerlingguy.nginx
+- name: letsencrypt
+  src: thefinn93.letsencrypt
 
 # from git
 - name: crontab
