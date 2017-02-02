@@ -23,7 +23,7 @@ docker_deployable_images:
 letsencrypt_cert_domains:
    - lamu.openmrs.org
    - demo-new.openmrs.org
-
+   - addons-stg.openmrs.org
 
 nginx_vhosts:
   - listen: "80 default_server"
@@ -37,31 +37,21 @@ nginx_vhosts:
       error_log /var/log/nginx/demo_error.log;
       ssl_certificate /etc/letsencrypt/live/lamu.openmrs.org/fullchain.pem;
       ssl_certificate_key /etc/letsencrypt/live/lamu.openmrs.org/privkey.pem;
-      ssl_dhparam /etc/nginx/ssl/dhparam.pem;
-      ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
-      ssl_ciphers "EECDH+AESGCM:EDH+AESGCM:ECDHE-RSA-AES128-GCM-SHA256:AES256+EECDH:DHE-RSA-AES128-GCM-SHA256:AES256+EDH:ECDHE-RSA-AES256-GCM-SHA384:DHE-RSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-SHA384:ECDHE-RSA-AES128-SHA256:ECDHE-RSA-AES256-SHA:ECDHE-RSA-AES128-SHA:DHE-RSA-AES256-SHA256:DHE-RSA-AES128-SHA256:DHE-RSA-AES256-SHA:DHE-RSA-AES128-SHA:ECDHE-RSA-DES-CBC3-SHA:EDH-RSA-DES-CBC3-SHA:AES256-GCM-SHA384:AES128-GCM-SHA256:AES256-SHA256:AES128-SHA256:AES256-SHA:AES128-SHA:DES-CBC3-SHA:HIGH:!aNULL:!eNULL:!EXPORT:!DES:!MD5:!PSK:!RC4";
-      ssl_prefer_server_ciphers on;
-      ssl_session_timeout 1d;
-      ssl_session_cache shared:SSL:50m;
-      ssl_stapling on;
-      ssl_stapling_verify on;
-      add_header Strict-Transport-Security max-age=15768000;
-      root /usr/share/nginx/html;
       location / {
         return 301 http://demo-new.openmrs.org/openmrs;
       }
       location /openmrs {
-        proxy_set_header X-Real-IP $remote_addr;
-        proxy_set_header X-Forward-For $proxy_add_x_forwarded_for;
-        proxy_set_header X-Forward-Proto http;
         proxy_pass http://127.0.0.1:8080/openmrs;
       }
   - listen: "80"
     server_name: "addons-stg.openmrs.org"
     extra_parameters: |
+      return 301 https://$host$request_uri;
+  - listen: "443"
+    server_name: "addons-stg.openmrs.org"
+    extra_parameters: |
       access_log /var/log/nginx/addons_access.log;
       error_log /var/log/nginx/addons_error.log;
-      root /usr/share/nginx/html;
       location / {
         proxy_pass http://127.0.0.1:8081/;
       }
@@ -72,16 +62,6 @@ nginx_vhosts:
       error_log /var/log/nginx/deployer_error.log;
       ssl_certificate /etc/letsencrypt/live/lamu.openmrs.org/fullchain.pem;
       ssl_certificate_key /etc/letsencrypt/live/lamu.openmrs.org/privkey.pem;
-      ssl_dhparam /etc/nginx/ssl/dhparam.pem;
-      ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
-      ssl_ciphers "EECDH+AESGCM:EDH+AESGCM:ECDHE-RSA-AES128-GCM-SHA256:AES256+EECDH:DHE-RSA-AES128-GCM-SHA256:AES256+EDH:ECDHE-RSA-AES256-GCM-SHA384:DHE-RSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-SHA384:ECDHE-RSA-AES128-SHA256:ECDHE-RSA-AES256-SHA:ECDHE-RSA-AES128-SHA:DHE-RSA-AES256-SHA256:DHE-RSA-AES128-SHA256:DHE-RSA-AES256-SHA:DHE-RSA-AES128-SHA:ECDHE-RSA-DES-CBC3-SHA:EDH-RSA-DES-CBC3-SHA:AES256-GCM-SHA384:AES128-GCM-SHA256:AES256-SHA256:AES128-SHA256:AES256-SHA:AES128-SHA:DES-CBC3-SHA:HIGH:!aNULL:!eNULL:!EXPORT:!DES:!MD5:!PSK:!RC4";
-      ssl_prefer_server_ciphers on;
-      ssl_session_timeout 1d;
-      ssl_session_cache shared:SSL:50m;
-      ssl_stapling on;
-      ssl_stapling_verify on;
-      add_header Strict-Transport-Security max-age=15768000;
-      root /usr/share/nginx/html;
       location / {
         proxy_pass http://127.0.0.1:3000/;
       }
