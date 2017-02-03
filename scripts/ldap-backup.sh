@@ -7,6 +7,9 @@ TIMESTAMP=$(date +%Y%m%d-%H%M%S)
 BACKUP_PATH="/var/backups/ldap/${TIMESTAMP}"
 mkdir -p "${BACKUP_PATH}"
 
+# backup the config
+/usr/bin/nice /usr/sbin/slapcat -n 0 > "${BACKUP_PATH}/config.ldif"
+
 # backup the database
 /usr/bin/nice /usr/sbin/slapcat -n 1 > "${BACKUP_PATH}/openmrs_ldap_backup.ldif"
 
