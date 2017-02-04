@@ -10,10 +10,13 @@ mkdir -p "${BACKUP_PATH}"
 # backup the config
 /usr/bin/nice /usr/sbin/slapcat -n 0 > "${BACKUP_PATH}/config.ldif"
 
-# backup the database
+# backup the database (bring down slapd)
+sudo service slapd stop
 /usr/bin/nice /usr/sbin/slapcat -n 1 > "${BACKUP_PATH}/openmrs_ldap_backup.ldif"
 
-tar cpjf "${BACKUP_PATH}/etc_ldap.tbz2" /etc/ldap >/dev/null 2>&1
-tar cpjf "${BACKUP_PATH}/var_lib_ldap.tbz2" /var/lib/ldap >/dev/null 2>&1
+/usr/bin/nice tar cpjf "${BACKUP_PATH}/var_lib_ldap.tbz2" /var/lib/ldap >/dev/null 2>&1
+# bring slapd back up now
+sudo service slapd start
 
+/usr/bin/nice tar cpjf "${BACKUP_PATH}/etc_ldap.tbz2" /etc/ldap >/dev/null 2>&1
 chmod 640 -R "${BACKUP_PATH}"
