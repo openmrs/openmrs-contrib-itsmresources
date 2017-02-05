@@ -23,3 +23,6 @@ Icon
 modules/
 .librarian/
 ssl/
+ubuntu-*.log
+etckeeper-*
+*.dpkg-dist

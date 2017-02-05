@@ -1,8 +1,9 @@
 class profiles::node_buildtime {
-  apt::ppa { 'ppa:chris-lea/node.js' : }
-  ->
-  package { 'nodejs':
-    ensure => latest,
+  class { 'nodejs':
+    repo_url_suffix => '9.x',
+    nodejs_package_ensure     => 'latest',
+    nodejs_dev_package_ensure => 'latest',
+    npm_package_ensure        => 'latest',
   }
   ->
   exec { 'install bower':

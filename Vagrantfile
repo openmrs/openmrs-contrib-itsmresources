@@ -7,7 +7,7 @@ VAGRANTFILE_API_VERSION = "2"
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   # canonical Ubuntu basebox
-  config.vm.box = "ubuntu/trusty64"
+  config.vm.box = "ubuntu/xenial64"
   config.vm.hostname = "bamboo-agent.vagrant.openmrs.org"
   config.vm.synced_folder ".", "/etc/puppet/"
 
