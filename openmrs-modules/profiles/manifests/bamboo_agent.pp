@@ -38,7 +38,6 @@ class profiles::bamboo_agent (
 	    'system.jdk.openjdk-8-jdk'                              => '/usr/lib/jvm/java-8-openjdk-amd64',
 	    'system.jdk.JDK\ 1.8'                                   => '/usr/lib/jvm/java-8-openjdk-amd64',
 	    'system.builder.mvn3.Maven\ 3'                          => "/usr/share/apache-maven-${maven3_version}",
-	    'system.builder.mvn2.Maven\ 2'                          => '/usr/share/maven2',
 	    "system.builder.grailsBuilder.Grails\\ $grails_version" => '/opt/grails',
 	    'system.builder.node.Node.js'                           => '/usr/bin/nodejs',
 	    'system.builder.grailsBuilder.Grails\ 2'                => '/opt/grails',

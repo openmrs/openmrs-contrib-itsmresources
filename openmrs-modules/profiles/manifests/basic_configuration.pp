@@ -1,6 +1,8 @@
 class profiles::basic_configuration {
   class { 'apt':
-    always_apt_update    => true,
+    update => {
+      frequency => 'always',
+    },
   }
 
   package { ['unzip', 'tmpreaper'] :

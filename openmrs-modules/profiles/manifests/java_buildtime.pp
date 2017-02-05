@@ -7,7 +7,7 @@ class profiles::java_buildtime (
     content => template('profiles/java_buildtime/settings.xml')
   }
 
-  package { [ 'maven2', 'ant']:
+  package { [ 'ant']:
     ensure  => present,
     require => Class['profiles::java']
   }

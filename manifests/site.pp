@@ -5,7 +5,7 @@ node default {
   include profiles::java
   include profiles::scm
   include profiles::docker
-  #include profiles::node_buildtime
+  include profiles::node_buildtime
   include profiles::ruby_buildtime
   include profiles::java_buildtime
   include profiles::browsers
