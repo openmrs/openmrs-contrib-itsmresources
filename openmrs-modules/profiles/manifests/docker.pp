@@ -9,6 +9,6 @@ class profiles::docker (
   }
   class { 'docker::compose':
     ensure  => 'present',
-    version => '1.8.0',
+    version => '1.10.1',
   }
 }
