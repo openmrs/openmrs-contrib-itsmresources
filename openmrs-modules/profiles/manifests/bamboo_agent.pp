@@ -32,7 +32,6 @@ class profiles::bamboo_agent (
 	  },
 	  default_capabilities                                      => {
 	    'system.builder.command.Bash'                           => '/bin/bash',
-	    'system.jdk.openjdk-6-jdk'                              => '/usr/lib/jvm/java-6-openjdk-amd64',
 	    'system.jdk.JDK\ 1.7'                                   => '/usr/lib/jvm/java-7-openjdk-amd64',
 	    'system.jdk.openjdk-7-jdk'                              => '/usr/lib/jvm/java-7-openjdk-amd64',
 	    'system.jdk.openjdk-8-jdk'                              => '/usr/lib/jvm/java-8-openjdk-amd64',
