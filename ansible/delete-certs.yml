@@ -1,0 +1,10 @@
+---
+# Use this playbook to force the certificate to be recreated
+# ( for example, to add a new CNAME)
+- hosts: web-tls
+  become: true
+  tasks:
+    - name: stop nginx
+      shell: systemctl stop nginx
+    - name: remove old certs
+      shell: rm -rf /etc/letsencrypt
