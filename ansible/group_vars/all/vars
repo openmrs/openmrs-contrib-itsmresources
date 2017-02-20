@@ -28,7 +28,11 @@ users:
    comment: Cintia Del Rio
    groups: 'admin'
    ssh_key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC9Ue5zd1hhecpRnz3+noyyHoeSWAhFy4YqH6Ubwp3k15Xdbl7N183YM1TsxrX3eA5Cgb+IKDjfLcC7iCw3j6dJTo+uxCx3lU/FocdTTJ0vMRQc9ZLzkqUNtYHa03od3GFMFU5A7jWRMfXuaFNy2dSxPsvdPkmU0711kBmnLXat3Ilc/b8AJWoGAw9A7FM5lIdRLhJPLVhWPYWpSIUPxbfym859WgVVljDXxSCu8xw9zbMXk/AeY7RJ6koJK8JVOF+FDi+yigaEC1ed5tm8uBwT9DvLgY25sl9p/HjcOhD3HtW75AUN9RZO74wSIbkWuC1gBZY0otPN7Dgp2sfmCLtd cintiadrio@gmail.com"
-
+ chagara:
+   comment: Jonathan Lozada
+   groups: 'admin'
+   ssh_key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDtVZAKpATS4YZt0uVkZimVT3wsuXmRSTjjqTx04hbq+fHSpeA/iz06uvbLAiGPDArgKWoEtASu8CifdQhg/VC7V4AxF+6BQSseHH0pJh34LVrTLTAdYUVzJS8Xgd/getJhGWxj3/VC1oJ9h4s5DgUCmCTm/K+nzrnT+DcJeUGA4gByqpw6Xuzze9NT3Q+zDVw4+BUlKdKWSClZPBE+Yg23LCHTUoRWugK/SGcRO8QmPz0Y0fIOOdocbXs0ppSmP7j63ny/mGIEEcrYT0OCRxPB8LYz6sMxB2/iJR9q6qSbYX8E+e/pIX0HxQCeQmtdEGykij+MWFkbr3D0EyhIUaOoHKh458BfH89ZSA/ouqiZq963DBREQQ8Qajngnl9SK2HHb6/8PwZIgwXMFHpzl4wt72y6ELC6EsigSIV7Dx3xM5CfGRMvIEH8EBP93hyTrtrxMFfZQvizYtOvblUDE5u74z95YZ9Uvj+2PmYmwUuN2bNjmKST/w3XSswJKyP1gpJORrsJR16ysf13T9QJtPNpNeYA3R5q61dcGMozF48hdQTQ5cfw3Mysq8NWY/rqEapZ7YeP4irLyXXRS+2LdUSQAkfbq5qzm2TZa7GYlOiSupXyIqi17rKVQzpGVTw1NBjS4+7YWp//PWjcLp+942g+2i9eL3qi0YxW2kWV/oEBpw== jlozada2426@gmail.com
+"
 
 
 # Users that should be removed from all hosts
