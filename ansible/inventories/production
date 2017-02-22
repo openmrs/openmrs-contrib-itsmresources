@@ -31,12 +31,15 @@ banyo.openmrs.org
 lamu.openmrs.org
 thika.openmrs.org
 batouri.openmrs.org
+garissa.openmrs.org
 
 [web]
 lamu.openmrs.org
+garissa.openmrs.org
 
 [web-tls]
 lamu.openmrs.org
+garissa.openmrs.org
 
 [ldap]
 batouri.openmrs.org
