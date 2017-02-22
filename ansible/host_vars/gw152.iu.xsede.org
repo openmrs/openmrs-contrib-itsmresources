@@ -1,5 +1,5 @@
 ---
-# Platform Release Testing (UAT)
+# Platform Release Testing (uat01/uat-platform)
 users:
  wyclif:
    comment: Wyclif Luyima

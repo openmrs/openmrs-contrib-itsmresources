@@ -1,5 +1,5 @@
 ---
-# Reference Application Release Testing (UAT)
+# Reference Application Release Testing (uat02/uat-refapp)
 users:
  surangak:
    comment: Suranga Kasthurirathne

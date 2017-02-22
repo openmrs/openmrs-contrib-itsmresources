@@ -65,6 +65,7 @@
 
 # TODO: make own roles for this
 - hosts: dbreset
+  become: true
   tasks:
    - name: Insert dbreset scripts
      synchronize: archive=no
