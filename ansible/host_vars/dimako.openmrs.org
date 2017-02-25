@@ -1,8 +1,2 @@
 ---
 # Bamboo Staging (ci-stg.openmrs.org)
-users:
- cintiadr:
-   comment: Cintia Del Rio
-   groups: 'admin'
-   ssh_key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC9Ue5zd1hhecpRnz3+noyyHoeSWAhFy4YqH6Ubwp3k15Xdbl7N183YM1TsxrX3eA5Cgb+IKDjfLcC7iCw3j6dJTo+uxCx3lU/FocdTTJ0vMRQc9ZLzkqUNtYHa03od3GFMFU5A7jWRMfXuaFNy2dSxPsvdPkmU0711kBmnLXat3Ilc/b8AJWoGAw9A7FM5lIdRLhJPLVhWPYWpSIUPxbfym859WgVVljDXxSCu8xw9zbMXk/AeY7RJ6koJK8JVOF+FDi+yigaEC1ed5tm8uBwT9DvLgY25sl9p/HjcOhD3HtW75AUN9RZO74wSIbkWuC1gBZY0otPN7Dgp2sfmCLtd cintiadrio@gmail.com"
-
