@@ -26,6 +26,9 @@ bafia.openmrs.org
 bafut.openmrs.org
 banyo.openmrs.org
 
+[datadog]
+batouri.openmrs.org
+
 [docker]
 lamu.openmrs.org
 thika.openmrs.org

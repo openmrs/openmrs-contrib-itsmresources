@@ -1,4 +1,6 @@
 # from Ansible Galaxy
+- name: datadog
+  src: Datadog.datadog
 - name: docker
   src: andrewrothstein.docker
 - name: docker-compose

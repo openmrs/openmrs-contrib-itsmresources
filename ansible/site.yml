@@ -48,6 +48,19 @@
        line: "127.0.0.1 {{ inventory_hostname }} {{ inventory_hostname_short }} localhost"
        state: present
 
+- hosts: datadog
+  name: Datadog
+  become: yes
+  become_user: root
+  roles:
+    - datadog
+  tasks:
+    - name: Adding dd-agent to docker group
+      user: name='dd-agent'
+        groups='docker'
+        append=yes
+
+
 - hosts: bamboo
   roles:
    - timezone
@@ -88,17 +101,3 @@
         dest: /opt/scripts/ldap-backup.sh
       tags:
         - backup
-
-
-# TODO: make a role
-- hosts: mongodb
-  tasks:
-   - name: Insert mongo backup
-     copy:
-       owner: root
-       group: root
-       mode: 0700
-       src: ../scripts/mongo-backup.sh
-       dest: /opt/scripts/mongo-backup.sh
-     tags:
-       - backup

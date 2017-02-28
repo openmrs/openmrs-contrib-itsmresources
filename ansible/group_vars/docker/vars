@@ -11,3 +11,10 @@ ufw_config:
     logging: "off"
     policy: allow
     state: enabled
+
+datadog_checks:
+  docker_daemon:
+    init_config:
+    instances:
+    - url: "unix://var/run/docker.sock"
+      new_tag_names: true
