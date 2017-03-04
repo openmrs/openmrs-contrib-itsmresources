@@ -16,7 +16,7 @@
                 "TransitionInDays" : 30
               }]
             }]
-        },
+         }
       }
     },
     "openmrstalkbackup" : {
@@ -31,27 +31,16 @@
              "Transitions": [{
                 "StorageClass" : "GLACIER",
                 "TransitionInDays" : 30
-              }]
             }]
-        },
+          }]
+        }
       }
     },
     "openmrsmanualbackup" : {
       "Type" : "AWS::S3::Bucket",
       "Properties" : {
-        "BucketName" : "openmrs-manual-backup",
-        "LifecycleConfiguration": {
-          "Rules": [{
-             "Id": "archive-and-delete",
-             "Status": "Enabled",
-             "ExpirationInDays": 180,
-             "Transitions": [{
-                "StorageClass" : "GLACIER",
-                "TransitionInDays" : 30
-              }]
-            }]
-        },
-      }
+        "BucketName" : "openmrs-manual-backup"
+        }
     },
     "openmrsbackupbucketpolicy" : {
        "Type" : "AWS::S3::BucketPolicy",
@@ -60,47 +49,25 @@
              "Id" : "allow-backup-upload",
              "Version": "2012-10-17",
              "Statement" : [ {
-                  "Sid" : "UploadAccessBafia",
-                  "Action" : [ "s3:PutObject", "s3:ListMultipartUploadParts", "s3:AbortMultipartUpload" ],
-                  "Effect" : "Allow",
-                  "Resource" : { "Fn::Join" : [
-                        "", [ "arn:aws:s3:::", { "Ref" : "openmrsbackup" } , "/bafia/*" ]
-                     ] },
-                  "Principal" : {
-                     "AWS" : { "Fn::GetAtt" : [ "bafiauser", "Arn" ] }
-                  }
-               },
-               {
-                 "Sid" : "UploadAccessBamenda",
-                 "Action" : [ "s3:PutObject", "s3:ListMultipartUploadParts", "s3:AbortMultipartUpload" ],
-                 "Effect" : "Allow",
-                 "Resource" : { "Fn::Join" : [
-                       "", [ "arn:aws:s3:::", { "Ref" : "openmrsbackup" } , "/bamenda/*" ]
-                    ] },
-                 "Principal" : {
-                    "AWS" : { "Fn::GetAtt" : [ "bamendauser", "Arn" ] }
-                 }
-              },
-              {
-                "Sid" : "UploadAccessBafoussam",
-                "Action" : [ "s3:PutObject", "s3:ListMultipartUploadParts", "s3:AbortMultipartUpload" ],
-                "Effect" : "Allow",
-                "Resource" : { "Fn::Join" : [
-                      "", [ "arn:aws:s3:::", { "Ref" : "openmrsbackup" } , "/bafoussam/*" ]
-                   ] },
-                "Principal" : {
-                   "AWS" : { "Fn::GetAtt" : [ "bafoussamuser", "Arn" ] }
-                }
-             },
-             {
-               "Sid" : "UploadAccessBafut",
+               "Sid" : "UploadAccessBafoussam",
                "Action" : [ "s3:PutObject", "s3:ListMultipartUploadParts", "s3:AbortMultipartUpload" ],
                "Effect" : "Allow",
                "Resource" : { "Fn::Join" : [
-                     "", [ "arn:aws:s3:::", { "Ref" : "openmrsbackup" } , "/bafut/*" ]
+                     "", [ "arn:aws:s3:::", { "Ref" : "openmrsbackup" } , "/bafoussam/*" ]
                   ] },
                "Principal" : {
-                  "AWS" : { "Fn::GetAtt" : [ "bafutuser", "Arn" ] }
+                  "AWS" : { "Fn::GetAtt" : [ "bafoussamuser", "Arn" ] }
+               }
+            },
+            {
+               "Sid" : "UploadAccessBamenda",
+               "Action" : [ "s3:PutObject", "s3:ListMultipartUploadParts", "s3:AbortMultipartUpload" ],
+               "Effect" : "Allow",
+               "Resource" : { "Fn::Join" : [
+                     "", [ "arn:aws:s3:::", { "Ref" : "openmrsbackup" } , "/bamenda/*" ]
+                  ] },
+               "Principal" : {
+                  "AWS" : { "Fn::GetAtt" : [ "bamendauser", "Arn" ] }
                }
             },
             {
@@ -126,6 +93,28 @@
              }
            },
            {
+             "Sid" : "UploadAccessYaounde",
+             "Action" : [ "s3:PutObject", "s3:ListMultipartUploadParts", "s3:AbortMultipartUpload" ],
+             "Effect" : "Allow",
+             "Resource" : { "Fn::Join" : [
+                   "", [ "arn:aws:s3:::", { "Ref" : "openmrsbackup" } , "/yaounde/*" ]
+                ] },
+             "Principal" : {
+                "AWS" : { "Fn::GetAtt" : [ "yaoundeuser", "Arn" ] }
+             }
+           },
+           {
+             "Sid" : "UploadAccessElk",
+             "Action" : [ "s3:PutObject", "s3:ListMultipartUploadParts", "s3:AbortMultipartUpload" ],
+             "Effect" : "Allow",
+             "Resource" : { "Fn::Join" : [
+                   "", [ "arn:aws:s3:::", { "Ref" : "openmrsbackup" } , "/elk/*" ]
+                ] },
+             "Principal" : {
+                "AWS" : { "Fn::GetAtt" : [ "elkuser", "Arn" ] }
+             }
+           },
+           {
              "Sid" : "UploadAccessNdu",
              "Action" : [ "s3:PutObject", "s3:ListMultipartUploadParts", "s3:AbortMultipartUpload" ],
              "Effect" : "Allow",
@@ -135,6 +124,39 @@
              "Principal" : {
                 "AWS" : { "Fn::GetAtt" : [ "nduuser", "Arn" ] }
              }
+          },
+          {
+            "Sid" : "UploadAccessGarissa",
+            "Action" : [ "s3:PutObject", "s3:ListMultipartUploadParts", "s3:AbortMultipartUpload" ],
+            "Effect" : "Allow",
+            "Resource" : { "Fn::Join" : [
+                  "", [ "arn:aws:s3:::", { "Ref" : "openmrsbackup" } , "/garissa/*" ]
+               ] },
+            "Principal" : {
+               "AWS" : { "Fn::GetAtt" : [ "garissauser", "Arn" ] }
+            }
+          },
+          {
+            "Sid" : "UploadAccessLamu",
+            "Action" : [ "s3:PutObject", "s3:ListMultipartUploadParts", "s3:AbortMultipartUpload" ],
+            "Effect" : "Allow",
+            "Resource" : { "Fn::Join" : [
+                  "", [ "arn:aws:s3:::", { "Ref" : "openmrsbackup" } , "/lamu/*" ]
+               ] },
+            "Principal" : {
+               "AWS" : { "Fn::GetAtt" : [ "lamuuser", "Arn" ] }
+            }
+          },
+          {
+            "Sid" : "UploadAccessThika",
+            "Action" : [ "s3:PutObject", "s3:ListMultipartUploadParts", "s3:AbortMultipartUpload" ],
+            "Effect" : "Allow",
+            "Resource" : { "Fn::Join" : [
+                  "", [ "arn:aws:s3:::", { "Ref" : "openmrsbackup" } , "/thika/*" ]
+               ] },
+            "Principal" : {
+               "AWS" : { "Fn::GetAtt" : [ "thikauser", "Arn" ] }
+            }
           }]
         },
         "Bucket" : { "Ref" : "openmrsbackup" }
@@ -161,30 +183,6 @@
         "Bucket" : { "Ref" : "openmrstalkbackup" }
        }
     },
-    "bafiauser" : {
-      "Type": "AWS::IAM::User",
-      "Properties": {
-        "UserName": "bafia-backups"
-      }
-    },
-    "bafiakey": {
-       "Type": "AWS::IAM::AccessKey",
-       "Properties": {
-          "UserName": { "Ref" : "bafiauser" }
-       }
-    },
-    "bamendauser" : {
-      "Type": "AWS::IAM::User",
-      "Properties": {
-        "UserName": "bamenda-backups"
-      }
-    },
-    "bamendakey": {
-       "Type": "AWS::IAM::AccessKey",
-       "Properties": {
-          "UserName": { "Ref" : "bamendauser" }
-       }
-    },
     "bafoussamuser" : {
       "Type": "AWS::IAM::User",
       "Properties": {
@@ -197,16 +195,16 @@
           "UserName": { "Ref" : "bafoussamuser" }
        }
     },
-    "bafutuser" : {
+    "bamendauser" : {
       "Type": "AWS::IAM::User",
       "Properties": {
-        "UserName": "bafut-backups"
+        "UserName": "bamenda-backups"
       }
     },
-    "bafutkey": {
+    "bamendakey": {
        "Type": "AWS::IAM::AccessKey",
        "Properties": {
-          "UserName": { "Ref" : "bafutuser" }
+          "UserName": { "Ref" : "bamendauser" }
        }
     },
     "banyouser" : {
@@ -256,64 +254,108 @@
        "Properties": {
           "UserName": { "Ref" : "nduuser" }
        }
+    },
+    "yaoundeuser" : {
+      "Type": "AWS::IAM::User",
+      "Properties": {
+        "UserName": "yaounde-backups"
+      }
+    },
+    "yaoundekey": {
+       "Type": "AWS::IAM::AccessKey",
+       "Properties": {
+          "UserName": { "Ref" : "yaoundeuser" }
+       }
+    },
+    "elkuser" : {
+      "Type": "AWS::IAM::User",
+      "Properties": {
+        "UserName": "elk-backups"
+      }
+    },
+    "elkkey": {
+       "Type": "AWS::IAM::AccessKey",
+       "Properties": {
+          "UserName": { "Ref" : "elkuser" }
+       }
+    },
+    "garissauser" : {
+      "Type": "AWS::IAM::User",
+      "Properties": {
+        "UserName": "garissa-backups"
+      }
+    },
+    "garissakey": {
+       "Type": "AWS::IAM::AccessKey",
+       "Properties": {
+          "UserName": { "Ref" : "garissauser" }
+       }
+    },
+    "lamuuser" : {
+      "Type": "AWS::IAM::User",
+      "Properties": {
+        "UserName": "lamu-backups"
+      }
+    },
+    "lamukey": {
+       "Type": "AWS::IAM::AccessKey",
+       "Properties": {
+          "UserName": { "Ref" : "lamuuser" }
+       }
+    },
+    "thikauser" : {
+      "Type": "AWS::IAM::User",
+      "Properties": {
+        "UserName": "thika-backups"
+      }
+    },
+    "thikakey": {
+       "Type": "AWS::IAM::AccessKey",
+       "Properties": {
+          "UserName": { "Ref" : "thikauser" }
+       }
     }
   },
   "Outputs" : {
-    "bafiaaccesskey" : {
-      "Description": " AccessKeyId for bafia",
-      "Value" : { "Ref" : "bafiakey" },
-    },
-    "bafiasecretkey" : {
-      "Description": "SecretAccessKey for bafia",
-      "Value" : { "Fn::GetAtt" : [ "bafiakey", "SecretAccessKey" ]},
-    },
-    "bamendaaccesskey" : {
-      "Description": " AccessKeyId for bamenda",
-      "Value" : { "Ref" : "bamendakey" },
-    },
-    "bamendasecretkey" : {
-      "Description": "SecretAccessKey for bamenda",
-      "Value" : { "Fn::GetAtt" : [ "bamendakey", "SecretAccessKey" ]},
-    },
     "bafoussamaccesskey" : {
       "Description": " AccessKeyId for bafoussam",
-      "Value" : { "Ref" : "bafoussamkey" },
+      "Value" : { "Ref" : "bafoussamkey" }
     },
     "bafoussamsecretkey" : {
       "Description": "SecretAccessKey for bafoussam",
-      "Value" : { "Fn::GetAtt" : [ "bafoussamkey", "SecretAccessKey" ]},
+      "Value" : { "Fn::GetAtt" : [ "bafoussamkey", "SecretAccessKey" ]}
     },
-    "bafutaccesskey" : {
-      "Description": " AccessKeyId for bafut",
-      "Value" : { "Ref" : "bafutkey" },
+    "bamendaaccesskey" : {
+      "Description": " AccessKeyId for bamenda",
+      "Value" : { "Ref" : "bamendakey" }
     },
-    "bafutsecretkey" : {
-      "Description": "SecretAccessKey for bafut",
-      "Value" : { "Fn::GetAtt" : [ "bafutkey", "SecretAccessKey" ]},
+    "bamendasecretkey" : {
+      "Description": "SecretAccessKey for bamenda",
+      "Value" : { "Fn::GetAtt" : [ "bamendakey", "SecretAccessKey" ]}
     },
     "banyoaccesskey" : {
       "Description": " AccessKeyId for banyo",
-      "Value" : { "Ref" : "banyokey" },
+      "Value" : { "Ref" : "banyokey" }
     },
     "banyosecretkey" : {
       "Description": "SecretAccessKey for banyo",
-      "Value" : { "Fn::GetAtt" : [ "banyokey", "SecretAccessKey" ]},
+      "Value" : { "Fn::GetAtt" : [ "banyokey", "SecretAccessKey" ]}
     },
     "batouriaccesskey" : {
       "Description": " AccessKeyId for batouri",
-      "Value" : { "Ref" : "batourikey" },
+      "Value" : { "Ref" : "batourikey" }
     },
     "batourisecretkey" : {
       "Description": "SecretAccessKey for batouri",
-      "Value" : { "Fn::GetAtt" : [ "batourikey", "SecretAccessKey" ]},
+      "Value" : { "Fn::GetAtt" : [ "batourikey", "SecretAccessKey" ]}
     },
     "talkaccesskey" : {
       "Description": " AccessKeyId for talk",
-      "Value" : { "Ref" : "talkkey" },
+      "Value" : { "Ref" : "talkkey" }
     },
     "talksecretkey" : {
       "Description": "SecretAccessKey for talk",
-      "Value" : { "Fn::GetAtt" : [ "talkkey", "SecretAccessKey" ]},
+      "Value" : { "Fn::GetAtt" : [ "talkkey", "SecretAccessKey" ]}
     },
     "nduaccesskey" : {
       "Description": " AccessKeyId for ndu",
@@ -321,8 +363,47 @@
     },
     "ndusecretkey" : {
       "Description": "SecretAccessKey for ndu",
-      "Value" : { "Fn::GetAtt" : [ "ndukey", "SecretAccessKey" ]},
+      "Value" : { "Fn::GetAtt" : [ "ndukey", "SecretAccessKey" ]}
     },
-
+    "yaoundeaccesskey" : {
+      "Description": " AccessKeyId for yaounde",
+      "Value" : { "Ref" : "yaoundekey" }
+    },
+    "yaoundesecretkey" : {
+      "Description": "SecretAccessKey for yaounde",
+      "Value" : { "Fn::GetAtt" : [ "yaoundekey", "SecretAccessKey" ]}
+    },
+    "elkaccesskey" : {
+      "Description": " AccessKeyId for elk",
+      "Value" : { "Ref" : "elkkey" }
+    },
+    "elksecretkey" : {
+      "Description": "SecretAccessKey for elk",
+      "Value" : { "Fn::GetAtt" : [ "elkkey", "SecretAccessKey" ]}
+    },
+    "garissaaccesskey" : {
+      "Description": " AccessKeyId for garissa",
+      "Value" : { "Ref" : "garissakey" }
+    },
+    "garissasecretkey" : {
+      "Description": "SecretAccessKey for garissa",
+      "Value" : { "Fn::GetAtt" : [ "garissakey", "SecretAccessKey" ]}
+    },
+    "lamuaccesskey" : {
+      "Description": " AccessKeyId for lamu",
+      "Value" : { "Ref" : "lamukey" }
+    },
+    "lamusecretkey" : {
+      "Description": "SecretAccessKey for lamu",
+      "Value" : { "Fn::GetAtt" : [ "lamukey", "SecretAccessKey" ]}
+    },
+    "thikaaccesskey" : {
+      "Description": " AccessKeyId for thika",
+      "Value" : { "Ref" : "thikakey" }
+    },
+    "thikasecretkey" : {
+      "Description": "SecretAccessKey for thika",
+      "Value" : { "Fn::GetAtt" : [ "thikakey", "SecretAccessKey" ]}
+    }
   }
 }
