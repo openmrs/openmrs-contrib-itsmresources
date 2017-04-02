@@ -91,6 +91,7 @@
 
 # TODO: make a role
 - hosts: ldap
+  become: true
   tasks:
     - name: Insert ldap backup
       copy:

@@ -1,6 +1,4 @@
 *.swp
-roles/.git
-site.retry
+*.retry
 .vagrant/
 *.log
-roles/dochang*
