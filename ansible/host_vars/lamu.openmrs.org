@@ -11,51 +11,32 @@ users:
    ssh_key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC0ted8ZbMokU7mjwoNHhNRuPKyIr2T4NDtatZSHZa/A6e0t+tDi8K1znFMbgZ3ZcVQQh0czcrnwTMMUprTiVyn5WB16Qs0WrfiHfr83/HDkcJA9LbQ3s1bM/f9QJ9Uo5vP5TMpJL8gGueKiSMP1+x6JwJ4EuUZKdsUz+q/WtzxU10ImECWOeOnwGaUkmitPREBzbJSIv8pciq4QJ/fHuYeuvRZOmUYC+V+Rn3C1XEJf1jhRIBahT5KhV02wfmbfXchIAd/WrIbqvVQ5YGg8UwqdN47cxHvNwR5BCqpTY1C3XyCrj13NqflPCGyYyj6+mxs74EMJYAh0nDT/ZSeUvbf jazayeri@alum.mit.edu"
 
 docker_deployment:
-  - demo
   - addons-stg
 
 docker_deployable_images:
-  - repository: openmrs-reference-application-distro
-    compose: demo
   - repository: addonindex
     compose: addons-stg
 
 letsencrypt_cert_domains:
    - lamu.openmrs.org
-   - demo.openmrs.org
    - addons-stg.openmrs.org
 
 nginx_vhosts:
   - listen: "80 default_server"
-    server_name: "demo.openmrs.org"
-    extra_parameters: |
-      return 301 https://$host$request_uri;
-  - listen: "443 ssl"
-    server_name: "demo.openmrs.org"
-    extra_parameters: |
-      access_log /var/log/nginx/demo_access.log;
-      error_log /var/log/nginx/demo_error.log;
-      ssl_certificate /etc/letsencrypt/live/lamu.openmrs.org/fullchain.pem;
-      ssl_certificate_key /etc/letsencrypt/live/lamu.openmrs.org/privkey.pem;
-      location / {
-        return 301 http://demo.openmrs.org/openmrs;
-      }
-      location /openmrs {
-        proxy_pass http://127.0.0.1:8080/openmrs;
-      }
-  - listen: "80"
     server_name: "addons-stg.openmrs.org"
     extra_parameters: |
       return 301 https://$host$request_uri;
-  - listen: "443"
+  - listen: "443 ssl"
     server_name: "addons-stg.openmrs.org"
     extra_parameters: |
       access_log /var/log/nginx/addons_access.log;
       error_log /var/log/nginx/addons_error.log;
+      ssl_certificate /etc/letsencrypt/live/lamu.openmrs.org/fullchain.pem;
+      ssl_certificate_key /etc/letsencrypt/live/lamu.openmrs.org/privkey.pem;
       location / {
         proxy_pass http://127.0.0.1:8081/;
       }
-  - listen: "443"
+  - listen: "443 ssl"
     server_name: "lamu.openmrs.org"
     extra_parameters: |
       access_log /var/log/nginx/deployer_access.log;
