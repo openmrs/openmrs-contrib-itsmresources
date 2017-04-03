@@ -89,3 +89,13 @@ nginx_vhosts:
      location /openmrs {
        proxy_pass http://127.0.0.1:8082/openmrs;
      }
+ - listen: "443 ssl"
+   server_name: "garissa.openmrs.org"
+   extra_parameters: |
+     access_log /var/log/nginx/deployer_access.log;
+     error_log /var/log/nginx/deployer_error.log;
+     ssl_certificate /etc/letsencrypt/live/garissa.openmrs.org/fullchain.pem;
+     ssl_certificate_key /etc/letsencrypt/live/garissa.openmrs.org/privkey.pem;
+     location / {
+       proxy_pass http://127.0.0.1:3000/;
+     }
