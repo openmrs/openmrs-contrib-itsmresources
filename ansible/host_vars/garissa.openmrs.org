@@ -25,11 +25,7 @@ docker_deployment:
 
 docker_deployable_images:
  - repository: openmrs-reference-application-distro
-   compose: demo
- - repository: openmrs-reference-application-distro
-   compose: qa-refapp
- - repository: openmrs-reference-application-distro
-   compose: modules-refapp
+   compose: demo,qa-refapp,modules-refapp
 
 letsencrypt_cert_domains:
   - garissa.openmrs.org
