@@ -22,16 +22,18 @@ docker_deployment:
  - demo
  - qa-refapp
  - modules-refapp
+ - uat-refapp
 
 docker_deployable_images:
  - repository: openmrs-reference-application-distro
-   compose: demo,qa-refapp,modules-refapp
+   compose: demo,qa-refapp,modules-refapp,uat-refapp
 
 letsencrypt_cert_domains:
   - garissa.openmrs.org
   - demo.openmrs.org
   - qa-refapp.openmrs.org
   - modules-refapp.openmrs.org
+  - uat-refapp.openmrs.org
 
 nginx_vhosts:
  - listen: "80 default_server"
@@ -85,6 +87,23 @@ nginx_vhosts:
      location /openmrs {
        proxy_pass http://127.0.0.1:8082/openmrs;
      }
+ - listen: "80"
+   server_name: "uat-refapp.openmrs.org"
+   extra_parameters: |
+     return 301 https://$host$request_uri;
+ - listen: "443 ssl"
+   server_name: "uat-refapp.openmrs.org"
+   extra_parameters: |
+     access_log /var/log/nginx/uat_access.log;
+     error_log /var/log/nginx/uat_error.log;
+     ssl_certificate /etc/letsencrypt/live/garissa.openmrs.org/fullchain.pem;
+     ssl_certificate_key /etc/letsencrypt/live/garissa.openmrs.org/privkey.pem;
+     location / {
+       return 301 https://uat-refapp.openmrs.org/openmrs;
+     }
+     location /openmrs {
+       proxy_pass http://127.0.0.1:8083/openmrs;
+       }
  - listen: "443 ssl"
    server_name: "garissa.openmrs.org"
    extra_parameters: |
