@@ -76,19 +76,6 @@
   tasks:
    - include: docker-install-hacks.yml
 
-# TODO: make own roles for this
-- hosts: dbreset
-  become: true
-  tasks:
-   - name: Insert dbreset scripts
-     synchronize: archive=no
-                  dest=/opt/scripts/
-                  mode=push
-                  perms=yes
-                  recursive=yes
-                  src=../scripts/dbreset
-
-
 # TODO: make a role
 - hosts: ldap
   become: true
