@@ -3,9 +3,19 @@ dimako.openmrs.org
 djoum.openmrs.org
 douala.openmrs.org
 dschang.openmrs.org
+lamu.openmrs.org
 
 [ssl]
 dimako.openmrs.org
 djoum.openmrs.org
 douala.openmrs.org
 dschang.openmrs.org
+
+[docker]
+lamu.openmrs.org
+
+[web]
+lamu.openmrs.org
+
+[web-tls]
+lamu.openmrs.org

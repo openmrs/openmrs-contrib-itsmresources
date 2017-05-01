@@ -1,5 +1,5 @@
 ---
-# Demo and addons (in jetstream)
+# Addons-stg (in jetstream)
 users:
   bamboo:
    comment: CI Bamboo User
