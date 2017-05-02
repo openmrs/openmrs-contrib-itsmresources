@@ -7,10 +7,10 @@ banyo.openmrs.org
 batouri.openmrs.org
 elk.openmrs.org
 garissa.openmrs.org
-lamu.openmrs.org
 ndu.openmrs.org
 talk.openmrs.org
 thika.openmrs.org
+watamu.openmrs.org
 
 [ssl]
 bafoussam.openmrs.org
@@ -28,17 +28,17 @@ banyo.openmrs.org
 batouri.openmrs.org
 
 [docker]
-lamu.openmrs.org
+watamu.openmrs.org
 thika.openmrs.org
 batouri.openmrs.org
 garissa.openmrs.org
 
 [web]
-lamu.openmrs.org
+watamu.openmrs.org
 garissa.openmrs.org
 
 [web-tls]
-lamu.openmrs.org
+watamu.openmrs.org
 garissa.openmrs.org
 
 [ldap]
