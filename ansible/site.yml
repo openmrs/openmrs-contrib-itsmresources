@@ -7,16 +7,7 @@
    - sudo
    - sshd
    - ufw
-
-#- hosts: mysql
-#  roles:
-#   - mysql
-
-#- hosts: ssl
-#  roles:
-#   - ssl-keys
-  #vars:
-   #ssl_key_loc: ~/omrs-cert/
+   - datadog
 
 - hosts: web-tls
   become: true
@@ -52,14 +43,11 @@
   name: Datadog
   become: yes
   become_user: root
-  roles:
-    - datadog
   tasks:
     - name: Adding dd-agent to docker group
       user: name='dd-agent'
-        groups='docker'
-        append=yes
-
+            groups='docker'
+            append=yes
 
 - hosts: bamboo
   roles:
