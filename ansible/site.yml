@@ -39,16 +39,6 @@
        line: "127.0.0.1 {{ inventory_hostname }} {{ inventory_hostname_short }} localhost"
        state: present
 
-- hosts: datadog
-  name: Datadog
-  become: yes
-  become_user: root
-  tasks:
-    - name: Adding dd-agent to docker group
-      user: name='dd-agent'
-            groups='docker'
-            append=yes
-
 - hosts: bamboo
   roles:
    - timezone
@@ -63,6 +53,7 @@
    - docker-compose-openmrs
   tasks:
    - include: docker-install-hacks.yml
+
 
 # TODO: make a role
 - hosts: ldap

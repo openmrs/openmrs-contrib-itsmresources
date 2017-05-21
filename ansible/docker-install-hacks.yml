@@ -1,4 +1,8 @@
 ---
+  - name: Adding dd-agent to docker group
+    user: name='dd-agent'
+          groups='docker'
+          append=yes
   # https://github.com/docker/compose/issues/4344
   - name: Check if docker-py is installed
     command: pip list | fgrep 'docker-py '
