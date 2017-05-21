@@ -1,5 +1,4 @@
 ---
 # uncomment when we add more users
 #users:
-datadog_config:
-  tags: "environment:staging"
+datadog_environment: "staging"

@@ -1,2 +1,5 @@
 ---
 # Telegram Bot
+
+datadog_config:
+  tags: "provider:digitalocean,environment:{{datadog_environment}}"

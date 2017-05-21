@@ -6,3 +6,6 @@ ufw_rules:
     port: 80
     proto: tcp
     rule: allow
+
+datadog_config:
+  tags: "provider:jetstream-tacc,environment:{{datadog_environment}}"

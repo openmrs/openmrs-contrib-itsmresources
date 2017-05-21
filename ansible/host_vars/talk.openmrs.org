@@ -1,3 +1,6 @@
 ---
 # Discourse
 ssl_key_dir: /var/discourse/shared/web-only/ssl/
+
+datadog_config:
+  tags: "provider:digitalocean,environment:{{datadog_environment}}"

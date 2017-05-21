@@ -25,3 +25,6 @@ users:
    comment: tadeo taremwa
    groups: 'admin'
    ssh_key: "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAoL3trH89mNx9gEZ3zDEkRJ396a/LQLHZN8WA1DDOqAFKbMVQP1lZuOsLVwxBuHS6v2tDJqJIoVsfrV0+k3s0XWhwda14xHgXLHdozB2e0MOwBp/66tMXM68eEg9YLyARHPBCDY3nzb5VXvYqiucEXWXkfqk7VJpzGDdMOc4POpKsuK7IwnNfQ1iLircOBTVs5WTg/D7kQC/t0sIC8QPC/WANTAZxEEb1lJysbO89ABhZhyiuySn0+SNPyo3c/xBu2lw25PJs6dj+U0/i0QilCQ7RkOUN9UrTvUDTZyKhSyN/7sVWVy1TT5ouafvRuk9H6YFHLXPKarVC297Zmt+Daw== rsa-key-20161006"
+
+datadog_config:
+  tags: "provider:xsede,environment:{{datadog_environment}}"

@@ -1,6 +1,5 @@
 ---
-datadog_config:
-  tags: "environment:development"
+datadog_environment: "development"
 
 users:
  bamboo:
