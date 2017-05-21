@@ -1,3 +1,6 @@
 ---
 # uncomment when we add more users
 #users:
+
+datadog_config:
+  tags: "environment:production"

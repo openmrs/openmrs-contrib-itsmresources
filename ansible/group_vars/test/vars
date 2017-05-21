@@ -1,4 +1,7 @@
 ---
+datadog_config:
+  tags: "environment:development"
+
 users:
  bamboo:
    comment: Bamboo CI user
