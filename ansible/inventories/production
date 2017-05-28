@@ -11,14 +11,6 @@ ndu.openmrs.org
 talk.openmrs.org
 thika.openmrs.org
 watamu.openmrs.org
-mokolo.openmrs.org
-
-[ssl]
-bafoussam.openmrs.org
-bamenda.openmrs.org
-banyo.openmrs.org
-batouri.openmrs.org
-talk.openmrs.org
 
 [bamboo]
 bafia.openmrs.org
@@ -34,10 +26,12 @@ garissa.openmrs.org
 [web]
 watamu.openmrs.org
 garissa.openmrs.org
+thika.openmrs.org
 
 [web-tls]
 watamu.openmrs.org
 garissa.openmrs.org
+thika.openmrs.org
 
 [ldap]
 batouri.openmrs.org

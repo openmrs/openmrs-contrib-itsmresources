@@ -9,3 +9,40 @@ ufw_rules:
 
 datadog_config:
   tags: "provider:jetstream-tacc,environment:{{datadog_environment}}"
+
+docker_deployment:
+ - quizgrader
+
+docker_deployable_images:
+ - repository: openmrs-quizgrader
+   compose: quizgrader
+
+letsencrypt_cert_domains:
+  - thika.openmrs.org
+  - quizgrader.openmrs.org
+
+nginx_vhosts:
+ - listen: "80 default_server"
+   server_name: "quizgrader.openmrs.org"
+   extra_parameters: |
+     return 301 https://$host$request_uri;
+ - listen: "443 ssl"
+   server_name: "quizgrader.openmrs.org"
+   extra_parameters: |
+     access_log /var/log/nginx/quizgrader_access.log;
+     error_log /var/log/nginx/quizgrader_error.log;
+     ssl_certificate /etc/letsencrypt/live/thika.openmrs.org/fullchain.pem;
+     ssl_certificate_key /etc/letsencrypt/live/thika.openmrs.org/privkey.pem;
+     location / {
+       proxy_pass http://127.0.0.1:8081;
+     }
+ - listen: "443 ssl"
+   server_name: "thika.openmrs.org"
+   extra_parameters: |
+     access_log /var/log/nginx/deployer_access.log;
+     error_log /var/log/nginx/deployer_error.log;
+     ssl_certificate /etc/letsencrypt/live/thika.openmrs.org/fullchain.pem;
+     ssl_certificate_key /etc/letsencrypt/live/thika.openmrs.org/privkey.pem;
+     location / {
+       proxy_pass http://127.0.0.1:3000/;
+     }
