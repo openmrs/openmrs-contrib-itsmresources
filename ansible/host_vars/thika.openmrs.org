@@ -13,9 +13,9 @@ datadog_config:
 docker_deployment:
  - quizgrader
 
-docker_deployable_images:
- - repository: openmrs-quizgrader
-   compose: quizgrader
+# docker_deployable_images:
+#  - repository: openmrs-quizgrader
+#    compose: quizgrader
 
 letsencrypt_cert_domains:
   - thika.openmrs.org
