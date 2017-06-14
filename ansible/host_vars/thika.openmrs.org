@@ -8,10 +8,10 @@ ufw_rules:
     rule: allow
 
 datadog_config:
-  tags: "provider:jetstream-tacc,environment:{{datadog_environment}}"
+  tags: "provider:jetstream-tacc,environment:{{datadog_environment}},service:quizgrader,ansible:partial,provisioner:manual"
 
 docker_deployment:
- - quizgrader
+  - quizgrader
 
 # docker_deployable_images:
 #  - repository: openmrs-quizgrader

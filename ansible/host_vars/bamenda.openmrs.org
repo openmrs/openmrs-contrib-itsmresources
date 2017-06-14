@@ -12,4 +12,4 @@ users:
 g"
 
 datadog_config:
- tags: "provider:xsede,environment:{{datadog_environment}}"
+ tags: "provider:xsede,environment:{{datadog_environment}},service:confluence,ansible:partial,provisioner:manual"

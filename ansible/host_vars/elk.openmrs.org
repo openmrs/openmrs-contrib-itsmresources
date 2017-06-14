@@ -17,4 +17,4 @@ users:
 "
 
 datadog_config:
-  tags: "provider:digitalocean,environment:{{datadog_environment}}"
+  tags: "provider:digitalocean,environment:{{datadog_environment}},service:elk,ansible:partial,provisioner:manual"

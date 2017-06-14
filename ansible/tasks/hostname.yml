@@ -1,0 +1,9 @@
+---
+  - hostname:
+     name: "{{ inventory_hostname_short }}"
+  - name: "Build hosts file"
+    lineinfile:
+       dest: /etc/hosts
+       regexp: '^127\.0\.0\.1'
+       line: "127.0.0.1 {{ inventory_hostname }} {{ inventory_hostname_short }} localhost"
+       state: present

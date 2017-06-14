@@ -16,4 +16,4 @@ users:
 "
 
 datadog_config:
-  tags: "provider:xsede,environment:{{datadog_environment}}"
+  tags: "provider:xsede,environment:{{datadog_environment}},service:jira,service:id,ansible:partial,provisioner:manual"

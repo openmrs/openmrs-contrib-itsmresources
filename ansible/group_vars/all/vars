@@ -64,3 +64,12 @@ ufw_rules:
     port: 22
     proto: tcp
     rule: allow
+
+datadog_checks:
+  dns_check:
+    init_config:
+      default_timeout: 4
+    instances:
+        - name: google
+          hostname: www.google.com
+          timeout: 8

@@ -1,0 +1,11 @@
+---
+  - name: add executable mode to deploy script wrapper
+    file:
+      state: 'directory'
+      path: "/etc/nginx/ssl"
+      mode: "0755"
+  - stat: path=/etc/nginx/ssl/dhparam.pem
+    register: dhparam_file
+  - name: 'Improve Key Exchange'
+    shell: openssl dhparam -out /etc/nginx/ssl/dhparam.pem 4096
+    when: dhparam_file.stat.exists == False
