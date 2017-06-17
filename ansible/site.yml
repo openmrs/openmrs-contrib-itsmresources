@@ -50,5 +50,15 @@
         mode: 0700
         src: ../scripts/ldap-backup.sh
         dest: /opt/scripts/ldap-backup.sh
-      tags:
-        - backup
+      tags: backup
+- hosts: mongodb
+  become: true
+  tasks:
+    - name: Insert MongoDB backup
+      copy:
+        owner: root
+        group: root
+        mode: 0700
+        src: ../scripts/mongo-backup.sh
+        dest: /opt/scripts/mongo-backup.sh
+      tags: backup
