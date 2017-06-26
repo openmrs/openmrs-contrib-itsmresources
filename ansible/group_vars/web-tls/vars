@@ -1,4 +1,7 @@
 ---
+dhparam_size: 2048
+dhparam_file: /etc/nginx/ssl/dhparam.pem
+
 letsencrypt_webroot_path: /usr/share/nginx/html
 letsencrypt_email: infrastructure@openmrs.org
 letsencrypt_renewal_command_args: '--renew-hook "systemctl restart nginx"'

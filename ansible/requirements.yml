@@ -2,6 +2,8 @@
 - name: datadog
   src: Datadog.datadog
   version: 1.3.0
+- name: dhparam
+  src: gronke.dhparam
 - name: docker
   src: andrewrothstein.docker
   version: v5.0.4
