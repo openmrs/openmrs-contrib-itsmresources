@@ -20,3 +20,10 @@ nginx_extra_http_options: |
     proxy_set_header X-Forward-For $proxy_add_x_forwarded_for;
     proxy_set_header X-Forward-Proto http;
     root /usr/share/nginx/html;
+
+datadog_checks:
+  ssl_check_expire_days:
+    init_config:
+
+    instances:
+     - cert: /etc/letsencrypt/live/{{ inventory_hostname }}/fullchain.pem

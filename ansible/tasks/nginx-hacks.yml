@@ -4,3 +4,24 @@
       state: 'directory'
       path: "/etc/nginx/ssl"
       mode: "0755"
+
+  # https://workshop.avatarnewyork.com/project/datadog-ssl-expires-check/
+  - name: Allow cert access to datadog - archive
+    file:
+      state: 'directory'
+      path: "/etc/letsencrypt/archive"
+      mode: "0711"
+  - name: Allow cert access to datadog - live
+    file:
+      state: 'directory'
+      path: "/etc/letsencrypt/live"
+      mode: "0711"
+  - name: Allow cert access to datadog - hostname
+    file:
+      state: 'directory'
+      path: "/etc/letsencrypt/live/{{ inventory_hostname }}"
+      mode: "0755"
+  - name: Ansible copy files remote to remote
+    copy:
+      src: files/ssl_check_expire_days.py
+      dest: /opt/datadog-agent/agent/checks.d
