@@ -50,6 +50,9 @@ nginx_vhosts:
      error_log /var/log/nginx/demo_error.log;
      ssl_certificate /etc/letsencrypt/live/garissa.openmrs.org/fullchain.pem;
      ssl_certificate_key /etc/letsencrypt/live/garissa.openmrs.org/privkey.pem;
+     location ^~ /.well-known/acme-challenge/ {
+       root /usr/share/nginx/html;
+     }
      location / {
        return 301 https://demo.openmrs.org/openmrs;
      }
@@ -67,6 +70,9 @@ nginx_vhosts:
      error_log /var/log/nginx/qa-refapp_access.log;
      ssl_certificate /etc/letsencrypt/live/garissa.openmrs.org/fullchain.pem;
      ssl_certificate_key /etc/letsencrypt/live/garissa.openmrs.org/privkey.pem;
+     location ^~ /.well-known/acme-challenge/ {
+       root /usr/share/nginx/html;
+     }
      location / {
        return 301 https://qa-refapp.openmrs.org/openmrs;
      }
@@ -84,6 +90,9 @@ nginx_vhosts:
      error_log /var/log/nginx/modules_error.log;
      ssl_certificate /etc/letsencrypt/live/garissa.openmrs.org/fullchain.pem;
      ssl_certificate_key /etc/letsencrypt/live/garissa.openmrs.org/privkey.pem;
+     location ^~ /.well-known/acme-challenge/ {
+       root /usr/share/nginx/html;
+     }
      location / {
        return 301 https://modules-refapp.openmrs.org/openmrs;
      }
@@ -101,6 +110,9 @@ nginx_vhosts:
      error_log /var/log/nginx/uat_error.log;
      ssl_certificate /etc/letsencrypt/live/garissa.openmrs.org/fullchain.pem;
      ssl_certificate_key /etc/letsencrypt/live/garissa.openmrs.org/privkey.pem;
+     location ^~ /.well-known/acme-challenge/ {
+       root /usr/share/nginx/html;
+     }
      location / {
        return 301 https://uat-refapp.openmrs.org/openmrs;
      }
@@ -114,6 +126,9 @@ nginx_vhosts:
      error_log /var/log/nginx/deployer_error.log;
      ssl_certificate /etc/letsencrypt/live/garissa.openmrs.org/fullchain.pem;
      ssl_certificate_key /etc/letsencrypt/live/garissa.openmrs.org/privkey.pem;
+     location ^~ /.well-known/acme-challenge/ {
+       root /usr/share/nginx/html;
+     }
      location / {
        proxy_pass http://127.0.0.1:3000/;
      }

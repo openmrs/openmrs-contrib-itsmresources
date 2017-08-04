@@ -36,6 +36,9 @@ nginx_vhosts:
       error_log /var/log/nginx/addons_error.log;
       ssl_certificate /etc/letsencrypt/live/lamu.openmrs.org/fullchain.pem;
       ssl_certificate_key /etc/letsencrypt/live/lamu.openmrs.org/privkey.pem;
+      location ^~ /.well-known/acme-challenge/ {
+        root /usr/share/nginx/html;
+      }
       location / {
         proxy_pass http://127.0.0.1:8081/;
       }
@@ -46,6 +49,9 @@ nginx_vhosts:
       error_log /var/log/nginx/deployer_error.log;
       ssl_certificate /etc/letsencrypt/live/lamu.openmrs.org/fullchain.pem;
       ssl_certificate_key /etc/letsencrypt/live/lamu.openmrs.org/privkey.pem;
+      location ^~ /.well-known/acme-challenge/ {
+        root /usr/share/nginx/html;
+      }
       location / {
         proxy_pass http://127.0.0.1:3000/;
       }
