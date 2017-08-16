@@ -4,12 +4,16 @@ djoum.openmrs.org
 douala.openmrs.org
 dschang.openmrs.org
 lamu.openmrs.org
+nakuru.openmrs.org
 
 [docker]
 lamu.openmrs.org
+nakuru.openmrs.org
 
 [web]
 lamu.openmrs.org
+nakuru.openmrs.org
 
 [web-tls]
 lamu.openmrs.org
+nakuru.openmrs.org
