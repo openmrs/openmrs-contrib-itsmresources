@@ -1,0 +1,57 @@
+---
+# OCL
+users:
+  djazayeri:
+   comment: Darius Jazayeri
+   groups: 'admin'
+   ssh_key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC0ted8ZbMokU7mjwoNHhNRuPKyIr2T4NDtatZSHZa/A6e0t+tDi8K1znFMbgZ3ZcVQQh0czcrnwTMMUprTiVyn5WB16Qs0WrfiHfr83/HDkcJA9LbQ3s1bM/f9QJ9Uo5vP5TMpJL8gGueKiSMP1+x6JwJ4EuUZKdsUz+q/WtzxU10ImECWOeOnwGaUkmitPREBzbJSIv8pciq4QJ/fHuYeuvRZOmUYC+V+Rn3C1XEJf1jhRIBahT5KhV02wfmbfXchIAd/WrIbqvVQ5YGg8UwqdN47cxHvNwR5BCqpTY1C3XyCrj13NqflPCGyYyj6+mxs74EMJYAh0nDT/ZSeUvbf jazayeri@alum.mit.edu"
+  raff:
+   comment: Rafal
+   groups: 'admin'
+   ssh_key: "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAgc4Q+9e1XMDInFm4GNkuYErYkgDt0KNnmLDTFa+0HV1MuQKP+TE3Ee9Qdx5rugNkg9+e45Hzfze/vX/nYjrNAkWcxYaxEAdej/6QW4Bh4r6rRLnNoqnksG3+WVXl2cqOf9odji2L+uzA2E+zX5tEYqVkN9+0z1Ewwe6lcSg0zRQyJ+phIo595eftYJGAiLAhIfSotg8SxWJhSHUsNtphyXRld7FtxXDgfu6SkejvakymwXEuMe7yS2mES9U8IlJh4CyADGaqb0WSWfqsejcgMuXJmnEqpMqVwcDaP4B+NZLTKfUUlc2D8DiUKRqlnxuGCFmkpghTQkX4dE0YhxJSjQ== raff"
+
+datadog_config:
+  tags: "provider:jetstream-iu,environment:{{datadog_environment}},service:ocl,ansible:full,provisioner:terraform"
+
+docker_deployment:
+  - addons
+
+docker_deployable_images:
+  - repository: addonindex
+    compose: addons
+
+letsencrypt_cert_domains:
+   - nairobi.openmrs.org
+   - ocl.openmrs.org
+
+nginx_vhosts:
+  - listen: "80 default_server"
+    server_name: "ocl.openmrs.org"
+    extra_parameters: |
+      return 301 https://$host$request_uri;
+  - listen: "443 ssl"
+    server_name: "ocl.openmrs.org"
+    extra_parameters: |
+      access_log /var/log/nginx/addons_access.log;
+      error_log /var/log/nginx/addons_error.log;
+      ssl_certificate /etc/letsencrypt/live/nairobi.openmrs.org/fullchain.pem;
+      ssl_certificate_key /etc/letsencrypt/live/nairobi.openmrs.org/privkey.pem;
+      location ^~ /.well-known/acme-challenge/ {
+        root /usr/share/nginx/html;
+      }
+      location / {
+        proxy_pass http://127.0.0.1:8081/;
+      }
+  - listen: "443 ssl"
+    server_name: "nairobi.openmrs.org"
+    extra_parameters: |
+      access_log /var/log/nginx/deployer_access.log;
+      error_log /var/log/nginx/deployer_error.log;
+      ssl_certificate /etc/letsencrypt/live/nairobi.openmrs.org/fullchain.pem;
+      ssl_certificate_key /etc/letsencrypt/live/nairobi.openmrs.org/privkey.pem;
+      location ^~ /.well-known/acme-challenge/ {
+        root /usr/share/nginx/html;
+      }
+      location / {
+        proxy_pass http://127.0.0.1:3000/;
+      }

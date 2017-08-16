@@ -11,6 +11,7 @@ ndu.openmrs.org
 talk.openmrs.org
 thika.openmrs.org
 watamu.openmrs.org
+nairobi.openmrs.org
 
 [bamboo]
 bafia.openmrs.org
@@ -22,16 +23,19 @@ watamu.openmrs.org
 thika.openmrs.org
 batouri.openmrs.org
 garissa.openmrs.org
+nairobi.openmrs.org
 
 [web]
 watamu.openmrs.org
 garissa.openmrs.org
 thika.openmrs.org
+nairobi.openmrs.org
 
 [web-tls]
 watamu.openmrs.org
 garissa.openmrs.org
 thika.openmrs.org
+nairobi.openmrs.org
 
 [ldap]
 batouri.openmrs.org
