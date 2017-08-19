@@ -7,7 +7,6 @@
    - sudo
    - sshd
    - ufw
-   - datadog
 
 - hosts: web-tls
   become: true
@@ -39,8 +38,11 @@
   tasks:
    - include: tasks/docker-install-hacks.yml
 
+- hosts: all
+  become: true
+  roles:
+   - datadog
 
-# TODO: make a role
 - hosts: ldap
   become: true
   tasks:
@@ -52,6 +54,7 @@
         src: ../scripts/ldap-backup.sh
         dest: /opt/scripts/ldap-backup.sh
       tags: backup
+
 - hosts: mongodb
   become: true
   tasks:

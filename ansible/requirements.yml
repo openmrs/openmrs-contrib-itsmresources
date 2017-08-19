@@ -29,8 +29,8 @@
   src: https://github.com/yatesr/ntp.git
   version: 08fd3721fe6c47bd7b02bfec2af5bd47f0dd3da8
 - name: sshd
-  src: https://github.com/yatesr/ansible-sshd.git
-  version: aa6f9b5686d1c97deff456af641ac7e55fcbff8d
+  src: https://github.com/cintiadr/ansible-sshd.git
+  version: 125e6bd0ce3b4c56cd14f97dacc52f4fb8142d76
 - name: ssl-keys
   src: https://github.com/yatesr/ansible-sslkeys.git
   version: 1fdf13bd502d57c337aa76916e294c3b63ec4446
