@@ -37,6 +37,9 @@ garissa.openmrs.org
 thika.openmrs.org
 nairobi.openmrs.org
 
+[backup]
+nairobi.openmrs.org
+
 [ldap]
 batouri.openmrs.org
 
