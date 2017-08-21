@@ -25,3 +25,11 @@
     copy:
       src: files/ssl_check_expire_days.py
       dest: /opt/datadog-agent/agent/checks.d
+
+  - name: Check if datadog-agent was restarted yet
+    command: dd-agent info
+    register: datadog_restarted
+    changed_when: datadog_restarted.stdout.find('ssl_check_expire_days') == -1
+  - name: Restart datadog-agent service
+    shell: systemctl restart datadog-agent
+    when: datadog_restarted.stdout.find('ssl_check_expire_days') == -1

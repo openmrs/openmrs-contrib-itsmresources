@@ -1,5 +1,13 @@
 ---
 # Master Playbook
+
+# TODO: include this task to all hosts
+# should happen before installing datadog
+- hosts: web
+  become: true
+  tasks:
+   - include: tasks/hostname.yml
+
 - hosts: all
   become: true
   roles:
@@ -7,6 +15,7 @@
    - sudo
    - sshd
    - ufw
+   - datadog
 
 - hosts: web-tls
   become: true
@@ -16,12 +25,12 @@
     - dhparam
     - letsencrypt
 
+
 - hosts: web
   become: true
   roles:
    - nginx
-  tasks:
-    - include: tasks/hostname.yml
+
 
 - hosts: bamboo
   roles:
@@ -37,11 +46,6 @@
    - docker-compose-openmrs
   tasks:
    - include: tasks/docker-install-hacks.yml
-
-- hosts: all
-  become: true
-  roles:
-   - datadog
 
 - hosts: ldap
   become: true
