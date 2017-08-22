@@ -15,16 +15,20 @@ datadog_config:
 
 docker_deployment:
   - oclapi-qa
+  - oclweb-qa
 
 docker_deployable_images:
   - repository: openconceptlab/oclapi
     compose: oclapi-qa
   - repository: openconceptlab/oclsolr
     compose: oclapi-qa
+  - repository: openconceptlab/oclweb
+    compose: oclweb-qa
 
 letsencrypt_cert_domains:
    - narok.openmrs.org
    - ocl-qa.openmrs.org
+   - oclapi-qa.openmrs.org
 
 nginx_vhosts:
   - listen: "80 default_server"
@@ -34,8 +38,25 @@ nginx_vhosts:
   - listen: "443 ssl"
     server_name: "ocl-qa.openmrs.org"
     extra_parameters: |
-      access_log /var/log/nginx/addons_access.log;
-      error_log /var/log/nginx/addons_error.log;
+      access_log /var/log/nginx/oclweb_access.log;
+      error_log /var/log/nginx/oclweb_error.log;
+      ssl_certificate /etc/letsencrypt/live/narok.openmrs.org/fullchain.pem;
+      ssl_certificate_key /etc/letsencrypt/live/narok.openmrs.org/privkey.pem;
+      location ^~ /.well-known/acme-challenge/ {
+        root /usr/share/nginx/html;
+      }
+      location / {
+        proxy_pass http://127.0.0.1:7000/;
+      }
+  - listen: "80"
+    server_name: "oclapi-qa.openmrs.org"
+    extra_parameters: |
+      return 301 https://$host$request_uri;
+  - listen: "443 ssl"
+    server_name: "oclapi-qa.openmrs.org"
+    extra_parameters: |
+      access_log /var/log/nginx/oclapi_access.log;
+      error_log /var/log/nginx/oclapi_error.log;
       ssl_certificate /etc/letsencrypt/live/narok.openmrs.org/fullchain.pem;
       ssl_certificate_key /etc/letsencrypt/live/narok.openmrs.org/privkey.pem;
       location ^~ /.well-known/acme-challenge/ {
