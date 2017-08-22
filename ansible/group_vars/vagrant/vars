@@ -10,7 +10,7 @@ docker_deployment:
    - demo
 
 docker_deployable_images:
-  - repository: openmrs-reference-application-distro
+  - repository: openmrs/openmrs-reference-application-distro
     compose: demo
 
 nginx_vhosts:

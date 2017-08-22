@@ -28,7 +28,7 @@ docker_deployment:
  - uat-refapp
 
 docker_deployable_images:
- - repository: openmrs-reference-application-distro
+ - repository: openmrs/openmrs-reference-application-distro
    compose: demo,qa-refapp,modules-refapp,uat-refapp
 
 letsencrypt_cert_domains:

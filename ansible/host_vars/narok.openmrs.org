@@ -14,11 +14,13 @@ datadog_config:
   tags: "provider:jetstream-iu,environment:{{datadog_environment}},service:ocl,ansible:full,provisioner:terraform"
 
 docker_deployment:
-  - addons
+  - oclapi-qa
 
 docker_deployable_images:
-  - repository: addonindex
-    compose: addons
+  - repository: openconceptlab/oclapi
+    compose: oclapi-qa
+  - repository: openconceptlab/oclsolr
+    compose: oclapi-qa
 
 letsencrypt_cert_domains:
    - narok.openmrs.org
@@ -40,7 +42,7 @@ nginx_vhosts:
         root /usr/share/nginx/html;
       }
       location / {
-        proxy_pass http://127.0.0.1:8081/;
+        proxy_pass http://127.0.0.1:8000/;
       }
   - listen: "443 ssl"
     server_name: "narok.openmrs.org"

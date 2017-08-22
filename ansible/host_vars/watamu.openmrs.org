@@ -13,7 +13,7 @@ docker_deployment:
   - addons
 
 docker_deployable_images:
-  - repository: addonindex
+  - repository: openmrs/addonindex
     compose: addons
 
 letsencrypt_cert_domains:

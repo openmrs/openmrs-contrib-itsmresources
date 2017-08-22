@@ -14,7 +14,7 @@ docker_deployment:
   - quizgrader
 
 docker_deployable_images:
-  - repository: openmrs-quizgrader
+  - repository: openmrs/openmrs-quizgrader
     compose: quizgrader
 
 letsencrypt_cert_domains:
