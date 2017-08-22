@@ -4,3 +4,14 @@ gw152.iu.xsede.org	# uat01.openmrs.org
 mdsbuilder.openmrs.org # devtest00.openmrs.org
 gw92.iu.xsede.org	# devtest03.openmrs.org
 gw123.iu.xsede.org	# devtest04.openmrs.org
+narok.openmrs.org
+
+
+[docker]
+narok.openmrs.org
+
+[web]
+narok.openmrs.org
+
+[web-tls]
+narok.openmrs.org
