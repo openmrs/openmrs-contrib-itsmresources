@@ -21,6 +21,14 @@ docker_deployment:
   - oclapi-prd
   - oclweb-prd
 
+docker_deployable_images:
+  - repository: openconceptlab/oclweb
+    compose: oclweb-prd
+  - repository: openconceptlab/oclsolr
+    compose: oclapi-prd
+  - repository: openconceptlab/oclapi
+    compose: oclapi-prd
+
 letsencrypt_cert_domains:
    - nairobi.openmrs.org
    - ocl.openmrs.org
@@ -34,15 +42,32 @@ nginx_vhosts:
   - listen: "443 ssl"
     server_name: "ocl.openmrs.org"
     extra_parameters: |
-      access_log /var/log/nginx/addons_access.log;
-      error_log /var/log/nginx/addons_error.log;
+      access_log /var/log/nginx/oclweb_access.log;
+      error_log /var/log/nginx/oclweb_error.log;
       ssl_certificate /etc/letsencrypt/live/nairobi.openmrs.org/fullchain.pem;
       ssl_certificate_key /etc/letsencrypt/live/nairobi.openmrs.org/privkey.pem;
       location ^~ /.well-known/acme-challenge/ {
         root /usr/share/nginx/html;
       }
       location / {
-        proxy_pass http://127.0.0.1:8081/;
+        proxy_pass http://127.0.0.1:7000/;
+      }
+  - listen: "80"
+    server_name: "oclapi.openmrs.org"
+    extra_parameters: |
+      return 301 https://$host$request_uri;
+  - listen: "443 ssl"
+    server_name: "oclapi.openmrs.org"
+    extra_parameters: |
+      access_log /var/log/nginx/oclapi_access.log;
+      error_log /var/log/nginx/oclapi_error.log;
+      ssl_certificate /etc/letsencrypt/live/nairobi.openmrs.org/fullchain.pem;
+      ssl_certificate_key /etc/letsencrypt/live/nairobi.openmrs.org/privkey.pem;
+      location ^~ /.well-known/acme-challenge/ {
+        root /usr/share/nginx/html;
+      }
+      location / {
+        proxy_pass http://127.0.0.1:8000/;
       }
   - listen: "443 ssl"
     server_name: "nairobi.openmrs.org"
