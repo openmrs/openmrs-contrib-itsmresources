@@ -40,6 +40,8 @@
 
 - hosts: docker
   become: true
+  tags:
+    - docker
   roles:
    - docker
    - docker-compose
