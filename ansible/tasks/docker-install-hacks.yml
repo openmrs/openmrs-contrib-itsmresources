@@ -28,10 +28,16 @@
     shell: systemctl restart datadog-agent
     when: datadog_restarted_docker.stdout.find('Initialization failed. Will retry at next iteration') != -1
 
-  - name: Docker cleanup
-    file:
-      state: 'file'
-      path: "/usr/lib/local/docker-cleanup.sh"
+  - name: Docker cleanup script copy
+    copy:
+      src: 'files/docker-cleanup.sh'
+      dest: "/usr/sbin/docker-cleanup.sh"
       owner: 'root'
       group: 'root'
       mode: '0700'
+  - name: Docker cleanup cron
+    cron:
+      name: "docker-cleanup"
+      minute: "0"
+      hour: "2"
+      job: "/usr/sbin/docker-cleanup.sh"

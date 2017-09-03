@@ -3,6 +3,6 @@
     file:
       state: 'directory'
       path: "/opt/backups"
-      owner: 'backup'
-      group: 'backup'
+      owner: '{{ backup_user }}'
+      group: '{{ backup_user }}'
       mode: "0711"
