@@ -25,12 +25,15 @@
     - dhparam
     - letsencrypt
 
+- hosts: backup
+  become: true
+  tasks:
+   - include: tasks/backup.yml
 
 - hosts: web
   become: true
   roles:
    - nginx
-
 
 - hosts: bamboo
   roles:

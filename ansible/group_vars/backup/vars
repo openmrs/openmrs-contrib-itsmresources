@@ -1,2 +1,6 @@
 ---
 docker_daemon_args: "--data-root=/data/docker"
+
+users:
+ backup:
+   comment: Backup User

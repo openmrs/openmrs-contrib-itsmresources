@@ -24,23 +24,11 @@
 
 
 # from git
-- name: crontab
-  src: https://github.com/yatesr/ansible-crontab.git
-  version: dd8944f44675af0d2e14741619043fd60a921dd5
 - name: docker-compose-openmrs
   src: https://github.com/openmrs/openmrs-contrib-ansible-docker-compose.git
-- name: mysql
-  src: https://github.com/yatesr/ansible-mysql
-  version: 2f2a5a6134769a5b338fbbe26826801643043bca
-- name: ntp
-  src: https://github.com/yatesr/ntp.git
-  version: 08fd3721fe6c47bd7b02bfec2af5bd47f0dd3da8
 - name: sshd
   src: https://github.com/cintiadr/ansible-sshd.git
   version: 125e6bd0ce3b4c56cd14f97dacc52f4fb8142d76
-- name: ssl-keys
-  src: https://github.com/yatesr/ansible-sslkeys.git
-  version: 1fdf13bd502d57c337aa76916e294c3b63ec4446
 - name: sudo
   src: https://github.com/yatesr/ansible-sudo.git
   version: 2a55007541a2f340eec57e4e5a7efa1c3fc73d74

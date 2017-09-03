@@ -1,0 +1,8 @@
+---
+  - name: Add backup directory
+    file:
+      state: 'directory'
+      path: "/opt/backups"
+      owner: 'backup'
+      group: 'backup'
+      mode: "0711"
