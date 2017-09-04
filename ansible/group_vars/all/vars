@@ -73,3 +73,5 @@ datadog_checks:
         - name: google
           hostname: www.google.com
           timeout: 8
+
+backup_tag: 'not-applicable'

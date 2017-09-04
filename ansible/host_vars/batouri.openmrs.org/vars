@@ -16,4 +16,10 @@ users:
 "
 
 datadog_config:
-  tags: "provider:xsede,environment:{{datadog_environment}},service:jira,service:id,ansible:partial,provisioner:manual"
+  tags: "provider:xsede,environment:{{datadog_environment}},backup:{{backup_tag}},service:jira,service:id,ansible:partial,provisioner:manual"
+
+# data volume not created in this machine
+docker_daemon_args: "--data-root=/var/lib/docker"
+
+aws_access_key_id: '{{ vault_aws_access_key_id }}'
+aws_secret_access_key: '{{ vault_aws_secret_access_key }}'

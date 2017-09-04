@@ -12,4 +12,7 @@ users:
 g"
 
 datadog_config:
- tags: "provider:xsede,environment:{{datadog_environment}},service:confluence,ansible:partial,provisioner:manual"
+ tags: "provider:xsede,environment:{{datadog_environment}},backup:{{backup_tag}},service:confluence,ansible:partial,provisioner:manual"
+
+aws_access_key_id: '{{ vault_aws_access_key_id }}'
+aws_secret_access_key: '{{ vault_aws_secret_access_key }}'
