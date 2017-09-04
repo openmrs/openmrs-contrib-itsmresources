@@ -7,6 +7,4 @@ users:
    comment: Backup User
 aws_output_format: 'json'
 aws_region: 'us-west-2'
-aws_access_key_id: 'YOUR_ACCESS_KEY_ID'
-aws_secret_access_key: 'YOUR_SECRET_ACCESS_KEY'
 aws_cli_user: '{{backup_user}}'
