@@ -6,3 +6,17 @@
       owner: '{{ backup_user }}'
       group: '{{ backup_user }}'
       mode: "0711"
+  - name: Copy backup uploader
+    copy:
+      owner: root
+      group: root
+      mode: 0755
+      src: files/backup-upload.sh
+      dest: "/usr/sbin/backup-upload.sh"
+  - name: Backup cron
+    cron:
+      name: "backup-upload"
+      user: '{{ backup_user }}'
+      minute: "0"
+      hour: "4"
+      job: "/usr/sbin/backup-upload.sh"
