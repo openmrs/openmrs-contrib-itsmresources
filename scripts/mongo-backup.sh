@@ -8,3 +8,4 @@ mkdir -p "$BACKUP_PATH"
 # backup the database
 /usr/bin/nice mongodump -u "$MONGO_USERNAME" -p "$MONGO_PASSWORD"  --db openmrsid -o "$BACKUP_PATH"
 chmod 640 -R "$BACKUP_PATH"
+chown -R backup-s3:backup-s3 "$BACKUP_PATH"

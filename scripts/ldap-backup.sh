@@ -11,7 +11,7 @@ mkdir -p "${BACKUP_PATH}"
 /usr/bin/nice /usr/sbin/slapcat -F /opt/id/data/ldap/config -n 0 > "${BACKUP_PATH}/config.ldif"
 
 # backup the database (bring down slapd)
-/usr/bin/nice sudo docker-compose -f /opt/id/docker-compose-prod.yml stop openldap
+/usr/bin/nice docker-compose -f /opt/id/docker-compose-prod.yml stop openldap
 /usr/bin/nice /usr/sbin/slapcat -F /opt/id/data/ldap/config -n 1 > "${BACKUP_PATH}/openmrs_ldap_backup.ldif"
 
 /usr/bin/nice tar cpjf "${BACKUP_PATH}/ldap_database.tbz2" /opt/id/data/ldap/database >/dev/null 2>&1
@@ -20,3 +20,4 @@ mkdir -p "${BACKUP_PATH}"
 
 /usr/bin/nice tar cpjf "${BACKUP_PATH}/ldap_config.tbz2" /opt/id/data/ldap/config >/dev/null 2>&1
 chmod 640 -R "${BACKUP_PATH}"
+chown -R backup-s3:backup-s3 "$BACKUP_PATH"
