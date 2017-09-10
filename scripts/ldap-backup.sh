@@ -4,7 +4,7 @@
 # these up to Amazon Glacier or S3.
 
 TIMESTAMP=$(date +%Y%m%d-%H%M%S)
-BACKUP_PATH="/var/backups/ldap/${TIMESTAMP}"
+BACKUP_PATH="/opt/backups/ldap/${TIMESTAMP}"
 mkdir -p "${BACKUP_PATH}"
 
 # backup the config
