@@ -27,11 +27,21 @@ The following assumes you are in the `ansible` directory:
 $ ansible-galaxy install -p roles -r requirements.yml --force
 
 # Run ansible in all staging machines
-$ ansible-playbook -i inventories/staging site.yml
+$ ansible-playbook -i inventories/staging site.yml --vault-password-file ./.vault_pass
+
+# if you do not have your PGP key in our repo to unlock the .vault_pass file, you can get it from the LastPass folder and interactively enter it.
+$ ansible-playbook -i inventories/staging site.yml --ask-vault-pass
+
+This will unlock any ansible-vault files necessary for the playbook run.
 
 # Run ansible in a single staging machines
-ansible-playbook -i inventories/staging --limit djoum.openmrs.org site.yml
+$ ansible-playbook -i inventories/staging --limit djoum.openmrs.org site.yml --vault-password-file ./.vault_pass
 
+
+# if you do not have your PGP key in our repo to unlock the .vault_pass file, you can get it from the LastPass folder and interactively enter it.
+$ ansible-playbook -i inventories/staging --limit djoum.openmrs.org site.yml --ask-vault-pass
+
+It might not be necessary to use vault for the single machine.
 
 # Run arbitrary code
 $ ansible -i inventories/production -m "whoami"
