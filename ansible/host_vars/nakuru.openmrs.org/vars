@@ -16,7 +16,7 @@ users:
 
 
 datadog_config:
-  tags: "provider:jetstream-iu,environment:{{datadog_environment}},service:ocl,ansible:full,provisioner:terraform"
+  tags: "provider:jetstream-iu,environment:{{datadog_environment}},backup:{{backup_tag}},service:ocl,ansible:full,provisioner:terraform"
 
 docker_deployment:
   - oclapi-stg

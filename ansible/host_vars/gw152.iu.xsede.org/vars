@@ -16,4 +16,4 @@ users:
 
 
 datadog_config:
-  tags: "provider:xsede,environment:{{datadog_environment}},service:openmrs-platform,ansible:partial"
+  tags: "provider:xsede,environment:{{datadog_environment}},backup:{{backup_tag}},service:openmrs-platform,ansible:partial"

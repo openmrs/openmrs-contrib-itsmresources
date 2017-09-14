@@ -15,4 +15,4 @@ users:
    ssh_key: "ssh-dss AAAAB3NzaC1kc3MAAACBANqIbC4JPfyAYcFgMOrYniAYSmRo206wQStIc6IVqye+WVmBh+naWwk0fR+h+8NBJs02Nfmbsbn/vIour7m0DAG5pzNnRCM9fymHdTYwnYDKEy0HVPoYPexMRMatVPf8ElKi05ibPhO/lFBxn7piVPrpZXtjmyzKtLrs+ApJvyATAAAAFQD4bD2v28C3kF4Zw0EH6c6fYR6qbwAAAIEAg3i6AKAKTloJUbCacKA6NrbjsyrgM78TxsApCwwNPeumfwk9Mh6htgFfCg+wEesAoZbELuiZwoqOTY9xuO71brVbxeHWL27UWKIN7+pAI2/DpHiBph9eJrB8S4zhkyU/TILVyo5QCeZtpIeqCnRQw5p5RhNWlUi0kqSFvVxGnXQAAACBAMT2GudIFLU7nKUsPgRh8KYKJqF6UU2ZBpot7qe7un/tpj+8dM+V65aoGDAvwvfqxjtj9fHExILEbX0eG8bP7navJEgrGWo4SSZ3g+gN5ro/wep37JkJVXImtDAtBRmIWP/ZZ7EFL7sz4LlgnXWYsgp7ivimT5g7TFeGCxedCa9Z ball@ball-ThinkPad-T400"
 
 datadog_config:
-  tags: "provider:xsede,environment:{{datadog_environment}},service:openmrs-platform,ansible:partial,provisioner:manual"
+  tags: "provider:xsede,environment:{{datadog_environment}},backup:{{backup_tag}},service:openmrs-platform,ansible:partial,provisioner:manual"

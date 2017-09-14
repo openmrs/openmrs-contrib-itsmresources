@@ -1,5 +1,0 @@
----
-# Bamboo Staging (ci-stg.openmrs.org)
-
-datadog_config:
-  tags: "provider:xsede,environment:{{datadog_environment}},service:bamboo,ansible:partial,provisioner:manual"

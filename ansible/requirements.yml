@@ -17,15 +17,13 @@
 - name: nginx
   src: geerlingguy.nginx
   version: 2.1.0
-- name: letsencrypt
-  src: thefinn93.letsencrypt
-  version: master
-
-
 
 # from git
 - name: docker-compose-openmrs
   src: https://github.com/openmrs/openmrs-contrib-ansible-docker-compose.git
+- name: letsencrypt
+  src: https://github.com/thefinn93/ansible-letsencrypt
+  version: c28dbb1c5d06971d3eb38044635bdd425003f2ce
 - name: sshd
   src: https://github.com/cintiadr/ansible-sshd.git
   version: 125e6bd0ce3b4c56cd14f97dacc52f4fb8142d76

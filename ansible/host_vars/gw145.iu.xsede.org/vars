@@ -11,4 +11,4 @@ users:
    ssh_key: "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAx+1orGXyy5xp1vM1uDUIa/sj0/3Z04n0x2EBJvSGAs98LitJbrucMGOoC2o3vmDbQLhgjDDIp9WcXyNX2CRF9Ez3ZQFY3UYErA87zfXC3aUCXH72PypaiTngNYI/z2Z7r1xVlcsogxW4IeGitk144J4CD3rSA3hO2uTjnc1Vblrj92VjNLv+/0y9yRUgM7EF0hxKrb4NTYXRSAEM95KoJqzGKz8Kb9MPT4NsjBdOynVUGTaNv9mTV5QOZa+4n2W24zDPoRirws7koib8vbAj8J+IilBvOtXWzJdgEokbUmzbooaGT4OCjEwMpt0JUrBWrMlwazeiZEWaZVNgS97ubQ== danielkayiwa@Daniel-Kayiwas-MacBook-Pro.local"
 
 datadog_config:
-  tags: "provider:xsede,environment:{{datadog_environment}},service:openmrs-platform,ansible:partial,provisioner:manual"
+  tags: "provider:xsede,environment:{{datadog_environment}},backup:{{backup_tag}},service:openmrs-platform,ansible:partial,provisioner:manual"

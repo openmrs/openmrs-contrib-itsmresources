@@ -3,4 +3,4 @@
 ssl_key_dir: /var/discourse/shared/web-only/ssl/
 
 datadog_config:
-  tags: "provider:digitalocean,environment:{{datadog_environment}},service:discourse,ansible:partial,provisioner:manual"
+  tags: "provider:digitalocean,environment:{{datadog_environment}},backup:{{backup_tag}},service:discourse,ansible:partial,provisioner:manual"

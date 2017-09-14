@@ -2,4 +2,4 @@
 # Telegram Bot
 
 datadog_config:
-  tags: "provider:digitalocean,environment:{{datadog_environment}},service:bot,ansible:partial,provisioner:manual"
+  tags: "provider:digitalocean,environment:{{datadog_environment}},backup:{{backup_tag}},service:bot,ansible:partial,provisioner:manual"
