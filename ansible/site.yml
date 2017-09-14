@@ -61,13 +61,35 @@
 - hosts: ldap
   become: true
   tasks:
-    - name: Insert ldap backup
+    - name: Insert ldap backup script
       copy:
-        owner: root
-        group: root
+        owner: 'root'
+        group: 'root'
         mode: 0700
         src: ../scripts/ldap-backup.sh
         dest: /opt/scripts/ldap-backup.sh
+    - name: Insert LDAP database maintenance script
+      copy:
+        owner: 'root'
+        group: 'root'
+        mode: 0700
+        src: ../scripts/ldap-maintenance.sh
+        dest: /opt/scripts/ldap-maintenance.sh
+    - name: Insert LDAP count utility script
+      copy:
+        owner: 'root'
+        group: 'root'
+        mode: 0700
+        src: ../scripts/ldap-count.sh
+        dest: /opt/scripts/ldap-count.sh
+
+    - name: Cron jobs for LDAP Backup
+      cron:
+        name: 'backup ldap'
+        user: root
+        minute: "0"
+        hour: "2"
+        job: "/opt/scripts/ldap-maintenance.sh && /opt/scripts/ldap-backup.sh"
       tags: backup
 
 - hosts: mongodb
@@ -75,9 +97,23 @@
   tasks:
     - name: Insert MongoDB backup
       copy:
-        owner: root
-        group: root
+        owner: 'root'
+        group: 'root'
         mode: 0700
         src: ../scripts/mongo-backup.sh
         dest: /opt/scripts/mongo-backup.sh
+    - name: insert cronfile with MongoDB credentials
+      template:
+        owner: 'root'
+        group: 'root'
+        mode: 0700
+        src: files/cronfile.j2
+        dest: /root/.cronfile
+    - name: Cron jobs for MongoDB Backup
+      cron:
+        name: 'backup mongo'
+        user: root
+        minute: "0"
+        hour: "2"
+        job: "/opt/scripts/mongo-backup.sh"
       tags: backup
