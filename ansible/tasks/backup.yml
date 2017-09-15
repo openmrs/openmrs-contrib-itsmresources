@@ -19,4 +19,4 @@
       user: '{{ backup_user }}'
       minute: "0"
       hour: "4"
-      job: "/usr/sbin/backup-upload.sh {{ inventory_hostname_short }}"
+      job: "/usr/sbin/backup-upload.sh {{ inventory_hostname_short }} >> /var/log/backups.log 2>&1"

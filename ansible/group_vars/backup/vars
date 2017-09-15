@@ -1,7 +1,7 @@
 ---
 docker_daemon_args: "--data-root=/data/docker"
 
-backup_tag: 'configured'
+backup_tag: 'bootstrapped'
 backup_user: 'backup-s3'
 users:
  "{{backup_user}}":
