@@ -1,8 +1,6 @@
 #!/bin/bash
 
-set -e
-set -u
-set -x
+set -eux
 
 VM=${1}
 echo "Uploading Nightly backups for $(date)"
