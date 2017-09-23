@@ -31,16 +31,16 @@ docker_deployable_images:
 
 letsencrypt_cert_domains:
    - narok.openmrs.org
-   - ocl-qa.openmrs.org
-   - oclapi-qa.openmrs.org
+   - qa.openconceptlab.org
+   - api.qa.openconceptlab.org
 
 nginx_vhosts:
   - listen: "80 default_server"
-    server_name: "ocl-qa.openmrs.org qa.openconceptlab.org"
+    server_name: "qa.openconceptlab.org"
     extra_parameters: |
       return 301 https://$host$request_uri;
   - listen: "443 ssl"
-    server_name: "ocl-qa.openmrs.org qa.openconceptlab.org"
+    server_name: "qa.openconceptlab.org"
     extra_parameters: |
       access_log /var/log/nginx/oclweb_access.log;
       error_log /var/log/nginx/oclweb_error.log;
@@ -53,11 +53,11 @@ nginx_vhosts:
         proxy_pass http://127.0.0.1:7000/;
       }
   - listen: "80"
-    server_name: "oclapi-qa.openmrs.org api.qa.openconceptlab.org"
+    server_name: "api.qa.openconceptlab.org"
     extra_parameters: |
       return 301 https://$host$request_uri;
   - listen: "443 ssl"
-    server_name: "oclapi-qa.openmrs.org api.qa.openconceptlab.org"
+    server_name: "api.qa.openconceptlab.org"
     extra_parameters: |
       access_log /var/log/nginx/oclapi_access.log;
       error_log /var/log/nginx/oclapi_error.log;
