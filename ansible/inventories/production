@@ -11,6 +11,7 @@ talk.openmrs.org
 thika.openmrs.org
 watamu.openmrs.org
 nairobi.openmrs.org
+meru.openmrs.org
 
 [bamboo]
 bafia.openmrs.org
@@ -23,18 +24,21 @@ thika.openmrs.org
 batouri.openmrs.org
 garissa.openmrs.org
 nairobi.openmrs.org
+meru.openmrs.org
 
 [web]
 watamu.openmrs.org
 garissa.openmrs.org
 thika.openmrs.org
 nairobi.openmrs.org
+meru.openmrs.org
 
 [web-tls]
 watamu.openmrs.org
 garissa.openmrs.org
 thika.openmrs.org
 nairobi.openmrs.org
+meru.openmrs.org
 
 [backup]
 bafoussam.openmrs.org
@@ -43,6 +47,7 @@ banyo.openmrs.org
 nairobi.openmrs.org
 batouri.openmrs.org
 watamu.openmrs.org
+meru.openmrs.org
 
 [ldap]
 batouri.openmrs.org
