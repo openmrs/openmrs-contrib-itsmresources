@@ -57,7 +57,7 @@ nginx_vhosts:
         root /usr/share/nginx/html;
       }
       location / {
-        proxy_pass http://127.0.0.1:8080/;
+        proxy_pass https://127.0.0.1:8080/;
       }
   - listen: "80"
     server_name: "openhim-core.openmrs.org"
@@ -74,7 +74,7 @@ nginx_vhosts:
         root /usr/share/nginx/html;
       }
       location / {
-        proxy_pass http://127.0.0.1:5000/;
+        proxy_pass https://127.0.0.1:5000/;
       }
   - listen: "443 ssl"
     server_name: "meru.openmrs.org"
