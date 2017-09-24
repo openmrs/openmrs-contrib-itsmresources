@@ -1,0 +1,5 @@
+  - name: Copy datadog check
+    copy:
+      src: files/upgrades_check.py
+      dest: /opt/datadog-agent/agent/checks.d
+    notify: restart datadog-agent

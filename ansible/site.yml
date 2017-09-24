@@ -11,13 +11,15 @@
 - hosts: all
   become: true
   tags:
-    - base
+    - soe
   roles:
    - users
    - sudo
    - sshd
    - ufw
    - datadog
+  tasks:
+    - include: tasks/extra-monitoring.yml
 
 - hosts: web-tls
   become: true

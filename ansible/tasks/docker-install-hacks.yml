@@ -19,14 +19,7 @@
   - name: Restart docker service
     shell: systemctl restart docker
     when: docker_restarted.stdout.find('overlay2') == -1
-
-  - name: Check if datadog-agent was restarted yet
-    command: dd-agent info
-    register: datadog_restarted_docker
-    changed_when: datadog_restarted_docker.stdout.find('Initialization failed. Will retry at next iteration') != -1
-  - name: Restart datadog-agent service
-    shell: systemctl restart datadog-agent
-    when: datadog_restarted_docker.stdout.find('Initialization failed. Will retry at next iteration') != -1
+    notify: restart datadog-agent
 
   - name: Docker cleanup script copy
     copy:

@@ -66,6 +66,10 @@ ufw_rules:
     rule: allow
 
 datadog_checks:
+  upgrades_check:
+    init_config:
+    instances:
+        - foo: bar
   dns_check:
     init_config:
       default_timeout: 4
