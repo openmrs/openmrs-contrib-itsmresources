@@ -6,12 +6,13 @@ TIMESTAMP=$(date +%Y%m%d-%H%M%S)
 BACKUP_PATH="/tmp/ldap/${TIMESTAMP}"
 mkdir -p "${BACKUP_PATH}"
 TARBALL="/opt/backups/${TIMESTAMP}_openmrsid_ldap.tbz2"
+CONTAINER=$(docker-compose -f /opt/id/docker-compose-prod.yml ps -q openldap)
 
 # backup the config
-/usr/bin/nice docker-compose -f /opt/id/docker-compose-prod.yml exec openldap slapcat -n 0 > "${BACKUP_PATH}/config.ldif"
+/usr/bin/nice docker exec "${CONTAINER}" slapcat -n 0 >> "${BACKUP_PATH}/config.ldif"
 
 # backup the database (bring down slapd)
-/usr/bin/nice docker-compose -f /opt/id/docker-compose-prod.yml exec openldap slapcat -n 1 > "${BACKUP_PATH}/openmrs_ldap_backup.ldif"
+/usr/bin/nice docker exec "${CONTAINER}" slapcat -n 1 >> "${BACKUP_PATH}/openmrs_ldap_backup.ldif"
 
 /usr/bin/nice docker-compose -f /opt/id/docker-compose-prod.yml stop openldap
 
