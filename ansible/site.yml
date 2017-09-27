@@ -91,7 +91,7 @@
         user: root
         minute: "0"
         hour: "2"
-        job: "/opt/scripts/ldap-maintenance.sh && /opt/scripts/ldap-backup.sh"
+        job: "/opt/scripts/ldap-maintenance.sh && /opt/scripts/ldap-backup.sh >> /var/log/backups.log 2>&1"
       tags: backup
 
 - hosts: mongodb
@@ -117,5 +117,5 @@
         user: root
         minute: "0"
         hour: "2"
-        job: "/opt/scripts/mongo-backup.sh"
+        job: "/opt/scripts/mongo-backup.sh >> /var/log/backups.log 2>&1"
       tags: backup
