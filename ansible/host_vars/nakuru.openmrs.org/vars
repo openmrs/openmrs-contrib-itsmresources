@@ -32,16 +32,16 @@ docker_deployable_images:
 
 letsencrypt_cert_domains:
    - nakuru.openmrs.org
-   - ocl-stg.openmrs.org
-   - oclapi-stg.openmrs.org
+   - staging.openconceptlab.org
+   - api.staging.openconceptlab.org
 
 nginx_vhosts:
   - listen: "80 default_server"
-    server_name: "ocl-stg.openmrs.org staging.openconceptlab.org"
+    server_name: "staging.openconceptlab.org"
     extra_parameters: |
       return 301 https://$host$request_uri;
   - listen: "443 ssl"
-    server_name: "ocl-stg.openmrs.org staging.openconceptlab.org"
+    server_name: "staging.openconceptlab.org"
     extra_parameters: |
       access_log /var/log/nginx/oclweb_access.log;
       error_log /var/log/nginx/oclweb_error.log;
@@ -54,11 +54,11 @@ nginx_vhosts:
         proxy_pass http://127.0.0.1:7000/;
       }
   - listen: "80"
-    server_name: "oclapi-stg.openmrs.org api.staging.openconceptlab.org"
+    server_name: "api.staging.openconceptlab.org"
     extra_parameters: |
       return 301 https://$host$request_uri;
   - listen: "443 ssl"
-    server_name: "oclapi-stg.openmrs.org api.staging.openconceptlab.org"
+    server_name: "api.staging.openconceptlab.org"
     extra_parameters: |
       access_log /var/log/nginx/oclapi_access.log;
       error_log /var/log/nginx/oclapi_error.log;
