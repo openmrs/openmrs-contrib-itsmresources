@@ -5,6 +5,10 @@ users:
    comment: CI Bamboo User
    groups: 'admin'
    ssh_key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDQQ+SCzrYNUlDlCoUJMrgNa+NvKX3dlog6LrcOYAt45ovpCOEhv46I0cGm3ZrarOejjseKWVsCrN1YSt7q9IDc/tZZH9fpQy5AvssZH6b4Vo799/4ig7iZWAJAXHKMxKh0mqgifbtP8EImvE3zmeBD8LlyvvF3cw2T2wg5Jh5bN/p7hUrEU7oGAbJR0TMMUY2/ZAzqzJ6RWHn03PBhG70MYxXhQD93RsEocEUecNRibqGMJm8JjBUumZCoIZWFH8J9W0MKuYNrndvQ60xVZbumQaWQ1pdrXEfNy//xslLTbH/+fZhWK8ilrwnkTHJeCHnhFZ6E0LRP5dbnYxYzHoxLsRz7G3Z/H0Cb5ffUcODjmGp9IsK/MIeE+DKe4mvEitkUwj1EI4PpadvZ2qyn4X0ks2WDFdlNvhjR1PJvHIL7GfrDqhLxazVI3bzUZVRSrD1sKoSIfISn6mRZcDbdyMSgYjzn4YjEmUM+Jkh0QWdBySMn/xj96Pqeyk0EaJ//Ru5w6SXemZ6QeWP2spKdB+KUhB6Xdp5+41UZ3i4jtpmU8+wzOQiXzPvmxGYdsSJWZvD0fm6PH5z1MgM68fVGqmrnZWWTUWuLVTeQRNa95GjSjB6AV4tZyTC4lLlBSLCWRNr55JmDif5YJxD322Lzf5Li5rKUiQuif3655jqVaEpiow== bambooagent"
+  maurya:
+   comment: Sri Maurya Kummamuru
+   groups: 'admin'
+   ssh_key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDdXmhY++QVP6E0/owWA2bFxbr3hPam8Deb0idL/hqws9m9FlSe+l7wPlq9A749y+sEr6y3JKuw0egjvZHQ9b+5Q997NPX2kgAeeEnUt8Pc0Aee9UFAPmGDCORszv6EuOo7jZq9fHjT8ewSUtB4NHiurAm17hyCZHGxXwy6NDuwoMqqMJzyy4e7+WnfJKX20GFgwF3AInkgUxsNBQD5QHyfcmN5Qk7UfE6iZ7Jz8imy5O3uWeqxnCJZPXH7Bc1hy0eqHnVhtoDTw8XST6TnNHv/EjFjyGjRtMfzP1DaLC4cY6OYTvUTg4QcYi4TA9qBMRBRMvuLrz/DyC42UX+VPnz/"
 
 datadog_config:
   tags: "provider:jetstream-iu,environment:{{datadog_environment}},backup:{{backup_tag}},service:openhim,ansible:full,provisioner:terraform"
