@@ -8,7 +8,7 @@ users:
   maurya:
    comment: Sri Maurya Kummamuru
    groups: 'admin'
-   ssh_key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDdXmhY++QVP6E0/owWA2bFxbr3hPam8Deb0idL/hqws9m9FlSe+l7wPlq9A749y+sEr6y3JKuw0egjvZHQ9b+5Q997NPX2kgAeeEnUt8Pc0Aee9UFAPmGDCORszv6EuOo7jZq9fHjT8ewSUtB4NHiurAm17hyCZHGxXwy6NDuwoMqqMJzyy4e7+WnfJKX20GFgwF3AInkgUxsNBQD5QHyfcmN5Qk7UfE6iZ7Jz8imy5O3uWeqxnCJZPXH7Bc1hy0eqHnVhtoDTw8XST6TnNHv/EjFjyGjRtMfzP1DaLC4cY6OYTvUTg4QcYi4TA9qBMRBRMvuLrz/DyC42UX+VPnz/"
+   ssh_key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDDZ5/06Fs0pcx37McO9A+sV6z6ozSuTsvdqYXmTMiog4cjCumyhMhQ7rDehaft2/zDsuAibHFfLcG30Tahb76Gt19qKFB7VogORtmXzlqf2xKVKkaWWN0EHB/ilcfwwCnCGrqnGHbiRfO7P79SB6Yj6I1L0qkhwUhFEGv4w7VhbKiffAc2oUmO7KcbuaPIlRpMQHfBvmbamjEeaTIu1LTX6Vp8P2D2XNfYWEMjawWJo/bXUh3idan+7VD5nFZbQBz/p+0efiXD6FzjcFeiOBOMCiwQm425m/cozGkJ3FRmWAZzAk8w/Pd1IEECdK/USLF5pSYa8SEVTPKlrin+HA+b"
 
 datadog_config:
   tags: "provider:jetstream-iu,environment:{{datadog_environment}},backup:{{backup_tag}},service:openhim,ansible:full,provisioner:terraform"
