@@ -20,8 +20,7 @@ letsencrypt_cert_domains:
 docker_deployment:
   - database
 
-docker_deployable_images:
-  -
+docker_deployable_images: []
 
 nginx_vhosts:
   - listen: "80 default_server"
@@ -60,6 +59,6 @@ nginx_vhosts:
         #proxy_pass http://127.0.0.1:8080/;
         root /usr/share/nginx/html;
       }
-      
+
 aws_access_key_id: '{{ vault_aws_access_key_id }}'
 aws_secret_access_key: '{{ vault_aws_secret_access_key }}'
