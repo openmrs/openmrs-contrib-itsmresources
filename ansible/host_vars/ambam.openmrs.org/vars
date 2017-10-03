@@ -1,0 +1,74 @@
+---
+# New ID
+users:
+ rob:
+   comment: "Robby O'Connor"
+   groups: 'admin'
+   ssh_key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDJY27m87jJO1tPtzem6oGNxPa/qQy+PpdwOeO1tEk3UD0QQorDLEjQHeK3/549QCRpujjUXzE0D69T+0jys0hHqBhTNxNp+cA4ROnZpCm58VmJA9uf5lsb+bVSAcasDYllGPI+MKC4vcHjol2rDiPpAPlCRnLLe0KD4CaVm3X72DRv2OCOj1b7e8nQylDkKggnG1lExsWAvCLx11iLq2hIH7V+oYmkATBqsmFDhVPL9bbAN8y7E5BxHzma2wMwGhPc0tNYZndM7JPQeK8TbQgUehoiSOA8zdcTa6vhNYq3JCWHMIUNTh1A1Y/sfkqkkEDj1wn7bsEDeabbwXSrQeHb rob@rob-laptop"
+
+datadog_config:
+  tags: "provider:jetstream-iu,environment:{{datadog_environment}},backup:{{backup_tag}},service:id,ansible:full,provisioner:terraform"
+
+letsencrypt_cert_domains:
+   - ambam.openmrs.org
+   - id-new.openmrs.org
+   - crowd-new.openmrs.org
+
+nginx_vhosts:
+  - listen: "80 default_server"
+    server_name: "ambam.openmrs.org"
+    extra_parameters: |
+      return 301 https://$host$request_uri;
+  - listen: "443 ssl"
+    server_name: "ambam.openmrs.org"
+    extra_parameters: |
+      access_log /var/log/nginx/deployer_access.log;
+      error_log /var/log/nginx/deployer_error.log;
+      ssl_certificate /etc/letsencrypt/live/ambam.openmrs.org/fullchain.pem;
+      ssl_certificate_key /etc/letsencrypt/live/ambam.openmrs.org/privkey.pem;
+      location ^~ /.well-known/acme-challenge/ {
+        root /usr/share/nginx/html;
+      }
+      location / {
+        #proxy_pass http://127.0.0.1:8080/;
+        root /usr/share/nginx/html;
+      }
+  - listen: "80"
+    server_name: "id-new.openmrs.org"
+    extra_parameters: |
+      return 301 https://$host$request_uri;
+  - listen: "443 ssl"
+    server_name: "id-new.openmrs.org"
+    extra_parameters: |
+      access_log /var/log/nginx/deployer_access.log;
+      error_log /var/log/nginx/deployer_error.log;
+      ssl_certificate /etc/letsencrypt/live/ambam.openmrs.org/fullchain.pem;
+      ssl_certificate_key /etc/letsencrypt/live/ambam.openmrs.org/privkey.pem;
+      location ^~ /.well-known/acme-challenge/ {
+        root /usr/share/nginx/html;
+      }
+      location / {
+        #proxy_pass http://127.0.0.1:8080/;
+        root /usr/share/nginx/html;
+      }
+  - listen: "80"
+    server_name: "crowd-new.openmrs.org"
+    extra_parameters: |
+      return 301 https://$host$request_uri;
+  - listen: "443 ssl"
+    server_name: "crowd-new.openmrs.org"
+    extra_parameters: |
+      access_log /var/log/nginx/deployer_access.log;
+      error_log /var/log/nginx/deployer_error.log;
+      ssl_certificate /etc/letsencrypt/live/ambam.openmrs.org/fullchain.pem;
+      ssl_certificate_key /etc/letsencrypt/live/ambam.openmrs.org/privkey.pem;
+      location ^~ /.well-known/acme-challenge/ {
+        root /usr/share/nginx/html;
+      }
+      location / {
+        #proxy_pass http://127.0.0.1:8080/;
+        root /usr/share/nginx/html;
+      }
+
+aws_access_key_id: '{{ vault_aws_access_key_id }}'
+aws_secret_access_key: '{{ vault_aws_secret_access_key }}'

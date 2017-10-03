@@ -1,4 +1,5 @@
 [prod]
+ambam.openmrs.org
 bafia.openmrs.org
 bafoussam.openmrs.org
 bafut.openmrs.org
@@ -19,6 +20,7 @@ bafut.openmrs.org
 banyo.openmrs.org
 
 [docker]
+ambam.openmrs.org
 watamu.openmrs.org
 thika.openmrs.org
 batouri.openmrs.org
@@ -27,6 +29,7 @@ nairobi.openmrs.org
 meru.openmrs.org
 
 [web]
+ambam.openmrs.org
 watamu.openmrs.org
 garissa.openmrs.org
 thika.openmrs.org
@@ -34,6 +37,7 @@ nairobi.openmrs.org
 meru.openmrs.org
 
 [web-tls]
+ambam.openmrs.org
 watamu.openmrs.org
 garissa.openmrs.org
 thika.openmrs.org
@@ -41,6 +45,7 @@ nairobi.openmrs.org
 meru.openmrs.org
 
 [backup]
+ambam.openmrs.org
 bafoussam.openmrs.org
 bamenda.openmrs.org
 banyo.openmrs.org
