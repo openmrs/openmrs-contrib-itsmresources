@@ -14,6 +14,13 @@ letsencrypt_cert_domains:
    - id-new.openmrs.org
    - crowd-new.openmrs.org
 
+
+docker_deployment:
+  - database
+
+docker_deployable_images:
+  - 
+
 nginx_vhosts:
   - listen: "80 default_server"
     server_name: "ambam.openmrs.org"
