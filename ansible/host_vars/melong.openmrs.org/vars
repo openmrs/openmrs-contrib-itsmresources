@@ -15,7 +15,7 @@ datadog_config:
 
 letsencrypt_cert_domains:
    - melong.openmrs.org
-   - jira-new.openmrs.org
+   - issues-new.openmrs.org
 
 docker_deployment:
   - database
