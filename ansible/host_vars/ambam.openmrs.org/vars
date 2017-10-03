@@ -18,7 +18,7 @@ letsencrypt_cert_domains:
 docker_deployment:
   - database
 
-docker_deployable_images: [] 
+docker_deployable_images: []
 
 nginx_vhosts:
   - listen: "80 default_server"
