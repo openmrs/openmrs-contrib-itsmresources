@@ -13,6 +13,8 @@ thika.openmrs.org
 watamu.openmrs.org
 nairobi.openmrs.org
 meru.openmrs.org
+melong.openmrs.org
+menji.openmrs.org
 
 [bamboo]
 bafia.openmrs.org
@@ -27,6 +29,8 @@ batouri.openmrs.org
 garissa.openmrs.org
 nairobi.openmrs.org
 meru.openmrs.org
+melong.openmrs.org
+menji.openmrs.org
 
 [web]
 ambam.openmrs.org
@@ -35,6 +39,8 @@ garissa.openmrs.org
 thika.openmrs.org
 nairobi.openmrs.org
 meru.openmrs.org
+melong.openmrs.org
+menji.openmrs.org
 
 [web-tls]
 ambam.openmrs.org
@@ -43,6 +49,8 @@ garissa.openmrs.org
 thika.openmrs.org
 nairobi.openmrs.org
 meru.openmrs.org
+melong.openmrs.org
+menji.openmrs.org
 
 [backup]
 ambam.openmrs.org
@@ -53,6 +61,8 @@ nairobi.openmrs.org
 batouri.openmrs.org
 watamu.openmrs.org
 meru.openmrs.org
+melong.openmrs.org
+menji.openmrs.org
 
 [ldap]
 batouri.openmrs.org
