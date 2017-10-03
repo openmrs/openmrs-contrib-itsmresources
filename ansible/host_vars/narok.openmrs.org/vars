@@ -34,6 +34,9 @@ letsencrypt_cert_domains:
    - qa.openconceptlab.org
    - api.qa.openconceptlab.org
 
+nginx_keepalive_timeout: "600"
+nginx_keepalive_requests: "600"
+
 nginx_vhosts:
   - listen: "80 default_server"
     server_name: "qa.openconceptlab.org"
