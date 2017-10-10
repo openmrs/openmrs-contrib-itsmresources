@@ -33,6 +33,7 @@ letsencrypt_cert_domains:
    - narok.openmrs.org
    - qa.openconceptlab.org
    - api.qa.openconceptlab.org
+   - flower.qa.openconceptlab.org
 
 nginx_keepalive_timeout: "600"
 nginx_keepalive_requests: "600"
@@ -71,6 +72,23 @@ nginx_vhosts:
       }
       location / {
         proxy_pass http://127.0.0.1:8000/;
+      }
+  - listen: "80"
+    server_name: "flower.qa.openconceptlab.org"
+    extra_parameters: |
+      return 301 https://$host$request_uri;
+  - listen: "443 ssl"
+    server_name: "flower.qa.openconceptlab.org"
+    extra_parameters: |
+      access_log /var/log/nginx/oclapi_access.log;
+      error_log /var/log/nginx/oclapi_error.log;
+      ssl_certificate /etc/letsencrypt/live/narok.openmrs.org/fullchain.pem;
+      ssl_certificate_key /etc/letsencrypt/live/narok.openmrs.org/privkey.pem;
+      location ^~ /.well-known/acme-challenge/ {
+        root /usr/share/nginx/html;
+      }
+      location / {
+        proxy_pass http://127.0.0.1:5555/;
       }
   - listen: "443 ssl"
     server_name: "narok.openmrs.org"
