@@ -8,7 +8,7 @@
 # Short-Description: Start crowd at boot.
 # Description: Enables crowd service at boot time.
 ### END INIT INFO
- 
+
 # Define some variables
 # Name of app
 APP=crowd
@@ -18,7 +18,7 @@ USER=root
 BASE=/opt/crowd
 # Location of Java JDK
 export JAVA_HOME=/usr/lib/jvm/java-6-sun
- 
+
 case "$1" in
 # Start command
 start)
@@ -30,7 +30,7 @@ echo "Usage: /etc/init.d/$APP start"
 exit 1
 ;;
 esac
- 
+
 exit 0
 
 

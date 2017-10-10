@@ -1,4 +1,4 @@
-Bafang: 
+Bafang:
 
 /etc/network/interfaces:
 

@@ -9,14 +9,14 @@ export JAVA_HOME=/usr/lib/jvm/java-6-sun
 case $1 in
 start)
         sh /opt/tomcat/bin/startup.sh
-        ;; 
-stop)   
+        ;;
+stop)  
         sh /opt/tomcat/bin/shutdown.sh
-        ;; 
+        ;;
 restart)
         sh /opt/tomcat/bin/shutdown.sh
         sh /opt/tomcat/bin/startup.sh
-        ;; 
-esac    
+        ;;
+esac   
 exit 0
 

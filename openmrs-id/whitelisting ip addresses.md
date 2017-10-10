@@ -7,7 +7,7 @@ First, finding blocked IP addresses:
 IP blocks are logged in the main OpenMRS ID logfile. An offending IP is logged
 like this:
 
-    [2014-02-19 00:12:26.230] [INFO] botproof - IP address 1.2.3.4 
+    [2014-02-19 00:12:26.230] [INFO] botproof - IP address 1.2.3.4
     flagged as spam
 
 To get a list of blocked IP addresses, and the times they were blocked, run:
@@ -23,7 +23,7 @@ Whitelisting an IP address:
 
 The IP whitelist is a table names `IPWhitelists` in the ID Dashboard database.
 
-To add to the whitelist execute the following SQL command: 
+To add to the whitelist execute the following SQL command:
 
     INSERT INTO `id_dashboard`.`IPWhitelists`
       (`id`, `address`, `createdAt`, `updatedAt`)
