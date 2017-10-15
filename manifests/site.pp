@@ -8,6 +8,7 @@ node default {
   include profiles::node_buildtime
   include profiles::ruby_buildtime
   include profiles::java_buildtime
+  include profiles::python_buildtime
   include profiles::browsers
   include profiles::transifex
   include profiles::ssh_client
