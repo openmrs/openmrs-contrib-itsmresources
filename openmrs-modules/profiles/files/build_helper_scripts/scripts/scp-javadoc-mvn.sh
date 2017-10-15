@@ -1,3 +1,14 @@
+#!/bin/bash
+
+set -e
+set -u
+set -x
+
+
+echo "Deprecated. Please use upload-s3-javadoc.sh instead."
+
+exit 1
+
 targethost=bafoussam.openmrs.org
 targetuser=bamboo
 targetpath=/opt/www/resources.openmrs.org
