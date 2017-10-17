@@ -1,0 +1,69 @@
+---
+- hosts: master
+  become: true
+  vars_files:
+    - ../defaults/vars.yml
+
+  tasks:
+    - name: Install MySQL on Ubuntu
+      action: apt pkg={{item}} state=installed update_cache=yes install_recommends=yes
+      with_items:
+        - mysql-server-5.7
+        - python-mysqldb
+
+    - name: Copy mysqld.cnf
+      template: 
+        src: ../templates/mysqld.cnf.template 
+        dest: /etc/mysql/mysql.conf.d/mysqld.cnf 
+        owner: root
+        mode: 0644
+    
+    - name: Remove the test database
+      mysql_db: name=test state=absent
+
+    - name: Create a database for REPLICATION
+      mysql_db: name={{replication_database}} state=present
+
+    - name: Create slave user for mysql
+      mysql_user: user={{mysql_slave.user}} host="%" password={{mysql_slave.password}} priv="*.*:REPLICATION SLAVE,GRANT"
+
+    - name: Create a jira Mysql user
+      mysql_user: user={{mysql_jira.user}} host="localhost" password={{mysql_jira.password}} priv="{{replication_database}}.*:ALL,GRANT"
+
+    - name: Ensure anonymous users are not in the database
+      mysql_user: user='' host={{item}} state=absent
+      with_items:
+        - 127.0.0.1
+        - ::1
+        - localhost
+
+
+    - name: Update mysql root password for all root accounts
+      mysql_user: name=root host={{item}} password={{mysql_root_password}}
+      with_items:
+        - 127.0.0.1
+        - ::1
+        - localhost
+
+    - name: Copy mysql.cnf template
+      template: src=templates/mysql.cnf.template dest=/root/.my.cnf owner=root mode=0600
+
+    - name: Restart Mysql Server
+      service:
+        name: mysql
+        state: restarted
+
+    - name: lock tables
+      command: mysql -e 'FLUSH TABLES WITH READ LOCK;'
+
+    - name: dump replication database
+      mysql_db: name={{replication_database}} state=dump target=/tmp/{{replication_database}}.sql
+
+    - name: unlock tables
+      command: mysql -e 'UNLOCK TABLES;' 
+      
+    - name: fetch dump
+      fetch:
+        src: /tmp/{{replication_database}}.sql
+        dest: /tmp/{{replication_database}}.sql
+        flat: yes 

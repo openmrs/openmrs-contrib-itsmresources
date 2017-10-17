@@ -1,0 +1,20 @@
+#!/bin/bash
+
+cd "{{ jiraData }}/bin"
+
+case "$1" in
+    start)
+        ./start-jira.sh
+        ;;
+    stop)
+        ./stop-jira.sh
+        ;;
+    restart)
+        ./stop-jira.sh
+        ./start-jira.sh
+        ;;
+    *)
+        echo "Usage: $0 {start|restart|stop}"
+        exit 1
+        ;;
+esac
