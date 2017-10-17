@@ -17,6 +17,11 @@ users:
   comment: Rafal
   groups: 'admin'
   ssh_key: "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAgc4Q+9e1XMDInFm4GNkuYErYkgDt0KNnmLDTFa+0HV1MuQKP+TE3Ee9Qdx5rugNkg9+e45Hzfze/vX/nYjrNAkWcxYaxEAdej/6QW4Bh4r6rRLnNoqnksG3+WVXl2cqOf9odji2L+uzA2E+zX5tEYqVkN9+0z1Ewwe6lcSg0zRQyJ+phIo595eftYJGAiLAhIfSotg8SxWJhSHUsNtphyXRld7FtxXDgfu6SkejvakymwXEuMe7yS2mES9U8IlJh4CyADGaqb0WSWfqsejcgMuXJmnEqpMqVwcDaP4B+NZLTKfUUlc2D8DiUKRqlnxuGCFmkpghTQkX4dE0YhxJSjQ== raff"
+ maurya:
+   comment: Maurya
+   groups: 'admin'
+   ssh_key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDDZ5/06Fs0pcx37McO9A+sV6z6ozSuTsvdqYXmTMiog4cjCumyhMhQ7rDehaft2/zDsuAibHFfLcG30Tahb76Gt19qKFB7VogORtmXzlqf2xKVKkaWWN0EHB/ilcfwwCnCGrqnGHbiRfO7P79SB6Yj6I1L0qkhwUhFEGv4w7VhbKiffAc2oUmO7KcbuaPIlRpMQHfBvmbamjEeaTIu1LTX6Vp8P2D2XNfYWEMjawWJo/bXUh3idan+7VD5nFZbQBz/p+0efiXD6FzjcFeiOBOMCiwQm425m/cozGkJ3FRmWAZzAk8w/Pd1IEECdK/USLF5pSYa8SEVTPKlrin+HA+b maurya@zatara.local"
+
 
 datadog_config:
   tags: "provider:jetstream-tacc,environment:{{datadog_environment}},backup:{{backup_tag}},service:openmrs-refapp,ansible:full,provisioner:terraform"
@@ -26,10 +31,11 @@ docker_deployment:
  - qa-refapp
  - modules-refapp
  - uat-refapp
+ - msf
 
 docker_deployable_images:
  - repository: openmrs/openmrs-reference-application-distro
-   compose: demo,qa-refapp,modules-refapp,uat-refapp
+   compose: demo,qa-refapp,modules-refapp,uat-refapp,msf
 
 letsencrypt_cert_domains:
   - garissa.openmrs.org
@@ -37,6 +43,7 @@ letsencrypt_cert_domains:
   - qa-refapp.openmrs.org
   - modules-refapp.openmrs.org
   - uat-refapp.openmrs.org
+  - msf.openmrs.org
 
 nginx_vhosts:
  - listen: "80 default_server"
@@ -118,6 +125,26 @@ nginx_vhosts:
      }
      location /openmrs {
        proxy_pass http://127.0.0.1:8083/openmrs;
+       }
+ - listen: "80"
+   server_name: "msf.openmrs.org"
+   extra_parameters: |
+     return 301 https://$host$request_uri;
+ - listen: "443 ssl"
+   server_name: "msf.openmrs.org"
+   extra_parameters: |
+     access_log /var/log/nginx/msf_access.log;
+     error_log /var/log/nginx/msf_error.log;
+     ssl_certificate /etc/letsencrypt/live/garissa.openmrs.org/fullchain.pem;
+     ssl_certificate_key /etc/letsencrypt/live/garissa.openmrs.org/privkey.pem;
+     location ^~ /.well-known/acme-challenge/ {
+       root /usr/share/nginx/html;
+     }
+     location / {
+       return 301 https://msf.openmrs.org/openmrs;
+     }
+     location /openmrs {
+       proxy_pass http://127.0.0.1:8084/openmrs;
        }
  - listen: "443 ssl"
    server_name: "garissa.openmrs.org"

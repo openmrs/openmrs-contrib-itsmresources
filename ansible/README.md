@@ -2,50 +2,48 @@ OpenMRS Infrastructure Ansible Playbooks
 ======================
 This repository contain all the ansible required to fully install OpenMRS community machines.
 
-Ansible is a tool to run `playbooks` for machines of a certain `inventory`. Each machine
-in an inventory can belong to several different groups. You can configure global variables
-(an special group called `all`), per group or per host. Some of these configuration files
-are encrypted using `ansible-vault`, and the shared key for vault is encrypted using `git-crypt`
-and can be opened using private GPG keys previously added to the key ring.
 
-Ansible will run over SSH, you your SSH needs to be working to the target machines.
-You can also use vagrant to create test VMs for your ansible code.
+## Running ansible
+All commands assume you are in the `ansible` directory.
 
-
-## Requirements
+### Requirements
 * ansible 2.1+ installed on the same machine the repo is cloned to (do _NOT_ use version 2.3.0).
 * Install [git-crypt](https://www.agwa.name/projects/git-crypt/) and run `git-crypt unlock`.
 * If you are not part of git-crypt by any reason, you'll need to retrieve the vault password file from LP or ask to be added in git-crypt.
 * Vagrant and virtualbox (if you want to run tests locally)
 
+### Setting up roles
+```
+# Download all roles/modules (needs to be done every time there's a commit to a role)
+$ ansible-galaxy install -p roles -r requirements.yml --force
+```
 
-## Running ansible
-The following assumes you are in the `ansible` directory:
+
+### Running ansible for remote machines
 
 ```
-# Download all roles/modules
-$ ansible-galaxy install -p roles -r requirements.yml --force
+# Run main ansible playbook in a single testing machine (e.g. narok)
+$ ansible-playbook -i inventories/testing --limit narok.openmrs.org site.yml
 
-# Run ansible in all staging machines
-$ ansible-playbook -i inventories/staging site.yml --vault-password-file ./.vault_pass
 
-# if you do not have your PGP key in our repo to unlock the .vault_pass file, you can get it from the LastPass folder and interactively enter it.
-$ ansible-playbook -i inventories/staging site.yml --ask-vault-pass
-
-This will unlock any ansible-vault files necessary for the playbook run.
-
-# Run ansible in a single staging machines
-$ ansible-playbook -i inventories/staging --limit djoum.openmrs.org site.yml --vault-password-file ./.vault_pass
+# Run ansible in all testing machines
+$ ansible-playbook -i inventories/testing site.yml
 
 
 # if you do not have your PGP key in our repo to unlock the .vault_pass file, you can get it from the LastPass folder and interactively enter it.
 $ ansible-playbook -i inventories/staging --limit djoum.openmrs.org site.yml --ask-vault-pass
 
-It might not be necessary to use vault for the single machine.
 
-# Run arbitrary code
+# Run arbitrary code in all production machines
 $ ansible -i inventories/production -m "whoami"
+
+# Add new DNS entry to letsencrypt (example: narok)
+# after changing the host_vars
+$ ansible-playbook -i inventories/testing --limit narok.openmrs.org delete-certs.yml
+$ ansible-playbook -i inventories/testing --limit narok.openmrs.org site.yml
 ```
+
+### Running locally
 
 Instead of deploying ansible to another machine, it's possible to use vagrant VM instead:
 ```
