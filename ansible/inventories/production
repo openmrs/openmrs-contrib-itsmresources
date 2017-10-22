@@ -6,15 +6,18 @@ bafut.openmrs.org
 bamenda.openmrs.org
 banyo.openmrs.org
 batouri.openmrs.org
+buea.openmrs.org
+campo.openmrs.org
 garissa.openmrs.org
+meru.openmrs.org
+melong.openmrs.org
+menji.openmrs.org
+nairobi.openmrs.org
 ndu.openmrs.org
 talk.openmrs.org
 thika.openmrs.org
 watamu.openmrs.org
-nairobi.openmrs.org
-meru.openmrs.org
-melong.openmrs.org
-menji.openmrs.org
+
 
 [bamboo]
 bafia.openmrs.org
@@ -31,6 +34,7 @@ nairobi.openmrs.org
 meru.openmrs.org
 melong.openmrs.org
 menji.openmrs.org
+buea.openmrs.org
 
 [web]
 ambam.openmrs.org
@@ -41,6 +45,8 @@ nairobi.openmrs.org
 meru.openmrs.org
 melong.openmrs.org
 menji.openmrs.org
+campo.openmrs.org
+buea.openmrs.org
 
 [web-tls]
 ambam.openmrs.org
@@ -51,6 +57,8 @@ nairobi.openmrs.org
 meru.openmrs.org
 melong.openmrs.org
 menji.openmrs.org
+campo.openmrs.org
+buea.openmrs.org
 
 [backup]
 ambam.openmrs.org
@@ -63,6 +71,7 @@ watamu.openmrs.org
 meru.openmrs.org
 melong.openmrs.org
 menji.openmrs.org
+buea.openmrs.org
 
 [ldap]
 ambam.openmrs.org
