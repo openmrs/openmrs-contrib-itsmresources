@@ -17,14 +17,23 @@ nginx_vhosts:
   - listen: "443 ssl"
     server_name: "mavenrepo-new.openmrs.org"
     extra_parameters: |
-      access_log /var/log/nginx/addons_access.log;
-      error_log /var/log/nginx/addons_error.log;
+      access_log /var/log/nginx/mavenrepo_access.log;
+      error_log /var/log/nginx/mavenrepo_error.log;
       ssl_certificate /etc/letsencrypt/live/campo.openmrs.org/fullchain.pem;
       ssl_certificate_key /etc/letsencrypt/live/campo.openmrs.org/privkey.pem;
-      set $remote_path "https://openmrs.jfrog.io/openmrs/";
+      set $remote_path "https://openmrs.jfrog.io/openmrs";
       location ^~ /.well-known/acme-challenge/ {
         root /usr/share/nginx/html;
       }
+
+      location ~ ^/nexus/content/repositories/(.*)$ {
+        return 301 $remote_path/$1;
+      }
+
+      location ~ ^/nexus/(.*)$ {
+        return 301 $remote_path/$1;
+      }
+
       location / {
-        return 301 $remote_path;
+        return 301 $remote_path$request_uri;
       }
