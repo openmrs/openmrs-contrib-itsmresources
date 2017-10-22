@@ -22,7 +22,7 @@ docker_deployable_images:
 
 letsencrypt_cert_domains:
   - buea.openmrs.org
-  - msf-new.openmrs.org
+  - msf.openmrs.org
 
 nginx_vhosts:
  - listen: "80"
