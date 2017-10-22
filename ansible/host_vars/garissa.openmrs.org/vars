@@ -62,6 +62,7 @@ nginx_vhosts:
        return 301 https://demo.openmrs.org/openmrs;
      }
      location /openmrs {
+       proxy_set_header  X-Forwarded-Proto $scheme;
        proxy_pass http://127.0.0.1:8080/openmrs;
      }
  - listen: "80"
@@ -82,6 +83,7 @@ nginx_vhosts:
        return 301 https://qa-refapp.openmrs.org/openmrs;
      }
      location /openmrs {
+       proxy_set_header  X-Forwarded-Proto $scheme;
        proxy_pass http://127.0.0.1:8081/openmrs;
      }
  - listen: "80"
@@ -102,6 +104,7 @@ nginx_vhosts:
        return 301 https://modules-refapp.openmrs.org/openmrs;
      }
      location /openmrs {
+       proxy_set_header  X-Forwarded-Proto $scheme;
        proxy_pass http://127.0.0.1:8082/openmrs;
      }
  - listen: "80"
@@ -122,8 +125,9 @@ nginx_vhosts:
        return 301 https://uat-refapp.openmrs.org/openmrs;
      }
      location /openmrs {
+       proxy_set_header  X-Forwarded-Proto $scheme;
        proxy_pass http://127.0.0.1:8083/openmrs;
-       }
+     }
  - listen: "443 ssl"
    server_name: "garissa.openmrs.org"
    extra_parameters: |

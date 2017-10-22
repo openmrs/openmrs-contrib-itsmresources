@@ -43,8 +43,9 @@ nginx_vhosts:
        return 301 https://msf.openmrs.org/openmrs;
      }
      location /openmrs {
+       proxy_set_header  X-Forwarded-Proto $scheme;
        proxy_pass http://127.0.0.1:8084/openmrs;
-       }
+     }
  - listen: "443 ssl"
    server_name: "buea.openmrs.org"
    extra_parameters: |
