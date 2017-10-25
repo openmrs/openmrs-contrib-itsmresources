@@ -2,7 +2,8 @@
 - hosts: master
   become: true
   vars_files:
-    - ../defaults/jira-defaults.yml
+    - ../host_vars/melong.openmrs.org/jira-defaults.yml
+    - ../host_vars/melong.openmrs.org/secrets
   tasks:
     - name: Download Jira
       get_url: url="{{ jiraUrl }}"

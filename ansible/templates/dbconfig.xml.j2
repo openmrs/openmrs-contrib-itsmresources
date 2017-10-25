@@ -5,10 +5,10 @@
   <delegator-name>default</delegator-name>
   <database-type>mysql</database-type>
   <jdbc-datasource>
-      <url>jdbc:mysql://{{ mysqlHost }}:{{ mysqlPort }}/{{ mysqlDatabase }}?useUnicode=true&amp;characterEncoding=UTF8&amp;sessionVariables=default_storage_engine=InnoDB</url>
+      <url>jdbc:mysql://{{ mysqlHost }}:{{ mysqlPort }}/{{ mysql_database }}?useUnicode=true&amp;characterEncoding=UTF8&amp;sessionVariables=default_storage_engine=InnoDB</url>
     <driver-class>com.mysql.jdbc.Driver</driver-class>
-    <username>{{ mysqlUser }}</username>
-    <password>{{ mysqlPasswd }}</password>
+    <username>{{ mysql_jira.user }}</username>
+    <password>{{ mysql_jira.password }}</password>
     <pool-min-size>20</pool-min-size>
     <pool-max-size>20</pool-max-size>
     <pool-max-wait>30000</pool-max-wait>
