@@ -60,6 +60,13 @@
   tasks:
    - include: tasks/docker-install-hacks.yml
 
+- hosts: jira
+  become: true
+  roles:
+    - java
+    - jira
+    - mysql-connector-java
+
 - hosts: ldap
   become: true
   tasks:
