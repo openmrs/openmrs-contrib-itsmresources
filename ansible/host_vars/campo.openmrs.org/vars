@@ -7,15 +7,15 @@ datadog_config:
 
 letsencrypt_cert_domains:
    - campo.openmrs.org
-   - mavenrepo-new.openmrs.org
+   - mavenrepo.openmrs.org
 
 nginx_vhosts:
   - listen: "80 default_server"
-    server_name: "mavenrepo-new.openmrs.org"
+    server_name: "mavenrepo.openmrs.org"
     extra_parameters: |
       return 301 https://$host$request_uri;
   - listen: "443 ssl"
-    server_name: "mavenrepo-new.openmrs.org"
+    server_name: "mavenrepo.openmrs.org"
     extra_parameters: |
       access_log /var/log/nginx/mavenrepo_access.log;
       error_log /var/log/nginx/mavenrepo_error.log;
