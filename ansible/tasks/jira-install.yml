@@ -46,18 +46,6 @@
         dest: "{{jiraData}}/lib/{{ mysqlConnectorJar }}"
         remote_src: yes
 
-    - name: Copy Mysql Dump
-      copy:
-        src: "../templates/{{mysqlDumpFile}}"
-        dest: "/tmp/{{mysqlDumpFile}}"
-
-    - name: Restore database jira database
-      mysql_db:
-        state: import
-        name: "{{mysqlDatabase}}"
-        target: "/tmp/{{mysqlDumpFile}}"
-
-
     - name: stop jira
       raw: /etc/init.d/jira stop
       
