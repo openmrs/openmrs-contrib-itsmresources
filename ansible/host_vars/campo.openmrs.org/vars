@@ -17,6 +17,7 @@ nginx_vhosts:
   - listen: "443 ssl"
     server_name: "mavenrepo.openmrs.org"
     extra_parameters: |
+      client_max_body_size 0;
       access_log /var/log/nginx/mavenrepo_access.log;
       error_log /var/log/nginx/mavenrepo_error.log;
       ssl_certificate /etc/letsencrypt/live/campo.openmrs.org/fullchain.pem;
