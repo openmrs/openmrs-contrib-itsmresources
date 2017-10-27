@@ -43,6 +43,12 @@ $ ansible-playbook -i inventories/testing --limit narok.openmrs.org delete-certs
 $ ansible-playbook -i inventories/testing --limit narok.openmrs.org site.yml
 ```
 
+### Editing ansible encrypted files
+
+```
+$ ansible-vault edit --vault-password-file .vault_pass /path/to/encrypted/file
+```
+
 ### Running locally
 
 Instead of deploying ansible to another machine, it's possible to use vagrant VM instead:
