@@ -10,6 +10,7 @@ All commands assume you are in the `ansible` directory.
 * ansible 2.1+ installed on the same machine the repo is cloned to (do _NOT_ use version 2.3.0).
 * Install [git-crypt](https://www.agwa.name/projects/git-crypt/) and run `git-crypt unlock`.
 * If you are not part of git-crypt by any reason, you'll need to retrieve the vault password file from LP or ask to be added in git-crypt.
+* Install `pip install passlib`
 * Vagrant and virtualbox (if you want to run tests locally)
 
 ### Setting up roles

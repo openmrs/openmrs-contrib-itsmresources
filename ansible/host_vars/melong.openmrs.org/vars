@@ -56,9 +56,26 @@ nginx_vhosts:
         root /usr/share/nginx/html;
       }
       location / {
-        #proxy_pass http://127.0.0.1:8080/;
-        root /usr/share/nginx/html;
+        proxy_set_header HOST $host;
+        proxy_set_header  X-Forwarded-Proto $scheme;
+        proxy_pass http://127.0.0.1:8080/;
       }
 
 aws_access_key_id: '{{ vault_aws_access_key_id }}'
 aws_secret_access_key: '{{ vault_aws_secret_access_key }}'
+
+jira_pass: '{{ vault_jira_pass }}'
+jira_user: 'jira'
+jira_checksum: 'sha256:018dcf0ade08858e53476d8da60e842bedf2e5e6ab265340a3c9e91e0306ee8a'
+jira_archive: "atlassian-jira-software-7.5.0.tar.gz"
+jira_catalina: "/opt/jira"
+jira_home: "/data/jira_home"
+jira_jvm_maximum_memory: "4096m"
+jira_jvm_minimum_memory: "2048m"
+mysql_connector_java_dest: '{{ jira_catalina }}/lib'
+mysql_connector_java_user: '{{ jira_user }}'
+mysql_connector_java_archive: 'mysql-connector-java-5.1.44.tar.gz'
+mysql_connector_java_jar: 'mysql-connector-java-5.1.44-bin.jar'
+mysql_connector_java_checksum: 'sha256:7419a235c63f61c72b7e2e078e68350924ea95cffea3f5808d70e497410c8232'
+jira_proxy_name: 'issues-new.openmrs.org'
+jira_scheme: 'https'
