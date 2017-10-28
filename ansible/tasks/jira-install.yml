@@ -1,0 +1,60 @@
+---
+- hosts: master
+  become: true
+  vars_files:
+    - ../host_vars/melong.openmrs.org/jira-defaults.yml
+    - ../host_vars/melong.openmrs.org/secrets
+  tasks:
+    - name: Download Jira
+      get_url: url="{{ jiraUrl }}"
+               dest=/tmp
+      
+    - name: Set Perms on Jira File
+      file: path=/tmp/{{ jiraExec }}
+            owner=root
+            group=root
+            mode=0777  
+      
+    - name: Copy Jira Template
+      template: src=../templates/response.varfile.j2
+                dest=/tmp/response.varfile
+      
+    - name: Install Jira
+      raw: /tmp/{{ jiraExec }} -q -varfile /tmp/response.varfile
+      
+    - name: Copy Jira dbconfig File
+      template: src=../templates/dbconfig.xml.j2
+                dest="{{ jiraHome }}/dbconfig.xml"
+                owner=jira
+                group=jira
+                mode=0640 
+
+    - name: Download MySQL Connector
+      get_url: url={{ mysqlConnectorUrl }}
+               dest=/tmp/{{ mysqlConnectorTar }}
+      
+
+    - name: Extract Mysql Connector JAR
+      unarchive:
+        src: /tmp/{{mysqlConnectorTar}}
+        dest: /tmp/
+        remote_src: yes
+
+    - name: Copy Mysql Connector
+      copy:
+        src: "/tmp/{{mysqlConnectorVersion}}/{{ mysqlConnectorJar }}"
+        dest: "{{jiraData}}/lib/{{ mysqlConnectorJar }}"
+        remote_src: yes
+
+    - name: stop jira
+      raw: /etc/init.d/jira stop
+      
+
+    - name: simulate long running op (15 sec), wait for up to 45 sec, poll every 5 sec
+      command: /bin/sleep 30
+      async: 75
+      poll: 5
+
+    - name: start jira
+      raw: /etc/init.d/jira start
+      

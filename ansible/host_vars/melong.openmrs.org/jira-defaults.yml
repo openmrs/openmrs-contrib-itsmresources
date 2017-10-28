@@ -1,0 +1,15 @@
+---
+
+jiraRmi: 8005
+jiraHome: /data 
+jiraData: /opt/atlassian/jira
+jiraHttp: 8080
+jiraExec: atlassian-jira-software-7.5.0-x64.bin
+jiraUrl: https://downloads.atlassian.com/software/jira/downloads/{{ jiraExec }}
+mysqlHost: localhost
+mysqlPort: 3306
+mysqlConnectorVersion: mysql-connector-java-5.1.44
+mysqlConnectorJar: mysql-connector-java-5.1.44-bin.jar
+mysqlConnectorTar: mysql-connector-java-5.1.44.tar.gz
+mysqlConnectorUrl: https://cdn.mysql.com/Downloads/Connector-J/mysql-connector-java-5.1.44.tar.gz
+mysqlDumpFile: jira.sql
