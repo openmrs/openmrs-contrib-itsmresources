@@ -52,7 +52,7 @@
 - hosts: docker
   become: true
   tags:
-    - docker
+   - docker
   roles:
    - docker
    - docker-compose
@@ -66,6 +66,8 @@
     - java
     - jira
     - mysql-connector-java
+  tags:
+    - jira
 
 - hosts: ldap
   become: true
