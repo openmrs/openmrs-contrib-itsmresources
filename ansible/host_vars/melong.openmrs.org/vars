@@ -66,8 +66,8 @@ aws_secret_access_key: '{{ vault_aws_secret_access_key }}'
 
 jira_pass: '{{ vault_jira_pass }}'
 jira_user: 'jira'
-jira_checksum: 'sha256:018dcf0ade08858e53476d8da60e842bedf2e5e6ab265340a3c9e91e0306ee8a'
-jira_archive: "atlassian-jira-software-7.5.0.tar.gz"
+jira_checksum: 'sha256:7e0354e792da650db7b167a37935fb45c22385821cba0a2f20039e1faed48936'
+jira_archive: "atlassian-jira-software-7.5.1.tar.gz"
 jira_catalina: "/opt/jira"
 jira_home: "/data/jira_home"
 jira_jvm_maximum_memory: "4096m"
