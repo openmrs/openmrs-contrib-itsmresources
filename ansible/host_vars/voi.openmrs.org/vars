@@ -1,0 +1,62 @@
+---
+# New shortener
+users:
+ ravi:
+  comment: Ravi Kapali
+  groups: 'admin'
+  ssh_key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCyuY8cp5aNE9wILlia2iIN4UsUS7+pyWDm19uYYxgartkZ84fb86LdN++ZEU9PidnF4MwGDMYsqpZNreMeCBxj2Q0unxhzMRf3+lOtL0KpypV5R8r2c2FiO0ol0dL4EFJBC9c+qCKblp5TJAN2/iju73tkaTd5drArsuuIj9UCQVRDPOl2s840CtxSneF3A7Lsm10JkBvlbF5VSTUOczgpNK1nmogyoXWF9rG2MdVt/QswJ185HGDgc7v534b4eWkKPG7A48z3lYYy8b/fWIrtW4HmlmNkb4nKPX2/XgBW3mQZY7jyP5NGG5HZ5cfv52eyrqgn6HWOQLEaJKFHdreAp8UkCcS/hFYAmN8nDMrXwyEHOru8Dn2hyLzQy3BDyxQ78xFVqLhmqBcrL6myMJ+40HvFz46kByjSqCWueLTJ5nBkfyZUF7Af8E4HUwGusPVMBQf/xkYdFrxQjICiIZED7sbZDPS/MJJNJpe3oDvDTZtQUfBbsbo8FtotYipRadOaRO50ZUE7GTz+RdXoBAkLP9D+e0/5jhppyEBaSTMrLuML2Z8kl/tGD8c8ZkfnhnbfsAj9NmPaQWQMu1sqJEDeIRIMI6a8g5iK12zOceQEdu5BdyGm/DPocx2RqZOFDqhTW16yJ0qhtq+FXp8rzeGxN++KNdijRlg2jJ99vjh6Yw=="
+ sparsha:
+  comment: Sparsha Dotel
+  groups: 'admin'
+  ssh_key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDskKYWzZwpcQ58cr8hQR7gYcdjKa2nFwHrJO2OaJDqGT434GkHE7YOixxB4JUzZtZVcK484mUbrYHuhVBYjSakS5Vv/ylQleanr/IYmdU/ZqoMex1OmFuOW4la3P7zpsXuxfSL+JqBiNA1uaixSP+qvKM88th1my8QbNUrITo9iiJubQi1NgflHGEMiz5HedL5BY9nFZchIrPiQjMvYl5llThiVTwGNMZDLKVOWjqczJKJPp+wF+WmYy/rjV40kwE0iRS/nEZkii3XKKID1pwbVmE76IWfoq59s0sNXuQsUi9rY4AD6LHo/UskNWThRp7ZpZsEHvSzy4jePmvdvjH0J/d84Jl9fKGWvSpp8PfB5avip3XsqHeoC0sokeuL2iafFCRGGIGXxvqT9hP7iE0tl6QqLlXxmklvQLEl/YPHaPkiQ5TqyG4Vne8zTCSgz0TSQP6UqRdJ3K4vw0VMo8TS8dx7lpduU/q3FgVNBs0q4mrUTTzpeOT0/6yh0Y8hqbTDp8BZndpFL0/zCXNNx62mpaP3bxG1ubuzeUGlJHvxhxmfLo0JBOV3lY7YSa3pvx2FxZ9ySy4rYCSrlMDMGJcfXh+mUQolVn6VwqBwwt2V9eu5IjtgG376YBPyUSQGtbZgv/cPPwN4w0Bkw2NPyo2EtI/otWsLuuSJWo0VcwhpUQ=="
+
+datadog_config:
+  tags: "provider:jetstream-iu,environment:{{datadog_environment}},backup:{{backup_tag}},service:yourls,ansible:full,provisioner:terraform"
+
+letsencrypt_cert_domains:
+   - voi.openmrs.org
+   - shortener.openmrs.org
+
+docker_deployment:
+   - yourls-docker
+
+docker_deployable_images: []
+
+nginx_vhosts:
+  - listen: "80 default_server"
+    server_name: "voi.openmrs.org"
+    extra_parameters: |
+      return 301 https://$host$request_uri;
+  - listen: "443 ssl"
+    server_name: "voi.openmrs.org"
+    extra_parameters: |
+      access_log /var/log/nginx/deployer_access.log;
+      error_log /var/log/nginx/deployer_error.log;
+      ssl_certificate /etc/letsencrypt/live/voi.openmrs.org/fullchain.pem;
+      ssl_certificate_key /etc/letsencrypt/live/voi.openmrs.org/privkey.pem;
+      location ^~ /.well-known/acme-challenge/ {
+        root /usr/share/nginx/html;
+      }
+      location / {
+        root /usr/share/nginx/html;
+      }
+  - listen: "80"
+    server_name: "shortener.openmrs.org"
+    extra_parameters: |
+      return 301 https://$host$request_uri;
+  - listen: "443 ssl"
+    server_name: "shortener.openmrs.org"
+    extra_parameters: |
+      access_log /var/log/nginx/shortener_access.log;
+      error_log /var/log/nginx/shortener_error.log;
+      ssl_certificate /etc/letsencrypt/live/voi.openmrs.org/fullchain.pem;
+      ssl_certificate_key /etc/letsencrypt/live/voi.openmrs.org/privkey.pem;
+      location ^~ /.well-known/acme-challenge/ {
+        root /usr/share/nginx/html;
+      }
+      location / {
+        proxy_pass http://127.0.0.1:8848/;
+      }
+
+aws_access_key_id: '{{ vault_aws_access_key_id }}'
+aws_secret_access_key: '{{ vault_aws_secret_access_key }}'
