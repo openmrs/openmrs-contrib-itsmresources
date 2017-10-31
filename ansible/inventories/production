@@ -16,6 +16,7 @@ nairobi.openmrs.org
 ndu.openmrs.org
 talk.openmrs.org
 thika.openmrs.org
+voi.openmrs.org
 watamu.openmrs.org
 
 
@@ -35,6 +36,7 @@ meru.openmrs.org
 melong.openmrs.org
 menji.openmrs.org
 buea.openmrs.org
+voi.openmrs.org
 
 [web]
 ambam.openmrs.org
@@ -47,6 +49,7 @@ melong.openmrs.org
 menji.openmrs.org
 campo.openmrs.org
 buea.openmrs.org
+voi.openmrs.org
 
 [web-tls]
 ambam.openmrs.org
@@ -59,6 +62,7 @@ melong.openmrs.org
 menji.openmrs.org
 campo.openmrs.org
 buea.openmrs.org
+voi.openmrs.org
 
 [backup]
 ambam.openmrs.org
@@ -72,6 +76,7 @@ meru.openmrs.org
 melong.openmrs.org
 menji.openmrs.org
 buea.openmrs.org
+voi.openmrs.org
 
 [ldap]
 ambam.openmrs.org

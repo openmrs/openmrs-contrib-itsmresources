@@ -17,15 +17,8 @@
 - name: nginx
   src: geerlingguy.nginx
   version: 2.1.0
-- name: jira
-  src: hswong3i.jira
-  version: 4.3.5
-- name: java
-  src: hswong3i.java
-  version: 4.3.2
-- name: mysql-connector-java
-  src: hswong3i.mysql_connector_java
-  version: 4.3.8
+
+
 
 # from git
 - name: docker-compose-openmrs
@@ -48,3 +41,12 @@
 - name: users
   src: https://github.com/yatesr/ansible-users.git
   version: efe5922cc2790256d7917f90728c7b5e2d14f990
+- name: jira
+  src: https://github.com/pantarei/ansible-role-jira
+  version: 9eda47c34566ef38e3183ca9ff27d7bc120cfc72
+- name: java
+  src: https://github.com/pantarei/ansible-role-java.git
+  version: 7fde32788d3fd1b5ef72acb6577d2c456bc22369
+- name: mysql-connector-java
+  src: https://github.com/pantarei/ansible-role-mysql-connector-java.git
+  version: 7a9ecef6bde1fdc890b755c179a87bbe7e597dcd
