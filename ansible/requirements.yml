@@ -17,6 +17,15 @@
 - name: nginx
   src: geerlingguy.nginx
   version: 2.1.0
+- name: jira
+  src: hswong3i.jira
+  version: 4.3.5
+- name: java
+  src: hswong3i.java
+  version: 4.3.2
+- name: mysql-connector-java
+  src: hswong3i.mysql_connector_java
+  version: 4.3.8
 
 # from git
 - name: docker-compose-openmrs

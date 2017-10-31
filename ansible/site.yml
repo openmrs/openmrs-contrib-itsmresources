@@ -52,13 +52,22 @@
 - hosts: docker
   become: true
   tags:
-    - docker
+   - docker
   roles:
    - docker
    - docker-compose
    - docker-compose-openmrs
   tasks:
    - include: tasks/docker-install-hacks.yml
+
+- hosts: jira
+  become: true
+  roles:
+    - java
+    - jira
+    - mysql-connector-java
+  tags:
+    - jira
 
 - hosts: ldap
   become: true
