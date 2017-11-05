@@ -15,7 +15,7 @@ datadog_config:
 
 letsencrypt_cert_domains:
    - melong.openmrs.org
-   - issues-new.openmrs.org
+   - issues.openmrs.org
 
 docker_deployment:
   - database
@@ -42,11 +42,11 @@ nginx_vhosts:
         root /usr/share/nginx/html;
       }
   - listen: "80"
-    server_name: "issues-new.openmrs.org"
+    server_name: "issues.openmrs.org"
     extra_parameters: |
       return 301 https://$host$request_uri;
   - listen: "443 ssl"
-    server_name: "issues-new.openmrs.org"
+    server_name: "issues.openmrs.org"
     extra_parameters: |
       access_log /var/log/nginx/deployer_access.log;
       error_log /var/log/nginx/deployer_error.log;
@@ -77,5 +77,5 @@ mysql_connector_java_user: '{{ jira_user }}'
 mysql_connector_java_archive: 'mysql-connector-java-5.1.44.tar.gz'
 mysql_connector_java_jar: 'mysql-connector-java-5.1.44-bin.jar'
 mysql_connector_java_checksum: 'sha256:7419a235c63f61c72b7e2e078e68350924ea95cffea3f5808d70e497410c8232'
-jira_proxy_name: 'issues-new.openmrs.org'
+jira_proxy_name: 'issues.openmrs.org'
 jira_scheme: 'https'
