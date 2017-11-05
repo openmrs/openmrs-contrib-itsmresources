@@ -71,9 +71,13 @@ and can be opened using private GPG keys previously added to the key ring.
 Ansible will run over SSH, you your SSH needs to be working to the target machines.
 
 ## Repository
+
   - _site.yml_: default playbook, used to install everything
   - _delete-certs.yml_: playbook used to clean letsencrypt certificate and regenerate it
   - _update.yml_: playbook used to apply OS patches
+  - _remove-users.yml_: playbook used to delete old users and home folders
+
+
   - _group_vars_ : variables and configuration per group
   - _host_vars_: variables and configuration per host
   - _inventories_ : machine definitions (groups per machine)

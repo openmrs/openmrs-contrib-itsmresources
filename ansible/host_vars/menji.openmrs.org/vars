@@ -1,12 +1,4 @@
 ---
-# New confluence
-users:
- harsha:
-  comment: Harsha Venugopal
-  groups: 'admin'
-  ssh_key: "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAk5g2iQWDZp7it+AUqBM0S6a7S8OafDdXwS5bgFOkfNLpyvI3ybC1erxZlVlaCTp2A00fqmJK1PVZhKXuJR0OemzV8ucagbmMuyCYERgwZ8zn/LH7ibeY6V3iebHCjBE1+VBne3rrJn2Z0Gwe9Nipu90FtlOzLc+SVbMAzn1HSTWC9oNJhK3eHodwqj6GZIYqhfBlpM53osE7KGABiLqLOTZi8w1dmQfrYugu8IHRkffT5tAcG9j8OmwI5AyX8AP0j8iCZfPzfZ+lEjkaRkAeqOI09oR0f7T2c2Z7G+UsD9GRBqHyfaQLU8pqpox4hOWEg7HCbsoBsA9siM7kiQPeZw=="
-
-
 datadog_config:
   tags: "provider:jetstream-iu,environment:{{datadog_environment}},backup:{{backup_tag}},service:confluence,ansible:full,provisioner:terraform"
 

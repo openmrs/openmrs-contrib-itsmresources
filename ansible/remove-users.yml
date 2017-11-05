@@ -1,0 +1,35 @@
+---
+
+- hosts: all
+  become: true
+  tasks:
+  - name: 'Find all users'
+    shell: 'egrep ^admin /etc/group | cut -d: -f4 | tr "," "\n"'
+    changed_when: false
+    register: existing_users
+  - name: 'Print users to be deleted'
+    shell: echo "{{item}}"
+    with_items: "{{ existing_users.stdout_lines | difference(users) }}"
+  - name: 'Delete users'
+    user:
+      name: "{{ item }}"
+      state: absent
+    with_items: "{{ existing_users.stdout_lines | difference(users) }}"
+
+
+  - name: 'Find configured home folders'
+    shell: 'cat /etc/passwd | cut -d: -f6 | fgrep /home | sed -r "s|/home/||"'
+    changed_when: false
+    register: configured_folders
+  - name: 'Find all home folders'
+    shell: 'ls -1 /home/'
+    changed_when: false
+    register: existing_folders
+  - name: 'Print folders to be deleted'
+    shell: echo "{{item}}"
+    with_items: "{{ existing_folders.stdout_lines | difference(configured_folders.stdout_lines) }}"
+  - name: 'Delete home folders'
+    file:
+      name: "/home/{{item}}"
+      state: absent
+    with_items: "{{ existing_folders.stdout_lines | difference(configured_folders.stdout_lines) }}"

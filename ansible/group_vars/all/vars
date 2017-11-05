@@ -7,15 +7,6 @@ othergroups:
    gid: 8001
 
 users:
- ryan:
-   comment: Ryan Yates
-   groups: 'admin'
-   uid: 9001
-   ssh_key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCwq6UcIsPMDLFqvfeUqkXlo1nlA7rI+siYX0dfc70gZU7rRQ5ZRyArErTQzLfWKlowXgBnvclFqOKITr8Fm4FezHRKXHUzzY51icgHwb4fW2wLFje9BXkimVgl9akCuzwSXg1r6ex5zaZtWFO85LfWFkm+spj92Gz1Tb187QbgY8/HbW+ekIfQ4AZ1mhM43MK76wlySU7Dqsbr8T1NEvgYNTGO3TOwrTkiS8iVI5SkdgRcRUYKK6gTjI18Qu/wDhXxzEAC6BPYedLDUWMCHAVh7ZtcgdmY3XQP+djpioEOlp38gTXMJUVu2HD0g/hb/eUaD/sq8fZpb0oTQqyHeK9D ryan@openmrs.org"
- maany:
-   comment: Mayank
-   groups: 'admin'
-   ssh_key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDdZ2zPGsbruYsvMWkgxkSOwOV7qPD9AbCe2xsNxXoCNQ+pz3HWfK5y1pP+8qdAHGA8oXmsUTEEVyiiBq54PSvVHkoKostR5H36q2Gx2PL9VQKqhRBvhqQSZny2xZVIB2eBLei1SVtq/mzwXXZwCqj6aly7KdxhjqsxSbP5Z+IlQk7M/zQYgDMC3rC+r+8szKfSUF6Qss46bZbR3H9Bf8jhCOBLz1EgeC5weIlA0o3RfjeLdZMOAZ4wN9bNQKQqB+Hvk0SoLxS0BxxobVhjYWh7t4f5KK+xAeuASyWmf3L/mTAHcnwzVHFl3WPlBPVIahQQOvTMdqbLGoG/rUZ19dKYpMHy9E0L/fRdu9XMQiGK8iAEvdQ0787GhbWICmDP4McSraPdPj7FJrEds3bZUFRjSRJXtPXoObljpCVhZo++sxXh6EA6LrfZtvKRjtbUZtkxo0CfuG9kjStSjRje07BEHdq70aA0+3XG4vr4q7wb4oyc0Sn4mS+gbDK6d9lkP0Vh19MmdTf0pIbhUtkyZgFpOZWpFBlKIlV8zz4AG3nyjyUOe1Gg2SybLYqGZluH+Hgm5oU+PEPXKpIW1mpRSmGgquRKGFjtk+KiKdTYW9MIGr9CjqsDtXyuurfwv0GKrAcBwJIcAIcVPv3ejhPyYGUCDe0U0knhkZWFhEWW5nsOcQ== imptodefeat@gmail.com"
  pascal:
    comment: Pascal
    groups: 'admin'
@@ -28,14 +19,6 @@ users:
    comment: Cintia Del Rio
    groups: 'admin'
    ssh_key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC9Ue5zd1hhecpRnz3+noyyHoeSWAhFy4YqH6Ubwp3k15Xdbl7N183YM1TsxrX3eA5Cgb+IKDjfLcC7iCw3j6dJTo+uxCx3lU/FocdTTJ0vMRQc9ZLzkqUNtYHa03od3GFMFU5A7jWRMfXuaFNy2dSxPsvdPkmU0711kBmnLXat3Ilc/b8AJWoGAw9A7FM5lIdRLhJPLVhWPYWpSIUPxbfym859WgVVljDXxSCu8xw9zbMXk/AeY7RJ6koJK8JVOF+FDi+yigaEC1ed5tm8uBwT9DvLgY25sl9p/HjcOhD3HtW75AUN9RZO74wSIbkWuC1gBZY0otPN7Dgp2sfmCLtd cintiadrio@gmail.com"
- chagara:
-   comment: Jonathan Lozada
-   groups: 'admin'
-   ssh_key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDtVZAKpATS4YZt0uVkZimVT3wsuXmRSTjjqTx04hbq+fHSpeA/iz06uvbLAiGPDArgKWoEtASu8CifdQhg/VC7V4AxF+6BQSseHH0pJh34LVrTLTAdYUVzJS8Xgd/getJhGWxj3/VC1oJ9h4s5DgUCmCTm/K+nzrnT+DcJeUGA4gByqpw6Xuzze9NT3Q+zDVw4+BUlKdKWSClZPBE+Yg23LCHTUoRWugK/SGcRO8QmPz0Y0fIOOdocbXs0ppSmP7j63ny/mGIEEcrYT0OCRxPB8LYz6sMxB2/iJR9q6qSbYX8E+e/pIX0HxQCeQmtdEGykij+MWFkbr3D0EyhIUaOoHKh458BfH89ZSA/ouqiZq963DBREQQ8Qajngnl9SK2HHb6/8PwZIgwXMFHpzl4wt72y6ELC6EsigSIV7Dx3xM5CfGRMvIEH8EBP93hyTrtrxMFfZQvizYtOvblUDE5u74z95YZ9Uvj+2PmYmwUuN2bNjmKST/w3XSswJKyP1gpJORrsJR16ysf13T9QJtPNpNeYA3R5q61dcGMozF48hdQTQ5cfw3Mysq8NWY/rqEapZ7YeP4irLyXXRS+2LdUSQAkfbq5qzm2TZa7GYlOiSupXyIqi17rKVQzpGVTw1NBjS4+7YWp//PWjcLp+942g+2i9eL3qi0YxW2kWV/oEBpw== jlozada2426@gmail.com"
- swathivarkala:
-   comment: Swathi Varkala
-   groups: 'admin'
-   ssh_key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC9+lM4NgyYH7tdYnW6L7dUtRCJBRKM/09DBi7clMIfpVDP+ItpLSv0uld3cUpQlY1mbHCuaKOUz2S4MgzKXCufC5xsEzB9JcfxPM7u7jH8cuA6jxGoNsd9jJn+jUJT2Q8vbOrAcTYqmCFlQdF7HE1Ec/NS0zSbIPoUU9011VrglmMq8o4C7cVDCwVjt3RYk+W2O1R/om/rRGw+/HGImVC43oJBeon/Wc+BGRXrDD4FEcnenCI1EkEp/LUJWkcYhcJDCrtMfcixCDL1h9iJyR9iTh6ckhkTsF6h84UcV4P/ssBQh5zsXtmSxsCFBYNKWgm+0+NQb4WYVVCz1fkVFdCl"
 
 
 # Users that should be removed from all hosts
@@ -79,3 +62,4 @@ datadog_checks:
           timeout: 8
 
 backup_tag: 'not-applicable'
+backup_user: 'not-applicable'
