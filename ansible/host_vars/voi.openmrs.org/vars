@@ -11,16 +11,20 @@ users:
   ssh_key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDskKYWzZwpcQ58cr8hQR7gYcdjKa2nFwHrJO2OaJDqGT434GkHE7YOixxB4JUzZtZVcK484mUbrYHuhVBYjSakS5Vv/ylQleanr/IYmdU/ZqoMex1OmFuOW4la3P7zpsXuxfSL+JqBiNA1uaixSP+qvKM88th1my8QbNUrITo9iiJubQi1NgflHGEMiz5HedL5BY9nFZchIrPiQjMvYl5llThiVTwGNMZDLKVOWjqczJKJPp+wF+WmYy/rjV40kwE0iRS/nEZkii3XKKID1pwbVmE76IWfoq59s0sNXuQsUi9rY4AD6LHo/UskNWThRp7ZpZsEHvSzy4jePmvdvjH0J/d84Jl9fKGWvSpp8PfB5avip3XsqHeoC0sokeuL2iafFCRGGIGXxvqT9hP7iE0tl6QqLlXxmklvQLEl/YPHaPkiQ5TqyG4Vne8zTCSgz0TSQP6UqRdJ3K4vw0VMo8TS8dx7lpduU/q3FgVNBs0q4mrUTTzpeOT0/6yh0Y8hqbTDp8BZndpFL0/zCXNNx62mpaP3bxG1ubuzeUGlJHvxhxmfLo0JBOV3lY7YSa3pvx2FxZ9ySy4rYCSrlMDMGJcfXh+mUQolVn6VwqBwwt2V9eu5IjtgG376YBPyUSQGtbZgv/cPPwN4w0Bkw2NPyo2EtI/otWsLuuSJWo0VcwhpUQ=="
 
 datadog_config:
-  tags: "provider:jetstream-iu,environment:{{datadog_environment}},backup:{{backup_tag}},service:yourls,ansible:full,provisioner:terraform"
+  tags: "provider:jetstream-iu,environment:{{datadog_environment}},backup:{{backup_tag}},service:yourls, service:atlas,ansible:full,provisioner:terraform"
 
 letsencrypt_cert_domains:
    - voi.openmrs.org
    - shortener.openmrs.org
+   - atlas-new.openmrs.org
 
 docker_deployment:
    - yourls
+   - atlas
 
-docker_deployable_images: []
+docker_deployable_images:
+   - repository: openmrs/atlas
+     compose: atlas
 
 nginx_vhosts:
   - listen: "80 default_server"
@@ -56,6 +60,23 @@ nginx_vhosts:
       }
       location / {
         proxy_pass http://127.0.0.1:8848/;
+      }
+  - listen: "80"
+    server_name: "atlas-new.openmrs.org"
+    extra_parameters: |
+      return 301 https://$host$request_uri;
+  - listen: "443 ssl"
+    server_name: "atlas-new.openmrs.org"
+    extra_parameters: |
+      access_log /var/log/nginx/atlas_access.log;
+      error_log /var/log/nginx/atlas_error.log;
+      ssl_certificate /etc/letsencrypt/live/voi.openmrs.org/fullchain.pem;
+      ssl_certificate_key /etc/letsencrypt/live/voi.openmrs.org/privkey.pem;
+      location ^~ /.well-known/acme-challenge/ {
+        root /usr/share/nginx/html;
+      }
+      location / {
+        proxy_pass http://127.0.0.1:8548/;
       }
 
 aws_access_key_id: '{{ vault_aws_access_key_id }}'
