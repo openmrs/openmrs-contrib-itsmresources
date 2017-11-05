@@ -16,6 +16,7 @@ datadog_config:
 letsencrypt_cert_domains:
    - voi.openmrs.org
    - shortener.openmrs.org
+   - new.om.rs
    - atlas-new.openmrs.org
 
 docker_deployment:
@@ -45,11 +46,11 @@ nginx_vhosts:
         root /usr/share/nginx/html;
       }
   - listen: "80"
-    server_name: "shortener.openmrs.org"
+    server_name: "shortener.openmrs.org new.om.rs"
     extra_parameters: |
       return 301 https://$host$request_uri;
   - listen: "443 ssl"
-    server_name: "shortener.openmrs.org"
+    server_name: "shortener.openmrs.org new.om.rs"
     extra_parameters: |
       access_log /var/log/nginx/shortener_access.log;
       error_log /var/log/nginx/shortener_error.log;
