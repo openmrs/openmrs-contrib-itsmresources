@@ -1,4 +1,11 @@
 ---
+users:
+ sparsha:
+   comment: Sparsha Dotel
+   groups: 'admin'
+   ssh_key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDskKYWzZwpcQ58cr8hQR7gYcdjKa2nFwHrJO2OaJDqGT434GkHE7YOixxB4JUzZtZVcK484mUbrYHuhVBYjSakS5Vv/ylQleanr/IYmdU/ZqoMex1OmFuOW4la3P7zpsXuxfSL+JqBiNA1uaixSP+qvKM88th1my8QbNUrITo9iiJubQi1NgflHGEMiz5HedL5BY9nFZchIrPiQjMvYl5llThiVTwGNMZDLKVOWjqczJKJPp+wF+WmYy/rjV40kwE0iRS/nEZkii3XKKID1pwbVmE76IWfoq59s0sNXuQsUi9rY4AD6LHo/UskNWThRp7ZpZsEHvSzy4jePmvdvjH0J/d84Jl9fKGWvSpp8PfB5avip3XsqHeoC0sokeuL2iafFCRGGIGXxvqT9hP7iE0tl6QqLlXxmklvQLEl/YPHaPkiQ5TqyG4Vne8zTCSgz0TSQP6UqRdJ3K4vw0VMo8TS8dx7lpduU/q3FgVNBs0q4mrUTTzpeOT0/6yh0Y8hqbTDp8BZndpFL0/zCXNNx62mpaP3bxG1ubuzeUGlJHvxhxmfLo0JBOV3lY7YSa3pvx2FxZ9ySy4rYCSrlMDMGJcfXh+mUQolVn6VwqBwwt2V9eu5IjtgG376YBPyUSQGtbZgv/cPPwN4w0Bkw2NPyo2EtI/otWsLuuSJWo0VcwhpUQ=="
+
+
 datadog_config:
   tags: "provider:jetstream-iu,environment:{{datadog_environment}},backup:{{backup_tag}},service:confluence,ansible:full,provisioner:terraform"
 
@@ -27,7 +34,6 @@ nginx_vhosts:
         root /usr/share/nginx/html;
       }
       location / {
-        #proxy_pass http://127.0.0.1:8080/;
         root /usr/share/nginx/html;
       }
   - listen: "80"
@@ -37,17 +43,36 @@ nginx_vhosts:
   - listen: "443 ssl"
     server_name: "wiki-new.openmrs.org"
     extra_parameters: |
-      access_log /var/log/nginx/deployer_access.log;
-      error_log /var/log/nginx/deployer_error.log;
+      access_log /var/log/nginx/wiki_access.log;
+      error_log /var/log/nginx/wiki_error.log;
       ssl_certificate /etc/letsencrypt/live/menji.openmrs.org/fullchain.pem;
       ssl_certificate_key /etc/letsencrypt/live/menji.openmrs.org/privkey.pem;
       location ^~ /.well-known/acme-challenge/ {
         root /usr/share/nginx/html;
       }
       location / {
-        #proxy_pass http://127.0.0.1:8080/;
-        root /usr/share/nginx/html;
+        proxy_set_header HOST $host;
+        proxy_set_header  X-Forwarded-Proto $scheme;
+        proxy_pass http://127.0.0.1:8090/;
       }
 
 aws_access_key_id: '{{ vault_aws_access_key_id }}'
 aws_secret_access_key: '{{ vault_aws_secret_access_key }}'
+
+confluence_pass: '{{ vault_confluence_pass }}'
+confluence_hash_salt: '{{ vault_confluence_hash_salt }}'
+confluence_user: 'confluence'
+confluence_archive: "atlassian-confluence-6.5.0.tar.gz"
+confluence_catalina: "/opt/confluence"
+confluence_checksum: "sha256:16b4deb2e3309b3b9daf08ed127f588f3498b33e97ee8dc6ca2a7fe68b612adf"
+confluence_home: "/data/confluence_home"
+confluence_jvm_maximum_memory: "4096m"
+confluence_jvm_minimum_memory: "2048m"
+confluence_proxy_name: 'wiki-new.openmrs.org'
+confluence_scheme: 'https'
+confluence_url: "https://downloads.atlassian.com/software/confluence/downloads/{{ confluence_archive }}"
+mysql_connector_java_dest: '{{ confluence_catalina }}/lib'
+mysql_connector_java_user: '{{ confluence_user }}'
+mysql_connector_java_archive: 'mysql-connector-java-5.1.44.tar.gz'
+mysql_connector_java_jar: 'mysql-connector-java-5.1.44-bin.jar'
+mysql_connector_java_checksum: 'sha256:7419a235c63f61c72b7e2e078e68350924ea95cffea3f5808d70e497410c8232'

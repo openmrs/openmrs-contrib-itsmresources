@@ -50,3 +50,6 @@
 - name: mysql-connector-java
   src: https://github.com/pantarei/ansible-role-mysql-connector-java.git
   version: 7a9ecef6bde1fdc890b755c179a87bbe7e597dcd
+- name: confluence
+  src: https://github.com/pantarei/ansible-role-confluence.git
+  version: 402551f5975dda36239b21163517e4472891f561

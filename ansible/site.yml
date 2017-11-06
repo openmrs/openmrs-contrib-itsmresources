@@ -69,6 +69,15 @@
   tags:
     - jira
 
+- hosts: confluence
+  become: true
+  roles:
+    - java
+    - confluence
+    - mysql-connector-java
+  tags:
+    - confluence
+
 - hosts: ldap
   become: true
   tasks:
