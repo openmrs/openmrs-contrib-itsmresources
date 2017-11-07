@@ -42,12 +42,18 @@ nginx_vhosts:
         root /usr/share/nginx/html;
       }
   - listen: "80"
-    server_name: "shortener.openmrs.org om.rs"
+    server_name: "shortener.openmrs.org om.rs *.om.rs"
     extra_parameters: |
       return 301 https://$host$request_uri;
   - listen: "443 ssl"
-    server_name: "shortener.openmrs.org om.rs"
+    server_name: "shortener.openmrs.org om.rs *.om.rs"
     extra_parameters: |
+      if ($http_host = ^(.*)\.is\.om\.rs) {
+        rewrite (.*)  https://talk.openmrs.org/users/%1/activity;
+      }
+      if ($http_host = ^(.*)\.om\.rs ) {
+        rewrite (.*)  https://om.rs/%1;
+      }
       access_log /var/log/nginx/shortener_access.log;
       error_log /var/log/nginx/shortener_error.log;
       ssl_certificate /etc/letsencrypt/live/voi.openmrs.org/fullchain.pem;
