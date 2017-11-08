@@ -43,12 +43,6 @@
   roles:
    - aws-cli
 
-- hosts: bamboo
-  roles:
-   - timezone
-  vars:
-   timezone: UTC
-
 - hosts: docker
   become: true
   tags:
@@ -77,6 +71,12 @@
     - mysql-connector-java
   tags:
     - confluence
+
+- hosts: bamboo-legacy
+  roles:
+   - timezone
+  vars:
+   timezone: UTC
 
 - hosts: ldap
   become: true
