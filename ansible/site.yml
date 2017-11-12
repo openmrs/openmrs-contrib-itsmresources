@@ -54,7 +54,9 @@
    - docker-compose-openmrs
   tasks:
    - include: tasks/docker-install-hacks.yml
-
+  handlers:
+    - include: handlers/monitoring.yml
+    
 - hosts: jira
   become: true
   roles:
