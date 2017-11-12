@@ -4,6 +4,10 @@ dschang.openmrs.org
 lamu.openmrs.org
 nakuru.openmrs.org
 
+[full-ansible]
+lamu.openmrs.org
+nakuru.openmrs.org
+
 [docker]
 lamu.openmrs.org
 nakuru.openmrs.org

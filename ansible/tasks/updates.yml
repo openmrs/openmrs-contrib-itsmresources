@@ -1,0 +1,15 @@
+---
+  - name: Copy script to reboot
+    copy:
+      owner: root
+      group: root
+      mode: 0755
+      src: files/updates/reboot-machine.sh
+      dest: "/usr/sbin/reboot-machine.sh"
+  - name: Reboot machine cron
+    cron:
+      name: "reboot-machine"
+      weekday: "0"
+      minute: "0"
+      hour: "6"
+      job: "/usr/sbin/reboot-machine.sh >> /var/log/reboot-machine.log 2>&1"

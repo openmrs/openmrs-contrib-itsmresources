@@ -7,6 +7,9 @@ gw123.iu.xsede.org	# devtest04.openmrs.org
 narok.openmrs.org
 dowa.openmrs.org
 
+[full-ansible]
+narok.openmrs.org
+dowa.openmrs.org
 
 [docker]
 narok.openmrs.org

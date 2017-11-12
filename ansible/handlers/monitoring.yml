@@ -1,0 +1,6 @@
+---
+
+# https://github.com/ansible/ansible/issues/20603
+
+- name: restart datadog-agent
+  action: service name=datadog-agent state=restarted

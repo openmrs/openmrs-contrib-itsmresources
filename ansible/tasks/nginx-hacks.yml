@@ -23,6 +23,6 @@
       mode: "0755"
   - name: Ansible copy files remote to remote
     copy:
-      src: files/ssl_check_expire_days.py
+      src: files/monitoring/ssl_check_expire_days.py
       dest: /opt/datadog-agent/agent/checks.d
     notify: restart datadog-agent

@@ -16,9 +16,17 @@
     command: docker info
     register: docker_restarted
     changed_when: docker_restarted.stdout.find('overlay2') == -1
+
   - name: Restart docker service
     shell: systemctl restart docker
     when: docker_restarted.stdout.find('overlay2') == -1
+
+  - name: Configure datadog service to start after docker
+    lineinfile:
+       dest: /lib/systemd/system/datadog-agent.service
+       regexp: '^After='
+       line: "After=network.target docker.service"
+       state: present
     notify: restart datadog-agent
 
   - name: Docker cleanup script copy

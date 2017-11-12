@@ -1,12 +1,11 @@
 ---
 # Master Playbook
 
-# TODO: include this task to all hosts
-# should happen before installing datadog
-- hosts: web
+- hosts: full-ansible
   become: true
   tasks:
-   - include: tasks/hostname.yml
+   - include: tasks/hostname.yml # should happen before installing datadog
+   - include: tasks/updates.yml
 
 - hosts: all
   become: true
@@ -20,6 +19,8 @@
    - datadog
   tasks:
     - include: tasks/extra-monitoring.yml
+  handlers:
+    - include: handlers/monitoring.yml
 
 - hosts: web-tls
   become: true
