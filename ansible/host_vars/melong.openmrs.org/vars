@@ -6,6 +6,7 @@ datadog_config:
 letsencrypt_cert_domains:
    - melong.openmrs.org
    - issues.openmrs.org
+   - tickets.openmrs.org
 
 docker_deployment:
   - database
@@ -32,11 +33,11 @@ nginx_vhosts:
         root /usr/share/nginx/html;
       }
   - listen: "80"
-    server_name: "issues.openmrs.org"
+    server_name: "issues.openmrs.org tickets.openmrs.org"
     extra_parameters: |
       return 301 https://$host$request_uri;
   - listen: "443 ssl"
-    server_name: "issues.openmrs.org"
+    server_name: "issues.openmrs.org tickets.openmrs.org"
     extra_parameters: |
       access_log /var/log/nginx/deployer_access.log;
       error_log /var/log/nginx/deployer_error.log;
