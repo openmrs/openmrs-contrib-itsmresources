@@ -60,18 +60,19 @@ nginx_vhosts:
 aws_access_key_id: '{{ vault_aws_access_key_id }}'
 aws_secret_access_key: '{{ vault_aws_secret_access_key }}'
 
-# jira_pass: '{{ vault_jira_pass }}'
-# jira_user: 'jira'
-# jira_checksum: 'sha256:7e0354e792da650db7b167a37935fb45c22385821cba0a2f20039e1faed48936'
-# jira_archive: "atlassian-jira-software-7.5.1.tar.gz"
-# jira_catalina: "/opt/jira"
-# jira_home: "/data/jira_home"
-# jira_jvm_maximum_memory: "4096m"
-# jira_jvm_minimum_memory: "2048m"
-# mysql_connector_java_dest: '{{ jira_catalina }}/lib'
-# mysql_connector_java_user: '{{ jira_user }}'
-# mysql_connector_java_archive: 'mysql-connector-java-5.1.44.tar.gz'
-# mysql_connector_java_jar: 'mysql-connector-java-5.1.44-bin.jar'
-# mysql_connector_java_checksum: 'sha256:7419a235c63f61c72b7e2e078e68350924ea95cffea3f5808d70e497410c8232'
-# jira_proxy_name: 'ci-new.openmrs.org'
-# jira_scheme: 'https'
+bamboo_pass: '{{ vault_bamboo_pass }}'
+bamboo_hash_salt: '{{ vault_bamboo_hash_salt }}'
+bamboo_user: 'bamboo'
+bamboo_checksum: 'sha256:b4058f68c905a3c0d8c483982f53a01e69f386fe77fc50254640e48862821fb1'
+bamboo_archive: "atlassian-bamboo-6.2.2.tar.gz"
+bamboo_catalina: "/opt/bamboo"
+bamboo_home: "/data/bamboo_home"
+bamboo_jvm_maximum_memory: "4096m"
+bamboo_jvm_minimum_memory: "2048m"
+mysql_connector_java_dest: '{{ bamboo_catalina }}/lib'
+mysql_connector_java_user: '{{ bamboo_user }}'
+mysql_connector_java_archive: 'mysql-connector-java-5.1.44.tar.gz'
+mysql_connector_java_jar: 'mysql-connector-java-5.1.44-bin.jar'
+mysql_connector_java_checksum: 'sha256:7419a235c63f61c72b7e2e078e68350924ea95cffea3f5808d70e497410c8232'
+bamboo_proxy_name: 'ci-new.openmrs.org'
+bamboo_scheme: 'https'

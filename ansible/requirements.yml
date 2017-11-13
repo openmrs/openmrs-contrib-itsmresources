@@ -53,3 +53,6 @@
 - name: confluence
   src: https://github.com/pantarei/ansible-role-confluence.git
   version: 402551f5975dda36239b21163517e4472891f561
+- name: bamboo
+  src: https://github.com/pantarei/ansible-role-bamboo.git
+  version: 2fc0a8e84c0ddfbe5fcd4b2f4232db25cad86208
