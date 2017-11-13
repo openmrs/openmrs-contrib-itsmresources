@@ -62,9 +62,9 @@ aws_secret_access_key: '{{ vault_aws_secret_access_key }}'
 confluence_pass: '{{ vault_confluence_pass }}'
 confluence_hash_salt: '{{ vault_confluence_hash_salt }}'
 confluence_user: 'confluence'
-confluence_archive: "atlassian-confluence-6.5.0.tar.gz"
+confluence_archive: "atlassian-confluence-5.7.3.tar.gz"
 confluence_catalina: "/opt/confluence"
-confluence_checksum: "sha256:16b4deb2e3309b3b9daf08ed127f588f3498b33e97ee8dc6ca2a7fe68b612adf"
+confluence_checksum: "sha256:81bc02e8557a108731c41723162bbbfc42c7023d970fad347156497c9586ed42"
 confluence_home: "/data/confluence_home"
 confluence_jvm_maximum_memory: "4096m"
 confluence_jvm_minimum_memory: "2048m"
