@@ -56,7 +56,7 @@
    - include: tasks/docker-install-hacks.yml
   handlers:
     - include: handlers/monitoring.yml
-    
+
 - hosts: jira
   become: true
   roles:
@@ -74,6 +74,15 @@
     - mysql-connector-java
   tags:
     - confluence
+
+- hosts: bamboo
+  become: true
+  roles:
+    - java
+    - bamboo
+    - mysql-connector-java
+  tags:
+    - bamboo
 
 - hosts: bamboo-legacy
   roles:
