@@ -11,7 +11,7 @@ datadog_config:
 
 letsencrypt_cert_domains:
    - menji.openmrs.org
-   - wiki-new.openmrs.org
+   - wiki.openmrs.org
 
 docker_deployment:
   - database
@@ -37,11 +37,11 @@ nginx_vhosts:
         root /usr/share/nginx/html;
       }
   - listen: "80"
-    server_name: "wiki-new.openmrs.org"
+    server_name: "wiki.openmrs.org"
     extra_parameters: |
       return 301 https://$host$request_uri;
   - listen: "443 ssl"
-    server_name: "wiki-new.openmrs.org"
+    server_name: "wiki.openmrs.org"
     extra_parameters: |
       access_log /var/log/nginx/wiki_access.log;
       error_log /var/log/nginx/wiki_error.log;
@@ -68,7 +68,7 @@ confluence_checksum: "sha256:16b4deb2e3309b3b9daf08ed127f588f3498b33e97ee8dc6ca2
 confluence_home: "/data/confluence_home"
 confluence_jvm_maximum_memory: "4096m"
 confluence_jvm_minimum_memory: "2048m"
-confluence_proxy_name: 'wiki-new.openmrs.org'
+confluence_proxy_name: 'wiki.openmrs.org'
 confluence_scheme: 'https'
 confluence_url: "https://downloads.atlassian.com/software/confluence/downloads/{{ confluence_archive }}"
 mysql_connector_java_dest: '{{ confluence_catalina }}/lib'
