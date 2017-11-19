@@ -13,7 +13,7 @@ letsencrypt_cert_domains:
    - voi.openmrs.org
    - shortener.openmrs.org
    - om.rs
-   - atlas-new.openmrs.org
+   - atlas.openmrs.org
 
 docker_deployment:
    - yourls
@@ -65,11 +65,11 @@ nginx_vhosts:
         proxy_pass http://127.0.0.1:8848/;
       }
   - listen: "80"
-    server_name: "atlas-new.openmrs.org"
+    server_name: "atlas.openmrs.org"
     extra_parameters: |
       return 301 https://$host$request_uri;
   - listen: "443 ssl"
-    server_name: "atlas-new.openmrs.org"
+    server_name: "atlas.openmrs.org"
     extra_parameters: |
       access_log /var/log/nginx/atlas_access.log;
       error_log /var/log/nginx/atlas_error.log;
