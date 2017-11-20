@@ -84,6 +84,15 @@
   tags:
     - bamboo
 
+- hosts: crowd
+  become: true
+  roles:
+    - java
+    - crowd
+    - mysql-connector-java
+  tags:
+    - crowd
+
 - hosts: bamboo-legacy
   roles:
    - timezone

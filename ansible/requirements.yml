@@ -56,3 +56,6 @@
 - name: bamboo
   src: https://github.com/pantarei/ansible-role-bamboo.git
   version: 2fc0a8e84c0ddfbe5fcd4b2f4232db25cad86208
+- name: crowd
+  src: https://github.com/pantarei/ansible-role-crowd.git
+  version: f374b874d5c00e6233e99a82107c810cf874f2c6

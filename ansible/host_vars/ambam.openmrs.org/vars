@@ -76,9 +76,26 @@ nginx_vhosts:
         root /usr/share/nginx/html;
       }
       location / {
-        #proxy_pass http://127.0.0.1:8080/;
+        proxy_pass http://127.0.0.1:8095/;
         root /usr/share/nginx/html;
       }
 
 aws_access_key_id: '{{ vault_aws_access_key_id }}'
 aws_secret_access_key: '{{ vault_aws_secret_access_key }}'
+crowd_pass: '{{ vault_crowd_pass }}'
+crowd_hash_salt: '{{ vault_crowd_hash_salt }}'
+crowd_user: 'crowd'
+crowd_archive: "atlassian-crowd-3.0.2.tar.gz"
+crowd_catalina: "/opt/crowd"
+crowd_checksum: "sha256:84acbfbeed4dd50b72d6da0a5eb0952a0d70a9c0cc7c8d42fe8e3d72e6210a45"
+crowd_home: "/data/crowd_home"
+crowd_jvm_maximum_memory: "4096m"
+crowd_jvm_minimum_memory: "2048m"
+crowd_proxy_name: 'crowd-new.openmrs.org'
+crowd_scheme: 'https'
+crowd_url: "https://downloads.atlassian.com/software/crowd/downloads/{{ crowd_archive }}"
+mysql_connector_java_dest: '{{ crowd_catalina }}/lib'
+mysql_connector_java_user: '{{ crowd_user }}'
+mysql_connector_java_archive: 'mysql-connector-java-5.1.44.tar.gz'
+mysql_connector_java_jar: 'mysql-connector-java-5.1.44-bin.jar'
+mysql_connector_java_checksum: 'sha256:7419a235c63f61c72b7e2e078e68350924ea95cffea3f5808d70e497410c8232'
