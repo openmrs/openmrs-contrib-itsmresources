@@ -76,7 +76,7 @@ nginx_vhosts:
         root /usr/share/nginx/html;
       }
       location / {
-        proxy_pass http://127.0.0.1:8020/;
+        proxy_pass http://127.0.0.1:8095/;
         root /usr/share/nginx/html;
       }
 
