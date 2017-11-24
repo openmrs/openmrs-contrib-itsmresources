@@ -11,7 +11,7 @@
       owner: root
       group: root
       mode: 0755
-      src: files/backup-upload.sh
+      src: files/backups/backup-upload.sh
       dest: "/usr/sbin/backup-upload.sh"
   - name: Backup cron
     cron:
@@ -20,3 +20,17 @@
       minute: "0"
       hour: "4"
       job: "/usr/sbin/backup-upload.sh {{ inventory_hostname_short }} >> /home/backup-s3/backups.log 2>&1"
+  - name: Copy backup app home folders
+    copy:
+      owner: root
+      group: root
+      mode: 0755
+      src: files/backups/pack-app-home-folders.sh
+      dest: "/usr/sbin/pack-app-home-folders.sh"
+  - name: Backup cron
+    cron:
+      name: "backup-pack-home"
+      user: '{{ backup_user }}'
+      minute: "0"
+      hour: "1"
+      job: "/usr/sbin/pack-app-home-folders.sh {{ inventory_hostname_short }} >> /home/backup-s3/backups-pack.log 2>&1"
