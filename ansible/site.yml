@@ -84,6 +84,13 @@
   tags:
     - bamboo
 
+- hosts: bamboo-agent
+  become: true
+  tasks:
+   - include: tasks/bamboo-agent.yml
+  tags:
+    - bamboo-agent
+
 - hosts: crowd
   become: true
   roles:
