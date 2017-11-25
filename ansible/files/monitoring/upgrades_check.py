@@ -1,7 +1,7 @@
 # project
 from checks import AgentCheck
 from utils.platform import Platform
-
+import os, time, sys
 
 import subprocess
 import os.path
@@ -36,9 +36,10 @@ class UpdatesCheck(AgentCheck):
         self.gauge('updates.restart.required', pending_reboot)
 
         # pending reboot for a week
+        now = time.time()
         if pending_reboot and os.stat('/var/run/reboot-required').st_mtime < now - 7 * 86400:
             pending_reboot_belated = 1
-        else
+        else:
             pending_reboot_belated = 0
 
         self.gauge('updates.restart.belated', pending_reboot_belated)
