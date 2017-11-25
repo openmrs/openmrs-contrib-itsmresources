@@ -32,7 +32,17 @@ class UpdatesCheck(AgentCheck):
         self.gauge('updates.available', num_updates)
         self.gauge('updates.security', num_security)
 
-        self.gauge('updates.restart.required', os.path.isfile('/var/run/reboot-required'))
+        pending_reboot = os.path.isfile('/var/run/reboot-required')
+        self.gauge('updates.restart.required', pending_reboot)
+
+        # pending reboot for a week
+        if pending_reboot and os.stat('/var/run/reboot-required').st_mtime < now - 7 * 86400:
+            pending_reboot_belated = 1
+        else
+            pending_reboot_belated = 0
+
+        self.gauge('updates.restart.belated', pending_reboot_belated)
+
 
     def get_subprocess_output(self):
         """
