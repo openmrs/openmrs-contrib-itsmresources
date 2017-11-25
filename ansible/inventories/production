@@ -18,6 +18,7 @@ talk.openmrs.org
 thika.openmrs.org
 voi.openmrs.org
 watamu.openmrs.org
+yue.openmrs.org
 
 [full-ansible]
 ambam.openmrs.org
@@ -32,6 +33,7 @@ lobi.openmrs.org
 thika.openmrs.org
 voi.openmrs.org
 watamu.openmrs.org
+yue.openmrs.org
 
 [bamboo-legacy]
 bafia.openmrs.org
@@ -111,6 +113,9 @@ menji.openmrs.org
 
 [bamboo]
 lobi.openmrs.org
+
+[bamboo-agent]
+yue.openmrs.org
 
 [crowd]
 ambam.openmrs.org
