@@ -38,7 +38,7 @@ class UpdatesCheck(AgentCheck):
         # pending reboot for a week
         if pending_reboot and os.stat('/var/run/reboot-required').st_mtime < now - 7 * 86400:
             pending_reboot_belated = 1
-        else
+        else:
             pending_reboot_belated = 0
 
         self.gauge('updates.restart.belated', pending_reboot_belated)
