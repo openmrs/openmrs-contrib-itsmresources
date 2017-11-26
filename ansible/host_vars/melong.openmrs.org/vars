@@ -1,5 +1,5 @@
 ---
-# New JIRA
+# JIRA
 datadog_config:
   tags: "provider:jetstream-iu,environment:{{datadog_environment}},backup:{{backup_tag}},service:jira,ansible:full,provisioner:terraform"
 

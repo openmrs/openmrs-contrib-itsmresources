@@ -1,4 +1,5 @@
 [prod]
+ako.openmrs.org
 ambam.openmrs.org
 bafia.openmrs.org
 bafoussam.openmrs.org
@@ -19,8 +20,11 @@ thika.openmrs.org
 voi.openmrs.org
 watamu.openmrs.org
 yue.openmrs.org
+yokobue.openmrs.org
+yak.openmrs.org
 
 [full-ansible]
+ako.openmrs.org
 ambam.openmrs.org
 buea.openmrs.org
 campo.openmrs.org
@@ -34,6 +38,8 @@ thika.openmrs.org
 voi.openmrs.org
 watamu.openmrs.org
 yue.openmrs.org
+yokobue.openmrs.org
+yak.openmrs.org
 
 [bamboo-legacy]
 bafia.openmrs.org
@@ -41,6 +47,7 @@ bafut.openmrs.org
 banyo.openmrs.org
 
 [docker]
+ako.openmrs.org
 ambam.openmrs.org
 watamu.openmrs.org
 thika.openmrs.org
@@ -83,6 +90,7 @@ voi.openmrs.org
 lobi.openmrs.org
 
 [backup]
+ako.openmrs.org
 ambam.openmrs.org
 bafoussam.openmrs.org
 bamenda.openmrs.org
@@ -97,13 +105,6 @@ buea.openmrs.org
 voi.openmrs.org
 lobi.openmrs.org
 
-[ldap]
-ambam.openmrs.org
-batouri.openmrs.org
-
-[mongodb]
-ambam.openmrs.org
-batouri.openmrs.org
 
 [jira]
 melong.openmrs.org
@@ -121,3 +122,9 @@ yak.openmrs.org
 
 [crowd]
 ambam.openmrs.org
+
+[ldap]
+batouri.openmrs.org
+
+[mongodb]
+batouri.openmrs.org
