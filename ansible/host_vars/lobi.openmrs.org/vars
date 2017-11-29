@@ -44,11 +44,11 @@ nginx_vhosts:
         root /usr/share/nginx/html;
       }
   - listen: "80"
-    server_name: "ci-new.openmrs.org"
+    server_name: "ci.openmrs.org"
     extra_parameters: |
       return 301 https://$host$request_uri;
   - listen: "443 ssl"
-    server_name: "ci-new.openmrs.org"
+    server_name: "ci.openmrs.org"
     extra_parameters: |
       access_log /var/log/nginx/ci_access.log;
       error_log /var/log/nginx/ci_error.log;
