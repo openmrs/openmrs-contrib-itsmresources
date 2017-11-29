@@ -17,7 +17,7 @@ datadog_config:
 
 letsencrypt_cert_domains:
    - lobi.openmrs.org
-   - ci-new.openmrs.org
+   - ci.openmrs.org
 
 docker_deployment:
    - database
@@ -80,5 +80,5 @@ mysql_connector_java_user: '{{ bamboo_user }}'
 mysql_connector_java_archive: 'mysql-connector-java-5.1.44.tar.gz'
 mysql_connector_java_jar: 'mysql-connector-java-5.1.44-bin.jar'
 mysql_connector_java_checksum: 'sha256:7419a235c63f61c72b7e2e078e68350924ea95cffea3f5808d70e497410c8232'
-bamboo_proxy_name: 'ci-new.openmrs.org'
+bamboo_proxy_name: 'ci.openmrs.org'
 bamboo_scheme: 'https'
