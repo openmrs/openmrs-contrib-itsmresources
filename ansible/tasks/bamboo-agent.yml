@@ -1,5 +1,20 @@
 ---
-  - name: Install puppet agent
-    package:
-      name: puppet
-      state: latest
+  - name: Remove previous puppet clone
+    file:
+      name: "puppet"
+      state: absent
+  - name: clone puppet repository
+    shell: GIT_SSH_COMMAND='ssh -i /root/.ssh/github_id_rsa' git clone --depth 1 git@github.com:openmrs/openmrs-contrib-itsmresources.git puppet
+  - name: Remove previous puppet folder
+    file:
+      name: "/etc/puppet"
+      state: absent
+  - name: Recreate puppet folder
+    shell: mv puppet/bamboo-agents-puppet /etc/puppet
+  - name: Bootstrap puppet
+    shell: bash /etc/puppet/bin/first-boot.sh
+  - name: Run puppet (it can take a long time)
+    shell: bash /etc/puppet/bin/run-puppet.sh
+    register: puppet_output
+  - name: Print puppet output
+    debug: var=puppet_output.stdout
