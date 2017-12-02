@@ -79,8 +79,8 @@ confluence_archive: "atlassian-confluence-6.5.0.tar.gz"
 confluence_catalina: "/opt/confluence"
 confluence_checksum: "sha256:16b4deb2e3309b3b9daf08ed127f588f3498b33e97ee8dc6ca2a7fe68b612adf"
 confluence_home: "/data/confluence_home"
-confluence_jvm_maximum_memory: "4096m"
-confluence_jvm_minimum_memory: "2048m"
+confluence_jvm_maximum_memory: "6144m"
+confluence_jvm_minimum_memory: "4096m"
 confluence_proxy_name: 'wiki.openmrs.org'
 confluence_scheme: 'https'
 confluence_url: "https://downloads.atlassian.com/software/confluence/downloads/{{ confluence_archive }}"
