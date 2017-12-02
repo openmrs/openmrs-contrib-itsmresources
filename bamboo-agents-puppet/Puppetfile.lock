@@ -1,0 +1,32 @@
+FORGE
+  remote: https://forgeapi.puppetlabs.com
+  specs:
+    cintiadr-bamboo_agent (0.0.14)
+      kayak-r9util (>= 0.0.3)
+      puppetlabs-java (>= 0.2.0)
+      puppetlabs-stdlib (>= 3.2.0)
+    garethr-docker (5.3.0)
+      puppetlabs-apt (<= 3.0.0, >= 1.8.0)
+      puppetlabs-stdlib (>= 4.1.0)
+      stahnma-epel (>= 0.0.6)
+    kayak-r9util (0.0.9)
+      puppetlabs-stdlib (>= 3.2.0)
+    maestrodev-wget (1.7.3)
+    puppet-nodejs (2.3.0)
+      puppetlabs-stdlib (< 5.0.0, >= 4.6.0)
+    puppetlabs-apt (2.3.0)
+      puppetlabs-stdlib (< 5.0.0, >= 4.5.0)
+    puppetlabs-java (1.6.0)
+      puppetlabs-stdlib (< 5.0.0, >= 2.4.0)
+    puppetlabs-stdlib (4.15.0)
+    stahnma-epel (1.2.2)
+      puppetlabs-stdlib (>= 3.0.0)
+
+DEPENDENCIES
+  cintiadr-bamboo_agent (>= 0)
+  garethr-docker (>= 0)
+  maestrodev-wget (>= 0)
+  puppet-nodejs (>= 0)
+  puppetlabs-apt (>= 0)
+  puppetlabs-stdlib (>= 0)
+

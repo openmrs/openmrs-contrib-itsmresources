@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<settings>
+  <servers>
+    <server>
+      <id>openmrs-repo-releases</id>
+      <username>ci</username>
+      <password>restricts7904956(overabundantly</password>
+    </server>
+    <server>
+      <id>openmrs-repo-snapshots</id>
+      <username>ci</username>
+      <password>restricts7904956(overabundantly</password>
+    </server>
+    <server>
+      <id>openmrs-repo-modules</id>
+      <username>ci</username>
+      <password>restricts7904956(overabundantly</password>
+    </server>
+    <server>
+      <id>openmrs-repo-contrib</id>
+      <username>ci</username>
+      <password>restricts7904956(overabundantly</password>
+    </server>
+  </servers>
+
+  <profiles>
+      <profile>
+          <id>defaultProfile</id>
+          <activation>
+              <activeByDefault>true</activeByDefault>
+          </activation>
+          <properties>
+              <!-- Example for MySQL-->
+              <sonar.jdbc.url>
+                jdbc:mysql://sonar.openmrs.org:3306/sonar?useUnicode=true&amp;characterEncoding=utf8
+              </sonar.jdbc.url>
+              <sonar.jdbc.username>sonar</sonar.jdbc.username>
+              <sonar.jdbc.password>gElktJf21lAo0Vf8R6JZdhoSawqf</sonar.jdbc.password>
+
+              <!-- Optional URL to server. Default value is http://localhost:9000 -->
+              <sonar.host.url>
+                https://sonar.openmrs.org/sonar
+              </sonar.host.url>
+          </properties>
+          <!-- Always retrieve latest snapshots and version range -->
+          <repositories>
+                <repository>
+                    <id>openmrs-repo</id>
+                    <url>http://mavenrepo.openmrs.org/nexus/content/repositories/public</url>
+                    <snapshots>
+                        <enabled>true</enabled>
+                        <updatePolicy>always</updatePolicy>
+                        <checksumPolicy>warn</checksumPolicy>
+                    </snapshots>
+                    <releases>
+                        <enabled>true</enabled>
+                        <checksumPolicy>warn</checksumPolicy>
+                        <updatePolicy>always</updatePolicy>
+                    </releases>
+                </repository>
+            </repositories>
+
+            <pluginRepositories>
+                <pluginRepository>
+                    <id>openmrs-repo</id>
+                    <url>http://mavenrepo.openmrs.org/nexus/content/repositories/public</url>
+                    <releases>
+                        <checksumPolicy>warn</checksumPolicy>
+                        <enabled>true</enabled>
+                        <updatePolicy>always</updatePolicy>
+                    </releases>
+                    <snapshots>
+                        <enabled>false</enabled>
+                    </snapshots>
+                </pluginRepository>
+            </pluginRepositories>
+      </profile>
+  </profiles>
+
+</settings>

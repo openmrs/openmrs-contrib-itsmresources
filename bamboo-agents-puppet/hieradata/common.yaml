@@ -1,0 +1,16 @@
+---
+bamboo_agent_home::bamboo_user_1: 'bamboo-agent-1'
+bamboo_agent_home::bamboo_user_2: 'bamboo-agent-2'
+bamboo_agent_home::bamboo_user_home_1: '/home/bamboo-agent-1'
+bamboo_agent_home::bamboo_user_home_2: '/home/bamboo-agent-2'
+profiles::java_buildtime::maven3_version: "3.2.5"
+profiles::ruby_buildtime::grails_version: '2.3.7'
+
+
+profiles::docker::users: [ "%{hiera('bamboo_agent_home::bamboo_user_1')}", "%{hiera('bamboo_agent_home::bamboo_user_2')}"]
+profiles::bamboo_agent::bamboo_user_1: "%{hiera('bamboo_agent_home::bamboo_user_1')}"
+profiles::bamboo_agent::bamboo_user_2: "%{hiera('bamboo_agent_home::bamboo_user_2')}"
+profiles::bamboo_agent::bamboo_user_home_1: "%{hiera('bamboo_agent_home::bamboo_user_home_1')}"
+profiles::bamboo_agent::bamboo_user_home_2: "%{hiera('bamboo_agent_home::bamboo_user_home_2')}"
+profiles::bamboo_agent::maven3_version: "%{hiera('profiles::java_buildtime::maven3_version')}"
+profiles::bamboo_agent::grails_version: "%{hiera('profiles::ruby_buildtime::grails_version')}"
