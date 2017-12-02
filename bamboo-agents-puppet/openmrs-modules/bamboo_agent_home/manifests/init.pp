@@ -1,18 +1,10 @@
 class bamboo_agent_home (
-  $bamboo_user_1 = hiera('bamboo_agent_home::bamboo_user_1'),
-  $bamboo_user_2 = hiera('bamboo_agent_home::bamboo_user_2'),
-  $bamboo_user_home_1 = hiera('bamboo_agent_home::bamboo_user_home_1'),
-  $bamboo_user_home_2 = hiera('bamboo_agent_home::bamboo_user_home_2'),
+  $bamboo_user = hiera('bamboo_agent_home::bamboo_user'),
+  $bamboo_user_home = hiera('bamboo_agent_home::bamboo_user_home'),
 ){
-  user { $bamboo_user_1:
+  user { $bamboo_user:
     ensure     => 'present',
     managehome => true,
-    home       => $bamboo_user_home_1,
-  }
-
-  user { $bamboo_user_2:
-    ensure     => 'present',
-    managehome => true,
-    home       => $bamboo_user_home_2,
+    home       => $bamboo_user_home,
   }
 }

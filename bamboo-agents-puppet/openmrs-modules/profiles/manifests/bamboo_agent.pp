@@ -1,9 +1,7 @@
 class profiles::bamboo_agent (
   $bamboo_server,
-  $bamboo_user_home_1,
-  $bamboo_user_1,
-  $bamboo_user_home_2,
-  $bamboo_user_2,
+  $bamboo_user_home,
+  $bamboo_user,
   $maven3_version,
   $grails_version,
 ) {
@@ -21,18 +19,9 @@ class profiles::bamboo_agent (
           'wrapper_conf_properties' => {
               'wrapper.java.command' => '/usr/lib/jvm/java-8-openjdk-amd64/jre/bin/java',
            },
-	        'home'            => "$bamboo_user_home_1/bamboo-agent",
-	        'user_name'       => $bamboo_user_1,
-	        'group'           => $bamboo_user_1,
-	        'private_tmp_dir' => true,
-	    },
-	    '2' => {
-          'wrapper_conf_properties' => {
-              'wrapper.java.command' => '/usr/lib/jvm/java-8-openjdk-amd64/jre/bin/java',
-           },
-	        'home'            => "$bamboo_user_home_2/bamboo-agent",
-	        'user_name'       => $bamboo_user_2,
-	        'group'           => $bamboo_user_2,
+	        'home'            => "$bamboo_user_home/bamboo-agent",
+	        'user_name'       => $bamboo_user,
+	        'group'           => $bamboo_user,
 	        'private_tmp_dir' => true,
 	    }
 	  },

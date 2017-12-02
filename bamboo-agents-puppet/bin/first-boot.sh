@@ -1,4 +1,8 @@
-#!/bin/bash -eu
+#!/bin/bash
+
+set -e
+set -u
+set -x
 
 GUARD_FILE="/var/run/first_boot_puppet.lock"
 

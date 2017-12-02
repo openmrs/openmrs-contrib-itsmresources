@@ -1,6 +1,5 @@
 define bamboo_agent_home::directory (
-  $bamboo_user_1 = hiera('bamboo_agent_home::bamboo_user_1'),
-  $bamboo_user_2 = hiera('bamboo_agent_home::bamboo_user_2'),
+  $bamboo_user = hiera('bamboo_agent_home::bamboo_user'),
   $destination = $name,
   $mode   = '700',
   $recurse = false,
@@ -10,27 +9,15 @@ define bamboo_agent_home::directory (
 ){
   include ::bamboo_agent_home
 
-  file { "/home/${bamboo_user_1}/${destination}":
+  file { "/home/${bamboo_user}/${destination}":
     ensure  => directory,
     mode    => $mode,
     recurse => $recurse,
     purge   => $purge,
     force   => $force,
     source  => $source,
-    owner   => $bamboo_user_1,
-    group   => $bamboo_user_1,
-    require => User[$bamboo_user_1],
-  }
-
-  file { "/home/${bamboo_user_2}/${destination}":
-    ensure  => directory,
-    mode    => $mode,
-    recurse => $recurse,
-    purge   => $purge,
-    force   => $force,
-    source  => $source,
-    owner   => $bamboo_user_2,
-    group   => $bamboo_user_2,
-    require => User[$bamboo_user_2],
+    owner   => $bamboo_user,
+    group   => $bamboo_user,
+    require => User[$bamboo_user],
   }
 }

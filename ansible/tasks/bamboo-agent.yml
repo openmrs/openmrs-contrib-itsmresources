@@ -11,10 +11,10 @@
       state: absent
   - name: Recreate puppet folder
     shell: mv puppet/bamboo-agents-puppet /etc/puppet
-  - name: Bootstrap puppet
-    shell: bash /etc/puppet/bin/first-boot.sh
-  - name: Run puppet (it can take a long time)
-    shell: bash /etc/puppet/bin/run-puppet.sh
+  - name: Bootstrap puppet ( it can take a long time - logs in /var/log/puppet-bootstrap.log)
+    shell: bash /etc/puppet/bin/first-boot.sh | tee /var/log/puppet-bootstrap.log
+  - name: Run puppet ( it can take a long time - logs in /var/log/puppet-runs.log)
+    shell: bash /etc/puppet/bin/run-puppet.sh | tee /var/log/puppet-runs.log
     register: puppet_output
-  - name: Print puppet output
-    debug: var=puppet_output.stdout
+  # - name: Print puppet output
+  #   debug: var=puppet_output.stdout

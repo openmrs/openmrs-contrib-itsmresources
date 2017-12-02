@@ -6,6 +6,8 @@ Installation of Bamboo Agents.
 
 ## Updating Production/Staging machines
 ```
+$ cd /etc/puppet
+$ git pull
 $ /etc/puppet/bin/run-puppet.sh
 ```
 
@@ -39,7 +41,6 @@ $ git clone git@github.com:openmrs/openmrs-contrib-bambooagent.git puppet
 ### Running puppet for the first time
 ```
 $ /etc/puppet/bin/first-boot.sh
-$ gem install librarian-puppet
 $ /etc/puppet/bin/run-puppet.sh
 ```
 
