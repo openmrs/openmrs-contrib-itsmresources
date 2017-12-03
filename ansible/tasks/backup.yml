@@ -30,7 +30,7 @@
   - name: Backup cron
     cron:
       name: "backup-pack-home"
-      user: '{{ backup_user }}'
+      user: 'root'
       minute: "0"
       hour: "1"
       job: "/usr/sbin/pack-app-home-folders.sh {{ inventory_hostname_short }} >> /home/backup-s3/backups-pack.log 2>&1"
