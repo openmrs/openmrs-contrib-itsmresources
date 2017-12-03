@@ -1,16 +1,15 @@
 ---
-  - name: Remove previous puppet clone
-    file:
-      name: "puppet"
-      state: absent
-  - name: clone puppet repository
-    shell: GIT_SSH_COMMAND='ssh -i /root/.ssh/github_id_rsa' git clone --depth 1 git@github.com:openmrs/openmrs-contrib-itsmresources.git puppet
-  - name: Remove previous puppet folder
+  - name: 'Delete old puppet files'
     file:
       name: "/etc/puppet"
       state: absent
-  - name: Recreate puppet folder
-    shell: mv puppet/bamboo-agents-puppet /etc/puppet
+  - name: Copy puppet files
+    copy:
+      owner: 'root'
+      group: 'root'
+      mode: 0700
+      src: ../bamboo-agents-puppet/
+      dest: /etc/puppet
   - name: Bootstrap puppet ( it can take a long time - logs in /var/log/puppet-bootstrap.log)
     shell: bash /etc/puppet/bin/first-boot.sh | tee /var/log/puppet-bootstrap.log
   - name: Run puppet ( it can take a long time - logs in /var/log/puppet-runs.log)

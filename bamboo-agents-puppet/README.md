@@ -6,43 +6,21 @@ Installation of Bamboo Agents.
 
 ## Updating Production/Staging machines
 ```
-$ cd /etc/puppet
-$ git pull
+$ /etc/puppet/bin/pull-changes.sh
 $ /etc/puppet/bin/run-puppet.sh
 ```
 
 ## New Production/Staging machines
 
 ### Requirements
-  - Ubuntu 14.04
+  - Ubuntu 16.04
   - Puppet 3.x/Hiera/facter
 This tree doesn't work with puppet 4.
 
 ### Setting up new machine
-#### Configuring git SSH
-```
-mkdir -p /root/.ssh
-```
 
-From your machine:
-```
-# copy files from this repository using, for example, scp
-scp files/bamboo-github-key/id_rsa $SERVER:/root/.ssh/
-scp files/ssh/config $SERVER:/root/.ssh/
-```
-
-#### Clone this repository into puppet folder
-```
-$ cd /etc
-$ mv puppet puppet_old
-$ git clone git@github.com:openmrs/openmrs-contrib-bambooagent.git puppet
-```
-
-### Running puppet for the first time
-```
-$ /etc/puppet/bin/first-boot.sh
-$ /etc/puppet/bin/run-puppet.sh
-```
+ - SSH key for clone is configured via terraform
+ - Files are initially copied from ansible  
 
 
 ## Development environment
