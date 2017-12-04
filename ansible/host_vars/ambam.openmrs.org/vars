@@ -16,7 +16,7 @@ datadog_config:
 letsencrypt_cert_domains:
    - ambam.openmrs.org
    - id-new.openmrs.org
-   - crowd-new.openmrs.org
+   - crowd.openmrs.org
 
 
 docker_deployment:
@@ -62,11 +62,11 @@ nginx_vhosts:
         root /usr/share/nginx/html;
       }
   - listen: "80"
-    server_name: "crowd-new.openmrs.org"
+    server_name: "crowd.openmrs.org"
     extra_parameters: |
       return 301 https://$host$request_uri;
   - listen: "443 ssl"
-    server_name: "crowd-new.openmrs.org"
+    server_name: "crowd.openmrs.org"
     extra_parameters: |
       access_log /var/log/nginx/deployer_access.log;
       error_log /var/log/nginx/deployer_error.log;
@@ -91,7 +91,7 @@ crowd_checksum: "sha256:84acbfbeed4dd50b72d6da0a5eb0952a0d70a9c0cc7c8d42fe8e3d72
 crowd_home: "/data/crowd_home"
 crowd_jvm_maximum_memory: "4096m"
 crowd_jvm_minimum_memory: "2048m"
-crowd_proxy_name: 'crowd-new.openmrs.org'
+crowd_proxy_name: 'crowd.openmrs.org'
 crowd_scheme: 'https'
 crowd_url: "https://downloads.atlassian.com/software/crowd/downloads/{{ crowd_archive }}"
 mysql_connector_java_dest: '{{ crowd_catalina }}/lib'
