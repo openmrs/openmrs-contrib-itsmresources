@@ -5,19 +5,27 @@ mdsbuilder.openmrs.org # devtest00.openmrs.org
 gw123.iu.xsede.org	# devtest04.openmrs.org
 narok.openmrs.org
 dowa.openmrs.org
+goura.openmrs.org
 
 [full-ansible]
 narok.openmrs.org
 dowa.openmrs.org
+goura.openmrs.org
 
 [docker]
 narok.openmrs.org
 dowa.openmrs.org
+goura.openmrs.org
 
 [web]
 narok.openmrs.org
 dowa.openmrs.org
+goura.openmrs.org
 
 [tls]
 narok.openmrs.org
 dowa.openmrs.org
+goura.openmrs.org
+
+[backup]
+goura.openmrs.org
