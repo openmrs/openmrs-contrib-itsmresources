@@ -22,14 +22,16 @@
   handlers:
     - include: handlers/monitoring.yml
 
-- hosts: web-tls
+- hosts: tls
   become: true
   tasks:
-    - include: tasks/nginx-hacks.yml
+    - include: tasks/extra-tls.yml
   roles:
     - dhparam
     - letsencrypt
-
+  handlers:
+    - include: handlers/monitoring.yml
+    
 - hosts: web
   become: true
   roles:

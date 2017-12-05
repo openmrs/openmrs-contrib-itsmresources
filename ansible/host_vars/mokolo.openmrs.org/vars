@@ -1,10 +1,10 @@
 ---
-# Docker host (jetstream) with openmrs instances
+# Docker host (jetstream) for sonarqube
 users:
- bamboo:
-  comment: CI Bamboo User
+ raff:
+  comment: Rafal
   groups: 'admin'
-  ssh_key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDQQ+SCzrYNUlDlCoUJMrgNa+NvKX3dlog6LrcOYAt45ovpCOEhv46I0cGm3ZrarOejjseKWVsCrN1YSt7q9IDc/tZZH9fpQy5AvssZH6b4Vo799/4ig7iZWAJAXHKMxKh0mqgifbtP8EImvE3zmeBD8LlyvvF3cw2T2wg5Jh5bN/p7hUrEU7oGAbJR0TMMUY2/ZAzqzJ6RWHn03PBhG70MYxXhQD93RsEocEUecNRibqGMJm8JjBUumZCoIZWFH8J9W0MKuYNrndvQ60xVZbumQaWQ1pdrXEfNy//xslLTbH/+fZhWK8ilrwnkTHJeCHnhFZ6E0LRP5dbnYxYzHoxLsRz7G3Z/H0Cb5ffUcODjmGp9IsK/MIeE+DKe4mvEitkUwj1EI4PpadvZ2qyn4X0ks2WDFdlNvhjR1PJvHIL7GfrDqhLxazVI3bzUZVRSrD1sKoSIfISn6mRZcDbdyMSgYjzn4YjEmUM+Jkh0QWdBySMn/xj96Pqeyk0EaJ//Ru5w6SXemZ6QeWP2spKdB+KUhB6Xdp5+41UZ3i4jtpmU8+wzOQiXzPvmxGYdsSJWZvD0fm6PH5z1MgM68fVGqmrnZWWTUWuLVTeQRNa95GjSjB6AV4tZyTC4lLlBSLCWRNr55JmDif5YJxD322Lzf5Li5rKUiQuif3655jqVaEpiow== bambooagent"
+  ssh_key: "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAgc4Q+9e1XMDInFm4GNkuYErYkgDt0KNnmLDTFa+0HV1MuQKP+TE3Ee9Qdx5rugNkg9+e45Hzfze/vX/nYjrNAkWcxYaxEAdej/6QW4Bh4r6rRLnNoqnksG3+WVXl2cqOf9odji2L+uzA2E+zX5tEYqVkN9+0z1Ewwe6lcSg0zRQyJ+phIo595eftYJGAiLAhIfSotg8SxWJhSHUsNtphyXRld7FtxXDgfu6SkejvakymwXEuMe7yS2mES9U8IlJh4CyADGaqb0WSWfqsejcgMuXJmnEqpMqVwcDaP4B+NZLTKfUUlc2D8DiUKRqlnxuGCFmkpghTQkX4dE0YhxJSjQ== raff"
 
 
 datadog_config:
@@ -15,7 +15,7 @@ docker_deployment: []
 docker_deployable_images: []
 
 letsencrypt_cert_domains:
-  - goura.openmrs.org
+  - mokolo.openmrs.org
   - sonar-new.openmrs.org
 
 nginx_vhosts:
@@ -28,8 +28,8 @@ nginx_vhosts:
    extra_parameters: |
      access_log /var/log/nginx/sonar_access.log;
      error_log /var/log/nginx/sync1_error.log;
-     ssl_certificate /etc/letsencrypt/live/goura.openmrs.org/fullchain.pem;
-     ssl_certificate_key /etc/letsencrypt/live/goura.openmrs.org/privkey.pem;
+     ssl_certificate /etc/letsencrypt/live/mokolo.openmrs.org/fullchain.pem;
+     ssl_certificate_key /etc/letsencrypt/live/mokolo.openmrs.org/privkey.pem;
      location ^~ /.well-known/acme-challenge/ {
        root /usr/share/nginx/html;
      }
@@ -42,12 +42,12 @@ nginx_vhosts:
        proxy_pass http://127.0.0.1:8080/sonar;
      }
  - listen: "443 ssl"
-   server_name: "goura.openmrs.org"
+   server_name: "mokolo.openmrs.org"
    extra_parameters: |
      access_log /var/log/nginx/deployer_access.log;
      error_log /var/log/nginx/deployer_error.log;
-     ssl_certificate /etc/letsencrypt/live/goura.openmrs.org/fullchain.pem;
-     ssl_certificate_key /etc/letsencrypt/live/goura.openmrs.org/privkey.pem;
+     ssl_certificate /etc/letsencrypt/live/mokolo.openmrs.org/fullchain.pem;
+     ssl_certificate_key /etc/letsencrypt/live/mokolo.openmrs.org/privkey.pem;
      location ^~ /.well-known/acme-challenge/ {
        root /usr/share/nginx/html;
      }

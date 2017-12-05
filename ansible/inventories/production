@@ -68,6 +68,7 @@ lobi.openmrs.org
 mokolo.openmrs.org
 
 [web]
+ako.openmrs.org
 ambam.openmrs.org
 watamu.openmrs.org
 garissa.openmrs.org
@@ -83,7 +84,8 @@ voi.openmrs.org
 lobi.openmrs.org
 mokolo.openmrs.org
 
-[web-tls]
+[tls]
+ako.openmrs.org
 ambam.openmrs.org
 watamu.openmrs.org
 garissa.openmrs.org
