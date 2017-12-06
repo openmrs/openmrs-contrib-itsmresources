@@ -12,6 +12,7 @@ datadog_config:
 letsencrypt_cert_domains:
    - ako.openmrs.org
    - ldap.openmrs.org
+   - authentication.openmrs.org
 
 docker_deployment:
    - ldap
