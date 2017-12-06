@@ -55,5 +55,12 @@ nginx_vhosts:
        proxy_pass http://127.0.0.1:3000/;
      }
 
+# remote agents need to connect directly to mysql
+ufw_rules:
+   ldap:
+     port: 3306
+     proto: tcp
+     rule: allow
+
 aws_access_key_id: '{{ vault_aws_access_key_id }}'
 aws_secret_access_key: '{{ vault_aws_secret_access_key }}'
