@@ -6,6 +6,7 @@ bafoussam.openmrs.org
 bafut.openmrs.org
 banyo.openmrs.org
 batouri.openmrs.org
+baragoi.openmrs.org
 buea.openmrs.org
 campo.openmrs.org
 garissa.openmrs.org
@@ -27,6 +28,7 @@ yak.openmrs.org
 [full-ansible]
 ako.openmrs.org
 ambam.openmrs.org
+baragoi.openmrs.org
 buea.openmrs.org
 campo.openmrs.org
 garissa.openmrs.org
@@ -63,6 +65,7 @@ buea.openmrs.org
 voi.openmrs.org
 lobi.openmrs.org
 mokolo.openmrs.org
+baragoi.openmrs.org
 
 [web]
 ako.openmrs.org
@@ -79,6 +82,7 @@ buea.openmrs.org
 voi.openmrs.org
 lobi.openmrs.org
 mokolo.openmrs.org
+baragoi.openmrs.org
 
 [tls]
 ako.openmrs.org
@@ -95,6 +99,7 @@ buea.openmrs.org
 voi.openmrs.org
 lobi.openmrs.org
 mokolo.openmrs.org
+baragoi.openmrs.org
 
 [backup]
 ako.openmrs.org
@@ -112,6 +117,7 @@ buea.openmrs.org
 voi.openmrs.org
 lobi.openmrs.org
 mokolo.openmrs.org
+baragoi.openmrs.org
 
 [jira]
 melong.openmrs.org

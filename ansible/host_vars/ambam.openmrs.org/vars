@@ -1,5 +1,5 @@
 ---
-# New ID
+# New Crowd
 users:
  sparsha:
    comment: Sparsha Dotel
@@ -15,7 +15,6 @@ datadog_config:
 
 letsencrypt_cert_domains:
    - ambam.openmrs.org
-   - id-new.openmrs.org
    - crowd.openmrs.org
 
 
@@ -31,24 +30,6 @@ nginx_vhosts:
       return 301 https://$host$request_uri;
   - listen: "443 ssl"
     server_name: "ambam.openmrs.org"
-    extra_parameters: |
-      access_log /var/log/nginx/deployer_access.log;
-      error_log /var/log/nginx/deployer_error.log;
-      ssl_certificate /etc/letsencrypt/live/ambam.openmrs.org/fullchain.pem;
-      ssl_certificate_key /etc/letsencrypt/live/ambam.openmrs.org/privkey.pem;
-      location ^~ /.well-known/acme-challenge/ {
-        root /usr/share/nginx/html;
-      }
-      location / {
-        #proxy_pass http://127.0.0.1:8080/;
-        root /usr/share/nginx/html;
-      }
-  - listen: "80"
-    server_name: "id-new.openmrs.org"
-    extra_parameters: |
-      return 301 https://$host$request_uri;
-  - listen: "443 ssl"
-    server_name: "id-new.openmrs.org"
     extra_parameters: |
       access_log /var/log/nginx/deployer_access.log;
       error_log /var/log/nginx/deployer_error.log;
