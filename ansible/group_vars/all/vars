@@ -48,6 +48,9 @@ ufw_rules:
     proto: tcp
     rule: allow
 
+datadog_config:
+  process_agent_enabled: "true"
+
 datadog_checks:
   upgrades_check:
     init_config:
