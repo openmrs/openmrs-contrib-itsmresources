@@ -57,7 +57,7 @@ nginx_vhosts:
 
 # remote agents need to connect directly to mysql
 ufw_rules:
-   ldap:
+   mysql:
      port: 3306
      proto: tcp
      rule: allow
