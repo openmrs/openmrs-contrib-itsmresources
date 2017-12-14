@@ -17,7 +17,8 @@ letsencrypt_cert_domains:
    - baragoi.openmrs.org
    - id-new.openmrs.org
 
-docker_deployment: []
+docker_deployment:
+  - id
 
 docker_deployable_images: []
 
