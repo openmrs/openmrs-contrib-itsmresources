@@ -70,8 +70,8 @@ aws_secret_access_key: '{{ vault_aws_secret_access_key }}'
 bamboo_pass: '{{ vault_bamboo_pass }}'
 bamboo_hash_salt: '{{ vault_bamboo_hash_salt }}'
 bamboo_user: 'bamboo'
-bamboo_checksum: 'sha256:b4058f68c905a3c0d8c483982f53a01e69f386fe77fc50254640e48862821fb1'
-bamboo_archive: "atlassian-bamboo-6.2.2.tar.gz"
+bamboo_checksum: 'sha256:de739d5b4d8c598588d4f7ea40006b1eaf8ac8a22d15d1226cf0b90726803e9c'
+bamboo_archive: "atlassian-bamboo-6.2.5.tar.gz"
 bamboo_catalina: "/opt/bamboo"
 bamboo_home: "/data/bamboo_home"
 bamboo_jvm_maximum_memory: "4096m"
