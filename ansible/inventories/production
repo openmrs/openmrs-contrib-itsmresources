@@ -108,7 +108,6 @@ baragoi.openmrs.org
 ako.openmrs.org
 ambam.openmrs.org
 bafoussam.openmrs.org
-bamenda.openmrs.org
 banyo.openmrs.org
 nairobi.openmrs.org
 batouri.openmrs.org
@@ -122,6 +121,17 @@ lobi.openmrs.org
 mokolo.openmrs.org
 baragoi.openmrs.org
 salima.openmrs.org
+
+[id]
+ako.openmrs.org
+ambam.openmrs.org
+baragoi.openmrs.org
+
+[atlassian]
+melong.openmrs.org
+menji.openmrs.org
+lobi.openmrs.org
+ambam.openmrs.org
 
 [jira]
 melong.openmrs.org
