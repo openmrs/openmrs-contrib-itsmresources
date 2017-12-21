@@ -1,32 +1,28 @@
 [test]
-gw145.iu.xsede.org	# int01.openmrs.org
-gw152.iu.xsede.org	# uat01.openmrs.org
-mdsbuilder.openmrs.org # devtest00.openmrs.org
-gw123.iu.xsede.org	# devtest04.openmrs.org
-narok.openmrs.org
 dowa.openmrs.org
 goura.openmrs.org
+narok.openmrs.org
 
 [full-ansible]
-narok.openmrs.org
 dowa.openmrs.org
 goura.openmrs.org
+narok.openmrs.org
 
 [docker]
-narok.openmrs.org
 dowa.openmrs.org
 goura.openmrs.org
+narok.openmrs.org
 
 [web]
-narok.openmrs.org
 dowa.openmrs.org
 goura.openmrs.org
+narok.openmrs.org
 
 [tls]
-narok.openmrs.org
 dowa.openmrs.org
 goura.openmrs.org
+narok.openmrs.org
 
 [backup]
-goura.openmrs.org
 dowa.openmrs.org
+goura.openmrs.org
