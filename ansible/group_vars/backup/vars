@@ -9,3 +9,10 @@ users:
 aws_output_format: 'json'
 aws_region: 'us-west-2'
 aws_cli_user: '{{backup_user}}'
+
+
+datadog_checks:
+  backups_pending_check:
+    init_config:
+    instances:
+        - foo: bar

@@ -31,7 +31,7 @@
     - letsencrypt
   handlers:
     - include: handlers/monitoring.yml
-    
+
 - hosts: web
   become: true
   roles:
@@ -45,7 +45,9 @@
    - include: tasks/backup.yml
   roles:
    - aws-cli
-
+  handlers:
+    - include: handlers/monitoring.yml
+    
 - hosts: docker
   become: true
   tags:

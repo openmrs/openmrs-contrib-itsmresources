@@ -1,11 +1,19 @@
 ---
+  - name: Copy datadog check for backups
+    copy:
+      owner: dd-agent
+      group: dd-agent
+      mode: 0755
+      src: files/monitoring/backups_pending_check.py
+      dest: /opt/datadog-agent/agent/checks.d
+    notify: restart datadog-agent
   - name: Add backup directory
     file:
       state: 'directory'
       path: "/opt/backups"
       owner: '{{ backup_user }}'
       group: '{{ backup_user }}'
-      mode: "0711"
+      mode: "0755"
   - name: Copy backup uploader
     copy:
       owner: root
