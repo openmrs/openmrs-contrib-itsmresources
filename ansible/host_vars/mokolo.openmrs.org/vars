@@ -14,7 +14,8 @@ users:
 datadog_config:
   tags: "provider:jetstream-iu,environment:{{datadog_environment}},backup:{{backup_tag}},service:sonarqube,ansible:full,provisioner:terraform"
 
-docker_deployment: []
+docker_deployment:
+  - sonar
 
 docker_deployable_images: []
 
@@ -38,12 +39,9 @@ nginx_vhosts:
        root /usr/share/nginx/html;
      }
      location / {
-       return 301 https://sonar-new.openmrs.org/openmrs;
-     }
-     location /sonar {
        proxy_set_header HOST $host;
        proxy_set_header  X-Forwarded-Proto $scheme;
-       proxy_pass http://127.0.0.1:8080/sonar;
+       proxy_pass http://127.0.0.1:9000;
      }
  - listen: "443 ssl"
    server_name: "mokolo.openmrs.org"
