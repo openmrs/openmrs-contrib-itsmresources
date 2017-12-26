@@ -39,7 +39,7 @@
 
               <!-- Optional URL to server. Default value is http://localhost:9000 -->
               <sonar.host.url>
-                https://sonar-internal.openmrs.org
+                https://sonar.openmrs.org
               </sonar.host.url>
           </properties>
           <!-- Always retrieve latest snapshots and version range -->
