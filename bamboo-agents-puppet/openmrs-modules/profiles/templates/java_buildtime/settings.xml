@@ -32,14 +32,14 @@
           <properties>
               <!-- Example for MySQL-->
               <sonar.jdbc.url>
-                jdbc:mysql://sonar.openmrs.org:3306/sonar?useUnicode=true&amp;characterEncoding=utf8
+                jdbc:mysql://sonar-internal.openmrs.org:3306/openmrs?useUnicode=true&amp;characterEncoding=utf8
               </sonar.jdbc.url>
-              <sonar.jdbc.username>sonar</sonar.jdbc.username>
-              <sonar.jdbc.password>gElktJf21lAo0Vf8R6JZdhoSawqf</sonar.jdbc.password>
+              <sonar.jdbc.username>openmrs</sonar.jdbc.username>
+              <sonar.jdbc.password>jFfBRsYN34VCapfajBsPYmQk8QqK?YXP8v3e</sonar.jdbc.password>
 
               <!-- Optional URL to server. Default value is http://localhost:9000 -->
               <sonar.host.url>
-                https://sonar.openmrs.org/sonar
+                https://sonar-internal.openmrs.org
               </sonar.host.url>
           </properties>
           <!-- Always retrieve latest snapshots and version range -->
