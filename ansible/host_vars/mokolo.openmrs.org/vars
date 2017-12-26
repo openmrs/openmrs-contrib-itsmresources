@@ -21,11 +21,11 @@ docker_deployable_images: []
 
 letsencrypt_cert_domains:
   - mokolo.openmrs.org
-  - sonar-new.openmrs.org
+  - sonar.openmrs.org
 
 nginx_vhosts:
  - listen: "80 default_server"
-   server_name: "sonar-new.openmrs.org"
+   server_name: "sonar.openmrs.org"
    extra_parameters: |
      return 301 https://$host$request_uri;
  - listen: "443 ssl"
