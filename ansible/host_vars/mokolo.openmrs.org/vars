@@ -29,17 +29,16 @@ nginx_vhosts:
    extra_parameters: |
      return 301 https://$host$request_uri;
  - listen: "443 ssl"
-   server_name: "sonar-new.openmrs.org"
+   server_name: "sonar.openmrs.org"
    extra_parameters: |
      access_log /var/log/nginx/sonar_access.log;
-     error_log /var/log/nginx/sync1_error.log;
+     error_log /var/log/nginx/sonar_error.log;
      ssl_certificate /etc/letsencrypt/live/mokolo.openmrs.org/fullchain.pem;
      ssl_certificate_key /etc/letsencrypt/live/mokolo.openmrs.org/privkey.pem;
      location ^~ /.well-known/acme-challenge/ {
        root /usr/share/nginx/html;
      }
      location / {
-       proxy_set_header HOST $host;
        proxy_set_header  X-Forwarded-Proto $scheme;
        proxy_pass http://127.0.0.1:9000;
      }
