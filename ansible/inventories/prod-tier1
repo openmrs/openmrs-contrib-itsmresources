@@ -2,99 +2,52 @@
 ako.openmrs.org
 ambam.openmrs.org
 baragoi.openmrs.org
-buea.openmrs.org
 campo.openmrs.org
-garissa.openmrs.org
-lobi.openmrs.org
 melong.openmrs.org
 menji.openmrs.org
-meru.openmrs.org
-nairobi.openmrs.org
 salima.openmrs.org
 talk.openmrs.org
-voi.openmrs.org
-watamu.openmrs.org
-yak.openmrs.org
-yokobue.openmrs.org
-yue.openmrs.org
 
 [full-ansible]
 ako.openmrs.org
 ambam.openmrs.org
 baragoi.openmrs.org
-buea.openmrs.org
 campo.openmrs.org
-garissa.openmrs.org
-lobi.openmrs.org
 melong.openmrs.org
 menji.openmrs.org
-meru.openmrs.org
-nairobi.openmrs.org
 salima.openmrs.org
-voi.openmrs.org
-watamu.openmrs.org
-yak.openmrs.org
-yokobue.openmrs.org
-yue.openmrs.org
 
 [docker]
 ako.openmrs.org
 ambam.openmrs.org
 baragoi.openmrs.org
-buea.openmrs.org
-garissa.openmrs.org
-lobi.openmrs.org
 melong.openmrs.org
 menji.openmrs.org
-meru.openmrs.org
-nairobi.openmrs.org
 salima.openmrs.org
-voi.openmrs.org
-watamu.openmrs.org
 
 [web]
 ako.openmrs.org
 ambam.openmrs.org
 baragoi.openmrs.org
-buea.openmrs.org
 campo.openmrs.org
-garissa.openmrs.org
-lobi.openmrs.org
 melong.openmrs.org
 menji.openmrs.org
-meru.openmrs.org
-nairobi.openmrs.org
-voi.openmrs.org
-watamu.openmrs.org
 
 [tls]
 ako.openmrs.org
 ambam.openmrs.org
 baragoi.openmrs.org
-buea.openmrs.org
 campo.openmrs.org
-garissa.openmrs.org
-lobi.openmrs.org
 melong.openmrs.org
 menji.openmrs.org
-meru.openmrs.org
-nairobi.openmrs.org
-voi.openmrs.org
-watamu.openmrs.org
 
 [backup]
 ako.openmrs.org
 ambam.openmrs.org
 baragoi.openmrs.org
-buea.openmrs.org
-lobi.openmrs.org
 melong.openmrs.org
 menji.openmrs.org
-meru.openmrs.org
-nairobi.openmrs.org
 salima.openmrs.org
-voi.openmrs.org
-watamu.openmrs.org
 
 [id]
 ako.openmrs.org
@@ -103,7 +56,6 @@ baragoi.openmrs.org
 
 [atlassian]
 ambam.openmrs.org
-lobi.openmrs.org
 melong.openmrs.org
 menji.openmrs.org
 
@@ -112,14 +64,6 @@ melong.openmrs.org
 
 [confluence]
 menji.openmrs.org
-
-[bamboo]
-lobi.openmrs.org
-
-[bamboo-agent]
-yak.openmrs.org
-yokobue.openmrs.org
-yue.openmrs.org
 
 [crowd]
 ambam.openmrs.org
