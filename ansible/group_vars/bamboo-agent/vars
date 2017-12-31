@@ -1,3 +1,2 @@
 ---
-datadog_config:
-  tags: "provider:jetstream-iu,environment:{{datadog_environment}},backup:{{backup_tag}},service:bamboo-agent,ansible:full,provisioner:terraform"
+datadog_tags_extra: "service:bamboo-agent"

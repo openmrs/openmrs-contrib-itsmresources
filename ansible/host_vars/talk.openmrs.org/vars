@@ -1,6 +1,7 @@
 ---
 # Discourse
-ssl_key_dir: /var/discourse/shared/web-only/ssl/
 
-datadog_config:
-  tags: "provider:digitalocean,environment:{{datadog_environment}},backup:{{backup_tag}},service:discourse,ansible:partial,provisioner:manual"
+ansible_tag: 'partial'
+datadog_tags_extra: "service:discourse"
+
+ssl_key_dir: /var/discourse/shared/web-only/ssl/

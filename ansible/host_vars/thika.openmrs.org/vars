@@ -7,8 +7,7 @@ ufw_rules:
     proto: tcp
     rule: allow
 
-datadog_config:
-  tags: "provider:jetstream-iu,environment:{{datadog_environment}},backup:{{backup_tag}},service:quizgrader,ansible:full,provisioner:terraform"
+datadog_tags_extra: "service:quizgrader"
 
 docker_deployment:
   - quizgrader

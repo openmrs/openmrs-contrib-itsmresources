@@ -1,9 +1,7 @@
 ---
 # Http redirect (in jetstream)
 
-datadog_config:
-  tags: "provider:jetstream-iu,environment:{{datadog_environment}},backup:{{backup_tag}},service:maven,ansible:full,provisioner:terraform"
-
+datadog_tags_extra: "service:maven,service:http-redirect"
 
 letsencrypt_cert_domains:
    - campo.openmrs.org

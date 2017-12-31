@@ -11,9 +11,12 @@ ufw_rules:
      port: 54663
      proto: tcp
      rule: allow
+   remote-agent-ssl:
+     port: 54667
+     proto: tcp
+     rule: allow
 
-datadog_config:
-  tags: "provider:jetstream-iu,environment:{{datadog_environment}},backup:{{backup_tag}},service:bamboo,ansible:full,provisioner:terraform"
+datadog_tags_extra: "service:bamboo"
 
 letsencrypt_cert_domains:
    - lobi.openmrs.org
