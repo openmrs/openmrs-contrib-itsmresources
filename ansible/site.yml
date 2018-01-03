@@ -103,3 +103,9 @@
     - mysql-connector-java
   tags:
     - crowd
+
+- hosts: mysql
+  become: true
+  roles:
+    - mysql
+    - mysql-cron-backup
