@@ -1,0 +1,32 @@
+---
+  - name: Check if new datadir exists
+    stat:
+      path: "{{ mysql_new_data_dir }}"
+    register: new_datadir
+
+  - name: Create if new datadir if not exists
+    file:
+      path: "{{ mysql_new_data_dir }}"
+      state: directory
+      mode: 0750
+    when: new_datadir.stat.exists == False
+
+  - name: Copy the conents of Mysql old Data dir to new Data dir for first installation
+    command: "rsync -av /var/lib/mysql {{ mysql_new_data_dir }}"
+    when: new_datadir.stat.exists == False
+
+  - name: Change ownership of new data directory 
+    command: "chown -R mysql:mysql {{ mysql_new_data_dir }}"
+
+  - name: Add alias if not exists
+    lineinfile:
+      path: /etc/apparmor.d/tunables/alias
+      line: "alias /var/lib/mysql/ -> {{ mysql_new_data_dir }} ,"
+    notify: restart mysql service
+
+  - name: Change mysql configuration
+    lineinfile:
+      path: /etc/mysql/my.cnf
+      regexp: '^datadir'
+      line: "datadir = {{ mysql_new_data_dir }}"
+    notify: restart apparmor

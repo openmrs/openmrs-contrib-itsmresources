@@ -20,10 +20,31 @@ ufw_rules:
 
 # Mysql configuration
 mysql_root_pass: '{{ vault_mysql_root_password }}'
-mysql_datadir: /data/mysql
 mysql_port: '3306'
 mysql_bind_address: '0.0.0.0'
 mysql_max_allowed_packet: "256M"
+mysql_innodb_log_file_size: "2G"
+mysql_binlog_format: "ROW"
+mysql_mysqldump_max_allowed_packet: "256M"
+overwrite_global_mycnf: no
+mysql_databases:
+  - name: crowd
+    encoding: utf8
+    collation: utf8_bin
+  - name: jira
+    encoding: utf8
+    collation: utf8_bin
+  - name: bamboo
+    encoding: utf8
+    collation: utf8_bin
+  - name: confluence
+    encoding: utf8
+    collation: utf8_bin
+mysql_users:
+  - name: '{{ vault_mysql_user_name }}'
+    host: "%"
+    password: '{{ vault_mysql_user_password }}'
+    priv: "*.*:ALL"
 
 # Mysql Backup Configuration
 gcoop_mysqldump_mysql_username: '{{ vault_mysql_user_name }}'
@@ -35,10 +56,30 @@ gcoop_mysqldump_dir: /opt/backups
 gcoop_mysqldump_owner: backup-s3
 gcoop_mysqldump_group: backup-s3
 gcoop_mysqldump_cron_entries:
-  - name: daily
+  - name: daily-crowd
     minute: 0
     hour: 2
     day: '*'
-    database: '{{ gcoop_mysqldump_database }}'
+    database: 'crowd'
+    format: '%D'
+  - name: daily-jira
+    minute: 0
+    hour: 2
+    day: '*'
+    database: 'jira'
+    format: '%D'
+  - name: daily-confluence
+    minute: 0
+    hour: 2
+    day: '*'
+    database: 'confluence'
+    format: '%D'
+  - name: daily-bamboo
+    minute: 0
+    hour: 2
+    day: '*'
+    database: 'bamboo'
     format: '%D'
 
+# Mysql Tuning
+mysql_new_data_dir: /data/mysql
