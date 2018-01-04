@@ -108,4 +108,4 @@
   become: true
   roles:
     - mysql
-    - mysql-cron-backup
+    #- mysql-cron-backup
