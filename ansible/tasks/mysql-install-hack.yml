@@ -18,15 +18,17 @@
   - name: Change ownership of new data directory 
     command: "chown -R mysql:mysql {{ mysql_new_data_dir }}"
 
-  - name: Add alias if not exists
-    lineinfile:
-      path: /etc/apparmor.d/tunables/alias
-      line: "alias /var/lib/mysql/ -> {{ mysql_new_data_dir }} ,"
-    notify: restart mysql service
+  - name: Change data directory for apparmor
+    replace:
+      path: /etc/apparmor.d/usr.sbin.mysqld
+      regexp: '/var/lib/mysql/'
+      replace: '{{ mysql_new_data_dir }}/'
+      backup: no
+    notify: restart apparmor
 
   - name: Change mysql configuration
     lineinfile:
       path: /etc/mysql/my.cnf
       regexp: '^datadir'
       line: "datadir = {{ mysql_new_data_dir }}"
-    notify: restart apparmor
+    notify: restart mysql service

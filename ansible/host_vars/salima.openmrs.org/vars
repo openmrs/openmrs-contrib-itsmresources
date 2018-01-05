@@ -49,12 +49,12 @@ mysql_users:
 # Mysql Backup Configuration
 gcoop_mysqldump_mysql_username: '{{ vault_mysql_user_name }}'
 gcoop_mysqldump_mysql_password: '{{ vault_mysql_user_password }}'
-gcoop_mysqldump_system_username: backup-s3
+gcoop_mysqldump_system_username: '{{backup_user}}'
 gcoop_mysqldump_mysql_root_password: '{{ vault_mysql_root_password }}'
 gcoop_mysqldump_host: localhost
 gcoop_mysqldump_dir: /opt/backups
-gcoop_mysqldump_owner: backup-s3
-gcoop_mysqldump_group: backup-s3
+gcoop_mysqldump_owner: '{{backup_user}}'
+gcoop_mysqldump_group: '{{backup_user}}'
 gcoop_mysqldump_cron_entries:
   - name: daily-crowd
     minute: 0
