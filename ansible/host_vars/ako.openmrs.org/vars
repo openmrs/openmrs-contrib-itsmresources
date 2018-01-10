@@ -49,6 +49,6 @@ aws_secret_access_key: '{{ vault_aws_secret_access_key }}'
 
 ufw_rules:
    ldap:
-     port: 639
+     port: 636
      proto: tcp
      rule: allow
