@@ -12,7 +12,8 @@ letsencrypt_cert_domains:
    - mua.openmrs.org
    - site.openmrs.org
 
-docker_deployment: []
+docker_deployment:
+  - wordpress 
 
 docker_deployable_images: []
 
