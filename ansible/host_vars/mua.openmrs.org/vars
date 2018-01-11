@@ -40,11 +40,11 @@ nginx_vhosts:
     extra_parameters: |
       return 301 https://$host$request_uri;
   - listen: "443 ssl"
-    server_name: "ci.openmrs.org"
+    server_name: "site.openmrs.org"
     extra_parameters: |
       client_max_body_size 0;
-      access_log /var/log/nginx/ci_access.log;
-      error_log /var/log/nginx/ci_error.log;
+      access_log /var/log/nginx/site_access.log;
+      error_log /var/log/nginx/site_error.log;
       ssl_certificate /etc/letsencrypt/live/mua.openmrs.org/fullchain.pem;
       ssl_certificate_key /etc/letsencrypt/live/mua.openmrs.org/privkey.pem;
       location ^~ /.well-known/acme-challenge/ {
@@ -53,7 +53,9 @@ nginx_vhosts:
       location / {
         proxy_set_header HOST $host;
         proxy_set_header  X-Forwarded-Proto $scheme;
-        proxy_pass http://127.0.0.1:8085/;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_pass http://127.0.0.1:8080;
       }
 
 aws_access_key_id: '{{ vault_aws_access_key_id }}'
