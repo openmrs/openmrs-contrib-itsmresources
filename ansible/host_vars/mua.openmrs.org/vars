@@ -33,11 +33,10 @@ nginx_vhosts:
         root /usr/share/nginx/html;
       }
       location / {
-        #proxy_pass http://127.0.0.1:8080/;
         root /usr/share/nginx/html;
       }
   - listen: "80"
-    server_name: "ci.openmrs.org"
+    server_name: "site.openmrs.org"
     extra_parameters: |
       return 301 https://$host$request_uri;
   - listen: "443 ssl"
