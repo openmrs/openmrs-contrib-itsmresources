@@ -17,6 +17,9 @@
 - name: nginx
   src: geerlingguy.nginx
   version: 2.1.0
+- name: mysql
+  src: geerlingguy.mysql
+  version: 2.8.0
 
 
 
@@ -59,3 +62,6 @@
 - name: crowd
   src: https://github.com/pantarei/ansible-role-crowd.git
   version: f374b874d5c00e6233e99a82107c810cf874f2c6
+- name: mysql-cron-backup
+  src: https://github.com/gcoop-libre/ansible-role-mysqldump.git
+  version: 9343efd6d77a79ba46f10898da68e99f8bb5adac
