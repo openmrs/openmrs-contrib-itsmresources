@@ -1,0 +1,49 @@
+---
+  - name: Check if new datadir exists
+    stat:
+      path: "{{ mysql_new_data_dir }}"
+    register: new_datadir
+
+  - name: Create if new datadir if not exists
+    file:
+      path: "{{ mysql_new_data_dir }}"
+      state: directory
+      mode: 0750
+    when: new_datadir.stat.exists == False
+
+  - name: Copy the conents of Mysql old Data dir to new Data dir for first installation
+    command: "rsync -av /var/lib/mysql {{ mysql_new_data_dir }}"
+    when: new_datadir.stat.exists == False
+
+  - name: Change ownership of new data directory 
+    command: "chown -R mysql:mysql {{ mysql_new_data_dir }}"
+
+  - name: Change data directory for apparmor
+    replace:
+      path: /etc/apparmor.d/usr.sbin.mysqld
+      regexp: '/var/lib/mysql/'
+      replace: '{{ mysql_new_data_dir }}/'
+      backup: no
+    notify: restart apparmor
+
+  - name: Change mysql data directory
+    lineinfile:
+      path: /etc/mysql/my.cnf
+      regexp: '^datadir'
+      line: "datadir = {{ mysql_new_data_dir }}"
+    notify: restart mysql service
+
+  - name: Ensure global transaction isolation level is set to READ-COMMITTED
+    lineinfile:
+      path: /etc/mysql/my.cnf
+      regexp: '^transaction-isolation'
+      line: 'transaction-isolation = READ-COMMITTED'
+      insertafter: '# Other settings.'
+    notify: restart mysql service
+
+  - name: Add skip events for mysqldump  bug 54371
+    lineinfile:
+      path: /etc/mysql/my.cnf
+      line: 'skip-events'
+      insertafter: 'quick'
+    notify: restart mysql service
