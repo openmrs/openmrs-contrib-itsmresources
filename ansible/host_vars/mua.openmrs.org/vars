@@ -1,5 +1,5 @@
 ---
-# bamboo
+# wordpress
 users:
  sparsha:
    comment: Sparsha Dotel
@@ -11,9 +11,11 @@ datadog_tags_extra: "service:wordpress"
 letsencrypt_cert_domains:
    - mua.openmrs.org
    - site.openmrs.org
+   - openmrs.org
+   - www.openmrs.org
 
 docker_deployment:
-  - wordpress 
+  - wordpress
 
 docker_deployable_images: []
 
@@ -36,11 +38,11 @@ nginx_vhosts:
         root /usr/share/nginx/html;
       }
   - listen: "80"
-    server_name: "site.openmrs.org"
+    server_name: "site.openmrs.org openmrs.org www.openmrs.org"
     extra_parameters: |
       return 301 https://$host$request_uri;
   - listen: "443 ssl"
-    server_name: "site.openmrs.org"
+    server_name: "site.openmrs.org openmrs.org www.openmrs.org"
     extra_parameters: |
       client_max_body_size 0;
       access_log /var/log/nginx/site_access.log;
