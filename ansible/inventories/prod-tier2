@@ -1,5 +1,5 @@
 [prod]
-garissa.openmrs.org
+balaka.openmrs.org
 lobi.openmrs.org
 mua.openmrs.org
 voi.openmrs.org
@@ -8,7 +8,7 @@ yokobue.openmrs.org
 yue.openmrs.org
 
 [full-ansible]
-garissa.openmrs.org
+balaka.openmrs.org
 lobi.openmrs.org
 mua.openmrs.org
 voi.openmrs.org
@@ -17,19 +17,19 @@ yokobue.openmrs.org
 yue.openmrs.org
 
 [docker]
-garissa.openmrs.org
+balaka.openmrs.org
 lobi.openmrs.org
 mua.openmrs.org
 voi.openmrs.org
 
 [web]
-garissa.openmrs.org
+balaka.openmrs.org
 lobi.openmrs.org
 mua.openmrs.org
 voi.openmrs.org
 
 [tls]
-garissa.openmrs.org
+balaka.openmrs.org
 lobi.openmrs.org
 mua.openmrs.org
 voi.openmrs.org

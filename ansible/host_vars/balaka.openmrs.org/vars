@@ -36,7 +36,7 @@ docker_deployable_images:
    compose: demo,qa-refapp,modules-refapp,uat-refapp
 
 letsencrypt_cert_domains:
-  - garissa.openmrs.org
+  - balaka.openmrs.org
   - demo.openmrs.org
   - qa-refapp.openmrs.org
   - modules-refapp.openmrs.org
@@ -52,8 +52,8 @@ nginx_vhosts:
    extra_parameters: |
      access_log /var/log/nginx/demo_access.log;
      error_log /var/log/nginx/demo_error.log;
-     ssl_certificate /etc/letsencrypt/live/garissa.openmrs.org/fullchain.pem;
-     ssl_certificate_key /etc/letsencrypt/live/garissa.openmrs.org/privkey.pem;
+     ssl_certificate /etc/letsencrypt/live/balaka.openmrs.org/fullchain.pem;
+     ssl_certificate_key /etc/letsencrypt/live/balaka.openmrs.org/privkey.pem;
      location ^~ /.well-known/acme-challenge/ {
        root /usr/share/nginx/html;
      }
@@ -74,8 +74,8 @@ nginx_vhosts:
    extra_parameters: |
      access_log /var/log/nginx/qa-refapp_access.log;
      error_log /var/log/nginx/qa-refapp_access.log;
-     ssl_certificate /etc/letsencrypt/live/garissa.openmrs.org/fullchain.pem;
-     ssl_certificate_key /etc/letsencrypt/live/garissa.openmrs.org/privkey.pem;
+     ssl_certificate /etc/letsencrypt/live/balaka.openmrs.org/fullchain.pem;
+     ssl_certificate_key /etc/letsencrypt/live/balaka.openmrs.org/privkey.pem;
      location ^~ /.well-known/acme-challenge/ {
        root /usr/share/nginx/html;
      }
@@ -96,8 +96,8 @@ nginx_vhosts:
    extra_parameters: |
      access_log /var/log/nginx/modules_access.log;
      error_log /var/log/nginx/modules_error.log;
-     ssl_certificate /etc/letsencrypt/live/garissa.openmrs.org/fullchain.pem;
-     ssl_certificate_key /etc/letsencrypt/live/garissa.openmrs.org/privkey.pem;
+     ssl_certificate /etc/letsencrypt/live/balaka.openmrs.org/fullchain.pem;
+     ssl_certificate_key /etc/letsencrypt/live/balaka.openmrs.org/privkey.pem;
      location ^~ /.well-known/acme-challenge/ {
        root /usr/share/nginx/html;
      }
@@ -118,8 +118,8 @@ nginx_vhosts:
    extra_parameters: |
      access_log /var/log/nginx/uat_access.log;
      error_log /var/log/nginx/uat_error.log;
-     ssl_certificate /etc/letsencrypt/live/garissa.openmrs.org/fullchain.pem;
-     ssl_certificate_key /etc/letsencrypt/live/garissa.openmrs.org/privkey.pem;
+     ssl_certificate /etc/letsencrypt/live/balaka.openmrs.org/fullchain.pem;
+     ssl_certificate_key /etc/letsencrypt/live/balaka.openmrs.org/privkey.pem;
      location ^~ /.well-known/acme-challenge/ {
        root /usr/share/nginx/html;
      }
@@ -132,12 +132,12 @@ nginx_vhosts:
        proxy_pass http://127.0.0.1:8083/openmrs;
      }
  - listen: "443 ssl"
-   server_name: "garissa.openmrs.org"
+   server_name: "balaka.openmrs.org"
    extra_parameters: |
      access_log /var/log/nginx/deployer_access.log;
      error_log /var/log/nginx/deployer_error.log;
-     ssl_certificate /etc/letsencrypt/live/garissa.openmrs.org/fullchain.pem;
-     ssl_certificate_key /etc/letsencrypt/live/garissa.openmrs.org/privkey.pem;
+     ssl_certificate /etc/letsencrypt/live/balaka.openmrs.org/fullchain.pem;
+     ssl_certificate_key /etc/letsencrypt/live/balaka.openmrs.org/privkey.pem;
      location ^~ /.well-known/acme-challenge/ {
        root /usr/share/nginx/html;
      }
