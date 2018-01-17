@@ -16,7 +16,7 @@ docker_deployable_images:
     compose: addons
 
 letsencrypt_cert_domains:
-   - watamu.openmrs.org
+   - limbe.openmrs.org
    - addons.openmrs.org
    - modules.openmrs.org
 
@@ -30,8 +30,8 @@ nginx_vhosts:
     extra_parameters: |
       access_log /var/log/nginx/modules_access.log;
       error_log /var/log/nginx/modules_error.log;
-      ssl_certificate /etc/letsencrypt/live/watamu.openmrs.org/fullchain.pem;
-      ssl_certificate_key /etc/letsencrypt/live/watamu.openmrs.org/privkey.pem;
+      ssl_certificate /etc/letsencrypt/live/limbe.openmrs.org/fullchain.pem;
+      ssl_certificate_key /etc/letsencrypt/live/limbe.openmrs.org/privkey.pem;
       location ^~ /.well-known/acme-challenge/ {
         root /usr/share/nginx/html;
       }
@@ -47,8 +47,8 @@ nginx_vhosts:
     extra_parameters: |
       access_log /var/log/nginx/addons_access.log;
       error_log /var/log/nginx/addons_error.log;
-      ssl_certificate /etc/letsencrypt/live/watamu.openmrs.org/fullchain.pem;
-      ssl_certificate_key /etc/letsencrypt/live/watamu.openmrs.org/privkey.pem;
+      ssl_certificate /etc/letsencrypt/live/limbe.openmrs.org/fullchain.pem;
+      ssl_certificate_key /etc/letsencrypt/live/limbe.openmrs.org/privkey.pem;
       location ^~ /.well-known/acme-challenge/ {
         root /usr/share/nginx/html;
       }
@@ -56,12 +56,12 @@ nginx_vhosts:
         proxy_pass http://127.0.0.1:8081/;
       }
   - listen: "443 ssl"
-    server_name: "watamu.openmrs.org"
+    server_name: "limbe.openmrs.org"
     extra_parameters: |
       access_log /var/log/nginx/deployer_access.log;
       error_log /var/log/nginx/deployer_error.log;
-      ssl_certificate /etc/letsencrypt/live/watamu.openmrs.org/fullchain.pem;
-      ssl_certificate_key /etc/letsencrypt/live/watamu.openmrs.org/privkey.pem;
+      ssl_certificate /etc/letsencrypt/live/limbe.openmrs.org/fullchain.pem;
+      ssl_certificate_key /etc/letsencrypt/live/limbe.openmrs.org/privkey.pem;
       location ^~ /.well-known/acme-challenge/ {
         root /usr/share/nginx/html;
       }
