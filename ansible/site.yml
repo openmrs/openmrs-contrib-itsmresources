@@ -114,3 +114,10 @@
   handlers:
     - include: handlers/apparmor-restart.yml
     - include: handlers/mysql-restart.yml
+
+- hosts: ldap-mantainance
+  become: true
+  tasks:
+    - include: tasks/ldap-mantainance.yml
+  tags:
+    - ldap-mantainance

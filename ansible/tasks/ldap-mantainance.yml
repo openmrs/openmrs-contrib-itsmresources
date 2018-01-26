@@ -1,0 +1,15 @@
+---
+  - name: Copy ldap mantainance script
+    copy:
+      owner: root
+      group: root
+      mode: 0755
+      src: files/ldap-mantainance.sh
+      dest: "/usr/sbin/ldap-mantainance.sh"
+  - name: Backup cron
+    cron:
+      name: "ldap-mantainance"
+      user: 'root'
+      minute: "0"
+      hour: "1"
+      job: "/usr/sbin/ldap-mantainance.sh >> /var/log/ldap-mantainance.log 2>&1"

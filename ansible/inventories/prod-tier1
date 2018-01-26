@@ -70,3 +70,6 @@ ambam.openmrs.org
 
 [mysql]
 salima.openmrs.org
+
+[ldap-mantainance]
+ako.openmrs.org
