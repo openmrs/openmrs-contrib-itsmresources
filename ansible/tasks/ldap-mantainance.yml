@@ -1,4 +1,9 @@
 ---
+  - name: ensure db5.3-utils package installed
+    apt:
+      update_cache: true
+      name: db5.3-util
+      state: present
   - name: Copy ldap mantainance script
     copy:
       owner: root
