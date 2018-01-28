@@ -3,6 +3,7 @@ ako.openmrs.org
 ambam.openmrs.org
 baragoi.openmrs.org
 campo.openmrs.org
+likoma.openmrs.org
 melong.openmrs.org
 menji.openmrs.org
 salima.openmrs.org
@@ -13,6 +14,7 @@ ako.openmrs.org
 ambam.openmrs.org
 baragoi.openmrs.org
 campo.openmrs.org
+likoma.openmrs.org
 melong.openmrs.org
 menji.openmrs.org
 salima.openmrs.org
@@ -21,6 +23,7 @@ salima.openmrs.org
 ako.openmrs.org
 ambam.openmrs.org
 baragoi.openmrs.org
+likoma.openmrs.org
 melong.openmrs.org
 menji.openmrs.org
 salima.openmrs.org
@@ -30,6 +33,7 @@ ako.openmrs.org
 ambam.openmrs.org
 baragoi.openmrs.org
 campo.openmrs.org
+likoma.openmrs.org
 melong.openmrs.org
 menji.openmrs.org
 
@@ -38,6 +42,7 @@ ako.openmrs.org
 ambam.openmrs.org
 baragoi.openmrs.org
 campo.openmrs.org
+likoma.openmrs.org
 melong.openmrs.org
 menji.openmrs.org
 
@@ -45,6 +50,7 @@ menji.openmrs.org
 ako.openmrs.org
 ambam.openmrs.org
 baragoi.openmrs.org
+likoma.openmrs.org
 melong.openmrs.org
 menji.openmrs.org
 salima.openmrs.org
@@ -73,3 +79,6 @@ salima.openmrs.org
 
 [ldap-mantainance]
 ako.openmrs.org
+
+[discourse]
+likoma.openmrs.org
