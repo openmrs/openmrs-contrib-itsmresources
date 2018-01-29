@@ -44,7 +44,7 @@ DISCOURSE_HTTP_PORT: 9000
 
 DISCOURSE_HOSTNAME: talk-new.openmrs.org
 
-DISCOURSE_DEVELOPER_EMAILS: 'sparshadotel@lftechnology.com'
+DISCOURSE_DEVELOPER_EMAILS: 'sparshadotel@lftechnology.com, cintia@openmrs.org'
 DISCOURSE_SMTP_ADDRESS: '{{ vault_discourse_smtp_address }}'
 DISCOURSE_SMTP_PORT: '587'
 DISCOURSE_SMTP_USER_NAME: '{{ vault_discourse_smtp_username }}'
