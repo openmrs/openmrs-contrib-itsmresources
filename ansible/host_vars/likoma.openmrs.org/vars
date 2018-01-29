@@ -24,8 +24,8 @@ nginx_vhosts:
  - listen: "443 ssl"
    server_name: "talk-new.openmrs.org"
    extra_parameters: |
-     access_log /var/log/nginx/sonar_access.log;
-     error_log /var/log/nginx/sonar_error.log;
+     access_log /var/log/nginx/talk_access.log;
+     error_log /var/log/nginx/talk_error.log;
      ssl_certificate /etc/letsencrypt/live/likoma.openmrs.org/fullchain.pem;
      ssl_certificate_key /etc/letsencrypt/live/likoma.openmrs.org/privkey.pem;
      location ^~ /.well-known/acme-challenge/ {
@@ -38,3 +38,29 @@ nginx_vhosts:
 
 aws_access_key_id: '{{ vault_aws_access_key_id }}'
 aws_secret_access_key: '{{ vault_aws_secret_access_key }}'
+
+#Required Variables
+DISCOURSE_HTTP_PORT: 9000
+
+DISCOURSE_HOSTNAME: talk-new.openmrs.org
+
+DISCOURSE_DEVELOPER_EMAILS: 'sparshadotel@lftechnology.com'
+DISCOURSE_SMTP_ADDRESS: '{{ vault_discourse_smtp_address }}'
+DISCOURSE_SMTP_PORT: '587'
+DISCOURSE_SMTP_USER_NAME: '{{ vault_discourse_smtp_username }}'
+DISCOURSE_SMTP_PASSWORD: '{{ vault_discourse_smtp_password }}'
+DISCOURSE_SMTP_ENABLE_START_TLS: 'true'
+DISCOURSE_FROM_EMAIL: 'infrastructure@openmrs.org'
+
+# Optinal Variables
+DISCOURSE_INSTALLATION_DIR: /opt/discourse
+DISCOURSE_HOME_DIR: /data/discourse_home/
+DISCOURSE_LOGS_DIR: /var/log/discourse
+
+DISCOURSE_DB_SHARED_BUFFERS: 1GB
+DISCOURSE_DB_WORD_MEMORY: 40MB
+DISCOURSE_UNICORN_WORKERS: 4
+DISCOURSE_DEFAULT_LOCALE: en
+DISCOURSE_APP_NAME: app
+DISCOURSE_VERSION: tests-passed
+DISCOURSE_REPO_VERSION: master
