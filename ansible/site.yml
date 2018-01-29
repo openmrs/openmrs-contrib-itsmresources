@@ -121,3 +121,8 @@
     - include: tasks/ldap-mantainance.yml
   tags:
     - ldap-mantainance
+
+- hosts: discourse
+  become: true
+  roles:
+    - - { role: 'custom_roles/docker-discourse' }
