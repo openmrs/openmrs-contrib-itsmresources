@@ -1,0 +1,29 @@
+---
+
+- name: Ensure git is installed
+  apt:
+    update_cache: true
+    name: git
+    state: present
+
+- name: Create discourse installation directory
+  file:
+    path: '{{ DISCOURSE_INSTALLATION_DIR }}'
+    state: directory
+    owner: root
+    group: root
+  register: folder_init
+
+- name: Clone discourse docker git repository
+  git:
+    repo: https://github.com/discourse/discourse_docker.git
+    dest: '{{ DISCOURSE_INSTALLATION_DIR }}'
+    version: '{{ DISCOURSE_REPO_VERSION }}'
+  when: folder_init | changed
+
+- name: Copy app configuration template
+  template:
+    src: templates/app-template.yml
+    dest: '{{DISCOURSE_INSTALLATION_DIR }}/containers/{{ DISCOURSE_APP_NAME }}.yml'
+  notify:
+    - rebuild discourse
