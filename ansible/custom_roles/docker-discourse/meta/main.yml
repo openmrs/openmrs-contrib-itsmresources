@@ -1,0 +1,14 @@
+---
+
+galaxy_info:
+  author: Sparsha Dotel <sparshadotel@gmail.com>
+  description: Ansible Role for Discourse Docker Installation.
+  license: MIT
+  min_ansible_version: 2.0
+  platforms:
+    - name: Ubuntu
+      versions:
+        - trusty
+  galaxy_tags:
+    - discourse
+dependencies: []
