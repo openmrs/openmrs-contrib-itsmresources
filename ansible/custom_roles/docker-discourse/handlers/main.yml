@@ -1,5 +1,10 @@
 ---
-- name: rebuild discourse
-  command: './launcher rebuild {{DISCOURSE_APP_NAME}}'
+- name: rebuild discourse data
+  command: './launcher rebuild {{DISCOURSE_DATA_CONTAINER_NAME}}'
+  args:
+   chdir: '{{ DISCOURSE_INSTALLATION_DIR }}'
+
+- name: rebuild discourse web
+  command: './launcher rebuild {{DISCOURSE_WEB_CONTAINER_NAME}}'
   args:
    chdir: '{{ DISCOURSE_INSTALLATION_DIR }}'

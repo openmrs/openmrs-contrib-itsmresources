@@ -1,0 +1,97 @@
+# IMPORTANT: SET A SECRET PASSWORD in Postgres for the Discourse User
+# TODO: change SOME_SECRET in this template
+
+templates:
+  - "templates/web.template.yml"
+  - "templates/web.ratelimited.template.yml"
+expose:
+  - "{{DISCOURSE_HTTP_PORT}}:80"
+
+# Use 'links' key to link containers together, aka use Docker --link flag.
+links:
+  - link:
+      name: {{DISCOURSE_DATA_CONTAINER_NAME}}
+      alias: {{DISCOURSE_DATA_CONTAINER_NAME}}
+
+# any extra arguments for Docker?
+# docker_args:
+
+params:
+  ## Which Git revision should this container use? (default: tests-passed)
+  version: {{DISCOURSE_VERSION}}
+
+env:
+  LANG: en_US.UTF-8
+  ## TODO: How many concurrent web requests are supported?
+  ## With 2GB we recommend 3-4 workers, with 1GB only 2
+  ## If you have lots of memory, use one or two workers per logical CPURQ9UnTawmEC5y core
+  UNICORN_WORKERS: {{DISCOURSE_UNICORN_WORKERS}}
+
+  ## TODO: configure connectivity to the databases
+  #DISCOURSE_DB_SOCKET: ''
+  DISCOURSE_DB_USERNAME: discourse
+  DISCOURSE_DB_PASSWORD: {{DISCOURSE_DB_PASSWORD}}
+  DISCOURSE_DB_HOST: {{DISCOURSE_DATA_CONTAINER_NAME}}
+  DISCOURSE_REDIS_HOST: {{DISCOURSE_DATA_CONTAINER_NAME}}
+  ##
+  ## TODO: List of comma delimited emails that will be made admin and developer
+  ## on initial signup example 'user1@example.com,user2@example.com'
+  DISCOURSE_DEVELOPER_EMAILS: '{{DISCOURSE_DEVELOPER_EMAILS}}'
+  DISCOURSE_ENABLE_MINI_PROFILER: false
+  ##
+  ## TODO: The domain name this Discourse instance will respond to
+  DISCOURSE_HOSTNAME: '{{DISCOURSE_HOSTNAME}}'
+  ##
+  ## TODO: The mailserver this Discourse instance will use
+  DISCOURSE_SMTP_ADDRESS: {{DISCOURSE_SMTP_ADDRESS}}         # (mandatory)
+  DISCOURSE_SMTP_PORT: {{DISCOURSE_SMTP_PORT}}                        # (optional)
+  DISCOURSE_SMTP_USER_NAME: {{DISCOURSE_SMTP_USER_NAME}}      # (optional)
+  DISCOURSE_SMTP_PASSWORD: {{DISCOURSE_SMTP_PASSWORD}}              # (optional)
+  ##
+  ## The CDN address for this Discourse instance (configured to pull)
+  #DISCOURSE_CDN_URL: //discourse-cdn.example.com
+  #LETSENCRYPT_ACCOUNT_EMAIL: 'infrastructure@openmrs.org'
+
+volumes:
+  - volume:
+      host: {{DISCOURSE_WEB_DIR}}
+      guest: /shared
+  - volume:
+      host: {{DISCOURSE_WEB_LOGS_DIR}}
+      guest: /var/log
+
+## The docker manager plugin allows you to one-click upgrade Discouse
+## http://discourse.example.com/admin/docker
+hooks:
+  after_code:
+    - exec:
+        cd: $home/plugins
+        cmd:
+          - git clone https://github.com/discourse/docker_manager.git
+          - git clone https://github.com/discourse/github_badges.git
+          - git clone https://github.com/discourse/discourse-tagging.git
+          - git clone https://github.com/Jake-Shadle/discourse_jira.git
+          - git clone https://github.com/discourse/discourse-solved.git
+          - git clone https://github.com/downeym/discourse-watch-category-mcneel.git
+          - git clone https://github.com/discourse/discourse-data-explorer.git
+          - git clone https://github.com/PoloGT/abbreviation-discourse-plugin.git
+          - git clone https://github.com/discourse/discourse-akismet.git
+          - git clone https://github.com/discourse/discourse-spoiler-alert.git
+          - git clone https://github.com/cpradio/discourse-plugin-replygif.git
+          - git clone https://github.com/discourse/discourse-push-notifications.git
+
+
+## Remember, this is YAML syntax - you can only have one block with a name
+run:
+  - exec: echo "Beginning of custom commands"
+
+  ## If you want to configure password login for root, uncomment and change:
+  ## Use only one of the following lines:
+  #- exec: /usr/sbin/usermod -p 'PASSWORD_HASH' root
+  #- exec: /usr/sbin/usermod -p "$(mkpasswd -m sha-256 'RAW_PASSWORD')" root
+  - exec: rails r "SiteSetting.notification_email='{{DISCOURSE_FROM_EMAIL}}'"
+  ## If you want to authorized additional users, uncomment and change:
+  #- exec: ssh-import-id username
+  #- exec: ssh-import-id anotherusername
+
+  - exec: echo "End of custom commands"

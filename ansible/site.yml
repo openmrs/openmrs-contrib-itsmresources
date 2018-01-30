@@ -125,4 +125,4 @@
 - hosts: discourse
   become: true
   roles:
-    - - { role: 'custom_roles/docker-discourse' }
+    - { role: 'custom_roles/docker-discourse' }

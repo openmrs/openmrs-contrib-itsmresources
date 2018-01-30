@@ -21,9 +21,16 @@
     version: '{{ DISCOURSE_REPO_VERSION }}'
   when: folder_init | changed
 
-- name: Copy app configuration template
+- name: Copy data configuration template
   template:
-    src: templates/app-template.yml
-    dest: '{{DISCOURSE_INSTALLATION_DIR }}/containers/{{ DISCOURSE_APP_NAME }}.yml'
+    src: templates/data-template.yml
+    dest: '{{DISCOURSE_INSTALLATION_DIR }}/containers/{{ DISCOURSE_DATA_CONTAINER_NAME }}.yml'
   notify:
-    - rebuild discourse
+    - rebuild discourse data
+
+- name: Copy web configuration template
+  template:
+    src: templates/web-template.yml
+    dest: '{{DISCOURSE_INSTALLATION_DIR }}/containers/{{ DISCOURSE_WEB_CONTAINER_NAME }}.yml'
+  notify:
+    - rebuild discourse web
