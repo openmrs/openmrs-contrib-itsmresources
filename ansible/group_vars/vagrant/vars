@@ -5,6 +5,7 @@ sudo_users:
   - "%wheel"
   - "%admin"
   - ubuntu
+  - vagrant
 
 docker_deployment:
    - demo
@@ -23,3 +24,9 @@ nginx_vhosts:
       location / {
         proxy_pass http://127.0.0.1:8080/;
       }
+
+datadog_enabled: no
+
+datadog_config:
+  process_agent_enabled: "true"
+  tags: "provider:local,region:none,environment:vagrant,backup:not-applicable,ansible:full,provisioner:vagrant"
