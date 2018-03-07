@@ -15,12 +15,12 @@
     command: "rsync -av /var/lib/mysql {{ mysql_new_data_dir }}"
     when: new_datadir.stat.exists == False
 
-  - name: Change ownership of new data directory 
+  - name: Change ownership of new data directory
     command: "chown -R mysql:mysql {{ mysql_new_data_dir }}"
 
   - name: Change data directory for apparmor
     replace:
-      path: /etc/apparmor.d/usr.sbin.mysqld
+      dest: /etc/apparmor.d/usr.sbin.mysqld
       regexp: '/var/lib/mysql/'
       replace: '{{ mysql_new_data_dir }}/'
       backup: no
@@ -28,14 +28,14 @@
 
   - name: Change mysql data directory
     lineinfile:
-      path: /etc/mysql/my.cnf
+      dest: /etc/mysql/my.cnf
       regexp: '^datadir'
       line: "datadir = {{ mysql_new_data_dir }}"
     notify: restart mysql service
 
   - name: Ensure global transaction isolation level is set to READ-COMMITTED
     lineinfile:
-      path: /etc/mysql/my.cnf
+      dest: /etc/mysql/my.cnf
       regexp: '^transaction-isolation'
       line: 'transaction-isolation = READ-COMMITTED'
       insertafter: '# Other settings.'
@@ -43,7 +43,7 @@
 
   - name: Add skip events for mysqldump  bug 54371
     lineinfile:
-      path: /etc/mysql/my.cnf
+      dest: /etc/mysql/my.cnf
       line: 'skip-events'
       insertafter: 'quick'
     notify: restart mysql service
