@@ -6,7 +6,7 @@ datadog_tags_extra: "service:maven,service:http-redirect"
 letsencrypt_cert_domains:
    - campo.openmrs.org
    - mavenrepo.openmrs.org
-   # - mavenrepo-redirect.openmrs.org
+   - mavenrepo-redirect.openmrs.org
 
 nginx_vhosts:
   - listen: "80 default_server"
