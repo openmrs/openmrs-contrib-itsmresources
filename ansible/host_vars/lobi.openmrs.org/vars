@@ -17,8 +17,7 @@ letsencrypt_cert_domains:
    - lobi.openmrs.org
    - ci.openmrs.org
 
-docker_deployment:
-   - database
+docker_deployment: []
 
 docker_deployable_images: []
 

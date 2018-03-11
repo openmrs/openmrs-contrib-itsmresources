@@ -13,8 +13,7 @@ letsencrypt_cert_domains:
    - crowd.openmrs.org
 
 
-docker_deployment:
-  - database
+docker_deployment: []
 
 docker_deployable_images: []
 

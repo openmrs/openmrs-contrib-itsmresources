@@ -8,9 +8,7 @@ letsencrypt_cert_domains:
    - issues.openmrs.org
    - tickets.openmrs.org
 
-docker_deployment:
-  - database
-
+docker_deployment: []
 docker_deployable_images: []
 
 nginx_vhosts:
