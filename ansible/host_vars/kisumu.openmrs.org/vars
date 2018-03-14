@@ -7,7 +7,7 @@ letsencrypt_cert_domains:
    - atlas-stg.openmrs.org
 
 docker_deployment:
-   - atlas
+   - atlas-stg
 
 docker_deployable_images:
    - repository: openmrs/atlas
