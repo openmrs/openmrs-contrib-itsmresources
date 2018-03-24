@@ -37,6 +37,10 @@ mysql_max_allowed_packet: "256M"
 mysql_innodb_log_file_size: "2G"
 mysql_binlog_format: "ROW"
 mysql_mysqldump_max_allowed_packet: "256M"
+mysql_max_connections: 500
+mysql_innodb_buffer_pool_size: "8G"
+mysql_innodb_log_file_size: "2G"
+
 overwrite_global_mycnf: no
 mysql_databases:
   - name: crowd
