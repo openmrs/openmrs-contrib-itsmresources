@@ -70,7 +70,7 @@ crowd_jvm_support_recommended_args: "-Datlassian.plugins.enable.wait=300 -XX:+Us
 crowd_proxy_name: 'crowd.openmrs.org'
 crowd_scheme: 'https'
 crowd_url: "https://downloads.atlassian.com/software/crowd/downloads/{{ crowd_archive }}"
-mysql_connector_java_dest: '{{ crowd_catalina }}/lib'
+mysql_connector_java_dest: '{{ crowd_catalina }}/apache-tomcat/lib'
 mysql_connector_java_user: '{{ crowd_user }}'
 mysql_connector_java_archive: 'mysql-connector-java-5.1.44.tar.gz'
 mysql_connector_java_jar: 'mysql-connector-java-5.1.44-bin.jar'
