@@ -34,7 +34,6 @@ mysql_root_pass: '{{ vault_mysql_root_password }}'
 mysql_port: '3306'
 mysql_bind_address: '0.0.0.0'
 mysql_max_allowed_packet: "256M"
-mysql_innodb_log_file_size: "2G"
 mysql_binlog_format: "ROW"
 mysql_mysqldump_max_allowed_packet: "256M"
 mysql_max_connections: 500
