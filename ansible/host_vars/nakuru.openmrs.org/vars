@@ -9,6 +9,10 @@ users:
    comment: Rafal
    groups: 'admin'
    ssh_key: "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAgc4Q+9e1XMDInFm4GNkuYErYkgDt0KNnmLDTFa+0HV1MuQKP+TE3Ee9Qdx5rugNkg9+e45Hzfze/vX/nYjrNAkWcxYaxEAdej/6QW4Bh4r6rRLnNoqnksG3+WVXl2cqOf9odji2L+uzA2E+zX5tEYqVkN9+0z1Ewwe6lcSg0zRQyJ+phIo595eftYJGAiLAhIfSotg8SxWJhSHUsNtphyXRld7FtxXDgfu6SkejvakymwXEuMe7yS2mES9U8IlJh4CyADGaqb0WSWfqsejcgMuXJmnEqpMqVwcDaP4B+NZLTKfUUlc2D8DiUKRqlnxuGCFmkpghTQkX4dE0YhxJSjQ== raff"
+  paynejd:
+   comment: Jonathan Payne
+   groups: 'admin'
+   ssh_key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCvgepH6wayD4vr8K5U7DqrlnKwEYYqMIOGBAdERH1fV5n6fs/sgV/OZXmawV5z4O/iwik9wEy3in92ToQwS7Kt+qi0FPKvzMCefoAv2DESF4ub8VAVgvkbDw9A5J418O3xSODxdm4B0LS2WfY/cuSqnXgJSTR0GDnY61xWD0N/fXzNI87ZuwA6Xq0GRi2OZ5XJ2G7WCT5bJDDuT1ZxQaxDUUy1UM+7IvznjGOtS+lu4FxEGpcnaHq7ZFp3kE9GKqu3TBcbECmYzjfBOAnbeNeBvvZagO2mT5EuYjkWbgLGWx8ctGkW/vlhyZtbMxEI0J03FclSaH47Lm0ymKYcSyeb paynejd@gmail.com"
   bamboo:
    comment: CI Bamboo User
    groups: 'admin'
