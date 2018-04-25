@@ -6,16 +6,18 @@ users:
   groups: 'admin'
   ssh_key: "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAgc4Q+9e1XMDInFm4GNkuYErYkgDt0KNnmLDTFa+0HV1MuQKP+TE3Ee9Qdx5rugNkg9+e45Hzfze/vX/nYjrNAkWcxYaxEAdej/6QW4Bh4r6rRLnNoqnksG3+WVXl2cqOf9odji2L+uzA2E+zX5tEYqVkN9+0z1Ewwe6lcSg0zRQyJ+phIo595eftYJGAiLAhIfSotg8SxWJhSHUsNtphyXRld7FtxXDgfu6SkejvakymwXEuMe7yS2mES9U8IlJh4CyADGaqb0WSWfqsejcgMuXJmnEqpMqVwcDaP4B+NZLTKfUUlc2D8DiUKRqlnxuGCFmkpghTQkX4dE0YhxJSjQ== raff"
 
-datadog_tags_extra: "service:sonarqube"
+datadog_tags_extra: "service:sonarqube,service:implementationid"
 
 docker_deployment:
   - sonar
+  - implementationid
 
 docker_deployable_images: []
 
 letsencrypt_cert_domains:
   - mokolo.openmrs.org
   - sonar.openmrs.org
+  - implementation.openmrs.org
 
 nginx_vhosts:
  - listen: "80 default_server"
@@ -35,6 +37,20 @@ nginx_vhosts:
      location / {
        proxy_set_header  X-Forwarded-Proto $scheme;
        proxy_pass http://127.0.0.1:9000;
+     }
+ - listen: "443 ssl"
+   server_name: "implementation.openmrs.org"
+   extra_parameters: |
+     access_log /var/log/nginx/implementation_access.log;
+     error_log /var/log/nginx/implementation_error.log;
+     ssl_certificate /etc/letsencrypt/live/mokolo.openmrs.org/fullchain.pem;
+     ssl_certificate_key /etc/letsencrypt/live/mokolo.openmrs.org/privkey.pem;
+     location ^~ /.well-known/acme-challenge/ {
+       root /usr/share/nginx/html;
+     }
+     location / {
+       proxy_set_header  X-Forwarded-Proto $scheme;
+       proxy_pass http://127.0.0.1:8000;
      }
  - listen: "443 ssl"
    server_name: "mokolo.openmrs.org"
