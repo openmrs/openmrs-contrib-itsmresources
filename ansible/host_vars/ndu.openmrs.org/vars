@@ -2,3 +2,9 @@
 # Telegram Bot
 ansible_tag: 'partial'
 datadog_tags_extra: "service:bot"
+
+users:
+  kimberleymanning:
+    comment: Kimberley Manning
+    groups: 'admin'
+    ssh_key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDGeWaYGWXSVE1g+haPh39y0GWU6FRxAWumCHcWEfx1oGO6MLp29VzCOp1itC9xcAnBTguepdIhRbjA5jIz55dkXw/WfrQIj9eNUQNK29JwHAYNmDPNh/et7Hb62Op1KVrVRI2HyqqhF3Jy2bjBcCtln5B9bwz4DvzPdH+MwonMBEUdpsG6sMy5T3Vuk6+YCBXwrxZCRwMjcf5Ie+pyJWBs5tRPh7eWYXAoF9JvQfX7DQOcvvgkKEZllZNeDohzpKgLmG3YyxAgpft8HRjF6fbbkKORqGIE1Y6Kzk/L1rGEq2dGTN6RH6sTct2uvd40QVge/tvfZkLUfKh8KsdvgmGd kimberley@lada"
