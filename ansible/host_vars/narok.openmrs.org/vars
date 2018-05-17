@@ -23,6 +23,7 @@ datadog_tags_extra: "service:ocl"
 docker_deployment:
   - oclapi-qa
   - oclweb-qa
+  - oclclient-qa
 
 docker_deployable_images:
   - repository: openconceptlab/oclweb
