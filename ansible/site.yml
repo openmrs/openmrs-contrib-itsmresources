@@ -23,6 +23,8 @@
     - include: handlers/monitoring.yml
 
 - hosts: tls
+  tags:
+    - tls
   become: true
   tasks:
     - include: tasks/extra-tls.yml
@@ -34,6 +36,8 @@
 
 - hosts: web
   become: true
+  tags:
+    - web
   roles:
    - nginx
 
