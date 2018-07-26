@@ -23,6 +23,8 @@ datadog_tags_extra: "service:ocl"
 docker_deployment:
   - oclapi-stg
   - oclweb-stg
+  - oclapi-adhoc
+  - oclweb-adhoc
 
 docker_deployable_images:
   - repository: openconceptlab/oclweb
@@ -37,6 +39,9 @@ letsencrypt_cert_domains:
    - staging.openconceptlab.org
    - api.staging.openconceptlab.org
    - flower.staging.openconceptlab.org
+   - dev.openconceptlab.org
+   - api.dev.openconceptlab.org
+   - flower.dev.openconceptlab.org
 
 nginx_keepalive_timeout: "600"
 nginx_keepalive_requests: "600"
@@ -92,6 +97,57 @@ nginx_vhosts:
       }
       location / {
         proxy_pass http://127.0.0.1:5555/;
+      }
+  - listen: "80"
+    server_name: "dev.openconceptlab.org"
+    extra_parameters: |
+      return 301 https://$host$request_uri;
+  - listen: "443 ssl"
+    server_name: "dev.openconceptlab.org"
+    extra_parameters: |
+      access_log /var/log/nginx/oclweb_access.log;
+      error_log /var/log/nginx/oclweb_error.log;
+      ssl_certificate /etc/letsencrypt/live/nakuru.openmrs.org/fullchain.pem;
+      ssl_certificate_key /etc/letsencrypt/live/nakuru.openmrs.org/privkey.pem;
+      location ^~ /.well-known/acme-challenge/ {
+        root /usr/share/nginx/html;
+      }
+      location / {
+        proxy_pass http://127.0.0.1:7001/;
+      }
+  - listen: "80"
+    server_name: "api.dev.openconceptlab.org"
+    extra_parameters: |
+      return 301 https://$host$request_uri;
+  - listen: "443 ssl"
+    server_name: "api.dev.openconceptlab.org"
+    extra_parameters: |
+      access_log /var/log/nginx/oclapi_access.log;
+      error_log /var/log/nginx/oclapi_error.log;
+      ssl_certificate /etc/letsencrypt/live/nakuru.openmrs.org/fullchain.pem;
+      ssl_certificate_key /etc/letsencrypt/live/nakuru.openmrs.org/privkey.pem;
+      location ^~ /.well-known/acme-challenge/ {
+        root /usr/share/nginx/html;
+      }
+      location / {
+        proxy_pass http://127.0.0.1:8001/;
+      }
+  - listen: "80"
+    server_name: "flower.dev.openconceptlab.org"
+    extra_parameters: |
+      return 301 https://$host$request_uri;
+  - listen: "443 ssl"
+    server_name: "flower.dev.openconceptlab.org"
+    extra_parameters: |
+      access_log /var/log/nginx/oclapi_access.log;
+      error_log /var/log/nginx/oclapi_error.log;
+      ssl_certificate /etc/letsencrypt/live/nakuru.openmrs.org/fullchain.pem;
+      ssl_certificate_key /etc/letsencrypt/live/nakuru.openmrs.org/privkey.pem;
+      location ^~ /.well-known/acme-challenge/ {
+        root /usr/share/nginx/html;
+      }
+      location / {
+        proxy_pass http://127.0.0.1:5556/;
       }
   - listen: "443 ssl"
     server_name: "nakuru.openmrs.org"
