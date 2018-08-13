@@ -43,6 +43,7 @@ nginx_vhosts:
   - listen: "443 ssl"
     server_name: "crowd.openmrs.org"
     extra_parameters: |
+      proxy_read_timeout 600;
       access_log /var/log/nginx/deployer_access.log;
       error_log /var/log/nginx/deployer_error.log;
       ssl_certificate /etc/letsencrypt/live/ambam.openmrs.org/fullchain.pem;
