@@ -1,24 +1,27 @@
 ---
-# Atlas stg
+#  Wordpress staging
 
 users:
  bamboo:
   comment: CI Bamboo User
   groups: 'admin'
   ssh_key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDQQ+SCzrYNUlDlCoUJMrgNa+NvKX3dlog6LrcOYAt45ovpCOEhv46I0cGm3ZrarOejjseKWVsCrN1YSt7q9IDc/tZZH9fpQy5AvssZH6b4Vo799/4ig7iZWAJAXHKMxKh0mqgifbtP8EImvE3zmeBD8LlyvvF3cw2T2wg5Jh5bN/p7hUrEU7oGAbJR0TMMUY2/ZAzqzJ6RWHn03PBhG70MYxXhQD93RsEocEUecNRibqGMJm8JjBUumZCoIZWFH8J9W0MKuYNrndvQ60xVZbumQaWQ1pdrXEfNy//xslLTbH/+fZhWK8ilrwnkTHJeCHnhFZ6E0LRP5dbnYxYzHoxLsRz7G3Z/H0Cb5ffUcODjmGp9IsK/MIeE+DKe4mvEitkUwj1EI4PpadvZ2qyn4X0ks2WDFdlNvhjR1PJvHIL7GfrDqhLxazVI3bzUZVRSrD1sKoSIfISn6mRZcDbdyMSgYjzn4YjEmUM+Jkh0QWdBySMn/xj96Pqeyk0EaJ//Ru5w6SXemZ6QeWP2spKdB+KUhB6Xdp5+41UZ3i4jtpmU8+wzOQiXzPvmxGYdsSJWZvD0fm6PH5z1MgM68fVGqmrnZWWTUWuLVTeQRNa95GjSjB6AV4tZyTC4lLlBSLCWRNr55JmDif5YJxD322Lzf5Li5rKUiQuif3655jqVaEpiow== bambooagent"
- 
-datadog_tags_extra: "service:atlas"
+ toddtee:
+   Comment: Todd Turner
+   groups: 'admin'
+   ssh_key: "ssh-rsa AAAAB3NzaC1yc2EAAAADA"
+---
+# wordpress
+datadog_tags_extra: "service:wordpress"
 
 letsencrypt_cert_domains:
    - kisumu.openmrs.org
-   - atlas-stg.openmrs.org
+   - site-stg.openmrs.org
 
 docker_deployment:
-   - atlas-stg
+  - wordpress-stg
 
-docker_deployable_images:
-   - repository: openmrs/atlas
-     compose: atlas
+docker_deployable_images: []
 
 nginx_vhosts:
   - listen: "80 default_server"
@@ -39,26 +42,26 @@ nginx_vhosts:
         root /usr/share/nginx/html;
       }
   - listen: "80"
-    server_name: "atlas-stg.openmrs.org"
+    server_name: "site-stg.openmrs.org"
     extra_parameters: |
       return 301 https://$host$request_uri;
   - listen: "443 ssl"
-    server_name: "atlas-stg.openmrs.org"
+    server_name: "site-stg.openmrs.org"
     extra_parameters: |
-      access_log /var/log/nginx/atlas_access.log;
-      error_log /var/log/nginx/atlas_error.log;
+      client_max_body_size 0;
+      access_log /var/log/nginx/site_access.log;
+      error_log /var/log/nginx/site_error.log;
       ssl_certificate /etc/letsencrypt/live/kisumu.openmrs.org/fullchain.pem;
       ssl_certificate_key /etc/letsencrypt/live/kisumu.openmrs.org/privkey.pem;
       location ^~ /.well-known/acme-challenge/ {
         root /usr/share/nginx/html;
       }
       location / {
-        proxy_pass http://127.0.0.1:8548/;
-        fastcgi_buffers 16 16k;
-        fastcgi_buffer_size 32k;
-        proxy_buffer_size   128k;
-        proxy_buffers   4 256k;
-        proxy_busy_buffers_size   256k;
+        proxy_set_header HOST $host;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_pass http://127.0.0.1:8080;
       }
 
 aws_access_key_id: '{{ vault_aws_access_key_id }}'
