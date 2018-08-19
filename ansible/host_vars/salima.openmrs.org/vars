@@ -28,6 +28,7 @@ datadog_checks:
             schema_size_metrics: false
             disable_innodb_metrics: false
 
+backup_tag: 'configured'
 
 # Mysql configuration
 mysql_root_pass: '{{ vault_mysql_root_password }}'

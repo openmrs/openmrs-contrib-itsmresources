@@ -1,7 +1,0 @@
----
-# Discourse
-
-ansible_tag: 'partial'
-datadog_tags_extra: "service:discourse"
-
-ssl_key_dir: /var/discourse/shared/web-only/ssl/

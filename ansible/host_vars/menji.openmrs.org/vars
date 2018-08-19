@@ -63,6 +63,7 @@ nginx_vhosts:
 
 aws_access_key_id: '{{ vault_aws_access_key_id }}'
 aws_secret_access_key: '{{ vault_aws_secret_access_key }}'
+backup_tag: 'configured'
 
 confluence_pass: '{{ vault_confluence_pass }}'
 confluence_hash_salt: '{{ vault_confluence_hash_salt }}'

@@ -58,6 +58,8 @@ nginx_vhosts:
 
 aws_access_key_id: '{{ vault_aws_access_key_id }}'
 aws_secret_access_key: '{{ vault_aws_secret_access_key }}'
+backup_tag: 'configured'
+
 crowd_pass: '{{ vault_crowd_pass }}'
 crowd_hash_salt: '{{ vault_crowd_hash_salt }}'
 crowd_user: 'crowd'
