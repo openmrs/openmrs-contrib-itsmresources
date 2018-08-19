@@ -1,6 +1,6 @@
 ---
 # LDAP
-datadog_tags_extra: "service:ldap"
+datadog_tags_extra: "service:ldap,service-group:id"
 
 letsencrypt_cert_domains:
    - ruiru.openmrs.org
