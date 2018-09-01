@@ -31,4 +31,4 @@
     command: /opt/datadog-agent/embedded/bin/pip install utils
 
   - name:  Upgrade Python OpenSSL Module for SSL Expiry Check
-    command: /opt/datadog-agent/embedded/bin/pip --upgrade OpenSSL
+    command: /opt/datadog-agent/embedded/bin/pip install --upgrade pyopenssl
