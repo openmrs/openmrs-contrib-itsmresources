@@ -45,7 +45,13 @@ Download the correct versions of third party modules into 'modules' folder:
 When updating the `Puppetfile`, you'll need to rerun this command.
 
 
-To run an Ubuntu 14.04 VM:
+To run an Ubuntu 16.04 VM:
 ```$ vagrant up ```
 .... and go grab a coffee. Or two. Maybe a shower. While waiting for it to finish downloading the internet.
 Other vagrant commands can be found in [Confluence](https://wiki.openmrs.org/x/CIC3Ag)
+
+
+To run only the tests:
+```
+vagrant provision --provision-with serverspec
+```
