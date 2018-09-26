@@ -8,19 +8,21 @@
       dest: /etc/datadog-agent/checks.d/
     notify: restart datadog-agent
 
-  - name: Ensure obselete docker_daemon check files are absent
+  - name: Ensure obsolete docker_daemon conf files are absent
     file:
       state: absent
       path: /etc/datadog-agent/conf.d/docker_daemon.yml
+
+  - name: Ensure obsolete docker_daemon check files are absent
     file:
       state: absent
       path: /etc/datadog-agent/checks.d/docker_daemon.py
-  
+
   - name: Remove datadog checks from Ver5 directory
     file:
       state: absent
       path: /opt/datadog-agent/agent/checks.d
-  
+
   - name: Upgrade Datadog-Agent Embdedded pip
     command: /opt/datadog-agent/embedded/bin/pip install --upgrade pip
 

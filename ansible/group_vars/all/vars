@@ -47,9 +47,17 @@ ufw_rules:
     proto: tcp
     rule: allow
 
+datadog_tags_default:
+    - "provider:{{ansible_local.provisioning.general.provider}}"
+    - "region:{{ansible_local.provisioning.general.region}}"
+    - "environment:{{ansible_local.provisioning.general.inventory}}"
+    - "backup:{{backup_tag}}"
+    - "ansible:{{ansible_tag}}"
+    - "provisioner:{{ansible_local.provisioning.general.provisioner}}"
+
 datadog_config:
   process_agent_enabled: "true"
-  tags: "provider:{{ansible_local.provisioning.general.provider}},region:{{ansible_local.provisioning.general.region}},environment:{{ansible_local.provisioning.general.inventory}},backup:{{backup_tag}},{{datadog_tags_extra}},ansible:{{ansible_tag}},provisioner:{{ansible_local.provisioning.general.provisioner}}"
+  tags: "{{ datadog_tags_extra + datadog_tags_default }}"
   hostname_fqdn: true
 
 datadog_checks:
