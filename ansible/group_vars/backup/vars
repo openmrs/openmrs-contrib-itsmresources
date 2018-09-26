@@ -1,5 +1,5 @@
 ---
-docker_args: "--data-root=/data/docker"
+docker_daemon_args: "--data-root=/data/docker"
 
 backup_tag: 'bootstrapped'
 backup_user: 'backup-s3'
