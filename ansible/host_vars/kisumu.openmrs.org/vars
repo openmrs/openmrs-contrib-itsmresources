@@ -12,7 +12,8 @@ users:
    ssh_key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDXj7e7GLobJJHjg9P26o2zq9N0ihZ4uMa6ZZfUILXtzaLriJzSeGmRL86wpi/xAyqszu2kveh6uvyV7DTTFT4x89l/K3FXl1f+Mdj762vsHEF7L55tVYbiQOTb1dQciVf56+o2HUwqk4jw6qDgzhPey3F0hlyAj5mJfKNmgAb5KjAPq4NiE5nlJL2RwN/+vXEwZwk7AstHOntSoW5R3wAE6a3AcfYvj1J3bQ7PVJHxTLpTgiGq1EvfrsDrn77Zd1kYC5dvQRqvyupb1CZSSxl9j2PCWH1eQhUh7+5MySJa0DSTL0oYnJh4KP1i+yUxY4tN+ddu4KH+mljQlaKtvYeF tturner@lorica344"
 
 # wordpress
-datadog_tags_extra: "service:wordpress"
+datadog_tags_extra:
+  - "service:wordpress"
 
 letsencrypt_cert_domains:
    - kisumu.openmrs.org
@@ -66,3 +67,4 @@ nginx_vhosts:
 
 aws_access_key_id: '{{ vault_aws_access_key_id }}'
 aws_secret_access_key: '{{ vault_aws_secret_access_key }}'
+backup_tag: 'configured'
