@@ -4,7 +4,7 @@ set -e
 set -u
 set -x
 
-GUARD_FILE="/var/run/first_boot_puppet.lock"
+GUARD_FILE="/etc/first_boot_puppet.lock"
 
 if [ -f "$GUARD_FILE" ]; then
 	echo "Not first boot; skipping basic installation.... "
@@ -23,7 +23,7 @@ apt-get update
 apt-get install -y puppet-agent
 apt-get -y autoremove
 
-ln -sf /etc/puppet/hiera.yaml /etc/puppetlabs/puppet/hiera.yaml
+ln -sf /etc/openmrs-puppet/hiera.yaml /etc/puppetlabs/puppet/hiera.yaml
 
 gem install librarian-puppet
 

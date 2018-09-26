@@ -6,21 +6,21 @@
 
   - name: 'Delete old puppet files'
     file:
-      name: "/etc/puppet"
+      name: "/etc/openmrs-puppet"
       state: absent
   - name: Copy puppet tar file
     copy:
       owner: 'root'
       group: 'root'
       mode: 0700
-      src: .tmp/bamboo-agents-puppet.tar
-      dest: /tmp/puppet.tar
+      src: .tmp/openmrs-puppet.tar
+      dest: /tmp/openmrs-puppet.tar
   - name: Untar puppet files
-    shell: tar xf /tmp/puppet.tar && mv /tmp/bamboo-agents-puppet /etc/puppet && rm /tmp/puppet.tar
+    shell: tar xf /tmp/openmrs-puppet.tar && mv /tmp/openmrs-puppet /etc/openmrs-puppet && rm /tmp/openmrs-puppet.tar
   - name: Bootstrap puppet ( it can take a long time - logs in /var/log/puppet-bootstrap.log)
-    shell: bash /etc/puppet/bin/first-boot.sh | tee /var/log/puppet-bootstrap.log
+    shell: bash /etc/openmrs-puppet/bin/first-boot.sh | tee /var/log/puppet-bootstrap.log
   - name: Run puppet ( it can take a long time - logs in /var/log/puppet-runs.log)
-    shell: bash /etc/puppet/bin/run-puppet.sh | tee /var/log/puppet-runs.log
+    shell: bash /etc/openmrs-puppet/bin/run-puppet.sh | tee /var/log/puppet-runs.log
     register: puppet_output
   # - name: Print puppet output
   #   debug: var=puppet_output.stdout

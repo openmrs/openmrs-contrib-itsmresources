@@ -17,7 +17,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # canonical Ubuntu basebox
   config.vm.box = "ubuntu/xenial64"
   config.vm.hostname = "bamboo-agent.vagrant.openmrs.org"
-  config.vm.synced_folder ".", "/etc/puppet/"
+  config.vm.synced_folder ".", "/etc/openmrs-puppet/"
 
   config.vm.provider "virtualbox" do |v|
     v.memory = 1024
@@ -29,6 +29,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # And running puppet
   config.vm.provision "puppet" do |puppet|
     puppet.module_path = [ 'modules', 'openmrs-modules' ]
+    puppet.hiera_config_path = "hiera.yaml"
+    puppet.working_directory = "/etc/openmrs-puppet/"
     puppet.manifest_file = 'site.pp'
     puppet.facter = {
      "environment" => "vagrant"
