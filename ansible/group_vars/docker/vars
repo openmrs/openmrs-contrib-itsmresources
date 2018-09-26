@@ -13,7 +13,7 @@ ufw_config:
     state: enabled
 
 datadog_checks:
-  docker_daemon:
+  docker:
     init_config:
     instances:
     - url: "unix://var/run/docker.sock"

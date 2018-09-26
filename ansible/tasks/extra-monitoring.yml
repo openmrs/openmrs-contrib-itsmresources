@@ -1,5 +1,34 @@
+---
   - name: Copy datadog check
     copy:
+      owner: dd-agent
+      group: dd-agent
+      mode: 0755
       src: files/monitoring/upgrades_check.py
-      dest: /opt/datadog-agent/agent/checks.d
+      dest: /etc/datadog-agent/checks.d/
     notify: restart datadog-agent
+
+  - name: Ensure obselete docker_daemon check files are absent
+    file:
+      state: absent
+      path: /etc/datadog-agent/conf.d/docker_daemon.yml
+    file:
+      state: absent
+      path: /etc/datadog-agent/checks.d/docker_daemon.py
+  
+  - name: Remove datadog checks from Ver5 directory
+    file:
+      state: absent
+      path: /opt/datadog-agent/agent/checks.d
+  
+  - name: Upgrade Datadog-Agent Embdedded pip
+    command: /opt/datadog-agent/embedded/bin/pip install --upgrade pip
+
+  - name: Install checks python module for custom dd-checks
+    command: /opt/datadog-agent/embedded/bin/pip install checks
+
+  - name: Backup & Upgrades Check - Python Module Installation
+    command: /opt/datadog-agent/embedded/bin/pip install utils
+
+  - name:  Upgrade Python OpenSSL Module for SSL Expiry Check
+    command: /opt/datadog-agent/embedded/bin/pip install --upgrade pyopenssl

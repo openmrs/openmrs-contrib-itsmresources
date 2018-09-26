@@ -1,6 +1,6 @@
 # project
 from checks import AgentCheck
-from utils.platform import Platform
+from sys import platform
 import os, time, sys
 
 import subprocess
@@ -9,7 +9,7 @@ import os.path
 class UpdatesCheck(AgentCheck):
 
     def check(self, instance):
-        if not Platform.is_linux():
+        if not (platform == "linux" or platform == "linux2"):
             return
 
         output = self.get_subprocess_output()
