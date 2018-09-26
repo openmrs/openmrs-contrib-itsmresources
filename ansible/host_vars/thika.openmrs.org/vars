@@ -17,7 +17,8 @@ ufw_rules:
     proto: tcp
     rule: allow
 
-datadog_tags_extra: "service:quizgrader"
+datadog_tags_extra:
+  - "service:quizgrader"
 
 docker_deployment:
   - quizgrader

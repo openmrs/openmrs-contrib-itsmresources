@@ -1,7 +1,8 @@
 ---
 # Telegram Bot
 ansible_tag: 'partial'
-datadog_tags_extra: "service:bot"
+datadog_tags_extra:
+  - "service:bot"
 
 users:
   kimberleymanning:
