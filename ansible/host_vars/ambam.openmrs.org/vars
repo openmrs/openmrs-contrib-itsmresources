@@ -6,7 +6,9 @@ users:
    groups: 'admin'
    ssh_key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDJY27m87jJO1tPtzem6oGNxPa/qQy+PpdwOeO1tEk3UD0QQorDLEjQHeK3/549QCRpujjUXzE0D69T+0jys0hHqBhTNxNp+cA4ROnZpCm58VmJA9uf5lsb+bVSAcasDYllGPI+MKC4vcHjol2rDiPpAPlCRnLLe0KD4CaVm3X72DRv2OCOj1b7e8nQylDkKggnG1lExsWAvCLx11iLq2hIH7V+oYmkATBqsmFDhVPL9bbAN8y7E5BxHzma2wMwGhPc0tNYZndM7JPQeK8TbQgUehoiSOA8zdcTa6vhNYq3JCWHMIUNTh1A1Y/sfkqkkEDj1wn7bsEDeabbwXSrQeHb rob@rob-laptop"
 
-datadog_tags_extra: "service:crowd,service-group:id"
+datadog_tags_extra:
+   - "service:crowd"
+   - "service-group:id"
 
 letsencrypt_cert_domains:
    - ambam.openmrs.org

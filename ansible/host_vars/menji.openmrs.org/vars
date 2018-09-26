@@ -1,7 +1,8 @@
 ---
 # Wiki
 
-datadog_tags_extra: "service:confluence"
+datadog_tags_extra:
+  - "service:confluence"
 
 letsencrypt_cert_domains:
    - menji.openmrs.org

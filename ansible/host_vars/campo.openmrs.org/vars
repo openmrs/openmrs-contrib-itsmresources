@@ -1,7 +1,9 @@
 ---
 # Http redirect (in jetstream)
 
-datadog_tags_extra: "service:maven,service:http-redirect"
+datadog_tags_extra:
+  - "service:maven"
+  - "service:http-redirect"
 
 letsencrypt_cert_domains:
    - campo.openmrs.org

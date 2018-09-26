@@ -9,7 +9,8 @@ users:
   uid: 1000
   createhome: no
 
-datadog_tags_extra: "service:discourse"
+datadog_tags_extra:
+  - "service:discourse"
 
 docker_deployment: []
 

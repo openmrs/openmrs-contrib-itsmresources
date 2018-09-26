@@ -1,6 +1,8 @@
 ---
 # New shortener
-datadog_tags_extra: "service:yourls,service:atlas"
+datadog_tags_extra:
+  - "service:yourls"
+  - "service:atlas"
 
 letsencrypt_cert_domains:
    - voi.openmrs.org

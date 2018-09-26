@@ -11,7 +11,8 @@ ufw_rules:
      proto: tcp
      rule: allow
 
-datadog_tags_extra: "service:bamboo"
+datadog_tags_extra:
+  - "service:bamboo"
 
 letsencrypt_cert_domains:
    - lobi.openmrs.org

@@ -1,6 +1,7 @@
 ---
 # Database
-datadog_tags_extra: "service:database"
+datadog_tags_extra:
+  - "service:database"
 
 aws_access_key_id: '{{ vault_aws_access_key_id }}'
 aws_secret_access_key: '{{ vault_aws_secret_access_key }}'

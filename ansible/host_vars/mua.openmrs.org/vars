@@ -1,6 +1,7 @@
 ---
 # wordpress
-datadog_tags_extra: "service:wordpress"
+datadog_tags_extra:
+  - "service:wordpress"
 
 letsencrypt_cert_domains:
    - mua.openmrs.org

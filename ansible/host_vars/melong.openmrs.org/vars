@@ -1,7 +1,8 @@
 ---
 # JIRA
 
-datadog_tags_extra: "service:jira"
+datadog_tags_extra:
+  - "service:jira"
 
 letsencrypt_cert_domains:
    - melong.openmrs.org
