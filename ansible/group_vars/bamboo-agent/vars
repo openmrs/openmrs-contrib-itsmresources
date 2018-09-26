@@ -1,2 +1,3 @@
 ---
-datadog_tags_extra: "service:bamboo-agent"
+datadog_tags_extra:
+  - "service:bamboo-agent"
