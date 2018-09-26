@@ -1,5 +1,5 @@
 define bamboo_agent_home::file (
-  $bamboo_user = hiera('bamboo_agent_home::bamboo_user'),
+  $bamboo_user = lookup('bamboo_agent_home::bamboo_user'),
   $content,
   $destination = $name,
   $mode   = '600',

@@ -3,7 +3,6 @@ openmrs-contrib-bambooagent
 Installation of Bamboo Agents.
 
 
-
 ## Updating Production/Staging machines
 ```
 $ /etc/puppet/bin/pull-changes.sh
@@ -14,8 +13,7 @@ $ /etc/puppet/bin/run-puppet.sh
 
 ### Requirements
   - Ubuntu 16.04
-  - Puppet 3.x/Hiera/facter
-This tree doesn't work with puppet 4.
+  - Puppet 4.x/Hiera/facter
 
 ### Setting up new machine
 

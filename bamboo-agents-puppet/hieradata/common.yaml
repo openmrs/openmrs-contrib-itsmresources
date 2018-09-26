@@ -6,8 +6,8 @@ profiles::java_buildtime::maven3_version: "3.2.5"
 profiles::ruby_buildtime::grails_version: '2.3.7'
 
 
-profiles::docker::users: [ "%{hiera('bamboo_agent_home::bamboo_user')}"]
-profiles::bamboo_agent::bamboo_user: "%{hiera('bamboo_agent_home::bamboo_user')}"
-profiles::bamboo_agent::bamboo_user_home: "%{hiera('bamboo_agent_home::bamboo_user_home')}"
-profiles::bamboo_agent::maven3_version: "%{hiera('profiles::java_buildtime::maven3_version')}"
-profiles::bamboo_agent::grails_version: "%{hiera('profiles::ruby_buildtime::grails_version')}"
+profiles::docker::users: [ "%{lookup('bamboo_agent_home::bamboo_user')}"]
+profiles::bamboo_agent::bamboo_user: "%{lookup('bamboo_agent_home::bamboo_user')}"
+profiles::bamboo_agent::bamboo_user_home: "%{lookup('bamboo_agent_home::bamboo_user_home')}"
+profiles::bamboo_agent::maven3_version: "%{lookup('profiles::java_buildtime::maven3_version')}"
+profiles::bamboo_agent::grails_version: "%{lookup('profiles::ruby_buildtime::grails_version')}"

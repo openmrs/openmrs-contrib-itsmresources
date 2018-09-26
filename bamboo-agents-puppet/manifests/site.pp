@@ -1,6 +1,8 @@
 node default {
   # this tree/puppet-control only have one role; hence we are skipping roles and using only profiles.
 
+  Package <| name == 'python-pip' |> -> Package <| provider == 'pip' |>
+
   include profiles::basic_configuration
   include profiles::java
   include profiles::scm

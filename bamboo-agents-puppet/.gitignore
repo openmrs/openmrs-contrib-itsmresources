@@ -26,3 +26,6 @@ ssl/
 ubuntu-*.log
 etckeeper-*
 *.dpkg-dist
+puppetlabs-release-*
+auth.conf
+*.dpkg-new

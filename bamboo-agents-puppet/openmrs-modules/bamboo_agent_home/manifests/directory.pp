@@ -1,5 +1,5 @@
 define bamboo_agent_home::directory (
-  $bamboo_user = hiera('bamboo_agent_home::bamboo_user'),
+  $bamboo_user = lookup('bamboo_agent_home::bamboo_user'),
   $destination = $name,
   $mode   = '700',
   $recurse = false,

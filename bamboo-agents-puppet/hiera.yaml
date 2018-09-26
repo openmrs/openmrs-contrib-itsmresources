@@ -1,9 +1,12 @@
 ---
-:backends: yaml
-:yaml:
-  :datadir: "/etc/puppet/hieradata"
-:hierarchy:
-  - "environments/%{::environment}"
-  - "common"
-:logger: console
-
+version: 5
+defaults:
+  datadir: /etc/puppet/hieradata
+  data_hash: yaml_data
+hierarchy:
+  - name: "Per environment config"
+    paths:
+      - "environments/%{::environment}.yaml"
+  - name: "Common config"
+    paths:
+      - "common.yaml"
