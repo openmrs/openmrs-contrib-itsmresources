@@ -1,6 +1,6 @@
 ---
   - name: Generate git archive for puppet files
-    shell: cd .. && git archive --format=tar  HEAD bamboo-agents-puppet -o ansible/.tmp/bamboo-agents-puppet.tar
+    shell: cd .. && git archive --format=tar  HEAD bamboo-agents-puppet -o ansible/.tmp/openmrs-puppet.tar
     delegate_to: localhost
     sudo: no
 
@@ -16,7 +16,7 @@
       src: .tmp/openmrs-puppet.tar
       dest: /tmp/openmrs-puppet.tar
   - name: Untar puppet files
-    shell: tar xf /tmp/openmrs-puppet.tar && mv /tmp/openmrs-puppet /etc/openmrs-puppet && rm /tmp/openmrs-puppet.tar
+    shell: cd /tmp && tar xf openmrs-puppet.tar && mv bamboo-agents-puppet /etc/openmrs-puppet && rm openmrs-puppet.tar
   - name: Bootstrap puppet ( it can take a long time - logs in /var/log/puppet-bootstrap.log)
     shell: bash /etc/openmrs-puppet/bin/first-boot.sh | tee /var/log/puppet-bootstrap.log
   - name: Run puppet ( it can take a long time - logs in /var/log/puppet-runs.log)
