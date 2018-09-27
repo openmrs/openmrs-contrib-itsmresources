@@ -52,6 +52,15 @@ Other vagrant commands can be found in [Confluence](https://wiki.openmrs.org/x/C
 
 
 To run only the tests:
+
 ```
 vagrant provision --provision-with serverspec
 ```
+
+## Tech considerations
+
+While this runs in puppet 4, it's a migration from a puppet 3 tree, so we are not using the default folders for puppet code.  
+
+As we run masterless (and only on-demand), I decided to use a non-conventional folder.
+
+We are using librarian-puppet (I don't think it's worth moving to r10k).  
