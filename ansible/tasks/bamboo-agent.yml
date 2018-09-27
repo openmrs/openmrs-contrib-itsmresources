@@ -18,9 +18,9 @@
   - name: Untar puppet files
     shell: cd /tmp && tar xf openmrs-puppet.tar && mv bamboo-agents-puppet /etc/openmrs-puppet && rm openmrs-puppet.tar
   - name: Bootstrap puppet ( it can take a long time - logs in /var/log/puppet-bootstrap.log)
-    shell: bash /etc/openmrs-puppet/bin/first-boot.sh | tee /var/log/puppet-bootstrap.log
+    shell: bash /etc/openmrs-puppet/bin/first-boot.sh 2>&1 | tee -a /var/log/puppet-bootstrap.log
   - name: Run puppet ( it can take a long time - logs in /var/log/puppet-runs.log)
-    shell: bash /etc/openmrs-puppet/bin/run-puppet.sh | tee /var/log/puppet-runs.log
+    shell: bash /etc/openmrs-puppet/bin/run-puppet.sh 2>&1 | tee -a /var/log/puppet-runs.log
     register: puppet_output
   # - name: Print puppet output
   #   debug: var=puppet_output.stdout
