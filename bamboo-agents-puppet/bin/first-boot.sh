@@ -21,7 +21,6 @@ wget https://apt.puppetlabs.com/puppetlabs-release-pc1-xenial.deb
 dpkg -i puppetlabs-release-pc1-xenial.deb
 apt-get -y update
 apt-get -o Dpkg::Options::="--force-confold" install -y puppet-agent
-apt-get -o Dpkg::Options::="--force-confold" -y autoremove
 
 ln -sf /etc/openmrs-puppet/hiera.yaml /etc/puppetlabs/puppet/hiera.yaml
 
