@@ -5,7 +5,7 @@ datadog_tags_extra:
   - "service:bot"
 
 users:
-  kimberleymanning:
-    comment: Kimberley Manning
-    groups: 'admin'
-    ssh_key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDGeWaYGWXSVE1g+haPh39y0GWU6FRxAWumCHcWEfx1oGO6MLp29VzCOp1itC9xcAnBTguepdIhRbjA5jIz55dkXw/WfrQIj9eNUQNK29JwHAYNmDPNh/et7Hb62Op1KVrVRI2HyqqhF3Jy2bjBcCtln5B9bwz4DvzPdH+MwonMBEUdpsG6sMy5T3Vuk6+YCBXwrxZCRwMjcf5Ie+pyJWBs5tRPh7eWYXAoF9JvQfX7DQOcvvgkKEZllZNeDohzpKgLmG3YyxAgpft8HRjF6fbbkKORqGIE1Y6Kzk/L1rGEq2dGTN6RH6sTct2uvd40QVge/tvfZkLUfKh8KsdvgmGd kimberley@lada"
+ toddtee:
+   Comment: Todd Turner
+   groups: 'admin'
+   ssh_key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDXj7e7GLobJJHjg9P26o2zq9N0ihZ4uMa6ZZfUILXtzaLriJzSeGmRL86wpi/xAyqszu2kveh6uvyV7DTTFT4x89l/K3FXl1f+Mdj762vsHEF7L55tVYbiQOTb1dQciVf56+o2HUwqk4jw6qDgzhPey3F0hlyAj5mJfKNmgAb5KjAPq4NiE5nlJL2RwN/+vXEwZwk7AstHOntSoW5R3wAE6a3AcfYvj1J3bQ7PVJHxTLpTgiGq1EvfrsDrn77Zd1kYC5dvQRqvyupb1CZSSxl9j2PCWH1eQhUh7+5MySJa0DSTL0oYnJh4KP1i+yUxY4tN+ddu4KH+mljQlaKtvYeF tturner@lorica344"
