@@ -67,6 +67,7 @@ mysql_connector_java_dest: '{{ jira_catalina }}/lib'
 mysql_connector_java_user: '{{ jira_user }}'
 mysql_connector_java_archive: 'mysql-connector-java-5.1.44.tar.gz'
 mysql_connector_java_jar: 'mysql-connector-java-5.1.44-bin.jar'
+mysql_connector_java_url: "https://dev.mysql.com/get/Downloads/Connector-J/{{ mysql_connector_java_archive }}"
 mysql_connector_java_checksum: 'sha256:7419a235c63f61c72b7e2e078e68350924ea95cffea3f5808d70e497410c8232'
 jira_proxy_name: 'issues.openmrs.org'
 jira_scheme: 'https'

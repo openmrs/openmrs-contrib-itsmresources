@@ -81,5 +81,6 @@ confluence_url: "https://downloads.atlassian.com/software/confluence/downloads/{
 mysql_connector_java_dest: '{{ confluence_catalina }}/lib'
 mysql_connector_java_user: '{{ confluence_user }}'
 mysql_connector_java_archive: 'mysql-connector-java-5.1.44.tar.gz'
+mysql_connector_java_url: "https://dev.mysql.com/get/Downloads/Connector-J/{{ mysql_connector_java_archive }}"
 mysql_connector_java_jar: 'mysql-connector-java-5.1.44-bin.jar'
 mysql_connector_java_checksum: 'sha256:7419a235c63f61c72b7e2e078e68350924ea95cffea3f5808d70e497410c8232'
