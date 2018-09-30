@@ -6,7 +6,13 @@ defaults:
 hierarchy:
   - name: "Per environment config"
     paths:
-      - "environments/%{::environment}.yaml"
+      - "environments/%{::hiera_environment}.yaml"
+  - name: "Per environment secret config"
+    lookup_key: eyaml_lookup_key
+    path: "environments/%{::hiera_environment}.eyaml"
+    options:
+      pkcs7_private_key: /etc/openmrs-puppet/hieradata/keys/%{::hiera_environment}/private_key.pkcs7.pem
+      pkcs7_public_key:  /etc/openmrs-puppet/hieradata/keys/%{::hiera_environment}/public_key.pkcs7.pem
   - name: "Common config"
     paths:
       - "common.yaml"

@@ -1,6 +1,9 @@
 class profiles::java_buildtime (
   $maven3_version,
+  $maven_password,
+  $sonar_login_token,
 ){
+
   bamboo_agent_home::directory { '.m2': }
   ->
   bamboo_agent_home::file { '.m2/settings.xml':
@@ -16,7 +19,7 @@ class profiles::java_buildtime (
   wget::fetch { 'fetch maven 3':
     source      => "http://apache.mirrors.pair.com/maven/maven-3/${maven3_version}/binaries/apache-maven-${maven3_version}-bin.zip",
     destination => '/tmp/mvn3.zip',
-    require => Package['unzip']
+    require     => Package['unzip']
   }
   ~>
   exec { 'extract maven 3':

@@ -1,0 +1,5 @@
+---
+profiles::java_buildtime::maven_password: 'restricts7904956(overabundantly'
+profiles::java_buildtime::sonar_login_token: '58b12d7a2ddc993dd03fea344df0c2287865235f'
+profiles::transifex::transifex_password: 'uuHuGNrmuuwBUzHYXnUCBwPY36QtmaxAriwcDHVfsGznbHnDdMsjjeNz8FKgFsgujHHgMTqhEpCA6NHPyZComWKpaKqbhsxViCJu'
+profiles::transifex::transifex_username: 'openmrs_bamboo_bot'

@@ -4,22 +4,22 @@
     <server>
       <id>openmrs-repo-releases</id>
       <username>ci</username>
-      <password>restricts7904956(overabundantly</password>
+      <password><%= @maven_password %></password>
     </server>
     <server>
       <id>openmrs-repo-snapshots</id>
       <username>ci</username>
-      <password>restricts7904956(overabundantly</password>
+      <password><%= @maven_password %></password>
     </server>
     <server>
       <id>openmrs-repo-modules</id>
       <username>ci</username>
-      <password>restricts7904956(overabundantly</password>
+      <password><%= @maven_password %></password>
     </server>
     <server>
       <id>openmrs-repo-contrib</id>
       <username>ci</username>
-      <password>restricts7904956(overabundantly</password>
+      <password><%= @maven_password %></password>
     </server>
   </servers>
 
@@ -30,7 +30,7 @@
               <activeByDefault>true</activeByDefault>
           </activation>
           <properties>
-              <sonar.login>58b12d7a2ddc993dd03fea344df0c2287865235f</sonar.login>
+              <sonar.login><%= @sonar_login_token %></sonar.login>
               <sonar.host.url>https://sonar.openmrs.org</sonar.host.url>
           </properties>
           <!-- Always retrieve latest snapshots and version range -->

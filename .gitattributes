@@ -1,0 +1,2 @@
+.vault_pass filter=git-crypt diff=git-crypt
+id_rsa filter=git-crypt diff=git-crypt

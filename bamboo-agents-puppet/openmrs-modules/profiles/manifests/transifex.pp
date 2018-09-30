@@ -1,4 +1,7 @@
-class profiles::transifex {
+class profiles::transifex (
+  $transifex_username,
+  $transifex_password,
+){
   package { 'pyOpenSSL':
     ensure   => '17.5.0',
     provider => 'pip',
