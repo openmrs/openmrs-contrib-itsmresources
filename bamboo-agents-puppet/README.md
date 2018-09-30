@@ -1,4 +1,4 @@
-openmrs-contrib-bambooagent
+Bamboo-agents-puppet
 ===========================
 Installation of Bamboo Agents.
 
