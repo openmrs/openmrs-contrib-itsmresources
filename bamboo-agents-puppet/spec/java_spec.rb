@@ -10,4 +10,7 @@ describe 'java builder machine' do
   it 'should have mvn command' do
     expect(command('mvn3 --version').stdout).to include('3.2.5')
   end
+  it 'should have mvn creds' do
+    expect(command('fgrep "<password>" /home/bamboo-agent/.m2/settings.xml | uniq -c').stdout).to include('4       <password>amazingMavenTestPassword</password>')
+  end
 end

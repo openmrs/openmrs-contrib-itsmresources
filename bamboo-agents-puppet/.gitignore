@@ -29,3 +29,4 @@ etckeeper-*
 puppetlabs-release-*
 auth.conf
 *.dpkg-new
+.project

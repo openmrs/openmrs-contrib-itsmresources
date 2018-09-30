@@ -24,7 +24,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     v.cpus = 2
   end
 
-  config.vm.provision "shell", :path => 'bin/first-boot.sh'
+  # Install puppet and dependencies
+  config.vm.provision "shell", :path => 'bin/first-boot.sh', :args => "vagrant"
 
   # And running puppet
   config.vm.provision "puppet" do |puppet|
@@ -32,11 +33,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     puppet.hiera_config_path = "hiera.yaml"
     puppet.working_directory = "/etc/openmrs-puppet/"
     puppet.manifest_file = 'site.pp'
-    puppet.facter = {
-     "environment" => "vagrant"
-    }
-   #    puppet.options = ['--debug']
-
+    # puppet.options = ['--debug']
   end
 
   # and tests

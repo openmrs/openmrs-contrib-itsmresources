@@ -1,3 +1,7 @@
 Host github.com
-	IdentityFile ~/.ssh/bamboo-github-key/id_rsa
+	IdentityFile ~/.ssh/github/id_rsa
+	StrictHostKeyChecking no
+
+Host *.openmrs.org
+	IdentityFile ~/.ssh/internal-ssh/id_rsa
 	StrictHostKeyChecking no
