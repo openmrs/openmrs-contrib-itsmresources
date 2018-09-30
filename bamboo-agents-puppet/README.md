@@ -64,6 +64,11 @@ To encrypt data for vagrant:
 eyaml encrypt --pkcs7-public-key=hieradata/keys/vagrant/public_key.pkcs7.pem -s "<your string>"
 ```
 
+To encrypt data for production:
+```
+eyaml encrypt --pkcs7-public-key=hieradata/keys/production/public_key.pkcs7.pem -s "<your string>"
+```
+
 ## Tech considerations
 
 While this runs in puppet 4, it's a migration from a puppet 3 tree, so we are not using the default folders for puppet code.  
