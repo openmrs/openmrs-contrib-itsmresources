@@ -44,6 +44,9 @@ nginx_vhosts:
       location ^~ /.well-known/acme-challenge/ {
         root /usr/share/nginx/html;
       }
+      location /forgotuserpassword.action {
+        return 302 https://id.openmrs.org/reset;
+      }
       location / {
         client_max_body_size 100m;
         proxy_set_header HOST $host;

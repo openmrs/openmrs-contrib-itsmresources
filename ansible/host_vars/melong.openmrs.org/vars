@@ -45,6 +45,9 @@ nginx_vhosts:
       location ^~ /.well-known/acme-challenge/ {
         root /usr/share/nginx/html;
       }
+      location /secure/ForgotLoginDetails.jspa {
+        return 302 https://id.openmrs.org/reset;
+      }
       location / {
         proxy_set_header HOST $host;
         proxy_set_header  X-Forwarded-Proto $scheme;

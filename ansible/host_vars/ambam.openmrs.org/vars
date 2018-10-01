@@ -53,6 +53,9 @@ nginx_vhosts:
       location ^~ /.well-known/acme-challenge/ {
         root /usr/share/nginx/html;
       }
+      location /console/forgottenlogindetails {
+        return 302 https://id.openmrs.org/reset;
+      }
       location / {
         proxy_pass http://127.0.0.1:8095/;
         root /usr/share/nginx/html;
