@@ -9,6 +9,7 @@ letsencrypt_cert_domains:
    - campo.openmrs.org
    - mavenrepo.openmrs.org
    - mavenrepo-redirect.openmrs.org
+   - help.openmrs.org
 
 nginx_vhosts:
   - listen: "80 default_server"
@@ -42,20 +43,39 @@ nginx_vhosts:
   - listen: "80"
     server_name: "mavenrepo-redirect.openmrs.org"
     extra_parameters: |
-      return 301 https://$host$request_uri;
+       return 301 https://$host$request_uri;
   - listen: "443 ssl"
     server_name: "mavenrepo-redirect.openmrs.org"
     extra_parameters: |
-      access_log /var/log/nginx/mavenrepo_redirect_access.log;
-      error_log /var/log/nginx/mavenrepo_redirect_error.log;
+       access_log /var/log/nginx/mavenrepo_redirect_access.log;
+       error_log /var/log/nginx/mavenrepo_redirect_error.log;
+       ssl_certificate /etc/letsencrypt/live/campo.openmrs.org/fullchain.pem;
+       ssl_certificate_key /etc/letsencrypt/live/campo.openmrs.org/privkey.pem;
+
+       location ^~ /.well-known/acme-challenge/ {
+         root /usr/share/nginx/html;
+       }
+
+       location / {
+         return 200 'Be happy!';
+         add_header Content-Type text/plain;
+       }
+  - listen: "80"
+    server_name: "help.openmrs.org"
+    extra_parameters: |
+      return 301 https://$host$request_uri;
+  - listen: "443 ssl"
+    server_name: "help.openmrs.org"
+    extra_parameters: |
+      access_log /var/log/nginx/help_access.log;
+      error_log /var/log/nginx/help_error.log;
       ssl_certificate /etc/letsencrypt/live/campo.openmrs.org/fullchain.pem;
       ssl_certificate_key /etc/letsencrypt/live/campo.openmrs.org/privkey.pem;
-
+      set $remote_path "https://openmrs.desk.com";
       location ^~ /.well-known/acme-challenge/ {
         root /usr/share/nginx/html;
       }
 
       location / {
-        return 200 'Be happy!';
-        add_header Content-Type text/plain;
+        return 301 $remote_path$request_uri;
       }
