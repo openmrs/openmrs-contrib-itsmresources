@@ -5,3 +5,7 @@ Host github.com
 Host *.openmrs.org
 	IdentityFile ~/.ssh/internal-ssh/id_rsa
 	StrictHostKeyChecking no
+
+Host *.openconceptlab.org
+	IdentityFile ~/.ssh/internal-ssh/id_rsa
+	StrictHostKeyChecking no
