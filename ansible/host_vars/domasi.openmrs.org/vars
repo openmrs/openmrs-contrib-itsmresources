@@ -18,15 +18,15 @@ docker_deployable_images: []
 
 letsencrypt_cert_domains:
   - domasi.openmrs.org
-  - talk-new.openmrs.org
+  - talk-stg.openmrs.org
 
 nginx_vhosts:
  - listen: "80 default_server"
-   server_name: "talk-new.openmrs.org"
+   server_name: "talk-stg.openmrs.org"
    extra_parameters: |
      return 301 https://$host$request_uri;
  - listen: "443 ssl"
-   server_name: "talk-new.openmrs.org"
+   server_name: "talk-stg.openmrs.org"
    extra_parameters: |
      access_log /var/log/nginx/talk_access.log;
      error_log /var/log/nginx/talk_error.log;

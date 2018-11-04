@@ -62,41 +62,8 @@ mysql_users:
     password: '{{ vault_mysql_backup_user_password }}'
     priv: "*.*:ALL"
 
-# Mysql Backup Configuration
-gcoop_mysqldump_mysql_username: '{{ backup_user }}'
-gcoop_mysqldump_mysql_password: '{{ vault_mysql_backup_user_password }}'
-gcoop_mysqldump_system_username: '{{backup_user}}'
-gcoop_mysqldump_mysql_root_password: '{{ vault_mysql_root_password }}'
-gcoop_mysqldump_host: localhost
-gcoop_mysqldump_dir: /opt/backups
-gcoop_mysqldump_permission: 755
-gcoop_mysqldump_owner: '{{backup_user}}'
-gcoop_mysqldump_group: '{{backup_user}}'
-gcoop_mysqldump_cron_entries:
-  - name: daily-crowd
-    minute: 0
-    hour: 2
-    day: '*'
-    database: 'crowd'
-    format: '%F'
-  - name: daily-jira
-    minute: 0
-    hour: 2
-    day: '*'
-    database: 'jira'
-    format: '%F'
-  - name: daily-confluence
-    minute: 0
-    hour: 2
-    day: '*'
-    database: 'confluence'
-    format: '%F'
-  - name: daily-bamboo
-    minute: 0
-    hour: 2
-    day: '*'
-    database: 'bamboo'
-    format: '%F'
+gcoop_mysqldump_create_system_user: yes
+gcoop_mysqldump_create_mysql_user: no
 
 # Mysql Tuning
 mysql_new_data_dir: /data/mysql

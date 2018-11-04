@@ -13,14 +13,16 @@ mumias.openmrs.org
 ruiru.openmrs.org
 
 [docker]
+domasi.openmrs.org
 ruiru.openmrs.org
 
 [web]
 domasi.openmrs.org
+gede.openmrs.org
+mumias.openmrs.org
 ruiru.openmrs.org
 
 [tls]
-chitipa.openmrs.org
 domasi.openmrs.org
 gede.openmrs.org
 mumias.openmrs.org
