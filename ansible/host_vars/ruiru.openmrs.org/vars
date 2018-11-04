@@ -1,5 +1,5 @@
 ---
-# LDAP STG
+# LDAP and IDSTG
 
 users:
  toddtee:
@@ -10,14 +10,17 @@ users:
 datadog_tags_extra:
    - "service:ldap"
    - "service-group:id"
+   - "service:id-dashboard"
 
 letsencrypt_cert_domains:
    - ruiru.openmrs.org
    - ldap-stg.openmrs.org
    - authentication-stg.openmrs.org
+   - id-stg.openmrs.org
 
 docker_deployment:
    - ldap-stg
+   - id-stg
 
 docker_deployable_images: []
 
@@ -40,6 +43,25 @@ nginx_vhosts:
        proxy_set_header HOST $host;
        proxy_set_header  X-Forwarded-Proto $scheme;
        proxy_pass http://127.0.0.1:1760/;
+     }
+ - listen: "80"
+   server_name: "id-stg.openmrs.org"
+   extra_parameters: |
+     return 301 https://$host$request_uri;
+ - listen: "443 ssl"
+   server_name: "id-stg.openmrs.org"
+   extra_parameters: |
+     access_log /var/log/nginx/deployer_access.log;
+     error_log /var/log/nginx/deployer_error.log;
+     ssl_certificate /etc/letsencrypt/live/ruiru.openmrs.org/fullchain.pem;
+     ssl_certificate_key /etc/letsencrypt/live/ruiru.openmrs.org/privkey.pem;
+     location ^~ /.well-known/acme-challenge/ {
+       root /usr/share/nginx/html;
+     }
+     location / {
+       proxy_set_header HOST $host;
+       proxy_set_header  X-Forwarded-Proto $scheme;
+       proxy_pass http://127.0.0.1:3000/;
      }
 
 aws_access_key_id: '{{ vault_aws_access_key_id }}'

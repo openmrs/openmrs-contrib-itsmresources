@@ -11,9 +11,6 @@
 - name: docker
   src: andrewrothstein.docker
   version: v5.0.4
-- name: docker-compose
-  src: franklinkim.docker-compose
-  version: 1.2.2
 - name: nginx
   src: geerlingguy.nginx
   version: 2.1.0
@@ -26,6 +23,9 @@
 # from git
 - name: docker-compose-openmrs
   src: https://github.com/openmrs/openmrs-contrib-ansible-docker-compose.git
+- name: docker-compose
+  src: https://github.com/weareinteractive/ansible-docker
+  version: 1.9.0
 - name: letsencrypt
   src: https://github.com/thefinn93/ansible-letsencrypt
   version: c28dbb1c5d06971d3eb38044635bdd425003f2ce
