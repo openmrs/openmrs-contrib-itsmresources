@@ -1,12 +1,12 @@
 [stg]
-chitiba.openmrs.org
+chitipa.openmrs.org
 domasi.openmrs.org
 gede.openmrs.org
 mumias.openmrs.org
 ruiru.openmrs.org
 
 [full-ansible]
-chitiba.openmrs.org
+chitipa.openmrs.org
 domasi.openmrs.org
 gede.openmrs.org
 mumias.openmrs.org
@@ -20,7 +20,7 @@ domasi.openmrs.org
 ruiru.openmrs.org
 
 [tls]
-chitiba.openmrs.org
+chitipa.openmrs.org
 domasi.openmrs.org
 gede.openmrs.org
 mumias.openmrs.org
@@ -47,7 +47,7 @@ mumias.openmrs.org
 gede.openmrs.org
 
 [mysql]
-chitiba.openmrs.org
+chitipa.openmrs.org
 
 [ldap-mantainance]
 ruiru.openmrs.org
