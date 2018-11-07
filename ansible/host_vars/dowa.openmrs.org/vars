@@ -9,6 +9,10 @@ users:
     comment: Rafal
     groups: 'admin'
     ssh_key: "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAgc4Q+9e1XMDInFm4GNkuYErYkgDt0KNnmLDTFa+0HV1MuQKP+TE3Ee9Qdx5rugNkg9+e45Hzfze/vX/nYjrNAkWcxYaxEAdej/6QW4Bh4r6rRLnNoqnksG3+WVXl2cqOf9odji2L+uzA2E+zX5tEYqVkN9+0z1Ewwe6lcSg0zRQyJ+phIo595eftYJGAiLAhIfSotg8SxWJhSHUsNtphyXRld7FtxXDgfu6SkejvakymwXEuMe7yS2mES9U8IlJh4CyADGaqb0WSWfqsejcgMuXJmnEqpMqVwcDaP4B+NZLTKfUUlc2D8DiUKRqlnxuGCFmkpghTQkX4dE0YhxJSjQ== raff"
+  reubenv:
+    comment: Reuben Varghese
+    groups: 'admin'
+    ssh_key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDC56Nq8RAW01bxu9/6Vu0C7djQLnWubAN7ORozum88Ro+ynBZqGZSwripaMJQoU03H5e6GlUH5i1dOINQwQzJcfM2uTWqkYn4u4S8gXNRtoaoZF1lh5qHa66qN8LA+dIio/XbBVPD1WC/lTDwiPQJNZCXbXI92kk3NRe2aFR6T/uKS3hn8TTzrOEcJkSWil1ebP0McvqzcZdrqx8I7BzEkVvi72mHoPfuQN0/CfIq+yGi7Ldaw1khQ9H3dbtcHOWo1vnhIltejofaRVfAP/CmB1yruQPnGNkvB8a6izzTVs4ciBoIc0J1vURgOfv5E0lfP/ZGi7aanQTaILF9W0lLed3S+/x4qKh8wNQptmHVYDt+/3E3Xirp5rIl5pesIWq6+1sYUa00qiuxowJZSM28vXLI5Y0dsYZGDGvpcz7LKPmS/Gv7lGOZl3l31+I3FhW34oSBe3izREwxl3t9tYgCVALjPgXo4j+1s6/vA9Sp5dokaze7AQ7lYiyVoNBoJoMLpM15crFGjK1BxwmazUhpzdGfr/W9R1Jy+95GGa7Ly46gPz1KfJxYEbpNN4RDQvFPq/m7YYLn0l4gqUk9IeVrfR2mpwVYKk/rAJgKC14d9CKPmXJvPQGYxu2LUQjOb8Qb62OzjVizLnfxxsFBGJGzAttOEQ+2AnZdt5YE2S9WfaQ== reubenvarghese1@Christopher"
 
 datadog_tags_extra:
   - "service:openmrs-platform"
