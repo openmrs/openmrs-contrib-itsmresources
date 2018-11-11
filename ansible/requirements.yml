@@ -24,8 +24,8 @@
 - name: docker-compose-openmrs
   src: https://github.com/openmrs/openmrs-contrib-ansible-docker-compose.git
 - name: docker-compose
-  src: https://github.com/weareinteractive/ansible-docker
-  version: 1.9.0
+  src: https://github.com/weareinteractive/ansible-docker-compose
+  version: 1.2.2
 - name: letsencrypt
   src: https://github.com/thefinn93/ansible-letsencrypt
   version: c28dbb1c5d06971d3eb38044635bdd425003f2ce
