@@ -2,6 +2,10 @@ Host github.com
 	IdentityFile ~/.ssh/github/id_rsa
 	StrictHostKeyChecking no
 
+Host *.sourceforge.net
+	IdentityFile ~/.ssh/sourceforge/id_rsa
+	StrictHostKeyChecking no
+
 Host *.openmrs.org
 	IdentityFile ~/.ssh/internal-ssh/id_rsa
 	StrictHostKeyChecking no
