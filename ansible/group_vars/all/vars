@@ -72,6 +72,10 @@ datadog_checks:
         - name: google
           hostname: www.google.com
           timeout: 8
+  disk:
+    init_config:
+    instances:
+        - service_check_rw: true
 
 backup_tag: 'not-applicable'
 backup_user: 'not-applicable'
