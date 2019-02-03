@@ -18,10 +18,12 @@ docker_deployment:
  - sync2-refapp
  - sync3-refapp
  - sync4-refapp
+ - sync1-legacy-refapp
+ - sync2-legacy-refapp
 
 docker_deployable_images:
  - repository: openmrs/openmrs-reference-application-distro
-   compose: sync1-refapp,sync3-refapp,sync3-refapp,sync4-refapp
+   compose: sync1-refapp,sync3-refapp,sync3-refapp,sync4-refapp,sync1-legacy-refapp,sync2-legacy-refapp
 
 letsencrypt_cert_domains:
   - goura.openmrs.org
@@ -29,6 +31,8 @@ letsencrypt_cert_domains:
   - sync2.openmrs.org
   - sync3.openmrs.org
   - sync4.openmrs.org
+  - sync-legacy1.openmrs.org
+  - sync-legacy2.openmrs.org
 
 nginx_vhosts:
  - listen: "80 default_server"
@@ -126,8 +130,8 @@ nginx_vhosts:
  - listen: "443 ssl"
    server_name: "sync-legacy1.openmrs.org"
    extra_parameters: |
-     access_log /var/log/nginx/sync1_access.log;
-     error_log /var/log/nginx/sync1_error.log;
+     access_log /var/log/nginx/synclegacy1_access.log;
+     error_log /var/log/nginx/synclegacy1_error.log;
      ssl_certificate /etc/letsencrypt/live/goura.openmrs.org/fullchain.pem;
      ssl_certificate_key /etc/letsencrypt/live/goura.openmrs.org/privkey.pem;
      location ^~ /.well-known/acme-challenge/ {
@@ -148,8 +152,8 @@ nginx_vhosts:
  - listen: "443 ssl"
    server_name: "sync2-legacy.openmrs.org"
    extra_parameters: |
-     access_log /var/log/nginx/sync2-refapp_access.log;
-     error_log /var/log/nginx/sync2-refapp_access.log;
+     access_log /var/log/nginx/synclegacy2-refapp_access.log;
+     error_log /var/log/nginx/synclegacy2-refapp_access.log;
      ssl_certificate /etc/letsencrypt/live/goura.openmrs.org/fullchain.pem;
      ssl_certificate_key /etc/letsencrypt/live/goura.openmrs.org/privkey.pem;
      location ^~ /.well-known/acme-challenge/ {
