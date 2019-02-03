@@ -119,6 +119,50 @@ nginx_vhosts:
        proxy_set_header  X-Forwarded-Proto $scheme;
        proxy_pass http://127.0.0.1:8084/openmrs;
      }
+ - listen: "80"
+   server_name: "sync-legacy1.openmrs.org"
+   extra_parameters: |
+     return 301 https://$host$request_uri;
+ - listen: "443 ssl"
+   server_name: "sync-legacy1.openmrs.org"
+   extra_parameters: |
+     access_log /var/log/nginx/sync1_access.log;
+     error_log /var/log/nginx/sync1_error.log;
+     ssl_certificate /etc/letsencrypt/live/goura.openmrs.org/fullchain.pem;
+     ssl_certificate_key /etc/letsencrypt/live/goura.openmrs.org/privkey.pem;
+     location ^~ /.well-known/acme-challenge/ {
+       root /usr/share/nginx/html;
+     }
+     location / {
+       return 301 https://sync-legacy1.openmrs.org/openmrs;
+     }
+     location /openmrs {
+       proxy_set_header HOST $host;
+       proxy_set_header  X-Forwarded-Proto $scheme;
+       proxy_pass http://127.0.0.1:8085/openmrs;
+     }
+ - listen: "80"
+   server_name: "sync-legacy2.openmrs.org"
+   extra_parameters: |
+     return 301 https://$host$request_uri;
+ - listen: "443 ssl"
+   server_name: "sync2-legacy.openmrs.org"
+   extra_parameters: |
+     access_log /var/log/nginx/sync2-refapp_access.log;
+     error_log /var/log/nginx/sync2-refapp_access.log;
+     ssl_certificate /etc/letsencrypt/live/goura.openmrs.org/fullchain.pem;
+     ssl_certificate_key /etc/letsencrypt/live/goura.openmrs.org/privkey.pem;
+     location ^~ /.well-known/acme-challenge/ {
+       root /usr/share/nginx/html;
+     }
+     location / {
+       return 301 https://sync-legacy2.openmrs.org/openmrs;
+     }
+     location /openmrs {
+       proxy_set_header HOST $host;
+       proxy_set_header  X-Forwarded-Proto $scheme;
+       proxy_pass http://127.0.0.1:8086/openmrs;
+     }
  - listen: "443 ssl"
    server_name: "goura.openmrs.org"
    extra_parameters: |
