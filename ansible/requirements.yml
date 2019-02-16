@@ -5,9 +5,6 @@
 - name: datadog
   src: Datadog.datadog
   version: 2.3.0
-- name: dhparam
-  src: gronke.dhparam
-  version: master
 - name: docker
   src: andrewrothstein.docker
   version: v5.0.4
@@ -26,6 +23,9 @@
 - name: docker-compose
   src: https://github.com/weareinteractive/ansible-docker-compose
   version: 1.2.2
+- name: dhparam
+  src: https://github.com/gronke/ansible-dhparam.git
+  version: c6fc0c45991a8ec0e2d7f631241f870fb87d4dfb
 - name: letsencrypt
   src: https://github.com/thefinn93/ansible-letsencrypt
   version: c28dbb1c5d06971d3eb38044635bdd425003f2ce
@@ -46,7 +46,7 @@
   version: efe5922cc2790256d7917f90728c7b5e2d14f990
 - name: jira
   src: https://github.com/cintiadr/ansible-role-jira
-  version: 0185068240cf7df65fd5827cdae00bab547a23e1 
+  version: 0185068240cf7df65fd5827cdae00bab547a23e1
 - name: java
   src: https://github.com/pantarei/ansible-role-java.git
   version: 7fde32788d3fd1b5ef72acb6577d2c456bc22369
@@ -60,8 +60,8 @@
   src: https://github.com/pantarei/ansible-role-bamboo.git
   version: 2fc0a8e84c0ddfbe5fcd4b2f4232db25cad86208
 - name: crowd
-  src: https://github.com/pantarei/ansible-role-crowd.git
-  version: f374b874d5c00e6233e99a82107c810cf874f2c6
+  src: https://github.com/cintiadr/ansible-role-crowd.git
+  version: 5e24c59a607ec65f3cbd59d2876209e5a331f0d6
 - name: mysql-cron-backup
   src: https://github.com/gcoop-libre/ansible-role-mysqldump.git
   version: 9343efd6d77a79ba46f10898da68e99f8bb5adac

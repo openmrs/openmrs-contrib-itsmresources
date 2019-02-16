@@ -69,8 +69,9 @@ backup_tag: 'configured'
 bamboo_pass: '{{ vault_bamboo_pass }}'
 bamboo_hash_salt: '{{ vault_bamboo_hash_salt }}'
 bamboo_user: 'bamboo'
-bamboo_checksum: 'sha256:de739d5b4d8c598588d4f7ea40006b1eaf8ac8a22d15d1226cf0b90726803e9c'
-bamboo_archive: "atlassian-bamboo-6.2.5.tar.gz"
+bamboo_checksum: 'sha256:b2b2a6825a84f296b6cd24b1cb1b3b0109218558d482cf1e846e4ef6a458a2a9'
+bamboo_archive: "atlassian-bamboo-6.8.0.tar.gz"
+bamboo_url: "https://product-downloads.atlassian.com/software/bamboo/downloads/{{ bamboo_archive }}"
 bamboo_catalina: "/opt/bamboo"
 bamboo_home: "/data/bamboo_home"
 bamboo_jvm_maximum_memory: "4096m"
