@@ -5,6 +5,10 @@ datadog_tags_extra:
   - "service:bot"
 
 users:
+ tendomart:
+   Comment: 'tendo kiiza Martyn'
+   groups: 'admin'
+   ssh_key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDKKOYLFJ9qWi4QwZiy9jXAKFwFwlwS6gCC8qQsZGBbyxM83xL7olind7pHPl1hm4CdJ6YAQC6pBtrf1yMz01LKC1JbYuxlfmndKik5AFZ8IEFSNlFHujVxbwiY3db6EDa3cN/a88DHq0mD08wY0RQdpn6AVe8Hs2q9WIXbOMj+FHuCE6IGsIJQeN+EaI5Q5nQ4lJkDq/PXoOsrvf7ZWVxaGpW1pmq1H+4N3y6JXB9Ybhj7chrjV7mR2SK4vH3d99YUJzwVJD+iWvxaiIqXMdisAA9x43Ucc1HQS8dcK5Myyb9yrpN2Yrn+236FVtFC/GDvoSQkIuyQywf7in1uhA3P"
  toddtee:
    Comment: Todd Turner
    groups: 'admin'
