@@ -26,7 +26,7 @@ nginx_vhosts:
       }
 
 datadog_enabled: no
-
+datadog_api_key: "aaaaabbbbbccccc"
 datadog_config:
   process_agent_enabled: "true"
   tags: "provider:local,region:none,environment:vagrant,backup:not-applicable,ansible:full,provisioner:vagrant"
