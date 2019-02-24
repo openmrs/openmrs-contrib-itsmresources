@@ -48,16 +48,16 @@
   src: https://github.com/cintiadr/ansible-role-jira
   version: 0185068240cf7df65fd5827cdae00bab547a23e1
 - name: java
-  src: https://github.com/pantarei/ansible-role-java.git
+  src: https://github.com/cintiadr/ansible-role-java.git
   version: 7fde32788d3fd1b5ef72acb6577d2c456bc22369
 - name: mysql-connector-java
-  src: https://github.com/pantarei/ansible-role-mysql-connector-java.git
+  src: https://github.com/cintiadr/ansible-role-mysql-connector-java.git
   version: 7a9ecef6bde1fdc890b755c179a87bbe7e597dcd
 - name: confluence
-  src: https://github.com/pantarei/ansible-role-confluence.git
+  src: https://github.com/cintiadr/ansible-role-confluence.git
   version: 402551f5975dda36239b21163517e4472891f561
 - name: bamboo
-  src: https://github.com/pantarei/ansible-role-bamboo.git
+  src: https://github.com/cintiadr/ansible-role-bamboo.git
   version: 2fc0a8e84c0ddfbe5fcd4b2f4232db25cad86208
 - name: crowd
   src: https://github.com/cintiadr/ansible-role-crowd.git
