@@ -12,11 +12,12 @@ All commands assume you are in the `ansible` directory.
   * Version 2.3.0 cannot work with galaxy
   * Version 2.4.0 doesn't work with our sshd role
 * Install [git-crypt](https://www.agwa.name/projects/git-crypt/) and run `git-crypt unlock`.
-* If you are not part of git-crypt by any reason, you'll need to retrieve the vault password file from LP or ask to be added in git-crypt.
-* Install `pip install passlib`
-* Vagrant and virtualbox (if you want to run tests locally)
+  * If you are not part of git-crypt by any reason, you'll need to retrieve the vault password file from LP or ask to be added in git-crypt.
+* Install `pip install passlib` (is it still needed???)
+* Install latest Vagrant and virtualbox (if you want to run tests locally)
 
-### Setting up roles
+### Downloading all roles
+
 ```
 # Download all roles/modules (needs to be done every time there's a commit to a role)
 $ ansible-galaxy install -p roles -r requirements.yml --force
@@ -53,10 +54,26 @@ $ ansible-vault edit --vault-password-file .vault_pass /path/to/encrypted/file
 ### Running locally
 
 Instead of deploying ansible to another machine, it's possible to use vagrant VM instead:
+
+
 ```
-# starting web VM (check Vagrantfile for more)
-$ vagrant up web
-$ vagrant ssh web
+# see status of all VMs
+$ vagrant status
+
+# starting soe (base) VM
+$ vagrant up soe
+
+# rerunning ansible and serverspec tests
+$ vagrant provision soe
+
+# ssh into the VM
+$ vagrant ssh soe
+
+# stop the VM
+$ vagrant halt soe
+
+# destroy the VM
+$ vagrant destroy soe
 ```
 
 

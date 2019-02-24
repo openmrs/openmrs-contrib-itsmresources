@@ -11,7 +11,8 @@ end
 # Vagrant VMs.
 # vm => group (in ansible)
 servers = {
-  'docker' => %w(docker web)
+  'docker' => %w(docker web),
+  'soe' => %w(all)
 }
 
 Vagrant.configure(2) do |config|
