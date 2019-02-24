@@ -42,7 +42,10 @@ mysql_max_connections: 800
 mysql_innodb_buffer_pool_size: "8G"
 mysql_innodb_log_file_size: "2G"
 
+# Change this to YES to configure file
+# note: it restarts the service every ansible run
 overwrite_global_mycnf: no
+
 mysql_databases:
   - name: crowd
     encoding: utf8

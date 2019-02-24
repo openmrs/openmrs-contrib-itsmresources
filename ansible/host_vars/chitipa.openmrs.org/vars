@@ -38,7 +38,9 @@ mysql_max_connections: 500
 mysql_innodb_buffer_pool_size: "8G"
 mysql_innodb_log_file_size: "2G"
 
-overwrite_global_mycnf: no
+# Every ansible run will restart the server
+overwrite_global_mycnf: yes
+
 mysql_databases:
   - name: crowd
     encoding: utf8
