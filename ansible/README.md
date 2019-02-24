@@ -90,7 +90,6 @@ Ansible will run over SSH, you your SSH needs to be working to the target machin
 ## Repository
 
   - _site.yml_: default playbook, used to install everything
-  - _update.yml_: playbook used to apply OS patches
   - _remove-certs.yml_: playbook used to clean letsencrypt certificate and regenerate it (note: it stops nginx)
   - _remove-users.yml_: playbook used to delete old users and home folders
 
