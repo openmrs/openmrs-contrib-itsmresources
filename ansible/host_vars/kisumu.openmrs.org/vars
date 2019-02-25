@@ -13,7 +13,7 @@ users:
  tony.zaa11:
    Comment: Tony Zaarour
    groups: 'admin'
-   ssh_key: ""
+   ssh_key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCb1lOmKFtKdKrrhxb4aNFPIAfp+wPgi8xDngQMZiUsK6Zm78yaGZi4ir2jtKPvb0nBxCvLQvxmd0UvFkE0qZDoG4M3oYOKrpIqyfFjW/rm/QyPM/heM8vP5S/K1h8X11Rk9N3oLsMesx9gsYx6L/Q4PR4xvDwS5tdhrK/xxYx/YaN1QqE18NqH2AyUxfN2MCaOzBfSpCMl1ON1SNAkQsX+pce7GBKIj+g+rXbEPS8PDvm5CeDDAJDPCWci35nk69+KtJJvoKiKoSi8dtr1LaFsH25R+TMu7/tsPE8LzHWamJ+wycLK5sSmY1JPk9fKI0h+ladUDXfNy3Q3NimnA7Fn root@Tony-Aspire"
 
 # wordpress
 datadog_tags_extra:
