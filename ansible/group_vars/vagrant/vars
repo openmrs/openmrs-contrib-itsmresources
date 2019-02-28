@@ -30,3 +30,24 @@ datadog_api_key: "aaaaabbbbbccccc"
 datadog_config:
   process_agent_enabled: "true"
   tags: "provider:local,region:none,environment:vagrant,backup:not-applicable,ansible:full,provisioner:vagrant"
+  
+  - name: Install Logrotate
+  hosts: sandbox
+
+  roles:
+    role: logrotate
+    sansible_logrotate_application_logs_paths:
+      - /application/logs/*.log
+      - /another_application/logs/*.log
+    sansible_logrotate_custom_configs:
+      - name: custom_log
+        path: "/var/log/cutom/*.log"
+        options:
+          - weekly
+          - size 25M
+          - missingok
+          - compress
+          - delaycompress
+          - copytruncate
+        scripts:
+          postrotate: "service rsyslog restart"
