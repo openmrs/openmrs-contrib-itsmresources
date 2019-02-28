@@ -14,6 +14,9 @@
 - name: mysql
   src: geerlingguy.mysql
   version: 2.8.0
+- name: logrotate  
+  src: sansible.logrotate
+  version: 2.1.1
 
 
 
