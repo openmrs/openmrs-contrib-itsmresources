@@ -39,7 +39,6 @@ letsencrypt_cert_domains:
    - qa.openconceptlab.org
    - api.qa.openconceptlab.org
    - flower.qa.openconceptlab.org
-   - qa.oclclient.openmrs.org
    - openmrs.qa.openconceptlab.org
 
 nginx_keepalive_timeout: "600"
@@ -133,11 +132,11 @@ nginx_vhosts:
         proxy_pass http://127.0.0.1:5555/;
       }
   - listen: "80"
-    server_name: "qa.oclclient.openmrs.org openmrs.qa.openconceptlab.org"
+    server_name: "openmrs.qa.openconceptlab.org"
     extra_parameters: |
       return 301 https://$host$request_uri;
   - listen: "443 ssl"
-    server_name: "qa.oclclient.openmrs.org openmrs.qa.openconceptlab.org"
+    server_name: "openmrs.qa.openconceptlab.org"
     extra_parameters: |
       access_log /var/log/nginx/oclclient_access.log;
       error_log /var/log/nginx/oclclient_error.log;

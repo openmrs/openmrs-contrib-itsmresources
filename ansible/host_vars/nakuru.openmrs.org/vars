@@ -24,8 +24,9 @@ datadog_tags_extra:
 docker_deployment:
   - oclapi-stg
   - oclweb-stg
-  - oclapi-adhoc
-  - oclweb-adhoc
+  - oclapi-demo
+  - oclweb-demo
+  - oclclient-demo
 
 docker_deployable_images:
   - repository: openconceptlab/oclweb
@@ -40,9 +41,10 @@ letsencrypt_cert_domains:
    - staging.openconceptlab.org
    - api.staging.openconceptlab.org
    - flower.staging.openconceptlab.org
-   - dev.openconceptlab.org
-   - api.dev.openconceptlab.org
-   - flower.dev.openconceptlab.org
+   - demo.openconceptlab.org
+   - api.demo.openconceptlab.org
+   - flower.demo.openconceptlab.org
+   - openmrs.demo.openconceptlab.org
 
 nginx_keepalive_timeout: "600"
 nginx_keepalive_requests: "600"
@@ -100,11 +102,11 @@ nginx_vhosts:
         proxy_pass http://127.0.0.1:5555/;
       }
   - listen: "80"
-    server_name: "dev.openconceptlab.org"
+    server_name: "demo.openconceptlab.org"
     extra_parameters: |
       return 301 https://$host$request_uri;
   - listen: "443 ssl"
-    server_name: "dev.openconceptlab.org"
+    server_name: "demo.openconceptlab.org"
     extra_parameters: |
       access_log /var/log/nginx/oclweb_access.log;
       error_log /var/log/nginx/oclweb_error.log;
@@ -117,11 +119,11 @@ nginx_vhosts:
         proxy_pass http://127.0.0.1:7001/;
       }
   - listen: "80"
-    server_name: "api.dev.openconceptlab.org"
+    server_name: "api.demo.openconceptlab.org"
     extra_parameters: |
       return 301 https://$host$request_uri;
   - listen: "443 ssl"
-    server_name: "api.dev.openconceptlab.org"
+    server_name: "api.demo.openconceptlab.org"
     extra_parameters: |
       access_log /var/log/nginx/oclapi_access.log;
       error_log /var/log/nginx/oclapi_error.log;
@@ -131,14 +133,49 @@ nginx_vhosts:
         root /usr/share/nginx/html;
       }
       location / {
+        if ($request_method = 'OPTIONS') {
+          add_header 'Access-Control-Allow-Origin' '*';
+          add_header 'Access-Control-Allow-Methods' 'GET, OPTIONS, POST, PUT, DELETE';
+          #
+          # Custom headers and headers various browsers *should* be OK with but aren't
+          #
+          add_header 'Access-Control-Allow-Headers' 'num_found,num_returned,offset,authorization,DNT,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range';
+          #
+          # Tell client that this pre-flight info is valid for 20 days
+          #
+          add_header 'Access-Control-Max-Age' 1728000;
+          add_header 'Content-Type' 'text/plain; charset=utf-8';
+          add_header 'Content-Length' 0;
+          return 204;
+        }
+        if ($request_method = 'POST') {
+          add_header 'Access-Control-Allow-Methods' 'GET, OPTIONS, POST, PUT, DELETE';
+          add_header 'Access-Control-Allow-Headers' 'num_found,num_returned,offset,authorization,DNT,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range';
+          add_header 'Access-Control-Expose-Headers' 'Content-Length,Content-Range';
+        }
+        if ($request_method = 'PUT') {
+          add_header 'Access-Control-Allow-Methods' 'GET, OPTIONS, POST, PUT, DELETE';
+          add_header 'Access-Control-Allow-Headers' 'num_found,num_returned,offset,authorization,DNT,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range';
+          add_header 'Access-Control-Expose-Headers' 'Content-Length,Content-Range';
+        }
+        if ($request_method = 'GET') {
+          add_header 'Access-Control-Allow-Methods' 'GET, OPTIONS, POST, PUT, DELETE';
+          add_header 'Access-Control-Allow-Headers' 'num_found,num_returned,offset,authorization,DNT,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range';
+          add_header 'Access-Control-Expose-Headers' 'Content-Length,Content-Range';
+        }
+        if ($request_method = 'DELETE') {
+          add_header 'Access-Control-Allow-Methods' 'GET, OPTIONS, POST, PUT, DELETE';
+          add_header 'Access-Control-Allow-Headers' 'num_found,num_returned,offset,authorization,DNT,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range';
+          add_header 'Access-Control-Expose-Headers' 'Content-Length,Content-Range';
+        }
         proxy_pass http://127.0.0.1:8001/;
       }
   - listen: "80"
-    server_name: "flower.dev.openconceptlab.org"
+    server_name: "flower.demo.openconceptlab.org"
     extra_parameters: |
       return 301 https://$host$request_uri;
   - listen: "443 ssl"
-    server_name: "flower.dev.openconceptlab.org"
+    server_name: "flower.demo.openconceptlab.org"
     extra_parameters: |
       access_log /var/log/nginx/oclapi_access.log;
       error_log /var/log/nginx/oclapi_error.log;
@@ -150,6 +187,23 @@ nginx_vhosts:
       location / {
         proxy_pass http://127.0.0.1:5556/;
       }
+  - listen: "80"
+      server_name: "openmrs.demo.openconceptlab.org"
+      extra_parameters: |
+        return 301 https://$host$request_uri;
+    - listen: "443 ssl"
+      server_name: "openmrs.demo.openconceptlab.org"
+      extra_parameters: |
+        access_log /var/log/nginx/oclclient_access.log;
+        error_log /var/log/nginx/oclclient_error.log;
+        ssl_certificate /etc/letsencrypt/live/nakuru.openmrs.org/fullchain.pem;
+        ssl_certificate_key /etc/letsencrypt/live/nakuru.openmrs.org/privkey.pem;
+        location ^~ /.well-known/acme-challenge/ {
+          root /usr/share/nginx/html;
+        }
+        location / {
+          proxy_pass http://127.0.0.1:8081/;
+        }
   - listen: "443 ssl"
     server_name: "nakuru.openmrs.org"
     extra_parameters: |
