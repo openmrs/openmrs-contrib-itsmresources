@@ -188,22 +188,22 @@ nginx_vhosts:
         proxy_pass http://127.0.0.1:5556/;
       }
   - listen: "80"
-      server_name: "openmrs.demo.openconceptlab.org"
-      extra_parameters: |
-        return 301 https://$host$request_uri;
-    - listen: "443 ssl"
-      server_name: "openmrs.demo.openconceptlab.org"
-      extra_parameters: |
-        access_log /var/log/nginx/oclclient_access.log;
-        error_log /var/log/nginx/oclclient_error.log;
-        ssl_certificate /etc/letsencrypt/live/nakuru.openmrs.org/fullchain.pem;
-        ssl_certificate_key /etc/letsencrypt/live/nakuru.openmrs.org/privkey.pem;
-        location ^~ /.well-known/acme-challenge/ {
-          root /usr/share/nginx/html;
-        }
-        location / {
-          proxy_pass http://127.0.0.1:8081/;
-        }
+    server_name: "openmrs.demo.openconceptlab.org"
+    extra_parameters: |
+      return 301 https://$host$request_uri;
+  - listen: "443 ssl"
+    server_name: "openmrs.demo.openconceptlab.org"
+    extra_parameters: |
+      access_log /var/log/nginx/oclclient_access.log;
+      error_log /var/log/nginx/oclclient_error.log;
+      ssl_certificate /etc/letsencrypt/live/nakuru.openmrs.org/fullchain.pem;
+      ssl_certificate_key /etc/letsencrypt/live/nakuru.openmrs.org/privkey.pem;
+      location ^~ /.well-known/acme-challenge/ {
+        root /usr/share/nginx/html;
+      }
+      location / {
+        proxy_pass http://127.0.0.1:8081/;
+      }
   - listen: "443 ssl"
     server_name: "nakuru.openmrs.org"
     extra_parameters: |
