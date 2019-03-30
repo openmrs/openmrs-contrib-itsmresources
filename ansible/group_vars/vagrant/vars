@@ -30,3 +30,17 @@ datadog_api_key: "aaaaabbbbbccccc"
 datadog_config:
   process_agent_enabled: "true"
   tags: "provider:local,region:none,environment:vagrant,backup:not-applicable,ansible:full,provisioner:vagrant"
+
+logrotate_scripts:
+  - name: test
+    path: /var/log/cloud-init-output.log
+    options:
+      - su root root
+      - weekly
+      - size 100M
+      - rotate 7
+      - missingok
+      - compress
+      - delaycompress
+      - copytruncate
+      - create 644 root root

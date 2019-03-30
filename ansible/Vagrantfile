@@ -37,7 +37,8 @@ Vagrant.configure(2) do |config|
     config.vm.define srv do |host|
       host.vm.provision 'ansible' do |ansible|
         ansible.verbose = 'v'
-        ansible.galaxy_role_file = 'requirements.yml' # comment this line to avoid retrieving all roles again
+        # ansible.tags = ['vagrant'] # uncomment this line to only run tag 'vagrant' from playbook
+        # ansible.galaxy_role_file = 'requirements.yml' # uncomment this line to load all modules
         ansible.playbook = 'site.yml'
         ansible.groups = groups.map { |g| { g => [srv] } }
                                .reduce { |h, v| h.merge v }
