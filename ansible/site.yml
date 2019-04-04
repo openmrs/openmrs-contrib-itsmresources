@@ -117,14 +117,13 @@
 
 - hosts: mysql
   become: true
+  tags:
+    - mysql
+  pre_tasks:
+    - include: tasks/mysql-prepare-datadir.yml
   roles:
     - mysql
     - mysql-cron-backup
-  tasks:
-    - include: tasks/mysql-install-hack.yml
-  handlers:
-    - include: handlers/apparmor-restart.yml
-    - include: handlers/mysql-restart.yml
 
 - hosts: ldap-mantainance
   become: true

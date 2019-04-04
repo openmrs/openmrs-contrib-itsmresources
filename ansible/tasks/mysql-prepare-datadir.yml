@@ -1,0 +1,22 @@
+---
+  - name: Check if datadir exists
+    stat:
+      path: "{{ mysql_datadir }}"
+    register: new_datadir
+
+  - name: install dependencies
+    apt:
+      name: "{{ item }}"
+      state: present
+    with_items:
+      - apparmor-utils
+      - mysql-common
+      - mysql-server
+
+  - name: Disable apparmor for mysqld only
+    command: /usr/sbin/aa-complain /usr/sbin/mysqld
+    when: new_datadir.stat.exists == False
+
+  - name: Initialise data for mysql
+    command: /usr/sbin/mysqld --initialize-insecure --datadir={{ mysql_datadir }}
+    when: new_datadir.stat.exists == False
