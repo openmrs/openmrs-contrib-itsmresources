@@ -39,6 +39,12 @@ mysql_innodb_buffer_pool_size: "8G"
 mysql_innodb_log_file_size: "2G"
 mysql_datadir: /data/mysql
 
+mysql_config_include_files:
+  - src: files/mysql/mysqld.cnf
+    force: true
+  - src: files/mysql/mysqldump.cnf
+    force: true
+
 mysql_databases:
   - name: crowd
     encoding: utf8

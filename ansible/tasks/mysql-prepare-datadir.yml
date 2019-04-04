@@ -20,18 +20,3 @@
   - name: Initialise data for mysql
     command: /usr/sbin/mysqld --initialize-insecure --datadir={{ mysql_datadir }}
     when: new_datadir.stat.exists == False
-
-  # - name: Ensure global transaction isolation level is set to READ-COMMITTED
-  #   lineinfile:
-  #     dest: /etc/mysql/my.cnf
-  #     regexp: '^transaction-isolation'
-  #     line: 'transaction-isolation = READ-COMMITTED'
-  #     insertafter: '# Other settings.'
-  #   notify: restart mysql service
-  #
-  # - name: Add skip events for mysqldump  bug 54371
-  #   lineinfile:
-  #     dest: /etc/mysql/my.cnf
-  #     line: 'skip-events'
-  #     insertafter: 'quick'
-  #   notify: restart mysql service
