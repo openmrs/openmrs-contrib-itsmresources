@@ -1,0 +1,37 @@
+---
+  - name: Check if datadir exists
+    stat:
+      path: "{{ mysql_datadir }}"
+    register: new_datadir
+
+  - name: install dependencies
+    apt:
+      name: "{{ item }}"
+      state: present
+    with_items:
+      - apparmor-utils
+      - mysql-common
+      - mysql-server
+
+  - name: Disable apparmor for mysqld only
+    command: /usr/sbin/aa-complain /usr/sbin/mysqld
+    when: new_datadir.stat.exists == False
+
+  - name: Initialise data for mysql
+    command: /usr/sbin/mysqld --initialize-insecure --datadir={{ mysql_datadir }}
+    when: new_datadir.stat.exists == False
+
+  # - name: Ensure global transaction isolation level is set to READ-COMMITTED
+  #   lineinfile:
+  #     dest: /etc/mysql/my.cnf
+  #     regexp: '^transaction-isolation'
+  #     line: 'transaction-isolation = READ-COMMITTED'
+  #     insertafter: '# Other settings.'
+  #   notify: restart mysql service
+  #
+  # - name: Add skip events for mysqldump  bug 54371
+  #   lineinfile:
+  #     dest: /etc/mysql/my.cnf
+  #     line: 'skip-events'
+  #     insertafter: 'quick'
+  #   notify: restart mysql service

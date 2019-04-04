@@ -37,9 +37,7 @@ mysql_mysqldump_max_allowed_packet: "256M"
 mysql_max_connections: 500
 mysql_innodb_buffer_pool_size: "8G"
 mysql_innodb_log_file_size: "2G"
-
-# Every ansible run will restart the server
-overwrite_global_mycnf: yes
+mysql_datadir: /data/mysql
 
 mysql_databases:
   - name: crowd
@@ -66,6 +64,3 @@ mysql_users:
 
 gcoop_mysqldump_create_system_user: yes
 gcoop_mysqldump_create_mysql_user: no
-
-# Mysql Tuning
-mysql_new_data_dir: /data/mysql

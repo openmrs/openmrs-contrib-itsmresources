@@ -1,3 +1,0 @@
----
-  - name: restart apparmor
-    action: service name=apparmor state=restarted
