@@ -1,5 +1,4 @@
 [prod]
-buea.openmrs.org
 dowa.openmrs.org
 goura.openmrs.org
 lamu.openmrs.org
@@ -11,7 +10,6 @@ ndu.openmrs.org
 thika.openmrs.org
 
 [full-ansible]
-buea.openmrs.org
 dowa.openmrs.org
 goura.openmrs.org
 lamu.openmrs.org
@@ -22,7 +20,6 @@ narok.openmrs.org
 thika.openmrs.org
 
 [docker]
-buea.openmrs.org
 dowa.openmrs.org
 goura.openmrs.org
 lamu.openmrs.org
@@ -33,7 +30,6 @@ narok.openmrs.org
 thika.openmrs.org
 
 [web]
-buea.openmrs.org
 dowa.openmrs.org
 goura.openmrs.org
 lamu.openmrs.org
@@ -44,7 +40,6 @@ narok.openmrs.org
 thika.openmrs.org
 
 [tls]
-buea.openmrs.org
 dowa.openmrs.org
 goura.openmrs.org
 lamu.openmrs.org
@@ -55,7 +50,6 @@ narok.openmrs.org
 thika.openmrs.org
 
 [backup]
-buea.openmrs.org
 dowa.openmrs.org
 goura.openmrs.org
 mokolo.openmrs.org
