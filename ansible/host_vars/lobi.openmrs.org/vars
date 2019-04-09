@@ -84,3 +84,14 @@ mysql_connector_java_jar: 'mysql-connector-java-5.1.44-bin.jar'
 mysql_connector_java_checksum: 'sha256:7419a235c63f61c72b7e2e078e68350924ea95cffea3f5808d70e497410c8232'
 bamboo_proxy_name: 'ci.openmrs.org'
 bamboo_scheme: 'https'
+
+logrotate_scripts:
+  - name: bamboologs
+    path: /opt/bamboo/logs/catalina.out
+    options:
+      - su bamboo bamboo
+      - weekly
+      - size 500M
+      - rotate 2
+      - missingok
+      - create 644 bamboo bamboo

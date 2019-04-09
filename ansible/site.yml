@@ -96,6 +96,7 @@
     - java
     - bamboo
     - mysql-connector-java
+    - logrotate
   tags:
     - bamboo
 
