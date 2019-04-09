@@ -1,29 +1,23 @@
 [prod]
-meru.openmrs.org
 nairobi.openmrs.org
 limbe.openmrs.org
 
 [full-ansible]
-meru.openmrs.org
 nairobi.openmrs.org
 limbe.openmrs.org
 
 [docker]
-meru.openmrs.org
 nairobi.openmrs.org
 limbe.openmrs.org
 
 [web]
-meru.openmrs.org
 nairobi.openmrs.org
 limbe.openmrs.org
 
 [tls]
-meru.openmrs.org
 nairobi.openmrs.org
 limbe.openmrs.org
 
 [backup]
-meru.openmrs.org
 nairobi.openmrs.org
 limbe.openmrs.org
