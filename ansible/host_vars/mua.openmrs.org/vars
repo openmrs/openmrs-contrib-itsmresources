@@ -2,15 +2,20 @@
 # wordpress
 datadog_tags_extra:
   - "service:wordpress"
+  - "service:yourls"
 
 letsencrypt_cert_domains:
    - mua.openmrs.org
    - site.openmrs.org
    - openmrs.org
    - www.openmrs.org
+   - shortener.openmrs.org
+   - om.rs
 
 docker_deployment:
   - wordpress
+  - yourls
+
 
 docker_deployable_images: []
 
@@ -53,6 +58,32 @@ nginx_vhosts:
         proxy_set_header X-Real-IP $remote_addr;
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
         proxy_pass http://127.0.0.1:8080;
+      }
+  - listen: "80"
+    server_name: "shortener.openmrs.org om.rs *.om.rs"
+    extra_parameters: |
+      return 301 https://$host$request_uri;
+  - listen: "443 ssl"
+    server_name: "shortener.openmrs.org om.rs *.om.rs"
+    extra_parameters: |
+      if ($http_host = ^(.*)\.is\.om\.rs) {
+        rewrite (.*)  https://talk.openmrs.org/users/%1/activity;
+      }
+      if ($http_host = ^(.*)\.om\.rs ) {
+        rewrite (.*)  https://om.rs/%1;
+      }
+      access_log /var/log/nginx/shortener_access.log;
+      error_log /var/log/nginx/shortener_error.log;
+      ssl_certificate /etc/letsencrypt/live/mua.openmrs.org/fullchain.pem;
+      ssl_certificate_key /etc/letsencrypt/live/mua.openmrs.org/privkey.pem;
+      location ^~ /.well-known/acme-challenge/ {
+        root /usr/share/nginx/html;
+      }
+      location ~ /t/(\d+\/?\d+)$ {
+        return 302 https://talk.openmrs.org/t/$1;
+      }
+      location / {
+        proxy_pass http://127.0.0.1:8848/;
       }
 
 aws_access_key_id: '{{ vault_aws_access_key_id }}'

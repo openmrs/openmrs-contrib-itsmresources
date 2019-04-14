@@ -8,18 +8,26 @@ users:
 
 datadog_tags_extra:
   - "service:addons"
+  - "service:atlas"
+
 
 docker_deployment:
   - addons
+  - atlas
 
 docker_deployable_images:
   - repository: openmrs/addonindex
     compose: addons
+  - repository: openmrs/atlas
+    compose: atlas
+
 
 letsencrypt_cert_domains:
    - limbe.openmrs.org
    - addons.openmrs.org
    - modules.openmrs.org
+   - atlas.openmrs.org
+
 
 nginx_vhosts:
   - listen: "80"
@@ -55,6 +63,28 @@ nginx_vhosts:
       }
       location / {
         proxy_pass http://127.0.0.1:8081/;
+      }
+  - listen: "80"
+    server_name: "atlas.openmrs.org"
+    extra_parameters: |
+      return 301 https://$host$request_uri;
+  - listen: "443 ssl"
+    server_name: "atlas.openmrs.org"
+    extra_parameters: |
+      access_log /var/log/nginx/atlas_access.log;
+      error_log /var/log/nginx/atlas_error.log;
+      ssl_certificate /etc/letsencrypt/live/limbe.openmrs.org/fullchain.pem;
+      ssl_certificate_key /etc/letsencrypt/live/limbe.openmrs.org/privkey.pem;
+      location ^~ /.well-known/acme-challenge/ {
+        root /usr/share/nginx/html;
+      }
+      location / {
+        proxy_pass http://127.0.0.1:8548/;
+        fastcgi_buffers 16 16k;
+        fastcgi_buffer_size 32k;
+        proxy_buffer_size   128k;
+        proxy_buffers   4 256k;
+        proxy_busy_buffers_size   256k;
       }
   - listen: "443 ssl"
     server_name: "limbe.openmrs.org"
