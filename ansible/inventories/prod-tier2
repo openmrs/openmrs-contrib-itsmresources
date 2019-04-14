@@ -2,7 +2,6 @@
 balaka.openmrs.org
 lobi.openmrs.org
 mua.openmrs.org
-voi.openmrs.org
 yak.openmrs.org
 yokobue.openmrs.org
 yue.openmrs.org
@@ -11,7 +10,6 @@ yue.openmrs.org
 balaka.openmrs.org
 lobi.openmrs.org
 mua.openmrs.org
-voi.openmrs.org
 yak.openmrs.org
 yokobue.openmrs.org
 yue.openmrs.org
@@ -19,24 +17,20 @@ yue.openmrs.org
 [docker]
 balaka.openmrs.org
 mua.openmrs.org
-voi.openmrs.org
 
 [web]
 balaka.openmrs.org
 lobi.openmrs.org
 mua.openmrs.org
-voi.openmrs.org
 
 [tls]
 balaka.openmrs.org
 lobi.openmrs.org
 mua.openmrs.org
-voi.openmrs.org
 
 [backup]
 lobi.openmrs.org
 mua.openmrs.org
-voi.openmrs.org
 
 [atlassian]
 lobi.openmrs.org
