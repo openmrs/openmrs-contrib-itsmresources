@@ -72,13 +72,13 @@ backup_tag: 'configured'
 confluence_pass: '{{ vault_confluence_pass }}'
 confluence_hash_salt: '{{ vault_confluence_hash_salt }}'
 confluence_user: 'confluence'
-confluence_archive: "atlassian-confluence-6.14.2.tar.gz"
+confluence_archive: "atlassian-confluence-6.15.3.tar.gz"
 confluence_catalina: "/opt/confluence"
-confluence_checksum: "sha256:961e33aa709623ac57dfdfee6308293d0edeafee3a0a22273f56503490805404"
+confluence_checksum: "sha256:051c31de7e2b5594fbc2851c451ae8927926994487bbfe3ba4859752170f3707"
 confluence_url: "https://product-downloads.atlassian.com/software/confluence/downloads/{{ confluence_archive }}"
 confluence_home: "/data/confluence_home"
-confluence_jvm_maximum_memory: "8g"
-confluence_jvm_minimum_memory: "6g"
+confluence_jvm_maximum_memory: "10g"
+confluence_jvm_minimum_memory: "8g"
 confluence_proxy_name: 'wiki.openmrs.org'
 confluence_scheme: 'https'
 mysql_connector_java_dest: '{{ confluence_catalina }}/lib'
