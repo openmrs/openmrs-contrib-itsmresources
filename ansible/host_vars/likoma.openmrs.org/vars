@@ -57,7 +57,7 @@ DISCOURSE_SMTP_PORT: '587'
 DISCOURSE_SMTP_USER_NAME: '{{ vault_discourse_smtp_username }}'
 DISCOURSE_SMTP_PASSWORD: '{{ vault_discourse_smtp_password }}'
 DISCOURSE_SMTP_ENABLE_START_TLS: 'true'
-DISCOURSE_FROM_EMAIL: 'infrastructure@openmrs.org'
+DISCOURSE_FROM_EMAIL: 'talk@openmrs.org'
 DISCOURSE_DB_PASSWORD: '{{ vault_discourse_db_password  }}'
 
 # Optinal Variables
