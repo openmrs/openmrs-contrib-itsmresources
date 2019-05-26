@@ -9,6 +9,11 @@ users:
    comment: Darius Jazayeri
    groups: 'admin'
    ssh_key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC0ted8ZbMokU7mjwoNHhNRuPKyIr2T4NDtatZSHZa/A6e0t+tDi8K1znFMbgZ3ZcVQQh0czcrnwTMMUprTiVyn5WB16Qs0WrfiHfr83/HDkcJA9LbQ3s1bM/f9QJ9Uo5vP5TMpJL8gGueKiSMP1+x6JwJ4EuUZKdsUz+q/WtzxU10ImECWOeOnwGaUkmitPREBzbJSIv8pciq4QJ/fHuYeuvRZOmUYC+V+Rn3C1XEJf1jhRIBahT5KhV02wfmbfXchIAd/WrIbqvVQ5YGg8UwqdN47cxHvNwR5BCqpTY1C3XyCrj13NqflPCGyYyj6+mxs74EMJYAh0nDT/ZSeUvbf jazayeri@alum.mit.edu"
+  heliostrike:
+    comment: Sai Sandeep Mutyala
+    groups: 'admin'
+    ssh_key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDgcv6MeM4IskCqR+wLVmxBzC5BrNfFi/JqjfHQeUOwGTfkTpWLvBOKA4jQL8wWcPfqvsPNdU21j6nRwzm/9YXYISbeWYUl/XoKMdxoFtb101TrGacqMUsfIrTd5hAEs2CkZtLYhGDGwL/JAHUu8q8t2VI/PydOHI7X0nRQSRLLmPDXAMlBQu7CXPeTNTy8xs332Y97fUsLZwffh44njAPZajTZMpGS8FtsFA+4CbpYmFzji5itBbCvRlpPrX8gC2vk76ZApSwb9XSZ52Te7sGGr2TyBEx40Jnund0lXEDvuiRHr02LBdLufud1QTWu/bSO1KJlgt/joiwTuNGK4g3n krypt@krypt-Lenovo-Y520-15IKBN"
+
 
 datadog_tags_extra:
   - "service:addons"
