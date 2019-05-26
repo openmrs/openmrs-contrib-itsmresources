@@ -68,9 +68,9 @@ backup_tag: 'configured'
 crowd_pass: '{{ vault_crowd_pass }}'
 crowd_hash_salt: '{{ vault_crowd_hash_salt }}'
 crowd_user: 'crowd'
-crowd_archive: "atlassian-crowd-3.3.4.tar.gz"
+crowd_archive: "atlassian-crowd-3.4.5.tar.gz"
 crowd_catalina: "/opt/crowd"
-crowd_checksum: "sha256:41788903b80271701a747b9021242d4d6324029afa7e36dd3cc9d6997ff4f200"
+crowd_checksum: "sha256:43a20ff7cf9094a32404c7257327a654df16d0bd2696438153114764b252e2cc"
 crowd_home: "/data/crowd_home"
 crowd_jvm_maximum_memory: "6144m"
 crowd_jvm_minimum_memory: "4096m"
