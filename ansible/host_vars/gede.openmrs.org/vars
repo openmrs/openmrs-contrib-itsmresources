@@ -4,21 +4,21 @@ datadog_tags_extra:
    - "service-group:id"
 
 letsencrypt_cert_domains:
-   - ambam.openmrs.org
-   - crowd.openmrs.org
+   - gede.openmrs.org
+   - crowd-stg.openmrs.org
 
 nginx_vhosts:
   - listen: "80 default_server"
-    server_name: "ambam.openmrs.org"
+    server_name: "gede.openmrs.org"
     extra_parameters: |
       return 301 https://$host$request_uri;
   - listen: "443 ssl"
-    server_name: "ambam.openmrs.org"
+    server_name: "gede.openmrs.org"
     extra_parameters: |
       access_log /var/log/nginx/deployer_access.log;
       error_log /var/log/nginx/deployer_error.log;
-      ssl_certificate /etc/letsencrypt/live/ambam.openmrs.org/fullchain.pem;
-      ssl_certificate_key /etc/letsencrypt/live/ambam.openmrs.org/privkey.pem;
+      ssl_certificate /etc/letsencrypt/live/gede.openmrs.org/fullchain.pem;
+      ssl_certificate_key /etc/letsencrypt/live/gede.openmrs.org/privkey.pem;
       location ^~ /.well-known/acme-challenge/ {
         root /usr/share/nginx/html;
       }
@@ -27,31 +27,27 @@ nginx_vhosts:
         root /usr/share/nginx/html;
       }
   - listen: "80"
-    server_name: "crowd.openmrs.org"
+    server_name: "crowd-stg.openmrs.org"
     extra_parameters: |
       return 301 https://$host$request_uri;
   - listen: "443 ssl"
-    server_name: "crowd.openmrs.org"
+    server_name: "crowd-stg.openmrs.org"
     extra_parameters: |
       proxy_read_timeout 600;
       access_log /var/log/nginx/deployer_access.log;
       error_log /var/log/nginx/deployer_error.log;
-      ssl_certificate /etc/letsencrypt/live/ambam.openmrs.org/fullchain.pem;
-      ssl_certificate_key /etc/letsencrypt/live/ambam.openmrs.org/privkey.pem;
+      ssl_certificate /etc/letsencrypt/live/gede.openmrs.org/fullchain.pem;
+      ssl_certificate_key /etc/letsencrypt/live/gede.openmrs.org/privkey.pem;
       location ^~ /.well-known/acme-challenge/ {
         root /usr/share/nginx/html;
       }
       location /console/forgottenlogindetails {
-        return 302 https://id.openmrs.org/reset;
+        return 302 https://id-stg.openmrs.org/reset;
       }
       location / {
         proxy_pass http://127.0.0.1:8095/;
         root /usr/share/nginx/html;
       }
-
-aws_access_key_id: '{{ vault_aws_access_key_id }}'
-aws_secret_access_key: '{{ vault_aws_secret_access_key }}'
-backup_tag: 'configured'
 
 crowd_pass: '{{ vault_crowd_pass }}'
 crowd_hash_salt: '{{ vault_crowd_hash_salt }}'
@@ -63,7 +59,7 @@ crowd_home: "/data/crowd_home"
 crowd_jvm_maximum_memory: "6144m"
 crowd_jvm_minimum_memory: "4096m"
 crowd_jvm_support_recommended_args: "-Datlassian.plugins.enable.wait=300 -XX:+UseG1GC -Xloggc:/opt/crowd/logs/gc.log -XX:+UseGCLogFileRotation -XX:NumberOfGCLogFiles=5 -XX:GCLogFileSize=2M -XX:-PrintGCDetails -XX:+PrintGCTimeStamps -XX:-PrintTenuringDistribution"
-crowd_proxy_name: 'crowd.openmrs.org'
+crowd_proxy_name: 'crowd-stg.openmrs.org'
 crowd_scheme: 'https'
 crowd_url: "https://product-downloads.atlassian.com/software/crowd/downloads/{{ crowd_archive }}"
 mysql_connector_java_dest: '{{ crowd_catalina }}/apache-tomcat/lib'

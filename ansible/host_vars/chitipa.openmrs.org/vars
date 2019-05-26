@@ -67,6 +67,10 @@ mysql_users:
     host: "localhost"
     password: '{{ vault_mysql_backup_user_password }}'
     priv: "*.*:ALL"
+  - name: 'crowd'
+    host: "%"
+    password: '{{ vault_mysql_crowd_user_password }}'
+    priv: "*.*:ALL"
 
 gcoop_mysqldump_create_system_user: yes
 gcoop_mysqldump_create_mysql_user: no
