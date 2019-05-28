@@ -109,8 +109,9 @@
 
 - hosts: crowd
   become: true
+  pre_tasks:
+    - include: tasks/install-openjdk.yml
   roles:
-    - java
     - crowd
     - mysql-connector-java
   tags:

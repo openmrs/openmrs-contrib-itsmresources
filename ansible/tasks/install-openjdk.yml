@@ -1,0 +1,6 @@
+---
+# https://issues.openmrs.org/browse/ITSM-4213
+  - name: install openjdk8
+    apt:
+      name: openjdk-8-jdk
+      state: present
