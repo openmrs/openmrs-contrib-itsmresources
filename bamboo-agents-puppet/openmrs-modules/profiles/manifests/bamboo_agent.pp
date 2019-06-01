@@ -28,9 +28,13 @@ class profiles::bamboo_agent (
 	  default_capabilities                                      => {
 	    'system.builder.command.Bash'                           => '/bin/bash',
 	    'system.jdk.JDK\ 1.7'                                   => '/usr/lib/jvm/java-7-openjdk-amd64',
+        'system.jdk.JDK\ 7'                                     => '/usr/lib/jvm/java-7-openjdk-amd64',
 	    'system.jdk.openjdk-7-jdk'                              => '/usr/lib/jvm/java-7-openjdk-amd64',
 	    'system.jdk.openjdk-8-jdk'                              => '/usr/lib/jvm/java-8-openjdk-amd64',
 	    'system.jdk.JDK\ 1.8'                                   => '/usr/lib/jvm/java-8-openjdk-amd64',
+        'system.jdk.JDK\ 8'                                     => '/usr/lib/jvm/java-8-openjdk-amd64',
+        'system.jdk.openjdk-11-jdk'                             => '/usr/lib/jvm/java-11-openjdk-amd64',
+	    'system.jdk.JDK\ 11'                                    => '/usr/lib/jvm/java-11-openjdk-amd64',
 	    'system.builder.mvn3.Maven\ 3'                          => "/usr/share/apache-maven-${maven3_version}",
 	    "system.builder.grailsBuilder.Grails\\ $grails_version" => '/opt/grails',
 	    'system.builder.node.Node.js'                           => '/usr/bin/nodejs',
