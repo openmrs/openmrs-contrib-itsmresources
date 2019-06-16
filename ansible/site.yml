@@ -127,13 +127,6 @@
     - mysql
     - mysql-cron-backup
 
-- hosts: ldap-mantainance
-  become: true
-  tasks:
-    - include: tasks/ldap-mantainance.yml
-  tags:
-    - ldap-mantainance
-
 - hosts: discourse
   become: true
   roles:
