@@ -27,7 +27,7 @@ $ /etc/openmrs-puppet/bin/run-puppet.sh
   - [Virtualbox](https://www.virtualbox.org/)
   - [Vagrant](https://www.vagrantup.com/)
   - git
-  - ruby (2.1 recommended. Use rvm or renv for easier installation)
+  - ruby (>2.3.1 recommended. Use rvm or renv for easier installation)
 
 
 [Geppeto IDE](https://puppetlabs.github.io/geppetto/index.html) is recommended, but not necessary.
@@ -41,7 +41,7 @@ $ bundle install
 ```
 
 Download the correct versions of third party modules into 'modules' folder:
-```$ librarian-puppet install```
+```$r10k puppetfile install -v```
 When updating the `Puppetfile`, you'll need to rerun this command.
 
 

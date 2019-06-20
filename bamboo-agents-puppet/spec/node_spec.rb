@@ -10,4 +10,7 @@ describe 'node builder machine' do
   it 'should have bower command' do
     expect(command('bower --version').stdout).to include('1.8.4')
   end
+  it 'should have nvm command' do
+    expect(command('nvm --help').stdout).to include('Node Version Manager')
+  end
 end

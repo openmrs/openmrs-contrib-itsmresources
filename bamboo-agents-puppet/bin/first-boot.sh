@@ -26,7 +26,7 @@ apt-get -o Dpkg::Options::="--force-confold" install -y puppet-agent
 ln -sf /etc/openmrs-puppet/hiera.yaml /etc/puppetlabs/puppet/hiera.yaml
 echo "hiera_environment=${HIERA_ENVIRONMENT}" > /opt/puppetlabs/facter/facts.d/hiera_environment.txt
 
-gem install librarian-puppet
+gem install r10k
 /opt/puppetlabs/puppet/bin/gem install hiera-eyaml
 
 touch $GUARD_FILE
