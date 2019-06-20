@@ -60,8 +60,8 @@ crowd_archive: "atlassian-crowd-3.4.5.tar.gz"
 crowd_catalina: "/opt/crowd"
 crowd_checksum: "sha256:43a20ff7cf9094a32404c7257327a654df16d0bd2696438153114764b252e2cc"
 crowd_home: "/data/crowd_home"
-crowd_jvm_maximum_memory: "6144m"
-crowd_jvm_minimum_memory: "4096m"
+crowd_jvm_maximum_memory: "8g"
+crowd_jvm_minimum_memory: "6g"
 crowd_jvm_support_recommended_args: "-Datlassian.plugins.enable.wait=300 -XX:+UseG1GC -Xloggc:/opt/crowd/logs/gc.log -XX:+UseGCLogFileRotation -XX:NumberOfGCLogFiles=5 -XX:GCLogFileSize=2M -XX:-PrintGCDetails -XX:+PrintGCTimeStamps -XX:-PrintTenuringDistribution"
 crowd_proxy_name: 'crowd.openmrs.org'
 crowd_scheme: 'https'
