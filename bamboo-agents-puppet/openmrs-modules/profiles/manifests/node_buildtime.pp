@@ -1,5 +1,6 @@
 class profiles::node_buildtime (
-  $bamboo_user = lookup('bamboo_agent_home::bamboo_user'),
+  $bamboo_user      = lookup('bamboo_agent_home::bamboo_user'),
+  $bamboo_user_home = lookup('bamboo_agent_home::bamboo_user_home')
 ){
   class { 'nodejs':
     repo_url_suffix           => '6.x',
@@ -17,6 +18,7 @@ class profiles::node_buildtime (
   }
 
   class { 'nvm':
-    user => $bamboo_user,
+    user         => $bamboo_user,
+    profile_path => "${bamboo_user_home}/.profile",
   }
 }
