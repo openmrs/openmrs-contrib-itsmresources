@@ -76,5 +76,3 @@ While this runs in puppet 4, it's a migration from a puppet 3 tree, so we are no
 It's not using puppet environments (it's not necessary in our case), we only use environments for hiera (puppet 3 style). So I decided to use a different puppet fact for that.
 
 As we run masterless (and only on-demand), I decided to use a non-conventional folder.
-
-We are using librarian-puppet (I don't think it's worth moving to r10k).  
