@@ -10,11 +10,6 @@ class profiles::java_buildtime (
     content => template('profiles/java_buildtime/settings.xml')
   }
 
-  package { [ 'ant']:
-    ensure  => present,
-    require => Class['profiles::java']
-  }
-
   # install maven 3. Forcing some very specific version, the apt repos only keep the latest one
   wget::fetch { 'fetch maven 3':
     source      => "http://apache.mirrors.pair.com/maven/maven-3/${maven3_version}/binaries/apache-maven-${maven3_version}-bin.zip",

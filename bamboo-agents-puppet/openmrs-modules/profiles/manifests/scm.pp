@@ -1,5 +1,5 @@
 class profiles::scm {
-  package { ['git', 'subversion' ]:
+  package { 'git':
     ensure  => latest,
   }
 
