@@ -39,6 +39,7 @@ class profiles::bamboo_agent (
 	    'system.builder.grailsBuilder.Grails\ 2'                => '/opt/grails',
 	    'system.git.executable'                                 => '/usr/bin/git',
 	    'system.builder.command.transifex'                      => '/usr/bin/tx',
+      'system.builder.command.nvm'                            => 'nvm',
 	  },
 	  require => Class['profiles::java'],
 	}
