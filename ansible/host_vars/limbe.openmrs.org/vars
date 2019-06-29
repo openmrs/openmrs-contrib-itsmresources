@@ -1,10 +1,15 @@
 ---
-# Addons (in jetstream)
+# Addons and atlas
 users:
   djazayeri:
    comment: Darius Jazayeri
    groups: 'admin'
    ssh_key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC0ted8ZbMokU7mjwoNHhNRuPKyIr2T4NDtatZSHZa/A6e0t+tDi8K1znFMbgZ3ZcVQQh0czcrnwTMMUprTiVyn5WB16Qs0WrfiHfr83/HDkcJA9LbQ3s1bM/f9QJ9Uo5vP5TMpJL8gGueKiSMP1+x6JwJ4EuUZKdsUz+q/WtzxU10ImECWOeOnwGaUkmitPREBzbJSIv8pciq4QJ/fHuYeuvRZOmUYC+V+Rn3C1XEJf1jhRIBahT5KhV02wfmbfXchIAd/WrIbqvVQ5YGg8UwqdN47cxHvNwR5BCqpTY1C3XyCrj13NqflPCGyYyj6+mxs74EMJYAh0nDT/ZSeUvbf jazayeri@alum.mit.edu"
+  bamboo:
+    comment: CI Bamboo User
+    groups: 'admin'
+    ssh_key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDQQ+SCzrYNUlDlCoUJMrgNa+NvKX3dlog6LrcOYAt45ovpCOEhv46I0cGm3ZrarOejjseKWVsCrN1YSt7q9IDc/tZZH9fpQy5AvssZH6b4Vo799/4ig7iZWAJAXHKMxKh0mqgifbtP8EImvE3zmeBD8LlyvvF3cw2T2wg5Jh5bN/p7hUrEU7oGAbJR0TMMUY2/ZAzqzJ6RWHn03PBhG70MYxXhQD93RsEocEUecNRibqGMJm8JjBUumZCoIZWFH8J9W0MKuYNrndvQ60xVZbumQaWQ1pdrXEfNy//xslLTbH/+fZhWK8ilrwnkTHJeCHnhFZ6E0LRP5dbnYxYzHoxLsRz7G3Z/H0Cb5ffUcODjmGp9IsK/MIeE+DKe4mvEitkUwj1EI4PpadvZ2qyn4X0ks2WDFdlNvhjR1PJvHIL7GfrDqhLxazVI3bzUZVRSrD1sKoSIfISn6mRZcDbdyMSgYjzn4YjEmUM+Jkh0QWdBySMn/xj96Pqeyk0EaJ//Ru5w6SXemZ6QeWP2spKdB+KUhB6Xdp5+41UZ3i4jtpmU8+wzOQiXzPvmxGYdsSJWZvD0fm6PH5z1MgM68fVGqmrnZWWTUWuLVTeQRNa95GjSjB6AV4tZyTC4lLlBSLCWRNr55JmDif5YJxD322Lzf5Li5rKUiQuif3655jqVaEpiow== bambooagent"
+
 
 datadog_tags_extra:
   - "service:addons"
