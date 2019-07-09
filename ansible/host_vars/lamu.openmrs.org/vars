@@ -12,7 +12,7 @@ users:
   heliostrike:
     comment: Sai Sandeep Mutyala
     groups: 'admin'
-    ssh_key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDgcv6MeM4IskCqR+wLVmxBzC5BrNfFi/JqjfHQeUOwGTfkTpWLvBOKA4jQL8wWcPfqvsPNdU21j6nRwzm/9YXYISbeWYUl/XoKMdxoFtb101TrGacqMUsfIrTd5hAEs2CkZtLYhGDGwL/JAHUu8q8t2VI/PydOHI7X0nRQSRLLmPDXAMlBQu7CXPeTNTy8xs332Y97fUsLZwffh44njAPZajTZMpGS8FtsFA+4CbpYmFzji5itBbCvRlpPrX8gC2vk76ZApSwb9XSZ52Te7sGGr2TyBEx40Jnund0lXEDvuiRHr02LBdLufud1QTWu/bSO1KJlgt/joiwTuNGK4g3n krypt@krypt-Lenovo-Y520-15IKBN"
+    ssh_key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDhlmZhjT4V5UZfcNEJUh34FZdLxadk2XQMmvIAErfiuFhq38gQc9GQsRfdwXyhozf3qx6MPwPxxmIINspf2ZPCAGvLOlkNFkGKmh+2mpSQdZyX4a4IL6/Hjgpz71AAHo9uyelWVi9bosK4Og/ieTlSy3Y4gKHMT7IRFNhwP23/yRNhe594C1CMEXiAkcwup55MpXreZtenOwYNhefT+2GwcYgYfQNVXPb7LB+9ipJ20xsEqjMpCHWr6HeO7yAdl0BGtYb8Ua+qKeR4XV+Ok4jEGgRzr7fgGDPPkDvkTYWuC1UGelXlMn/NSmO7EECUVMEckrqLzYclaqcfnvBpCde3 krypt@krypt-Lenovo-Y520-15IKBN"
 
 
 datadog_tags_extra:
