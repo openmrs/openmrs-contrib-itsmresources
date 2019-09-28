@@ -52,14 +52,6 @@ ufw_rules:
 
 datadog_agent_version: 1:6.13.0-1
 
-# 1:6.5.2-1 -> worked
-# 1:6.9.0-1 -> worked
-# 1:6.11.3-1 -> worked
-# 1:6.12.0-1 -> worked
-# 1:6.12.1-1 -> worked
-# 1:6.13.0-1 -> nope
-
-
 datadog_agent_allow_downgrade: true
 
 datadog_tags_default:
