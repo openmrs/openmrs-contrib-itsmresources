@@ -4,7 +4,7 @@
   version: v1.1
 - name: datadog
   src: Datadog.datadog
-  version: 2.3.0
+  version: 2.6.0
 - name: docker
   src: andrewrothstein.docker
   version: v5.0.4
