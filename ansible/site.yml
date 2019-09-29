@@ -74,8 +74,9 @@
 
 - hosts: jira
   become: true
+  pre_tasks:
+    - include: tasks/install-openjdk.yml
   roles:
-    - java
     - jira
     - mysql-connector-java
   tags:

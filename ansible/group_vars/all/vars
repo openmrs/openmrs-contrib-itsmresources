@@ -63,9 +63,12 @@ datadog_tags_default:
     - "provisioner:{{ansible_local.provisioning.general.provisioner}}"
 
 datadog_config:
-  process_agent_enabled: "true"
+  process_config:
+    enabled: "true" # has to be set as a string
   tags: "{{ datadog_tags_extra + datadog_tags_default }}"
   hostname_fqdn: true
+
+
 
 datadog_checks:
   upgrades_check:

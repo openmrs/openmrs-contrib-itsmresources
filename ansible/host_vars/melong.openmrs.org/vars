@@ -57,18 +57,18 @@ backup_tag: 'configured'
 
 jira_pass: '{{ vault_jira_pass }}'
 jira_user: 'jira'
-jira_checksum: 'sha256:6948320ad1226ce33dbf8e71d0ff4318301a71bce4c4fb24583e16b97e0b649b'
-jira_archive: "atlassian-jira-software-7.13.1.tar.gz"
+jira_checksum: 'sha256:7ef203682be4f909a66fe6b3f36cb4cef3b785fe497261634e42b5cdcba57136'
+jira_archive: "atlassian-jira-software-8.4.1.tar.gz"
 jira_url: "https://product-downloads.atlassian.com/software/jira/downloads/{{ jira_archive }}"
 jira_catalina: "/opt/jira"
 jira_home: "/data/jira_home"
+jira_proxy_name: 'issues.openmrs.org'
+jira_scheme: 'https'
 jira_jvm_maximum_memory: "4096m"
 jira_jvm_minimum_memory: "2048m"
 mysql_connector_java_dest: '{{ jira_catalina }}/lib'
 mysql_connector_java_user: '{{ jira_user }}'
-mysql_connector_java_archive: 'mysql-connector-java-5.1.44.tar.gz'
-mysql_connector_java_jar: 'mysql-connector-java-5.1.44-bin.jar'
+mysql_connector_java_archive: 'mysql-connector-java-8.0.17.tar.gz'
+mysql_connector_java_jar: 'mysql-connector-java-8.0.17.jar'
 mysql_connector_java_url: "https://dev.mysql.com/get/Downloads/Connector-J/{{ mysql_connector_java_archive }}"
-mysql_connector_java_checksum: 'sha256:7419a235c63f61c72b7e2e078e68350924ea95cffea3f5808d70e497410c8232'
-jira_proxy_name: 'issues.openmrs.org'
-jira_scheme: 'https'
+mysql_connector_java_checksum: 'sha256:20116c90f01402406fa3a0783c308fb0bf9937b1d99cb6130407a1ad77ae7dd9'
