@@ -25,7 +25,10 @@ users:
     comment: Stephen Senkomago Musoke
     groups: 'admin'
     ssh_key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC5SkqLh3kCYW8c/lpJD3H+JiqgJ7hSNd1UyFTDOee2gzGNFu/v5hdWvPucMvsLWLnBgw0eFCDuZxE+qIV93d4PGfOllQkV522DSFJ4vjEzVqmJoeVNkqlNN3LL8ywS5uU7lkxlYEhLUqNRio4p7GrL3A8UkCC9D+UNMuSXGjZYYMXWt0N61O423KgW/pV+IuyNy4VdN0/UlZe9MYP/ooe5ziAJJ4MDJIrVg6WMDmglhWIWTrsAjY59j3M8e7fwxjfTPZRJmVq1drtvR5rjIz2eYBhHvEEWOVMXJeWJ+QuS/+ug0y+2ds7nD4jpefyywgGZQrUGQmXUtK/mtLMa5b4p ssmusoke@Kabanda.local"
-
+  mozzy:
+    comment: Mutesasira Moses
+    groups: 'admin'
+    ssh_key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCshLocvRzUOR90M79FF9YrwbelsCdLdQdTZc92blRuY8AwE1AMAt9DQSatOD0+4ivhm6KaY5oRSfaieTuYU1t0DFbBPdBShT6dOpl6TPxjmd/4bWj2MKZaoML6ehpmLvsO7IrPuhxmb0vA8DI8ywdu3YODoYrOT3OZYWIb83MW+h8kNZo4MCyzGDv70ErkDqcZPvJzU8JjGF+S3dK+MNJtbtawLrTzzV5DtGQMcTOM/SoHPiuV8ToMOWzqg9alI8RbJxOGCsfsKJhEY5xsZ0CA/RUUZYZOOIgrO9SHNtdHrYlzC3rLUjOa3wsLEXUjL67X/id6+ly+Y+WFlWxR1ifd Dell@DESKTOP-676A5RJ"
 
 datadog_tags_extra:
   - "service:openmrs-platform"
