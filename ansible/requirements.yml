@@ -47,9 +47,6 @@
 - name: jira
   src: https://github.com/cintiadr/ansible-role-jira
   version: 0185068240cf7df65fd5827cdae00bab547a23e1
-- name: java
-  src: https://github.com/cintiadr/ansible-role-java.git
-  version: 7fde32788d3fd1b5ef72acb6577d2c456bc22369
 - name: mysql-connector-java
   src: https://github.com/cintiadr/ansible-role-mysql-connector-java.git
   version: 7a9ecef6bde1fdc890b755c179a87bbe7e597dcd

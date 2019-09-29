@@ -84,8 +84,9 @@
 
 - hosts: confluence
   become: true
+  pre_tasks:
+    - include: tasks/install-openjdk.yml
   roles:
-    - java
     - confluence
     - mysql-connector-java
   tags:
@@ -93,8 +94,9 @@
 
 - hosts: bamboo
   become: true
+  pre_tasks:
+    - include: tasks/install-openjdk.yml
   roles:
-    - java
     - bamboo
     - mysql-connector-java
     - logrotate
