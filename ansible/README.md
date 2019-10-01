@@ -42,7 +42,7 @@ $ ansible-playbook -i inventories/prod-tier4 --limit narok.openmrs.org site.yml 
 # Add new DNS entry to letsencrypt (example: narok)
 # after changing the host_vars
 $ ansible-playbook -i inventories/prod-tier4 --limit narok.openmrs.org remove-certs.yml
-$ ansible-playbook -i inventories/prod-tier4 --limit narok.openmrs.org --tags web,docker site.yml
+$ ansible-playbook -i inventories/prod-tier4 --limit narok.openmrs.org --tags tls,web,docker site.yml
 ```
 
 ### Editing ansible encrypted files
