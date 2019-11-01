@@ -32,13 +32,10 @@ users:
 
 datadog_tags_extra:
   - "service:openmrs-platform"
-  - "service:openmrs-refapp"
 
 
 docker_deployment:
   - mdsbuilder
-  - gsoc-bootstrap
-
 
 docker_deployable_images:
   - repository: openmrs/openmrs-reference-application-distro
@@ -47,7 +44,6 @@ docker_deployable_images:
 letsencrypt_cert_domains:
    - dowa.openmrs.org
    - mdsbuilder.openmrs.org
-   - bootstrapmigration.openmrs.org
 
 nginx_vhosts:
   - listen: "80 default_server"
@@ -71,28 +67,6 @@ nginx_vhosts:
         proxy_set_header HOST $host;
         proxy_set_header  X-Forwarded-Proto $scheme;
         proxy_pass http://127.0.0.1:8080/openmrs;
-      }
-  - listen: "80"
-    server_name: "bootstrapmigration.openmrs.org"
-    extra_parameters: |
-      return 301 https://$host$request_uri;
-  - listen: "443 ssl"
-    server_name: "bootstrapmigration.openmrs.org"
-    extra_parameters: |
-      access_log /var/log/nginx/bootstrapmigration_access.log;
-      error_log /var/log/nginx/bootstrapmigration_error.log;
-      ssl_certificate /etc/letsencrypt/live/dowa.openmrs.org/fullchain.pem;
-      ssl_certificate_key /etc/letsencrypt/live/dowa.openmrs.org/privkey.pem;
-      location ^~ /.well-known/acme-challenge/ {
-        root /usr/share/nginx/html;
-      }
-      location / {
-        return 301 https://bootstrapmigration.openmrs.org/openmrs;
-      }
-      location /openmrs {
-        proxy_set_header HOST $host;
-        proxy_set_header  X-Forwarded-Proto $scheme;
-        proxy_pass http://127.0.0.1:8083/openmrs;
       }
   - listen: "443 ssl"
     server_name: "dowa.openmrs.org"
