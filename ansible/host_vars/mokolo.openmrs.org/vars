@@ -17,11 +17,13 @@ users:
 datadog_tags_extra:
   - "service:sonarqube"
   - "service:implementationid"
+  - "service:teleirc"
 
 docker_deployment:
   - sonar
   - implementationid
   - etherpad-lite
+  - teleirc
 
 docker_deployable_images: []
 
