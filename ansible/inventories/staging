@@ -1,31 +1,22 @@
 [stg]
 chitipa.openmrs.org
-domasi.openmrs.org
 gede.openmrs.org
-mumias.openmrs.org
 ruiru.openmrs.org
 
 [full-ansible]
 chitipa.openmrs.org
-domasi.openmrs.org
 gede.openmrs.org
-mumias.openmrs.org
 ruiru.openmrs.org
 
 [docker]
-domasi.openmrs.org
 ruiru.openmrs.org
 
 [web]
-domasi.openmrs.org
 gede.openmrs.org
-mumias.openmrs.org
 ruiru.openmrs.org
 
 [tls]
-domasi.openmrs.org
 gede.openmrs.org
-mumias.openmrs.org
 ruiru.openmrs.org
 
 [backup]
@@ -37,19 +28,9 @@ ruiru.openmrs.org
 
 [atlassian]
 gede.openmrs.org
-mumias.openmrs.org
-
-[jira]
-mumias.openmrs.org
-
-[confluence]
-mumias.openmrs.org
 
 [crowd]
 gede.openmrs.org
-
-[discourse]
-domasi.openmrs.org
 
 [mysql]
 chitipa.openmrs.org
