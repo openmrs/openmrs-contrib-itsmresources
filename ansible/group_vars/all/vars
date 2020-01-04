@@ -1,6 +1,8 @@
 ---
 # Group variables for ALL hosts.
 
+ansible_tag: 'full'
+
 # Users and group we want to add to all hosts (sysadmins)
 othergroups:
  admin:

@@ -6,14 +6,6 @@ yak.openmrs.org
 yokobue.openmrs.org
 yue.openmrs.org
 
-[full-ansible]
-balaka.openmrs.org
-lobi.openmrs.org
-mua.openmrs.org
-yak.openmrs.org
-yokobue.openmrs.org
-yue.openmrs.org
-
 [docker]
 balaka.openmrs.org
 mua.openmrs.org

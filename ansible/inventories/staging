@@ -3,11 +3,6 @@ chitipa.openmrs.org
 gede.openmrs.org
 ruiru.openmrs.org
 
-[full-ansible]
-chitipa.openmrs.org
-gede.openmrs.org
-ruiru.openmrs.org
-
 [docker]
 ruiru.openmrs.org
 

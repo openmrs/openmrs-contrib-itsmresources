@@ -1,7 +1,7 @@
 ---
 # Master Playbook
 
-- hosts: full-ansible
+- hosts: all
   become: true
   tasks:
    - include: tasks/hostname.yml # should happen before installing datadog

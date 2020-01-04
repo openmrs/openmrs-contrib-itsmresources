@@ -7,15 +7,6 @@ nakuru.openmrs.org
 narok.openmrs.org
 thika.openmrs.org
 
-[full-ansible]
-dowa.openmrs.org
-goura.openmrs.org
-lamu.openmrs.org
-mokolo.openmrs.org
-nakuru.openmrs.org
-narok.openmrs.org
-thika.openmrs.org
-
 [docker]
 dowa.openmrs.org
 goura.openmrs.org

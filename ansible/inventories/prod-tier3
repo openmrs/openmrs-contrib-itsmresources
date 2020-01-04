@@ -2,10 +2,6 @@
 nairobi.openmrs.org
 limbe.openmrs.org
 
-[full-ansible]
-nairobi.openmrs.org
-limbe.openmrs.org
-
 [docker]
 nairobi.openmrs.org
 limbe.openmrs.org
