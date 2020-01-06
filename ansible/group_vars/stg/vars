@@ -1,0 +1,6 @@
+---
+users:
+  permissionerror:
+    comment: Ray Ma
+    groups: 'admin'
+    ssh_key: "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAv22EW0RN4uwv4etiuBj5PqW7SKgch5jwqtZpHOpI7eZ4uagxRoeePyhERxsxm9193FjWtQIDtIyKCsa8BeuGZ6+SOb/PqnDtR7p5i8bWxp38+wveAQk16AorvH5lvM4XF/vH+f3G8hfq6D9NAGr5jaVsOzU+XubZYRV1VgDD4t0cvka71MWiTyvbePx8VmHMcDSCL/fbisRuTolyplzXKCAvYDNaitWyzeoW6WE+Tdw7XhHir6b8gJOAe4aoYegAWj4fd/rAVjX33B4h6plK1aixKC3+yfVodf+ei990TrEdVP6/BOZJupUEXkr7PWN+a/tt4CqXv5G71kHPOXcakQ=="
