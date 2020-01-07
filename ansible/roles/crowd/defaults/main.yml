@@ -1,0 +1,24 @@
+---
+# defaults file for hswong3i.crowd
+
+# required variables
+crowd_gid: ~
+crowd_hash_salt: ~
+crowd_pass: ~
+crowd_uid: ~
+crowd_user: ~
+
+# optional variables with default
+crowd_archive: "atlassian-crowd-2.9.1.tar.gz"
+crowd_catalina: "/usr/share/crowd"
+crowd_checksum: "sha256:07c5eb9eaaf51a208cd0e9f0062abff6d239b4a6225cf8154436178fadde3489"
+crowd_connector_port: "8095"
+crowd_context_path: ~
+crowd_home: "/var/lib/crowd"
+crowd_jvm_maximum_memory: "1024m"
+crowd_jvm_minimum_memory: "512m"
+crowd_jvm_support_recommended_args: "-Datlassian.plugins.enable.wait=300"
+crowd_proxy_name: ~
+crowd_scheme: ~
+crowd_server_port: "8020"
+crowd_url: "https://downloads.atlassian.com/software/crowd/downloads/{{ crowd_archive }}"

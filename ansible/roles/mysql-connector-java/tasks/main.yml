@@ -1,0 +1,30 @@
+---
+# tasks file for hswong3i.mysql_connector_java
+
+- name: prepare files
+  file:
+    dest: "{{ item.dest }}"
+    owner: "{{ item.owner }}"
+    group: "{{ item.group }}"
+    mode: "{{ item.mode }}"
+    state: "{{ item.state }}"
+  with_items:
+    - { dest: "{{ mysql_connector_java_dest }}", owner: "{{ mysql_connector_java_user }}", group: "{{ mysql_connector_java_user }}", mode: "0755", state: "directory" }
+  tags: hswong3i.mysql_connector_java
+
+- name: download package
+  get_url:
+    url: "{{ mysql_connector_java_url }}"
+    dest: "/tmp/{{ mysql_connector_java_archive }}"
+    checksum: "{{ mysql_connector_java_checksum }}"
+  tags: hswong3i.mysql_connector_java
+
+- name: unarchive package
+  shell: |
+    TMP_DIR=`mktemp -d`
+    tar zxvf /tmp/{{ mysql_connector_java_archive }} -C $TMP_DIR --strip-components=1
+    cp $TMP_DIR/{{ mysql_connector_java_jar }} {{ mysql_connector_java_dest }}/{{ mysql_connector_java_jar }}
+    chown {{ mysql_connector_java_user }}:{{ mysql_connector_java_user }} {{ mysql_connector_java_dest }}/{{ mysql_connector_java_jar }}
+  args:
+    creates: "{{ mysql_connector_java_dest }}/{{ mysql_connector_java_jar }}"
+  tags: hswong3i.mysql_connector_java

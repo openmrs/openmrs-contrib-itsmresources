@@ -1,0 +1,24 @@
+---
+# defaults file for hswong3i.jira
+
+# required variables
+jira_gid: ~
+jira_hash_salt: ~
+jira_pass: ~
+jira_uid: ~
+jira_user: ~
+
+# optional variables with default
+jira_archive: "atlassian-jira-software-7.1.9.tar.gz"
+jira_catalina: "/usr/share/jira"
+jira_checksum: "sha256:f03f2a8dd42c4b5f03918b326f14d7339f16f60fee0fa4a4d9c2e04c82dbbed2"
+jira_connector_port: "8080"
+jira_context_path: ~
+jira_home: "/var/lib/jira"
+jira_jvm_maximum_memory: "1024m"
+jira_jvm_minimum_memory: "512m"
+jira_jvm_support_recommended_args: "-Datlassian.plugins.enable.wait=300"
+jira_proxy_name: ~
+jira_scheme: ~
+jira_server_port: "8005"
+jira_url: "https://downloads.atlassian.com/software/jira/downloads/{{ jira_archive }}"

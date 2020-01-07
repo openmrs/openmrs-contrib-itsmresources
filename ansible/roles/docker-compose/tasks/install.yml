@@ -1,0 +1,13 @@
+---
+
+- name: Installing packages
+  package:
+    name: "{{ docker_compose_packages }}"
+    state: present
+
+- name: Installing docker compose
+  pip:
+    name: docker-compose
+    version: "{{ docker_compose_version | default(omit) }}"
+    executable: "{{ docker_compose_pip_executable }}"
+    state: present

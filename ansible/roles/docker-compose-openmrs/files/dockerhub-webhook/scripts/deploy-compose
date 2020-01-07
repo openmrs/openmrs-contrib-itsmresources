@@ -1,0 +1,66 @@
+#!/bin/bash -eu
+
+# Deploy docker-compose application
+
+ENVIRONMENT=$1
+FORCE_DESTROY_VOLUMES=${2:-false}
+FORCE_RESTART=${3:-false}
+
+cd /root/docker/$ENVIRONMENT
+
+echo "Removing unused images if any"
+EXITED_IMAGES=$(docker ps -a -f status=exited -q)
+if [ "${EXITED_IMAGES}" != "" ]; then
+  docker rm ${EXITED_IMAGES}
+fi
+
+docker-compose pull
+
+[ -s ./deploy.env ] && source ./deploy.env
+DESTROY_VOLUMES=${DESTROY_VOLUMES:-true}
+BACKUP_DIR=${BACKUP_DIR:-./backups}
+BACKUP_URLS=${BACKUP_URLS:-}
+RESTORE_BACKUP=${RESTORE_BACKUP:-}
+
+if [[ -n "${BACKUP_URLS}" ]]; then
+  for i in ${BACKUP_URLS[@]}; do
+    wget -N -P "${BACKUP_DIR}" "${i}"
+  done
+fi
+   
+if [[ -z "${RESTORE_BACKUP}" && "${FORCE_DESTROY_VOLUMES}" == "false" && "${DESTROY_VOLUMES}" == "false" ]]; then
+  echo "Keeping volumes"
+
+  compose_params=""
+  if [[ "$FORCE_RESTART" == "true" ]]; then
+    echo "Forcing restarts"
+    compose_params="--force-recreate"
+  fi
+  docker-compose up -d --no-build --remove-orphans ${compose_params}
+else
+  echo "Recreating all images and volumes"
+  docker-compose down -v
+  if [[ -n "${RESTORE_BACKUP}" ]]; then
+    echo "Restoring backup ${RESTORE_BACKUP}"
+    docker-compose run --rm backup bash restore.sh "${RESTORE_BACKUP}"
+  fi
+  docker-compose up -d --no-build
+fi
+
+containers=$(docker-compose ps -q)
+n=0
+until [ $n -ge 60 ]
+do
+  echo "Verifying if docker containers ${containers} are healthy"
+  health_check=$(docker inspect --format='{{json .State.Health.Status}}' $containers | sort -u )
+  echo "Status found: "${health_check}
+  test "${health_check}" = '"healthy"' && exit 0
+  echo "Waiting 15s"
+  n=$[$n+1]
+  sleep 15
+done
+
+echo "####################################################"
+docker-compose logs
+
+exit 1
