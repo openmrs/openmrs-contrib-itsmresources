@@ -29,9 +29,6 @@
 - name: letsencrypt
   src: https://github.com/thefinn93/ansible-letsencrypt
   version: c28dbb1c5d06971d3eb38044635bdd425003f2ce
-- name: sshd
-  src: https://github.com/cintiadr/ansible-sshd.git
-  version: 1a60cdabcc59e3c5c97771dbf1ac7a0f6e64d880
 - name: sudo
   src: https://github.com/yatesr/ansible-sudo.git
   version: 2a55007541a2f340eec57e4e5a7efa1c3fc73d74

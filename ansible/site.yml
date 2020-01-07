@@ -14,7 +14,7 @@
   roles:
    - users
    - sudo
-   - sshd
+   - { role: 'custom_roles/sshd' }
    - ufw
    - datadog
   tasks:
