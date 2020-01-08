@@ -1,0 +1,6 @@
+---
+- name: gen ssh keys
+  command: ssh-keygen -A
+
+- name: restart ssh
+  service: name={{ssh_service_name}} state=restarted

@@ -1,0 +1,8 @@
+---
+# Manage sshd config
+manage_sshd: true
+
+# Default service name for ssh if it doesn't match anything in vars/
+
+ssh_service_name: ssh
+sshd_config_file: sshd_config-modern.j2

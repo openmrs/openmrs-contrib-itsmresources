@@ -1,0 +1,15 @@
+---
+
+- name: Insert sshd_config
+  template: src={{sshd_config_file}}
+            dest=/etc/ssh/sshd_config
+            owner=root
+            group=root
+            mode=0600
+  notify:
+   - gen ssh keys
+   - restart ssh
+
+- name: Attempt to remove pub key from local known_hosts
+  local_action: command  ssh-keygen -f "$HOME/.ssh/known_hosts" -R hostname
+  sudo: no
