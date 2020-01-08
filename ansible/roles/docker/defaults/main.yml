@@ -1,29 +1,66 @@
 ---
-# Edition can be one of: 'ce' (Community Edition) or 'ee' (Enterprise Edition).
-docker_edition: 'ce'
-docker_package: "docker-{{ docker_edition }}"
-docker_package_state: present
 
-# Service options.
-docker_service_state: started
-docker_service_enabled: true
-docker_restart_handler_state: restarted
+docker__edition: "ce"
+docker__channel: ["stable"]
+docker__version: ""
+docker__state: "present"
 
-# Docker Compose options.
-docker_install_compose: true
-docker_compose_version: "1.24.1"
-docker_compose_path: /usr/local/bin/docker-compose
+docker__compose_version: ""
 
-# Used only for Debian/Ubuntu. Switch 'stable' to 'edge' if needed.
-docker_apt_release_channel: stable
-docker_apt_arch: amd64
-docker_apt_repository: "deb [arch={{ docker_apt_arch }}] https://download.docker.com/linux/{{ ansible_distribution|lower }} {{ ansible_distribution_release }} {{ docker_apt_release_channel }}"
-docker_apt_ignore_key_error: true
+docker__users: ["{{ ansible_env.SUDO_USER | d('root') }}"]
 
-# Used only for RedHat/CentOS/Fedora.
-docker_yum_repo_url: https://download.docker.com/linux/{{ (ansible_distribution == "Fedora") | ternary("fedora","centos") }}/docker-{{ docker_edition }}.repo
-docker_yum_repo_enable_edge: '0'
-docker_yum_repo_enable_test: '0'
+docker__registries: []
 
-# A list of users who will be added to the docker group.
-docker_users: []
+docker__default_daemon_json: |
+  "log-driver": "journald"
+
+docker__daemon_json: ""
+
+docker__daemon_flags:
+  - "-H unix://"
+
+docker__daemon_environment: []
+
+docker__systemd_override: ""
+
+docker__cron_jobs_prune_flags: "af"
+docker__cron_jobs_prune_schedule: ["0", "0", "*", "*", "0"]
+docker__cron_jobs:
+  - name: "Docker disk clean up"
+    job: "docker system prune -{{ docker__cron_jobs_prune_flags }} > /dev/null 2>&1"
+    schedule: "{{ docker__cron_jobs_prune_schedule }}"
+    cron_file: "docker-disk-clean-up"
+    user: "{{ (docker__users | first) | d('root') }}"
+
+docker__package_dependencies:
+  - "apt-transport-https"
+  - "ca-certificates"
+  - "cron"
+  - "gnupg2"
+  - "software-properties-common"
+
+docker__apt_key_id: "9DC858229FC7DD38854AE2D88D81803C0EBFCD88"
+docker__apt_key_url: "https://download.docker.com/linux/{{ ansible_distribution | lower }}/gpg"
+docker__apt_repository: >
+  deb [arch=amd64]
+  https://download.docker.com/linux/{{ ansible_distribution | lower }}
+  {{ ansible_distribution_release }} {{ docker__channel | join (' ') }}
+
+docker__pip_dependencies:
+  - "python-setuptools"
+  - "python{{ '3' if ansible_python.version.major == 3 else '' }}-pip"
+
+docker__pip_virtualenv: "/usr/local/lib/docker/virtualenv"
+
+docker__default_pip_packages:
+  - name: "docker"
+    state: "{{ docker__pip_docker_state }}"
+  - name: "docker-compose"
+    version: "{{ docker__compose_version }}"
+    path: "/usr/local/bin/docker-compose"
+    src: "{{ docker__pip_virtualenv + '/bin/docker-compose' }}"
+    state: "{{ docker__pip_docker_compose_state }}"
+docker__pip_packages: []
+
+docker__pip_docker_state: "present"
+docker__pip_docker_compose_state: "present"

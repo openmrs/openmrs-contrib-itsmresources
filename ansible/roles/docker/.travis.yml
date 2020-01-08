@@ -1,32 +1,17 @@
 ---
-language: python
-services: docker
+
+services: "docker"
 
 env:
-  global:
-    - ROLE_NAME: docker
-  matrix:
-    - MOLECULE_DISTRO: centos8
-    - MOLECULE_DISTRO: centos7
-    - MOLECULE_DISTRO: ubuntu1804
-    - MOLECULE_DISTRO: ubuntu1604
-    - MOLECULE_DISTRO: debian10
-    - MOLECULE_DISTRO: debian9
-    - MOLECULE_DISTRO: fedora30
-
-install:
-  # Install test dependencies.
-  - pip install molecule docker
-
-before_script:
-  # Use actual Ansible Galaxy role name for the project directory.
-  - cd ../
-  - mv ansible-role-$ROLE_NAME geerlingguy.$ROLE_NAME
-  - cd geerlingguy.$ROLE_NAME
+  - distro: "ubuntu1604"
+  - distro: "ubuntu1804"
+  - distro: "debian9"
+  - distro: "debian10"
 
 script:
-  # Run tests.
-  - molecule test
+  # Download test shim.
+  - wget -O ${PWD}/tests/test.sh https://gist.githubusercontent.com/nickjj/d12353b5b601e33cd62fda111359957a/raw
+  - chmod +x ${PWD}/tests/test.sh
 
-notifications:
-  webhooks: https://galaxy.ansible.com/api/v1/notifications/
+  # Run tests.
+  - ${PWD}/tests/test.sh

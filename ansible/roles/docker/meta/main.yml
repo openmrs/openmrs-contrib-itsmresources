@@ -1,33 +1,27 @@
 ---
-dependencies: []
 
 galaxy_info:
-  author: geerlingguy
-  description: Docker for Linux.
-  company: "Midwestern Mac, LLC"
-  license: "license (BSD, MIT)"
-  min_ansible_version: 2.4
+  role_name: "docker"
+  author: "Nick Janetakis"
+  description: "Install and configure Docker / Docker Compose."
+  license: "MIT"
+  min_ansible_version: 2.5
+
   platforms:
-    - name: EL
+    - name: "Ubuntu"
       versions:
-        - 7
-        - 8
-    - name: Fedora
+        - "xenial"
+        - "bionic"
+    - name: "Debian"
       versions:
-        - all
-    - name: Debian
-      versions:
-        - stretch
-        - buster
-    - name: Ubuntu
-      versions:
-        - xenial
-        - bionic
+        - "stretch"
+        - "buster"
+
   galaxy_tags:
-    - web
-    - system
-    - containers
-    - docker
-    - orchestration
-    - compose
-    - server
+    - "containers"
+    - "compose"
+    - "docker"
+    - "packaging"
+    - "system"
+
+dependencies: []

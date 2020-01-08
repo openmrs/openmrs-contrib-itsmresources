@@ -57,7 +57,7 @@
   version: 5e24c59a607ec65f3cbd59d2876209e5a331f0d6
 - name: mysql-cron-backup
   src: https://github.com/gcoop-libre/ansible-role-mysqldump.git
-  version: 9343efd6d77a79ba46f10898da68e99f8bb5adac
+  version: 6897b0803b16451daf5d0fef34de7fb413ac8b6d
 - name: logrotate
   src: https://github.com/nickhammond/ansible-logrotate
   version: 91d570f68c44261d2051a99a2b3c7d736306bf0d
