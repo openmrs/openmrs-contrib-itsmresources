@@ -6,25 +6,22 @@
   src: Datadog.datadog
   version: 4.0.1
 - name: docker
-  src: geerlingguy.docker
-  version: 2.6.0
+  src: nickjj.docker
+  version: v1.9.1
 - name: nginx 
   src: geerlingguy.nginx
   version: 2.7.0
 - name: mysql
   src: geerlingguy.mysql
-  version: 2.8.0
-- name: sshd
-  src: willshersystems.sshd
-  version: v0.8.1
-- name: docker-compose
-  src: weareinteractive.docker_compose
-  version: 1.5.1
+  version: 2.9.5
 
 
 # from git
 - name: docker-compose-openmrs
   src: https://github.com/openmrs/openmrs-contrib-ansible-docker-compose.git
+- name: sshd
+  src: https://github.com/cintiadr/ansible-sshd.git
+  version: 1a60cdabcc59e3c5c97771dbf1ac7a0f6e64d880
 - name: dhparam
   src: https://github.com/gronke/ansible-dhparam.git
   version: 9a24d9610f5b88458a27ce0df1dca9a4ccdfaa1e

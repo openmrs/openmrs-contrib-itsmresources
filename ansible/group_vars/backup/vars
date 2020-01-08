@@ -1,12 +1,14 @@
 ---
-docker_daemon_args: "--data-root=/data/docker"
+docker__daemon_flags:
+  - "--data-root=/data/docker"
+  - "--storage-driver overlay2"
 
 backup_tag: 'bootstrapped'
 backup_user: 'backup-s3'
 users:
  "{{backup_user}}":
    comment: Backup User
-aws_output_format: 'json'
+output: 'json'
 aws_region: 'us-west-2'
 aws_cli_user: '{{backup_user}}'
 
