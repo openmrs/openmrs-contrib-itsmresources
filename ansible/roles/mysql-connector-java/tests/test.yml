@@ -1,7 +1,0 @@
----
-# test file for hswong3i.mysql_connector_java
-
-- hosts: localhost
-  remote_user: root
-  roles:
-    - ansible-role-mysql-connector-java

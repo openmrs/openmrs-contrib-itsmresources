@@ -1,7 +1,0 @@
----
-# handlers file for hswong3i.bamboo
-
-- name: restart bamboo
-  service:
-    name: "bamboo"
-    state: "restarted"

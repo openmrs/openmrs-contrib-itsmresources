@@ -1,3 +1,0 @@
----
-mysql_connector_java_dest: "/tmp/ansible-role-mysql-connector-java"
-mysql_connector_java_user: "root"
