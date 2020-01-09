@@ -1,0 +1,3 @@
+---
+deb_mysql_install_packages:
+  - mysql-server-5.7

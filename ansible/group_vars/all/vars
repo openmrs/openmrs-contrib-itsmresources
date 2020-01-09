@@ -91,7 +91,3 @@ datadog_checks:
 
 backup_tag: 'not-applicable'
 backup_user: 'not-applicable'
-
-#mysql
-deb_mysql_install_packages:
-  - mysql-server-5.7
