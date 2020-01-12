@@ -25,21 +25,21 @@ $ ansible-galaxy install -p roles -r requirements.yml --force
 
 ```
 # Run main ansible playbook in a single testing machine (e.g. narok)
-$ ansible-playbook -i inventories/prod-tier4 --limit narok.openmrs.org site.yml
+$ ansible-playbook -vv -i inventories/prod-tier4 --limit narok.openmrs.org site.yml
 
 
 # Run ansible in all machines in tier 4
-$ ansible-playbook -i inventories/prod-tier4 site.yml
+$ ansible-playbook -vv -i inventories/prod-tier4 site.yml
 
 
 # if you do not have your PGP key in our repo to unlock the .vault_pass file, you can get it from the LastPass folder and interactively enter it.
-$ ansible-playbook -i inventories/prod-tier4 --limit narok.openmrs.org site.yml --ask-vault-pass
+$ ansible-playbook -vv -i inventories/prod-tier4 --limit narok.openmrs.org site.yml --ask-vault-pass
 
 
 # Add new DNS entry to letsencrypt (example: narok)
 # after changing the host_vars
-$ ansible-playbook -i inventories/prod-tier4 --limit narok.openmrs.org remove-certs.yml
-$ ansible-playbook -i inventories/prod-tier4 --limit narok.openmrs.org --tags tls,web,docker site.yml
+$ ansible-playbook -vv -i inventories/prod-tier4 --limit narok.openmrs.org remove-certs.yml
+$ ansible-playbook -vv -i inventories/prod-tier4 --limit narok.openmrs.org --tags tls,web,docker site.yml
 ```
 
 ### Editing ansible encrypted files

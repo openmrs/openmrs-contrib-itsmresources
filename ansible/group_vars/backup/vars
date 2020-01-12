@@ -4,7 +4,8 @@ docker__backup_flags: "--data-root=/data/docker"
 backup_tag: 'bootstrapped'
 backup_user: 'backup-s3'
 users:
- "{{backup_user}}":
+ # for some reason, ansible doesn't accept interpolation here 
+ backup-s3:
    comment: Backup User
 output: 'json'
 aws_region: 'us-west-2'
