@@ -11,5 +11,5 @@
    - restart ssh
 
 - name: Attempt to remove pub key from local known_hosts
-  local_action: command  ssh-keygen -f "$HOME/.ssh/known_hosts" -R hostname
-  sudo: no
+  local_action: command ssh-keygen -f "$HOME/.ssh/known_hosts" -R {{inventory_hostname}}
+  become: false

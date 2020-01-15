@@ -1,8 +1,10 @@
 ---
-docker_compose_version: 1.19.0
-docker_storage_driver: overlay2
-docker_remote: False
-docker_tls: False
+docker__compose_version: "1.23"
+docker__daemon_flags:
+  - "--storage-driver overlay2"
+  - "{{docker__backup_flags}}"
+
+docker__users: ["root"]
 
 # https://docs.docker.com/engine/installation/linux/ubuntulinux/#/enable-ufw-forwarding
 ufw_config:

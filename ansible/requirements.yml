@@ -1,31 +1,27 @@
 # from Ansible Galaxy
 - name: aws-cli
-  src: ssilab.aws-cli
-  version: v1.1
+  src: badpacketsllc.aws_cli
+  version: v1.0.2
 - name: datadog
   src: Datadog.datadog
-  version: 2.6.0
+  version: 4.0.1
 - name: docker
-  src: andrewrothstein.docker
-  version: v5.0.4
-- name: nginx
+  src: nickjj.docker
+  version: v1.9.1
+- name: nginx 
   src: geerlingguy.nginx
-  version: 2.1.0
+  version: 2.7.0
 - name: mysql
   src: geerlingguy.mysql
-  version: 2.8.0
-
+  version: 2.9.5
 
 
 # from git
 - name: docker-compose-openmrs
   src: https://github.com/openmrs/openmrs-contrib-ansible-docker-compose.git
-- name: docker-compose
-  src: https://github.com/weareinteractive/ansible-docker-compose
-  version: 1.2.2
 - name: dhparam
   src: https://github.com/gronke/ansible-dhparam.git
-  version: c6fc0c45991a8ec0e2d7f631241f870fb87d4dfb
+  version: 9a24d9610f5b88458a27ce0df1dca9a4ccdfaa1e
 - name: letsencrypt
   src: https://github.com/thefinn93/ansible-letsencrypt
   version: c28dbb1c5d06971d3eb38044635bdd425003f2ce
@@ -58,7 +54,7 @@
   version: 5e24c59a607ec65f3cbd59d2876209e5a331f0d6
 - name: mysql-cron-backup
   src: https://github.com/gcoop-libre/ansible-role-mysqldump.git
-  version: 9343efd6d77a79ba46f10898da68e99f8bb5adac
+  version: 6897b0803b16451daf5d0fef34de7fb413ac8b6d
 - name: logrotate
   src: https://github.com/nickhammond/ansible-logrotate
   version: 91d570f68c44261d2051a99a2b3c7d736306bf0d

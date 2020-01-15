@@ -65,7 +65,6 @@
    - docker
   roles:
    - docker
-   - docker-compose
    - docker-compose-openmrs
   tasks:
    - include: tasks/docker-install-hacks.yml

@@ -7,10 +7,7 @@ This repository contain all the ansible required to fully install OpenMRS commun
 All commands assume you are in the `ansible` directory.
 
 ### Requirements
-* ansible 2.2.3 installed on the same machine the repo is cloned to.
-  * Version 2.2.1+ [has a bug with handlers](https://github.com/ansible/ansible/issues/20603)
-  * Version 2.3.0 cannot work with galaxy
-  * Version 2.4.0 doesn't work with our sshd role
+* ansible 2.9.2 installed on the same machine the repo is cloned to.
 * Install [git-crypt](https://www.agwa.name/projects/git-crypt/) and run `git-crypt unlock`.
   * If you are not part of git-crypt by any reason, you'll need to retrieve the vault password file from LP or ask to be added in git-crypt.
 * Install `pip install passlib` (is it still needed???)
@@ -28,21 +25,21 @@ $ ansible-galaxy install -p roles -r requirements.yml --force
 
 ```
 # Run main ansible playbook in a single testing machine (e.g. narok)
-$ ansible-playbook -i inventories/prod-tier4 --limit narok.openmrs.org site.yml
+$ ansible-playbook -vv -i inventories/prod-tier4 --limit narok.openmrs.org site.yml
 
 
 # Run ansible in all machines in tier 4
-$ ansible-playbook -i inventories/prod-tier4 site.yml
+$ ansible-playbook -vv -i inventories/prod-tier4 site.yml
 
 
 # if you do not have your PGP key in our repo to unlock the .vault_pass file, you can get it from the LastPass folder and interactively enter it.
-$ ansible-playbook -i inventories/prod-tier4 --limit narok.openmrs.org site.yml --ask-vault-pass
+$ ansible-playbook -vv -i inventories/prod-tier4 --limit narok.openmrs.org site.yml --ask-vault-pass
 
 
 # Add new DNS entry to letsencrypt (example: narok)
 # after changing the host_vars
-$ ansible-playbook -i inventories/prod-tier4 --limit narok.openmrs.org remove-certs.yml
-$ ansible-playbook -i inventories/prod-tier4 --limit narok.openmrs.org --tags tls,web,docker site.yml
+$ ansible-playbook -vv -i inventories/prod-tier4 --limit narok.openmrs.org remove-certs.yml
+$ ansible-playbook -vv -i inventories/prod-tier4 --limit narok.openmrs.org --tags tls,web,docker site.yml
 ```
 
 ### Editing ansible encrypted files

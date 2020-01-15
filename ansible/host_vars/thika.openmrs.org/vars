@@ -6,6 +6,11 @@ users:
     comment: Darius Jazayeri
     groups: 'admin'
     ssh_key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC0ted8ZbMokU7mjwoNHhNRuPKyIr2T4NDtatZSHZa/A6e0t+tDi8K1znFMbgZ3ZcVQQh0czcrnwTMMUprTiVyn5WB16Qs0WrfiHfr83/HDkcJA9LbQ3s1bM/f9QJ9Uo5vP5TMpJL8gGueKiSMP1+x6JwJ4EuUZKdsUz+q/WtzxU10ImECWOeOnwGaUkmitPREBzbJSIv8pciq4QJ/fHuYeuvRZOmUYC+V+Rn3C1XEJf1jhRIBahT5KhV02wfmbfXchIAd/WrIbqvVQ5YGg8UwqdN47cxHvNwR5BCqpTY1C3XyCrj13NqflPCGyYyj6+mxs74EMJYAh0nDT/ZSeUvbf jazayeri@alum.mit.edu"
+  permissionerror:
+    comment: Ray Ma
+    groups: 'admin'
+    ssh_key: "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAv22EW0RN4uwv4etiuBj5PqW7SKgch5jwqtZpHOpI7eZ4uagxRoeePyhERxsxm9193FjWtQIDtIyKCsa8BeuGZ6+SOb/PqnDtR7p5i8bWxp38+wveAQk16AorvH5lvM4XF/vH+f3G8hfq6D9NAGr5jaVsOzU+XubZYRV1VgDD4t0cvka71MWiTyvbePx8VmHMcDSCL/fbisRuTolyplzXKCAvYDNaitWyzeoW6WE+Tdw7XhHir6b8gJOAe4aoYegAWj4fd/rAVjX33B4h6plK1aixKC3+yfVodf+ei990TrEdVP6/BOZJupUEXkr7PWN+a/tt4CqXv5G71kHPOXcakQ=="
+
 
 ufw_rules:
   http:

@@ -1,14 +1,22 @@
 ---
-docker_daemon_args: "--data-root=/data/docker"
+docker__backup_flags: "--data-root=/data/docker"
 
 backup_tag: 'bootstrapped'
 backup_user: 'backup-s3'
 users:
- "{{backup_user}}":
+ # for some reason, ansible doesn't accept interpolation here 
+ backup-s3:
    comment: Backup User
-aws_output_format: 'json'
+output: 'json'
 aws_region: 'us-west-2'
 aws_cli_user: '{{backup_user}}'
+
+profiles:
+  - name: default
+    region: "{{ aws_region }}"
+    output: "{{ output }}"
+    aws_access_key_id: '{{ vault_aws_access_key_id }}'
+    aws_secret_access_key: '{{ vault_aws_secret_access_key }}'
 
 
 datadog_checks:

@@ -2,7 +2,7 @@
   - name: Generate git archive for puppet files
     shell: cd .. && git archive --format=tar  HEAD bamboo-agents-puppet -o ansible/.tmp/openmrs-puppet.tar
     delegate_to: localhost
-    sudo: no
+    become: false
 
   - name: 'Delete old puppet files'
     file:

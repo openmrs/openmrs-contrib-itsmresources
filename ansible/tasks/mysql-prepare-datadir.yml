@@ -4,6 +4,10 @@
       path: "{{ mysql_datadir }}"
     register: new_datadir
 
+  - name: Gather package facts
+    package_facts:
+      manager: apt
+
   - name: install dependencies
     apt:
       name: "{{ item }}"
@@ -12,6 +16,7 @@
       - apparmor-utils
       - mysql-common
       - mysql-server
+    when: '"mysql-server" not in ansible_facts.packages'
 
   - name: Disable apparmor for mysqld only
     command: /usr/sbin/aa-complain /usr/sbin/mysqld
