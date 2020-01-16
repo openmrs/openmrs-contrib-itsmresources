@@ -44,8 +44,8 @@ letsencrypt_cert_domains:
   - sonar.openmrs.org
   - implementation.openmrs.org
   - notes-new.openmrs.org
-#  - quizgrader.openmrs.org
-#  - pmtool.openmrs.org
+  - quizgrader.openmrs.org
+  - pmtool.openmrs.org
 
 nginx_vhosts:
  - listen: "80 default_server"

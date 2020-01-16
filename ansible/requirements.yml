@@ -24,7 +24,7 @@
   version: 9a24d9610f5b88458a27ce0df1dca9a4ccdfaa1e
 - name: letsencrypt
   src: https://github.com/thefinn93/ansible-letsencrypt
-  version: c28dbb1c5d06971d3eb38044635bdd425003f2ce
+  version: f4b5687073a20e2a744115e97fa87ef278e4b2bf
 - name: sudo
   src: https://github.com/yatesr/ansible-sudo.git
   version: 2a55007541a2f340eec57e4e5a7efa1c3fc73d74

@@ -5,7 +5,6 @@ lamu.openmrs.org
 mokolo.openmrs.org
 nakuru.openmrs.org
 narok.openmrs.org
-thika.openmrs.org
 
 [docker]
 dowa.openmrs.org
@@ -14,7 +13,6 @@ lamu.openmrs.org
 mokolo.openmrs.org
 nakuru.openmrs.org
 narok.openmrs.org
-thika.openmrs.org
 
 [web]
 dowa.openmrs.org
@@ -23,7 +21,6 @@ lamu.openmrs.org
 mokolo.openmrs.org
 nakuru.openmrs.org
 narok.openmrs.org
-thika.openmrs.org
 
 [tls]
 dowa.openmrs.org
@@ -32,7 +29,6 @@ lamu.openmrs.org
 mokolo.openmrs.org
 nakuru.openmrs.org
 narok.openmrs.org
-thika.openmrs.org
 
 [backup]
 dowa.openmrs.org
