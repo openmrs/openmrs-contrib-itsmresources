@@ -1,8 +1,6 @@
 ---
 # LDAP and IDSTG
 
-letsencrypt_renewal_command_args: '--renew-hook "docker restart ldapstg_openldap_1"'
-
 datadog_tags_extra:
    - "service:ldap"
    - "service-group:id"

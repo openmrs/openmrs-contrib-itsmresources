@@ -1,0 +1,2 @@
+---
+letsencrypt_renewal_command_args: '--renew-hook "docker restart openldap"'

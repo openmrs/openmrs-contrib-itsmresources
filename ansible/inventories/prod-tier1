@@ -45,6 +45,9 @@ ako.openmrs.org
 ambam.openmrs.org
 baragoi.openmrs.org
 
+[ldap]
+ako.openmrs.org
+
 [atlassian]
 ambam.openmrs.org
 melong.openmrs.org

@@ -8,7 +8,7 @@
 - name: docker
   src: nickjj.docker
   version: v1.9.1
-- name: nginx 
+- name: nginx
   src: geerlingguy.nginx
   version: 2.7.0
 - name: mysql

@@ -21,6 +21,9 @@ ruiru.openmrs.org
 gede.openmrs.org
 ruiru.openmrs.org
 
+[ldap]
+ruiru.openmrs.org
+
 [atlassian]
 gede.openmrs.org
 
