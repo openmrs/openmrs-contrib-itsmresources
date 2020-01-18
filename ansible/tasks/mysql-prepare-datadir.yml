@@ -25,3 +25,27 @@
   - name: Initialise data for mysql
     command: /usr/sbin/mysqld --initialize-insecure --datadir={{ mysql_datadir }}
     when: new_datadir.stat.exists == False
+
+  - name: Create system directory for mysql config
+    file:
+      path: /etc/systemd/system/
+      state: directory
+
+  - name: Create mysql directory for mysql config
+    file:
+      path: /etc/systemd/system/mysql.service.d/
+      state: directory
+
+  - name: Copy mysql override config
+    copy:
+      owner: root
+      group: root
+      mode: 0644
+      src: files/mysql/mysql.service.d/override.cnf
+      dest: "/etc/systemd/system/mysql.service.d/override.conf"
+    register: mysql_override
+
+  - name: Reload services
+    command: systemctl daemon-reload
+    when: mysql_override.changed == True
+    # notify: restart mysql

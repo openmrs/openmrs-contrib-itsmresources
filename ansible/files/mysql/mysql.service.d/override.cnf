@@ -1,0 +1,5 @@
+# Allow more than 214 max connections to database
+# https://stackoverflow.com/a/43661595/2707215
+
+[Service]
+LimitNOFILE=8000
