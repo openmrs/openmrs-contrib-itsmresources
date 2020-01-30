@@ -25,6 +25,7 @@ docker_deployment:
   - oclapi-stg
   - oclweb-stg
   - oclclient-stg
+  - oclmsp-stg
   - oclapi-demo
   - oclweb-demo
   - oclclient-demo
@@ -39,6 +40,8 @@ docker_deployable_images:
     compose: oclapi-stg
   - repository: openconceptlab/oclmsp
     compose: oclmsp-demo
+  - repository: openconceptlab/oclmsp
+    compose: oclmsp-stg
 
 
 letsencrypt_cert_domains:
@@ -52,6 +55,7 @@ letsencrypt_cert_domains:
    - openmrs.demo.openconceptlab.org
    - openmrs.staging.openconceptlab.org
    - msp.demo.openconceptlab.org
+   - msp.staging.openconceptlab.org
 
 
 nginx_keepalive_timeout: "600"
