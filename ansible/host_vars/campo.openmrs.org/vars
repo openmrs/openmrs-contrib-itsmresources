@@ -14,6 +14,7 @@ letsencrypt_cert_domains:
 nginx_vhosts:
   - listen: "80 default_server"
     server_name: "mavenrepo.openmrs.org"
+    filename: "mavenrepo.openmrs.org.80.conf"
     extra_parameters: |
       return 301 https://$host$request_uri;
   - listen: "443 ssl"
@@ -42,6 +43,7 @@ nginx_vhosts:
       }
   - listen: "80"
     server_name: "mavenrepo-redirect.openmrs.org"
+    filename: "mavenrepo-redirect.openmrs.org.80.conf"
     extra_parameters: |
        return 301 https://$host$request_uri;
   - listen: "443 ssl"
@@ -62,6 +64,7 @@ nginx_vhosts:
        }
   - listen: "80"
     server_name: "help.openmrs.org"
+    filename: "help.openmrs.org.80.conf"
     extra_parameters: |
       return 301 https://$host$request_uri;
   - listen: "443 ssl"

@@ -55,6 +55,7 @@ nginx_keepalive_requests: "600"
 nginx_vhosts:
   - listen: "80 default_server"
     server_name: "staging.openconceptlab.org"
+    filename: "staging.openconceptlab.org.80.conf"
     extra_parameters: |
       return 301 https://$host$request_uri;
   - listen: "443 ssl"
@@ -72,6 +73,7 @@ nginx_vhosts:
       }
   - listen: "80"
     server_name: "api.staging.openconceptlab.org"
+    filename: "api.staging.openconceptlab.org.80.conf"
     extra_parameters: |
       return 301 https://$host$request_uri;
   - listen: "443 ssl"
@@ -124,6 +126,7 @@ nginx_vhosts:
       }
   - listen: "80"
     server_name: "flower.staging.openconceptlab.org"
+    filename: "flower.staging.openconceptlab.org.80.conf"
     extra_parameters: |
       return 301 https://$host$request_uri;
   - listen: "443 ssl"
@@ -141,6 +144,7 @@ nginx_vhosts:
       }
   - listen: "80"
     server_name: "demo.openconceptlab.org"
+    filename: "demo.openconceptlab.org.80.conf"
     extra_parameters: |
       return 301 https://$host$request_uri;
   - listen: "443 ssl"
@@ -158,6 +162,7 @@ nginx_vhosts:
       }
   - listen: "80"
     server_name: "api.demo.openconceptlab.org"
+    filename: "api.demo.openconceptlab.org.80.conf"
     extra_parameters: |
       return 301 https://$host$request_uri;
   - listen: "443 ssl"
@@ -210,6 +215,7 @@ nginx_vhosts:
       }
   - listen: "80"
     server_name: "flower.demo.openconceptlab.org"
+    filename: "flower.demo.openconceptlab.org.80.conf"
     extra_parameters: |
       return 301 https://$host$request_uri;
   - listen: "443 ssl"
@@ -227,6 +233,7 @@ nginx_vhosts:
       }
   - listen: "80"
     server_name: "openmrs.demo.openconceptlab.org"
+    filename: "openmrs.demo.openconceptlab.org.80.conf"
     extra_parameters: |
       return 301 https://$host$request_uri;
   - listen: "443 ssl"
@@ -244,6 +251,7 @@ nginx_vhosts:
       }
   - listen: "80"
     server_name: "openmrs.staging.openconceptlab.org"
+    filename: "openmrs.staging.openconceptlab.org.80.conf"
     extra_parameters: |
       return 301 https://$host$request_uri;
   - listen: "443 ssl"

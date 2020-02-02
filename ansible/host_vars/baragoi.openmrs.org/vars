@@ -21,6 +21,7 @@ docker_deployable_images: []
 nginx_vhosts:
   - listen: "80 default_server"
     server_name: "baragoi.openmrs.org"
+    filename: "bagaroi.openmrs.org.80.conf"
     extra_parameters: |
       return 301 https://$host$request_uri;
   - listen: "443 ssl"
@@ -39,6 +40,7 @@ nginx_vhosts:
       }
   - listen: "80"
     server_name: "id.openmrs.org"
+    filename: "id.openmrs.org.80.conf"
     extra_parameters: |
       return 301 https://$host$request_uri;
   - listen: "443 ssl"

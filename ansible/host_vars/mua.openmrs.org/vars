@@ -22,6 +22,7 @@ docker_deployable_images: []
 nginx_vhosts:
   - listen: "80 default_server"
     server_name: "mua.openmrs.org"
+    filename: "mua.openmrs.org.80.conf"
     extra_parameters: |
       return 301 https://$host$request_uri;
   - listen: "443 ssl"
@@ -39,6 +40,7 @@ nginx_vhosts:
       }
   - listen: "80"
     server_name: "site.openmrs.org openmrs.org www.openmrs.org"
+    filename: "site.openmrs.org.80.conf"
     extra_parameters: |
       return 301 https://$host$request_uri;
   - listen: "443 ssl"
@@ -61,6 +63,7 @@ nginx_vhosts:
       }
   - listen: "80"
     server_name: "shortener.openmrs.org om.rs *.om.rs"
+    filename: "shortener.openmrs.org.80.conf"
     extra_parameters: |
       return 301 https://$host$request_uri;
   - listen: "443 ssl"

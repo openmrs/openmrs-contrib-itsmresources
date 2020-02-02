@@ -46,6 +46,7 @@ letsencrypt_cert_domains:
 nginx_vhosts:
  - listen: "80 default_server"
    server_name: "demo.openmrs.org"
+   filename: "demo.openmrs.org.80.conf"
    extra_parameters: |
      return 301 https://$host$request_uri;
  - listen: "443 ssl"
@@ -68,6 +69,7 @@ nginx_vhosts:
      }
  - listen: "80"
    server_name: "qa-refapp.openmrs.org"
+   filename: "qa-refapp.openmrs.org.80.conf"
    extra_parameters: |
      return 301 https://$host$request_uri;
  - listen: "443 ssl"
@@ -90,6 +92,7 @@ nginx_vhosts:
      }
  - listen: "80"
    server_name: "modules-refapp.openmrs.org"
+   filename: "modules-refapp.openmrs.org.80.conf"
    extra_parameters: |
      return 301 https://$host$request_uri;
  - listen: "443 ssl"
@@ -112,6 +115,7 @@ nginx_vhosts:
      }
  - listen: "80"
    server_name: "uat-refapp.openmrs.org"
+   filename: "uat-refapp.openmrs.org.80.conf"
    extra_parameters: |
      return 301 https://$host$request_uri;
  - listen: "443 ssl"

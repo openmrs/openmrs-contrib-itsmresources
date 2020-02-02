@@ -48,6 +48,7 @@ nginx_keepalive_requests: "600"
 nginx_vhosts:
   - listen: "80 default_server"
     server_name: "www.openconceptlab.org openconceptlab.org"
+    filename: "www.openconceptlab.org.80.conf"
     extra_parameters: |
       return 301 https://$host$request_uri;
   - listen: "443 ssl"
@@ -65,6 +66,7 @@ nginx_vhosts:
       }
   - listen: "80"
     server_name: "api.openconceptlab.org"
+    filename: "api.openconceptlab.org.80.conf"
     extra_parameters: |
       return 301 https://$host$request_uri;
   - listen: "443 ssl"
@@ -117,6 +119,7 @@ nginx_vhosts:
       }
   - listen: "80"
     server_name: "flower.openconceptlab.org"
+    filename: "flower.openconceptlab.org.80.conf"
     extra_parameters: |
       return 301 https://$host$request_uri;
   - listen: "443 ssl"
@@ -134,6 +137,7 @@ nginx_vhosts:
       }
   - listen: "80"
     server_name: "openmrs.openconceptlab.org"
+    filename: "openmrs.openconceptlab.org.80.conf"
     extra_parameters: |
       return 301 https://$host$request_uri;
   - listen: "443 ssl"

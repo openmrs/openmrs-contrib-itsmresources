@@ -17,6 +17,7 @@ docker_deployable_images:
 nginx_vhosts:
   - listen: "80 default_server"
     server_name: "something.openmrs.org"
+    filename: "something.openmrs.org.80.conf"
     extra_parameters: |
       access_log /var/log/nginx/demo_access.log;
       error_log /var/log/nginx/demo_error.log;

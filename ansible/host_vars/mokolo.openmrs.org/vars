@@ -50,6 +50,7 @@ letsencrypt_cert_domains:
 nginx_vhosts:
  - listen: "80 default_server"
    server_name: "sonar.openmrs.org"
+   filename: "sonar.openmrs.org.80.conf"
    extra_parameters: |
      return 301 https://$host$request_uri;
  - listen: "443 ssl"
@@ -68,6 +69,7 @@ nginx_vhosts:
      }
  - listen: "80"
    server_name: "notes-new.openmrs.org"
+   filename: "notes-new.openmrs.org.80.conf"
    extra_parameters: |
      return 301 https://$host$request_uri;
  - listen: "443 ssl"
@@ -113,6 +115,7 @@ nginx_vhosts:
      }
  - listen: "80"
    server_name: "quizgrader.openmrs.org"
+   filename: "quizgrader.openmrs.org.80.conf"
    extra_parameters: |
      return 301 https://$host$request_uri;
  - listen: "443 ssl"
@@ -130,6 +133,7 @@ nginx_vhosts:
      }
  - listen: "80"
    server_name: "pmtool.openmrs.org"
+   filename: "pmtool.openmrs.org.80.conf"
    extra_parameters: |
      return 301 https://$host$request_uri;
  - listen: "443 ssl"

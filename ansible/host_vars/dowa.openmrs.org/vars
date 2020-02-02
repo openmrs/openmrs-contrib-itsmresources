@@ -52,6 +52,7 @@ letsencrypt_cert_domains:
 nginx_vhosts:
   - listen: "80 default_server"
     server_name: "mdsbuilder.openmrs.org"
+    filename: "mdsbuilder.openmrs.org.80.conf"
     extra_parameters: |
       return 301 https://$host$request_uri;
   - listen: "443 ssl"

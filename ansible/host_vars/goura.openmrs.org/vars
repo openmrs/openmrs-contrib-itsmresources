@@ -37,6 +37,7 @@ letsencrypt_cert_domains:
 nginx_vhosts:
  - listen: "80 default_server"
    server_name: "sync1.openmrs.org"
+   filename: "sync1.openmrs.org.80.conf"
    extra_parameters: |
      return 301 https://$host$request_uri;
  - listen: "443 ssl"
@@ -59,6 +60,7 @@ nginx_vhosts:
      }
  - listen: "80"
    server_name: "sync2.openmrs.org"
+   filename: "sync2.openmrs.org.80.conf"
    extra_parameters: |
      return 301 https://$host$request_uri;
  - listen: "443 ssl"
@@ -81,6 +83,7 @@ nginx_vhosts:
      }
  - listen: "80"
    server_name: "sync3.openmrs.org"
+   filename: "sync3.openmrs.org.80.conf"
    extra_parameters: |
      return 301 https://$host$request_uri;
  - listen: "443 ssl"
@@ -103,6 +106,7 @@ nginx_vhosts:
      }
  - listen: "80"
    server_name: "sync4.openmrs.org"
+   filename: "sync4.openmrs.org.80.conf"
    extra_parameters: |
      return 301 https://$host$request_uri;
  - listen: "443 ssl"
@@ -125,6 +129,7 @@ nginx_vhosts:
      }
  - listen: "80"
    server_name: "sync-legacy1.openmrs.org"
+   filename: "sync-legacy1.openmrs.org.80.conf"
    extra_parameters: |
      return 301 https://$host$request_uri;
  - listen: "443 ssl"
@@ -147,6 +152,7 @@ nginx_vhosts:
      }
  - listen: "80"
    server_name: "sync-legacy2.openmrs.org"
+   filename: "sync-legacy2.openmrs.org.80.conf"
    extra_parameters: |
      return 301 https://$host$request_uri;
  - listen: "443 ssl"

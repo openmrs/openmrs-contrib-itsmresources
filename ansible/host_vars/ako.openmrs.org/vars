@@ -23,6 +23,7 @@ docker_deployable_images: []
 nginx_vhosts:
  - listen: "80 default_server"
    server_name: "ldap.openmrs.org"
+   filename: "ldap.openmrs.org.80.conf"
    extra_parameters: |
      return 301 https://$host$request_uri;
  - listen: "443 ssl"

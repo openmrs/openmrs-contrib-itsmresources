@@ -42,25 +42,9 @@ letsencrypt_cert_domains:
 
 
 nginx_vhosts:
-  - listen: "80"
-    server_name: "modules-stg.openmrs.org"
-    extra_parameters: |
-      return 301 https://$host$request_uri;
-  - listen: "443 ssl"
-    server_name: "modules-stg.openmrs.org"
-    extra_parameters: |
-      access_log /var/log/nginx/modules_access.log;
-      error_log /var/log/nginx/modules_error.log;
-      ssl_certificate /etc/letsencrypt/live/lamu.openmrs.org/fullchain.pem;
-      ssl_certificate_key /etc/letsencrypt/live/lamu.openmrs.org/privkey.pem;
-      location ^~ /.well-known/acme-challenge/ {
-        root /usr/share/nginx/html;
-      }
-      location / {
-        return 301 https://addons-stg.openmrs.org$request_uri;
-      }
   - listen: "80 default_server"
     server_name: "addons-stg.openmrs.org"
+    filename: "addons-stg.openmrs.org.80.conf"
     extra_parameters: |
       return 301 https://$host$request_uri;
   - listen: "443 ssl"
@@ -78,6 +62,7 @@ nginx_vhosts:
       }
   - listen: "80"
     server_name: "atlas-stg.openmrs.org"
+    filename: "atlas-stg.openmrs.org.80.conf"
     extra_parameters: |
       return 301 https://$host$request_uri;
   - listen: "443 ssl"
@@ -97,6 +82,24 @@ nginx_vhosts:
         proxy_buffer_size   128k;
         proxy_buffers   4 256k;
         proxy_busy_buffers_size   256k;
+      }
+  - listen: "80"
+    server_name: "modules-stg.openmrs.org"
+    filename: "modules-stg.openmrs.org.80.conf"
+    extra_parameters: |
+      return 301 https://$host$request_uri;
+  - listen: "443 ssl"
+    server_name: "modules-stg.openmrs.org"
+    extra_parameters: |
+      access_log /var/log/nginx/modules_access.log;
+      error_log /var/log/nginx/modules_error.log;
+      ssl_certificate /etc/letsencrypt/live/lamu.openmrs.org/fullchain.pem;
+      ssl_certificate_key /etc/letsencrypt/live/lamu.openmrs.org/privkey.pem;
+      location ^~ /.well-known/acme-challenge/ {
+        root /usr/share/nginx/html;
+      }
+      location / {
+        return 301 https://addons-stg.openmrs.org$request_uri;
       }
   - listen: "443 ssl"
     server_name: "lamu.openmrs.org"

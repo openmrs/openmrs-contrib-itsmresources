@@ -12,6 +12,7 @@ letsencrypt_cert_domains:
 nginx_vhosts:
   - listen: "80 default_server"
     server_name: "melong.openmrs.org"
+    filename: "melong.openmrs.org.80.conf"
     extra_parameters: |
       return 301 https://$host$request_uri;
   - listen: "443 ssl"
@@ -30,6 +31,7 @@ nginx_vhosts:
       }
   - listen: "80"
     server_name: "issues.openmrs.org tickets.openmrs.org"
+    filename: "issues.openmrs.org.80.conf"
     extra_parameters: |
       return 301 https://$host$request_uri;
   - listen: "443 ssl"
