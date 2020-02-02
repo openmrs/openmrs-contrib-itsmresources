@@ -3,6 +3,8 @@
 
 - hosts: all
   become: true
+  tags:
+    - basic-os
   tasks:
    - include: tasks/hostname.yml # should happen before installing datadog
    - include: tasks/updates.yml
