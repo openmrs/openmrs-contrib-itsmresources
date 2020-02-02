@@ -1,7 +1,4 @@
 ---
-docker__backup_flags: ""
-
-
 docker__compose_version: "1.23"
 docker__daemon_flags:
   - "--storage-driver overlay2"

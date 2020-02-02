@@ -91,3 +91,4 @@ datadog_checks:
 
 backup_tag: 'not-applicable'
 backup_user: 'not-applicable'
+docker__backup_flags: ""
