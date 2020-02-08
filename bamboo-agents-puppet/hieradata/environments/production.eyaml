@@ -11,27 +11,26 @@ profiles::java_buildtime::maven_password: >
     RLQ8gCAdghrb+DRBK1BkU8S4xqYocNWYZwg583uLuhRVQ3roBQ==]
 profiles::java_buildtime::sonar_login_token: >
     ENC[PKCS7,MIIBmQYJKoZIhvcNAQcDoIIBijCCAYYCAQAxggEhMIIBHQIBADAFMAACAQEw
-    DQYJKoZIhvcNAQEBBQAEggEAq9s62pYm3zBtHv/89gJGiTUWNQhLch5vtTkg
-    mjaj2cbbJ4p6meastvmH+t/8lFCr9bEpfm4hN7qQXoWf80NwU8lb7xCTAhun
-    p0m3gZa9+/remrpab2I5GjBHuy8bk78jWw/jCbWWaeM0fOycV9SG7hEiLbmL
-    VQIovQbdjBuGKL/HkXfW/LqDAWlHkhrlqTbDYAUQZyGB8SGSUldP8erPs+xl
-    UUYScrDrDxbhMGcr8qAi1uGdP8ujCZjNWHMCWQSYXYYgWIDd55oajtkKvVR+
-    lz/5qnkZafuA+rnIMxsxCGsnEpIUl/7g889yHXW0EL3feB/BVQeEnM5ZIiS4
-    UaOiuDBcBgkqhkiG9w0BBwEwHQYJYIZIAWUDBAEqBBDN+gt2najzKV6Vq2M5
-    /lg6gDDJEi5AUsWxKD5m6d0OjO1VlFd2RBZ1vEx0diOCn95slwFdkS7yx5n2
-    sESpR8Lb6+8=]
-profiles::transifex::transifex_password: >
-    ENC[PKCS7,MIIB2gYJKoZIhvcNAQcDoIIByzCCAccCAQAxggEhMIIBHQIBADAFMAACAQEw
-    DQYJKoZIhvcNAQEBBQAEggEAUcxj24gFtwjK7dNMErh652Y5fZlNey1gym4v
-    Ps+joYc7o2Tc67POt1Nu6wbzsmhfg0TSfQOngAcW9SnSOi38lqqygVGkChXR
-    SAQFZMJjoXu9Zn8Xs47WfJDH16lBeRhCJkRmIwXvSU0xPpAsRux6VbBOj/Wk
-    l7w3OWJ9RFFVET55JpiYr0WrQhsi4BXkLtypdu1pNYbRGleLwJRfD5zqAelW
-    u1JomlvUW2HmYhKasRrUmiKYgiLRl0JDSnpkz9MLkcium/iGqcL0O6TOT+sD
-    es4pbLt5iy0GM6ulv9qct9wxNSGW7oMloiMwWwtX3AbBwDJmAWnpPYamgf5k
-    SCVHeTCBnAYJKoZIhvcNAQcBMB0GCWCGSAFlAwQBKgQQjN8dDz2v3o2zKPxS
-    3lq/1IBwGYzyTtztMqWitj/ufp0Sdr9ds4fmnpIVMp97X+JkiCCZHKhvb64w
-    LhJl55VS8TddRMd+MyU7WYloQaZB8KTrEXXBIC1XfXbhMUe5p64HLRgS7Ixr
-    1UMHjUPzqrjgfz4QF4XQjeok2uef+amcnmoPiA==]
+    DQYJKoZIhvcNAQEBBQAEggEAaKrtQwdKmSQQdLVgwfEO2OmefnxEUkOYkIMZ
+    I0BUPfIicu7wyWSpVV/U54RnDmM2MedghMKo2yfKdnhliwvoTeNNLHLvzL75
+    dKLjjW/k/LYEB2d4aZ4q92+HOad2fh5pf1W8xn+TbAqZOs1SdkCK6Q5jO8KP
+    jLgKIYPOg/xUPFKwDlMols9q85CZekBVntV8Li8rYMrMvqK2PKXCnt5/Z+Wp
+    0b7ywSbXEJSGg57dOVj2sU6WcNaeZOuLr23r1xmJ5IiXriqvS5QNmVvgqid9
+    bhlArgVdOLXgJvdLOg4XR2oFgIF3+wt0d8HIHXmFLLHf+Pq6/myo0VBvxG/k
+    4aOb+DBcBgkqhkiG9w0BBwEwHQYJYIZIAWUDBAEqBBCpIcyqtDb4hz05WKxB
+    zghJgDCxKWn+I+GQtBA4UIpeaDhTVL6ADRznGSrbvplEGRAJND/4cw3ake9E
+    z8Pveqf2iSw=]
+profiles::transifex::transifex_token: >
+    ENC[PKCS7,MIIBmQYJKoZIhvcNAQcDoIIBijCCAYYCAQAxggEhMIIBHQIBADAFMAACAQEw
+    DQYJKoZIhvcNAQEBBQAEggEAj1n8DYv6OzeWeWcHLjTpxhJEvoma4Z7o4PXG
+    W2g3oM0ghJX0rflkvfk3PsSr2e8nXi2a6D0ahoHszaQyvlG6bVrR6DqHKZz0
+    Ujk+pkfnsuADriHTZFkXTw7k8iapWc8HML9v62M+ULQFIh9uyOhjQYmpo0x9
+    LOnUbVJHQMvTAPE6anRO+C3YrVNIUFgDZnZIZ39Rxyvu5wtpeeD+Beq+MLJ8
+    9m61HfeACvZYi1g+Z7zZxm2ByfVNmyHiEvlZxdYRtFYT1KbaUxnPvnvZzuCg
+    DJGAiaVHOSO7gWYNcy6ewEzmmlmTQHeRy3Ba/OIyZFQvOVzXchIDbxxipI6L
+    xK0VbDBcBgkqhkiG9w0BBwEwHQYJYIZIAWUDBAEqBBBFte7z0bm7vKrBXA+c
+    kLekgDCvn5/n2O3ytoaX4YTGqB5imPyznpLGnIfCEIkp7YW+A3tLzL6Lc0Je
+    WUpqA4N82N4=]
 profiles::transifex::transifex_username: >
     ENC[PKCS7,MIIBiQYJKoZIhvcNAQcDoIIBejCCAXYCAQAxggEhMIIBHQIBADAFMAACAQEw
     DQYJKoZIhvcNAQEBBQAEggEAGgxs47LHicWPtPGXquOsxcELoHe6Ui1DHXrN

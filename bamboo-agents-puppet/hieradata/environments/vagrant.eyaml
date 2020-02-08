@@ -19,7 +19,7 @@ profiles::java_buildtime::sonar_login_token: >
     yFEQLZkA8jXHCuTqx1dJmILg0WkBYIJFktYb/e3FPFajzu7GJGxi4stlM156
     gqciXjBMBgkqhkiG9w0BBwEwHQYJYIZIAWUDBAEqBBDiDz9xn/XId26zaQJg
     i4qngCBMfE9/Dr8gSK5QfdIf5BrKMAQe6R4eU6xeHmhGD1fSxg==]
-profiles::transifex::transifex_password: >
+profiles::transifex::transifex_token: >
     ENC[PKCS7,MIIBiQYJKoZIhvcNAQcDoIIBejCCAXYCAQAxggEhMIIBHQIBADAFMAACAQEw
     DQYJKoZIhvcNAQEBBQAEggEAbZtudtigqHkUBJQNSG/VmS+hXpGxvdtemha7
     FTuO8q904sq9PRJXev5CBC1oQfDjy+0nTnDnLSK94GPjsXGwdw+OtwC9EuGD
