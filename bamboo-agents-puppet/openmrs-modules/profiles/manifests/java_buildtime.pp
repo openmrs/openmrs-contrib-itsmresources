@@ -11,9 +11,11 @@ class profiles::java_buildtime (
   }
 
   # install maven 3. Forcing some very specific version, the apt repos only keep the latest one
-  wget::fetch { 'fetch maven 3':
-    source      => "http://apache.mirrors.pair.com/maven/maven-3/${maven3_version}/binaries/apache-maven-${maven3_version}-bin.zip",
-    destination => '/tmp/mvn3.zip',
+  archive { '/tmp/mvn3.zip':
+    ensure => present,
+    source => "http://apache.mirrors.pair.com/maven/maven-3/${maven3_version}/binaries/apache-maven-${maven3_version}-bin.zip",
+    user   => 0,
+    group  => 0,
     require     => Package['unzip']
   }
   ~>

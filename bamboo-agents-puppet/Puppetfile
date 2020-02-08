@@ -4,7 +4,6 @@ forge "https://forgeapi.puppetlabs.com"
 #
 mod 'puppetlabs-apt', '6.0.0'
 mod 'puppetlabs/stdlib', '5.0.0'
-mod 'maestrodev/wget',  '1.7.3'
 mod 'puppetlabs/docker', '3.0.0'
 mod 'cintiadr-bamboo_agent', '0.0.14'
 mod 'puppet/nodejs', '6.0.0'

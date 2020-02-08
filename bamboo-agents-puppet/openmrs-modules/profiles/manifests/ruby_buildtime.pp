@@ -1,10 +1,11 @@
 class profiles::ruby_buildtime (
   $grails_version,
 ){
-   wget::fetch { 'fetch grails' :
+  archive {  "/opt/grails-${grails_version}.zip":
+    ensure  => present,
     source  => "http://dist.springframework.org.s3.amazonaws.com/release/GRAILS/grails-${grails_version}.zip",
-    destination => "/opt/grails-${grails_version}.zip",
-    timeout     => 1800,
+    user    => 0,
+    group   => 0,
     require => Package['unzip']
   }
   ->

@@ -18,8 +18,8 @@ apt-get update
 apt-get -q -y install git
 apt-get install -y ruby-dev make
 
-wget https://apt.puppetlabs.com/puppetlabs-release-pc1-xenial.deb
-dpkg -i puppetlabs-release-pc1-xenial.deb
+wget https://apt.puppetlabs.com/puppet6-release-xenial.deb
+sudo dpkg -i puppet6-release-xenial.deb
 apt-get -y update
 apt-get -o Dpkg::Options::="--force-confold" install -y puppet-agent
 
