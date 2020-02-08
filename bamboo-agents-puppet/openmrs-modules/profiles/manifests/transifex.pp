@@ -1,6 +1,6 @@
 class profiles::transifex (
   $transifex_username,
-  $transifex_password,
+  $transifex_token,
 ){
   package { 'pyOpenSSL':
     ensure   => '17.5.0',
