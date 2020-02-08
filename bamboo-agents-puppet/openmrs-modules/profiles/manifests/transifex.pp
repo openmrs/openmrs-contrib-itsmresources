@@ -1,5 +1,4 @@
 class profiles::transifex (
-  $transifex_username,
   $transifex_token,
 ){
   package { 'pyOpenSSL':

@@ -31,13 +31,3 @@ profiles::transifex::transifex_token: >
     xK0VbDBcBgkqhkiG9w0BBwEwHQYJYIZIAWUDBAEqBBBFte7z0bm7vKrBXA+c
     kLekgDCvn5/n2O3ytoaX4YTGqB5imPyznpLGnIfCEIkp7YW+A3tLzL6Lc0Je
     WUpqA4N82N4=]
-profiles::transifex::transifex_username: >
-    ENC[PKCS7,MIIBiQYJKoZIhvcNAQcDoIIBejCCAXYCAQAxggEhMIIBHQIBADAFMAACAQEw
-    DQYJKoZIhvcNAQEBBQAEggEAGgxs47LHicWPtPGXquOsxcELoHe6Ui1DHXrN
-    HVr92NwyzzETGLwGwgmnNvBR0hCW4CD7bGJm4CDlTGVWVccl07j4R0zDTYHr
-    LQAdfCkizs7wRcLsGawNt3yPKR1Dr7wafkdrsZTpGZN98Aw4/oxdlAB9D9lr
-    Lx+rqKilJFd0kJ3SliPQhcy33ypEbM9exCpDmAcKsDAaJHPxcuH3z3n9O3JC
-    PmCiMjKFiDyGLkvG+yvMHur2cTvxpibECLIWsMI4EHbUb/JWUVPnZKjuZErK
-    mpF2qjFiBb+vgw6LlBihCX0hTbM0ZG93eqJcIMLOco/Sber4eX2+VFTmm7zA
-    ea406zBMBgkqhkiG9w0BBwEwHQYJYIZIAWUDBAEqBBAXLf644slqld3gAlLB
-    RvKCgCArsidYvQoiizv5U3xmIKhN6rQ+AbM0zYcp+fQuILKSZg==]
