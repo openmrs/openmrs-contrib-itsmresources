@@ -13,7 +13,7 @@ $ /etc/openmrs-puppet/bin/run-puppet.sh
 
 ### Requirements
   - Ubuntu 16.04
-  - Puppet 4.x/Hiera/facter
+  - Puppet 6.x/Hiera/facter
 
 ### Setting up new machine
 
