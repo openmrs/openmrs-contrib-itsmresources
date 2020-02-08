@@ -132,6 +132,8 @@
     - mysql-cron-backup
 
 - hosts: discourse
+  tags:
+    - discourse
   become: true
   roles:
     - { role: 'custom_roles/docker-discourse' }

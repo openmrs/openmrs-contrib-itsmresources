@@ -19,7 +19,7 @@
     repo: https://github.com/discourse/discourse_docker.git
     dest: '{{ DISCOURSE_INSTALLATION_DIR }}'
     version: '{{ DISCOURSE_REPO_VERSION }}'
-  when: folder_init | changed
+  when: folder_init.changed
 
 - name: Copy data configuration template
   template:

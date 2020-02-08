@@ -72,7 +72,7 @@ hooks:
           - git clone https://github.com/discourse/discourse-tagging.git
           - git clone https://github.com/Jake-Shadle/discourse_jira.git
           - git clone https://github.com/discourse/discourse-solved.git
-          - git clone https://github.com/downeym/discourse-watch-category-mcneel.git
+          # - git clone https://github.com/downeym/discourse-watch-category-mcneel.git
           - git clone https://github.com/discourse/discourse-data-explorer.git
           - git clone https://github.com/PoloGT/abbreviation-discourse-plugin.git
           - git clone https://github.com/discourse/discourse-akismet.git
