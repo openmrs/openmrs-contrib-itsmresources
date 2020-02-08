@@ -104,12 +104,12 @@
   tags:
     - bamboo
 
-- hosts: bamboo-agent
+- hosts: bambooagent
   become: true
   tasks:
    - include: tasks/bamboo-agent.yml
   tags:
-    - bamboo-agent
+    - bambooagent
 
 - hosts: crowd
   become: true
