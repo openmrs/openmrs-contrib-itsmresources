@@ -1,14 +1,14 @@
 ---
 profiles::java_buildtime::maven_password: >
     ENC[PKCS7,MIIBiQYJKoZIhvcNAQcDoIIBejCCAXYCAQAxggEhMIIBHQIBADAFMAACAQEw
-    DQYJKoZIhvcNAQEBBQAEggEASDSx46MzZTNhk3jWTOtao20R6ygpRCp9GBWP
-    FEohKRSFgU+ym0j+4wwh+3OiFM5qWRdIiOPEiTXZvnuBGUT7a9y/uLlFde++
-    abScfypXWRkvAWPhWbt8FfSbPhVjofXtzVLoiHcGY7g9WCltY9SHTjJxtJbD
-    HYDPxQxEsXKZ9Y+y0gWN3OwJl1a5sm9z38CpTQ70B3Xitv5+ioTTr/XyzPgI
-    Oy2Sabknx8kdq3kjf5/6DE++KDB33v4vSYFTXgtExnaS+J/lemHMOIQyQOmY
-    pkbypzg4TV2COUmI8AAN95KglQ/o3X0lMO4N1daA35IazToMk6CWAEjgs9Ta
-    X+gfUjBMBgkqhkiG9w0BBwEwHQYJYIZIAWUDBAEqBBDxogNh3cR7+DvOmWyP
-    RLQ8gCAdghrb+DRBK1BkU8S4xqYocNWYZwg583uLuhRVQ3roBQ==]
+    DQYJKoZIhvcNAQEBBQAEggEAKpy0fIy5m1bxpVYgXu5oWKgpihvXaejTOXyn
+    5SR8Do00Rmp84q6x66y7k2OD8tGqIHImgjytBz6lfjbBq7q6bgA6kqwBFvdW
+    j1+PzNb20FHIyv/p93CS/6gX9eb7GBVMT6J50uZwYJbGoEkeeolnZQvatyql
+    AlP2VyyL4TrUfVH5+zWBeTy8MOVR7huW/606sXpksjFhYRWoVcRFdwhx7PIF
+    JjqStuJHS6JDdNh6wtC6ck6TiqLfuFfLNAVmYY7iXQWdXQBncwOHYs3mZucG
+    mmJjrM7oH4vROwVrDkilhm4/AP0VnTnafN1hqxA2PI2tHdVJI+cJTynvKXW7
+    tuJYkTBMBgkqhkiG9w0BBwEwHQYJYIZIAWUDBAEqBBCahhhkxbLjO0EMBkrs
+    K3mfgCCL4jgwbpf3CDjnqiT3KnEI6BovqplpnlWUFmhFKWd43A==]
 profiles::java_buildtime::sonar_login_token: >
     ENC[PKCS7,MIIBmQYJKoZIhvcNAQcDoIIBijCCAYYCAQAxggEhMIIBHQIBADAFMAACAQEw
     DQYJKoZIhvcNAQEBBQAEggEAaKrtQwdKmSQQdLVgwfEO2OmefnxEUkOYkIMZ
