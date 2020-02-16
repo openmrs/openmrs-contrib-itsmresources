@@ -74,7 +74,7 @@ nginx_vhosts:
       error_log /var/log/nginx/help_error.log;
       ssl_certificate /etc/letsencrypt/live/campo.openmrs.org/fullchain.pem;
       ssl_certificate_key /etc/letsencrypt/live/campo.openmrs.org/privkey.pem;
-      set $remote_path "https://openmrs.desk.com";
+      set $remote_path "https://openmrs.atlassian.net/servicedesk";
       location ^~ /.well-known/acme-challenge/ {
         root /usr/share/nginx/html;
       }
