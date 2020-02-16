@@ -1,0 +1,6 @@
+---
+  - name: Clean old kernels cron
+    cron:
+      name: "clean-old-kernels"
+      special_time: monthly
+      job: "/usr/bin/apt autoremove -y"

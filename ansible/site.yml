@@ -8,6 +8,7 @@
   tasks:
    - include: tasks/hostname.yml # should happen before installing datadog
    - include: tasks/updates.yml
+   - include: tasks/cleanup.yml
 
 - hosts: all
   become: true
