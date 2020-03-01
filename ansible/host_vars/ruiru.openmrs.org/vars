@@ -12,6 +12,8 @@ letsencrypt_cert_domains:
    - authentication-stg.openmrs.org
    - id-stg.openmrs.org
 
+letsencrypt_renewal_command_args: '--renew-hook "docker restart openldap"'
+
 docker_deployment:
    - ldap-stg
    - id-stg
