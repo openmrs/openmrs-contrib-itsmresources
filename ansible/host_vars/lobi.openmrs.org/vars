@@ -54,6 +54,12 @@ nginx_vhosts:
       location ^~ /.well-known/acme-challenge/ {
         root /usr/share/nginx/html;
       }
+      location /authors/ {
+        return 423;
+      }
+      location /reports/ {
+        return 423;
+      }
       location / {
         proxy_set_header HOST $host;
         proxy_set_header  X-Forwarded-Proto $scheme;
