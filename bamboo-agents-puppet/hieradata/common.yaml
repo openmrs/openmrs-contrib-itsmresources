@@ -2,7 +2,7 @@
 bamboo_agent_home::bamboo_user: 'bamboo-agent'
 bamboo_agent_home::bamboo_user_home: '/home/bamboo-agent'
 
-profiles::java_buildtime::maven3_version: "3.2.5"
+profiles::java_buildtime::maven3_version: "3.6.3"
 profiles::ruby_buildtime::grails_version: '2.3.7'
 
 
