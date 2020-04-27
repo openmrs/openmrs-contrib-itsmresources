@@ -1,6 +1,19 @@
 ---
 # Http redirect (in jetstream)
 
+# Needs to support the following URLs (baked into old POM files)
+#   - http://mavenrepo.openmrs.org/nexus/content/repositories/public/
+#   - http://mavenrepo.openmrs.org/nexus/content/repositories/modules/
+#   - http://mavenrepo.openmrs.org/nexus/content/repositories/snapshots/
+#   - http://mavenrepo.openmrs.org/nexus/content/repositories/releases/
+#
+# Some new recommended URLs:
+#   - https://mavenrepo.openmrs.org/public/
+#   - https://mavenrepo.openmrs.org/modules/
+#   - https://mavenrepo.openmrs.org/snapshots/
+#   - https://mavenrepo.openmrs.org/releases/
+#
+
 datadog_tags_extra:
   - "service:maven"
   - "service:http-redirect"
@@ -53,10 +66,6 @@ nginx_vhosts:
       }
 
       location ~ ^/nexus/content/repositories/(.*)$ {
-        return 301 $remote_path/$1;
-      }
-
-      location ~ ^/nexus/(.*)$ {
         return 301 $remote_path/$1;
       }
 
