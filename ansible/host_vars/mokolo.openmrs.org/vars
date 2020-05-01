@@ -1,5 +1,5 @@
 ---
-# Docker host (jetstream) for sonarqube
+# Docker host (jetstream) for OpenMRS tools
 users:
  bamboo:
   comment: CI Bamboo User
@@ -24,6 +24,7 @@ datadog_tags_extra:
   - "service:teleirc"
   - "service:quizgrader"
   - "service:pmtool"
+  - "service:shields"
 
 docker_deployment:
   - sonar
@@ -32,12 +33,15 @@ docker_deployment:
   - teleirc
   - quizgrader
   - pmtool
+  - shields
 
 docker_deployable_images:
   - repository: openmrs/openmrs-quizgrader
     compose: quizgrader
   - repository: openmrs/openmrs-contrib-pmtool
     compose: pmtool
+  - repository: openmrsinfra/shields
+    compose: shields
 
 letsencrypt_cert_domains:
   - mokolo.openmrs.org
@@ -46,6 +50,7 @@ letsencrypt_cert_domains:
   - notes-new.openmrs.org
   - quizgrader.openmrs.org
   - pmtool.openmrs.org
+  - shields.openmrs.org
 
 nginx_vhosts:
  - listen: "80 default_server"
@@ -148,6 +153,24 @@ nginx_vhosts:
      }
      location / {
        proxy_pass http://127.0.0.1:8082;
+     }
+ - listen: "80"
+   server_name: "shields.openmrs.org"
+   filename: "shields.openmrs.org.80.conf"
+   extra_parameters: |
+     return 301 https://$host$request_uri;
+ - listen: "443 ssl"
+   server_name: "shields.openmrs.org"
+   extra_parameters: |
+     access_log /var/log/nginx/shields_access.log;
+     error_log /var/log/nginx/shields_error.log;
+     ssl_certificate /etc/letsencrypt/live/mokolo.openmrs.org/fullchain.pem;
+     ssl_certificate_key /etc/letsencrypt/live/mokolo.openmrs.org/privkey.pem;
+     location ^~ /.well-known/acme-challenge/ {
+       root /usr/share/nginx/html;
+     }
+     location / {
+       proxy_pass http://127.0.0.1:8083;
      }
 
 aws_access_key_id: '{{ vault_aws_access_key_id }}'
