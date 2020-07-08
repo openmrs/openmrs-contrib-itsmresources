@@ -21,7 +21,7 @@ users:
 datadog_tags_extra:
   - "service:sonarqube"
   - "service:implementationid"
-  - "service:teleirc"
+  - "service:matterbridge"
   - "service:quizgrader"
   - "service:pmtool"
   - "service:shields"
@@ -30,7 +30,7 @@ docker_deployment:
   - sonar
   - implementationid
   - etherpad-lite
-  - teleirc
+  - matterbridge
   - quizgrader
   - pmtool
   - shields
