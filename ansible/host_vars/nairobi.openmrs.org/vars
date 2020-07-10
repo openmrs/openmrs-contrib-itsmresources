@@ -13,6 +13,10 @@ users:
    comment: Jonathan Payne
    groups: 'admin'
    ssh_key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCvgepH6wayD4vr8K5U7DqrlnKwEYYqMIOGBAdERH1fV5n6fs/sgV/OZXmawV5z4O/iwik9wEy3in92ToQwS7Kt+qi0FPKvzMCefoAv2DESF4ub8VAVgvkbDw9A5J418O3xSODxdm4B0LS2WfY/cuSqnXgJSTR0GDnY61xWD0N/fXzNI87ZuwA6Xq0GRi2OZ5XJ2G7WCT5bJDDuT1ZxQaxDUUy1UM+7IvznjGOtS+lu4FxEGpcnaHq7ZFp3kE9GKqu3TBcbECmYzjfBOAnbeNeBvvZagO2mT5EuYjkWbgLGWx8ctGkW/vlhyZtbMxEI0J03FclSaH47Lm0ymKYcSyeb paynejd@gmail.com"
+  hp11:
+    comment: Harsh Patel
+    groups: 'admin'
+    ssh_key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCXVv9cI2hytZs3WWMD50HvJdTzNEqSmcOG0vAqmfRHMQhH8wJBhrhvSkSJai30Z4mnwc6cjBdKuwUFBB1w3UnikWd1GskgHSVOiau9xrJS9mw16Uv69hLWBX7MbrYrc2QUm+XwIwWBAZO0/TkSINiwUFNnpW7VYJGzxUk9YXQyicEI2K5oQ01uwy+z0aRw5P1XkJNEX9bR7kAk37Z2LCiLNX6yUVMjISPjigb1RRuNylQ6OSZRlYORClBhS6gVnqNPQxxlgzhqPu+vf3rhcywV9Lgmu2nonEGihpVR8vgL0EjYwWD70GtvDZgtdvnpio/m7e09Tr6mUqeg1JME54eD hp11@IN-REGI-047430"
   bamboo:
    comment: CI Bamboo User
    groups: 'admin'
