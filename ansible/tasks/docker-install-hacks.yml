@@ -42,3 +42,8 @@
       minute: "0"
       hour: "2"
       job: "/usr/sbin/docker-cleanup.sh"
+      
+  - name: Setup docker for ElasticSearch
+    sysctl: name={{ item.key }} value={{ item.value }}
+    with_items:
+      - { key: "vm.max_map_count", value: "262144" }
