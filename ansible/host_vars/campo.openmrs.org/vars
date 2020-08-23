@@ -43,35 +43,71 @@ nginx_vhosts:
         root /usr/share/nginx/html;
       }
 
-      location ^~ /proxy/ {
+      location /nexus/content/repositories/ {
+        if ($request_method = GET ) {
+          rewrite ^/nexus/content/repositories/(.*) $remote_path/$1 permanent;
+        }
+
+        if ($request_method = HEAD ) {
+          rewrite ^/nexus/content/repositories/(.*) $remote_path/$1 permanent;
+        }
+
+        ### We need to fully proxy put/post otherwise it doesn't pass authentication
+        ### https://issues.apache.org/jira/browse/WAGON-590
         resolver 8.8.8.8 valid=10s;
         resolver_timeout 10s;
+
 
         ### force timeouts if one of backend is died ##
         proxy_next_upstream error timeout invalid_header http_500 http_502 http_503 http_504;
 
+        ### Set headers ####
         proxy_set_header        Accept-Encoding   "";
         proxy_set_header        Host            openmrs.jfrog.io;
         proxy_set_header        X-Real-IP       $remote_addr;
         proxy_set_header        X-Forwarded-For $proxy_add_x_forwarded_for;
         proxy_set_header        X-Forwarded-Proto $scheme;
         add_header              Front-End-Https   on;
+
+        ### By default we don't want to redirect it ####
+        proxy_redirect     off;
+
+        rewrite ^/nexus/content/repositories/(.*) /$1 break;
+        proxy_pass https://openmrs.jfrog.io/artifactory;
+      }
+
+      location / {
+        if ($request_method = GET ) {
+          return 301 $remote_path$request_uri;
+        }
+
+        if ($request_method = HEAD ) {
+          return 301 $remote_path$request_uri;
+        }
+
+        ### We need to fully proxy put/post otherwise it doesn't pass authentication
+        ### https://issues.apache.org/jira/browse/WAGON-590
+        resolver 8.8.8.8 valid=10s;
+        resolver_timeout 10s;
+
+
+        ### force timeouts if one of backend is died ##
+        proxy_next_upstream error timeout invalid_header http_500 http_502 http_503 http_504;
+
+        ### Set headers ####
+        proxy_set_header        Accept-Encoding   "";
+        proxy_set_header        Host            openmrs.jfrog.io;
+        proxy_set_header        X-Real-IP       $remote_addr;
+        proxy_set_header        X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header        X-Forwarded-Proto $scheme;
+        add_header              Front-End-Https   on;
+
+        ### By default we don't want to redirect it ####
         proxy_redirect     off;
 
         proxy_pass https://openmrs.jfrog.io/artifactory/;
       }
 
-      location ~ ^/tempredirect/(.*)$ {
-        return 302 $remote_path/$1;
-      }
-
-      location ~ ^/nexus/content/repositories/(.*)$ {
-        return 301 $remote_path/$1;
-      }
-
-      location / {
-        return 301 $remote_path$request_uri;
-      }
   - listen: "80"
     server_name: "mavenrepo-redirect.openmrs.org"
     filename: "mavenrepo-redirect.openmrs.org.80.conf"
