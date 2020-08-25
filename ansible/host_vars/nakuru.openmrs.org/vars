@@ -17,6 +17,10 @@ users:
     comment: Harsh Patel
     groups: 'admin'
     ssh_key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCXVv9cI2hytZs3WWMD50HvJdTzNEqSmcOG0vAqmfRHMQhH8wJBhrhvSkSJai30Z4mnwc6cjBdKuwUFBB1w3UnikWd1GskgHSVOiau9xrJS9mw16Uv69hLWBX7MbrYrc2QUm+XwIwWBAZO0/TkSINiwUFNnpW7VYJGzxUk9YXQyicEI2K5oQ01uwy+z0aRw5P1XkJNEX9bR7kAk37Z2LCiLNX6yUVMjISPjigb1RRuNylQ6OSZRlYORClBhS6gVnqNPQxxlgzhqPu+vf3rhcywV9Lgmu2nonEGihpVR8vgL0EjYwWD70GtvDZgtdvnpio/m7e09Tr6mUqeg1JME54eD hp11@IN-REGI-047430"
+  sny:
+    comment: Sunny Agrawal
+    groups: 'admin'
+    ssh_key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDDpB03tDxxzIRu05BazcFbQglrQfg97+RsKT1XdnS2bnjXvzoobxs1bnSDZtpt3wvJUaK9qbMY0+sxp8vbR4Uz+EkX5Bj6Rl935kB5UIAlwvjXE9/Uouu0Gk0TFIBqeu3NLftnAtHzapLIYC0WV3T8xE7NzsGA8TvmuWMPjKjZuaMsrD5KFajZ5PD+bSggs87k7A2IA/+kUGQagljkXMZk3rKEZvpoOi0zlSnAcligGxUYBypzKl/NKKeyWPNLsOmZNgpryWEGM39WkjK6K1FW9eLIazZaonzmm7k8Z9E2KAP79Byg2SRIicu3IybKJMPp74RHt2YPrLo9d1Hyl4dkjoCaBIiNaJ0fmLkNsRKtFpDeA6v9Feafw1jss9E7RK9kDU/PLz/Py5BIO6qSk6j9ouzj6hKbE9s0cHTM8pwrXtZPeoTBikg4g8vr9koKL2sXU6sZK/hm1G8DBL+0mm0na33YoKGEvmbAUyWUEV/lSA0xlBe8m1COw5jCRr9g26CuMpgPuEzibUj0oZIKxdNkeXJ9cX6IFOwFi/P+jFoR7DI127q/97SiZz79UHyyxN0alwaRsK+gYQGhj1x6HOaCd23/BlrTol54LPBZkggUyxCnrF4ugMuzdbanyGRzzWutVkNu3bPMHYJRaQLQ/Qxiqtuqm0VnhI1+qoyUMagfdQ== sny.aggarwal@gmail.com"
   bamboo:
    comment: CI Bamboo User
    groups: 'admin'
