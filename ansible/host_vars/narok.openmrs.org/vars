@@ -33,6 +33,7 @@ docker_deployment:
   - oclapi-qa
   - oclweb-qa
   - oclclient-qa
+  - oclclient-qa2
   - oclmsp-qa
   - oclapi2-qa
   - oclweb2-qa
@@ -285,5 +286,5 @@ nginx_vhosts:
         root /usr/share/nginx/html;
       }
       location / {
-        proxy_pass http://127.0.0.1:8081/;
+        proxy_pass http://127.0.0.1:8084/;
       }
