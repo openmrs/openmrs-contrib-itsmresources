@@ -83,7 +83,10 @@ mysql_users:
     host: "%"
     password: '{{ vault_mysql_jiradb_user_password }}'
     priv: "jiradb.*:ALL"
-
+  - name: 'jira_user'
+    host: "%"
+    password: '{{ vault_mysql_jira_user_password }}'
+    priv: "jira.*:ALL"
 
 # Mysql Backup Configuration
 gcoop_mysqldump_mysql_username: '{{ backup_user }}'
