@@ -7,6 +7,7 @@ likoma.openmrs.org
 melong.openmrs.org
 menji.openmrs.org
 salima.openmrs.org
+maroua.openmrs.org
 
 [docker]
 ako.openmrs.org
@@ -21,6 +22,7 @@ campo.openmrs.org
 likoma.openmrs.org
 melong.openmrs.org
 menji.openmrs.org
+maroua.openmrs.org
 
 [tls]
 ako.openmrs.org
@@ -30,6 +32,7 @@ campo.openmrs.org
 likoma.openmrs.org
 melong.openmrs.org
 menji.openmrs.org
+maroua.openmrs.org
 
 [backup]
 ako.openmrs.org
@@ -39,6 +42,7 @@ likoma.openmrs.org
 melong.openmrs.org
 menji.openmrs.org
 salima.openmrs.org
+maroua.openmrs.org
 
 [id]
 ako.openmrs.org
@@ -52,9 +56,11 @@ ako.openmrs.org
 ambam.openmrs.org
 melong.openmrs.org
 menji.openmrs.org
+maroua.openmrs.org
 
 [jira]
 melong.openmrs.org
+maroua.openmrs.org
 
 [confluence]
 menji.openmrs.org
@@ -67,3 +73,4 @@ salima.openmrs.org
 
 [discourse]
 likoma.openmrs.org
+
