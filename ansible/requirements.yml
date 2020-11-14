@@ -11,9 +11,6 @@
 - name: nginx
   src: geerlingguy.nginx
   version: 2.7.0
-- name: mysql
-  src: geerlingguy.mysql
-  version: 2.9.5
 
 
 # from git
@@ -25,6 +22,9 @@
 - name: letsencrypt
   src: https://github.com/thefinn93/ansible-letsencrypt
   version: f4b5687073a20e2a744115e97fa87ef278e4b2bf
+- name: mysql
+  src: https://github.com/cintiadr/ansible-role-mysql
+  version: 01cc42d68a26baa3b736e4d65daef957e746e931
 - name: sudo
   src: https://github.com/yatesr/ansible-sudo.git
   version: 2a55007541a2f340eec57e4e5a7efa1c3fc73d74
