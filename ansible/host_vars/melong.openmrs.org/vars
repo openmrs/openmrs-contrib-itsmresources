@@ -72,8 +72,8 @@ jira_catalina: "/opt/jira"
 jira_home: "/data/jira_home"
 jira_proxy_name: 'issues.openmrs.org'
 jira_scheme: 'https'
-jira_jvm_maximum_memory: "4096m"
-jira_jvm_minimum_memory: "2048m"
+jira_jvm_maximum_memory: "6144m"
+jira_jvm_minimum_memory: "6144m"
 mysql_connector_java_dest: '{{ jira_catalina }}/lib'
 mysql_connector_java_user: '{{ jira_user }}'
 mysql_connector_java_archive: 'mysql-connector-java-8.0.17.tar.gz'
