@@ -7,11 +7,11 @@ This repository contain all the ansible required to fully install OpenMRS commun
 All commands assume you are in the `ansible` directory.
 
 ### Requirements
-* ansible 2.9.2 installed on the same machine the repo is cloned to.
+* ansible 2.10.3 installed on the same machine the repo is cloned to.
 * Install [git-crypt](https://www.agwa.name/projects/git-crypt/) and run `git-crypt unlock`.
   * If you are not part of git-crypt by any reason, you'll need to retrieve the vault password file from LP or ask to be added in git-crypt.
 * Install `pip install passlib` (is it still needed???)
-* Install latest Vagrant and virtualbox (if you want to run tests locally)
+* [Optional] Install latest Vagrant and virtualbox (if you want to run tests locally)
 
 ### Downloading all roles
 

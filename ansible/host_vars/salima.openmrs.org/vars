@@ -67,6 +67,9 @@ mysql_databases:
   - name: confluence
     encoding: utf8
     collation: utf8_bin
+  - name: jiradb
+    encoding: utf8mb4
+    collation: utf8mb4_bin
 mysql_users:
   - name: '{{ vault_mysql_user_name }}'
     host: "%"
@@ -76,6 +79,11 @@ mysql_users:
     host: "localhost"
     password: '{{ vault_mysql_backup_user_password }}'
     priv: "*.*:ALL"
+  - name: 'jiradb_user'
+    host: "%"
+    password: '{{ vault_mysql_jiradb_user_password }}'
+    priv: "jiradb.*:ALL"
+
 
 # Mysql Backup Configuration
 gcoop_mysqldump_mysql_username: '{{ backup_user }}'
@@ -111,6 +119,12 @@ gcoop_mysqldump_cron_entries:
     hour: 2
     day: '*'
     database: 'bamboo'
+    format: '%F'
+  - name: daily-jiradb
+    minute: 0
+    hour: 2
+    day: '*'
+    database: 'jiradb'
     format: '%F'
 
 # Mysql Tuning
