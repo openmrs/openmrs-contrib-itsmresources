@@ -64,8 +64,8 @@ backup_tag: 'configured'
 
 jira_pass: '{{ vault_jira_pass }}'
 jira_user: 'jira'
-jira_checksum: 'sha256:7ef203682be4f909a66fe6b3f36cb4cef3b785fe497261634e42b5cdcba57136'
-jira_archive: "atlassian-jira-software-8.4.1.tar.gz"
+jira_checksum: 'sha256:2b4470caddd13b012b3b7f53ae2a5fe8b55cccf6baf24c3e75c6084841cca74f'
+jira_archive: "atlassian-jira-software-8.13.1.tar.gz"
 jira_url: "https://product-downloads.atlassian.com/software/jira/downloads/{{ jira_archive }}"
 jira_catalina: "/opt/jira"
 jira_home: "/data/jira_home"
