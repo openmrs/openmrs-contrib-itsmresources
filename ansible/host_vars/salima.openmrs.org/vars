@@ -58,9 +58,6 @@ mysql_databases:
   - name: crowd
     encoding: utf8
     collation: utf8_bin
-  - name: jira
-    encoding: utf8
-    collation: utf8_bin
   - name: bamboo
     encoding: utf8
     collation: utf8_bin
@@ -83,10 +80,10 @@ mysql_users:
     host: "%"
     password: '{{ vault_mysql_jiradb_user_password }}'
     priv: "jiradb.*:ALL"
-  - name: 'jira_user'
+  - name: 'confluence_user'
     host: "%"
-    password: '{{ vault_mysql_jira_user_password }}'
-    priv: "jira.*:ALL"
+    password: '{{ vault_mysql_confluence_user_password }}'
+    priv: "confluence.*:ALL"
 
 # Mysql Backup Configuration
 gcoop_mysqldump_mysql_username: '{{ backup_user }}'
@@ -104,12 +101,6 @@ gcoop_mysqldump_cron_entries:
     hour: 2
     day: '*'
     database: 'crowd'
-    format: '%F'
-  - name: daily-jira
-    minute: 0
-    hour: 2
-    day: '*'
-    database: 'jira'
     format: '%F'
   - name: daily-confluence
     minute: 0
