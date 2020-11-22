@@ -4,7 +4,6 @@ ambam.openmrs.org
 baragoi.openmrs.org
 campo.openmrs.org
 likoma.openmrs.org
-melong.openmrs.org
 menji.openmrs.org
 salima.openmrs.org
 maroua.openmrs.org
@@ -20,7 +19,6 @@ ambam.openmrs.org
 baragoi.openmrs.org
 campo.openmrs.org
 likoma.openmrs.org
-melong.openmrs.org
 menji.openmrs.org
 maroua.openmrs.org
 
@@ -30,7 +28,6 @@ ambam.openmrs.org
 baragoi.openmrs.org
 campo.openmrs.org
 likoma.openmrs.org
-melong.openmrs.org
 menji.openmrs.org
 maroua.openmrs.org
 
@@ -39,7 +36,6 @@ ako.openmrs.org
 ambam.openmrs.org
 baragoi.openmrs.org
 likoma.openmrs.org
-melong.openmrs.org
 menji.openmrs.org
 salima.openmrs.org
 maroua.openmrs.org
@@ -54,12 +50,10 @@ ako.openmrs.org
 
 [atlassian]
 ambam.openmrs.org
-melong.openmrs.org
 menji.openmrs.org
 maroua.openmrs.org
 
 [jira]
-melong.openmrs.org
 maroua.openmrs.org
 
 [confluence]
