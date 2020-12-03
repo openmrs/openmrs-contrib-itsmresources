@@ -86,6 +86,8 @@ datadog_checks:
           timeout: 8
   disk:
     init_config:
+        file_system_global_blacklist:
+            - squashfs
     instances:
         - service_check_rw: true
 
