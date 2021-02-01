@@ -23,6 +23,10 @@ ufw_rules:
     port: 9200
     proto: tcp
     rule: allow
+  fhir:
+    port: 8092
+    proto: tcp
+    rule: allow
 
 nginx_vhosts:
   - listen: "80 default_server"
