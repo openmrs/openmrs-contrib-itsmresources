@@ -4,13 +4,13 @@
           groups='docker'
           append=yes
   # https://github.com/docker/compose/issues/4344
-  - name: Check if docker-py is installed
-    command: pip list | fgrep 'docker-py '
-    register: docker_py_installed
-    changed_when: docker_py_installed.stdout.find('docker-py') == -1
-  - name: Uninstall docker-py
-    shell: pip uninstall docker docker-py ; pip install docker==3.5.1
-    when: docker_py_installed.stdout.find('docker-py') == -1
+  # - name: Check if docker-py is installed
+  #   command: pip list | fgrep 'docker-py '
+  #   register: docker_py_installed
+  #   changed_when: docker_py_installed.stdout.find('docker-py') == -1
+  # - name: Uninstall docker-py
+  #   shell: pip uninstall docker docker-py ; pip install docker==3.5.1
+  #   when: docker_py_installed.stdout.find('docker-py') == -1
 
   - name: Check if docker was restarted yet
     command: docker info
