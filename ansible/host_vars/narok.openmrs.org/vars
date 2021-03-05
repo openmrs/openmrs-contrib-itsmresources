@@ -37,10 +37,7 @@ docker_deployment:
   - oclapi-qa
   - oclweb-qa
   - oclclient-qa
-  - oclclient-qa2
   - oclmsp-qa
-  - oclapi2-qa
-  - oclweb2-qa
 
 docker_deployable_images:
   - repository: openconceptlab/oclweb
@@ -51,10 +48,6 @@ docker_deployable_images:
     compose: oclapi-qa
   - repository: openconceptlab/oclmsp
     compose: oclmsp-qa
-  - repository: openconceptlab/oclapi2
-    compose: oclapi2-qa
-  - repository: openconceptlab/oclweb
-    compose: oclweb2-qa
 
 letsencrypt_cert_domains:
    - narok.openmrs.org
@@ -63,10 +56,6 @@ letsencrypt_cert_domains:
    - flower.qa.openconceptlab.org
    - openmrs.qa.openconceptlab.org
    - msp.qa.openconceptlab.org
-   - qa2.openconceptlab.org
-   - api.qa2.openconceptlab.org
-   - flower.qa2.openconceptlab.org
-   - openmrs.qa2.openconceptlab.org
 
 nginx_keepalive_timeout: "600"
 nginx_keepalive_requests: "600"
@@ -175,76 +164,4 @@ nginx_vhosts:
       }
       location / {
         proxy_pass http://127.0.0.1:3000/;
-      }
-  - listen: "80"
-    server_name: "qa2.openconceptlab.org"
-    filename: "qa2.openconceptlab.org.80.conf"
-    extra_parameters: |
-      return 301 https://$host$request_uri;
-  - listen: "443 ssl"
-    server_name: "qa2.openconceptlab.org"
-    extra_parameters: |
-      access_log /var/log/nginx/oclweb2_access.log;
-      error_log /var/log/nginx/oclweb2_error.log;
-      ssl_certificate /etc/letsencrypt/live/narok.openmrs.org/fullchain.pem;
-      ssl_certificate_key /etc/letsencrypt/live/narok.openmrs.org/privkey.pem;
-      location ^~ /.well-known/acme-challenge/ {
-        root /usr/share/nginx/html;
-      }
-      location / {
-        proxy_pass http://127.0.0.1:7001/;
-      }
-  - listen: "80"
-    server_name: "api.qa2.openconceptlab.org"
-    filename: "api.qa2.openconceptlab.org.80.conf"
-    extra_parameters: |
-      return 301 https://$host$request_uri;
-  - listen: "443 ssl"
-    server_name: "api.qa2.openconceptlab.org"
-    extra_parameters: |
-      access_log /var/log/nginx/oclapi2_access.log;
-      error_log /var/log/nginx/oclapi2_error.log;
-      ssl_certificate /etc/letsencrypt/live/narok.openmrs.org/fullchain.pem;
-      ssl_certificate_key /etc/letsencrypt/live/narok.openmrs.org/privkey.pem;
-      location ^~ /.well-known/acme-challenge/ {
-        root /usr/share/nginx/html;
-      }
-      location / {
-        proxy_pass http://127.0.0.1:8001/;
-      }
-  - listen: "80"
-    server_name: "flower.qa2.openconceptlab.org"
-    filename: "flower.qa2.openconceptlab.org.80.conf"
-    extra_parameters: |
-      return 301 https://$host$request_uri;
-  - listen: "443 ssl"
-    server_name: "flower.qa2.openconceptlab.org"
-    extra_parameters: |
-      access_log /var/log/nginx/oclapi2_access.log;
-      error_log /var/log/nginx/oclapi2_error.log;
-      ssl_certificate /etc/letsencrypt/live/narok.openmrs.org/fullchain.pem;
-      ssl_certificate_key /etc/letsencrypt/live/narok.openmrs.org/privkey.pem;
-      location ^~ /.well-known/acme-challenge/ {
-        root /usr/share/nginx/html;
-      }
-      location / {
-        proxy_pass http://127.0.0.1:5556/;
-      }
-  - listen: "80"
-    server_name: "openmrs.qa2.openconceptlab.org"
-    filename: "openmrs.qa2.openconceptlab.org.80.conf"
-    extra_parameters: |
-      return 301 https://$host$request_uri;
-  - listen: "443 ssl"
-    server_name: "openmrs.qa2.openconceptlab.org"
-    extra_parameters: |
-      access_log /var/log/nginx/oclclient_access.log;
-      error_log /var/log/nginx/oclclient_error.log;
-      ssl_certificate /etc/letsencrypt/live/narok.openmrs.org/fullchain.pem;
-      ssl_certificate_key /etc/letsencrypt/live/narok.openmrs.org/privkey.pem;
-      location ^~ /.well-known/acme-challenge/ {
-        root /usr/share/nginx/html;
-      }
-      location / {
-        proxy_pass http://127.0.0.1:8084/;
       }
