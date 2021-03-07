@@ -9,45 +9,15 @@ datadog_tags_extra:
 
 docker_deployment:
   - plir-hapifhir
-  - plir-opencr
   - plir-openhim
 
 letsencrypt_cert_domains:
   - namanga.openmrs.org
   - openhim.openmrs.org
-  - opencr.openmrs.org
   - hapifhir.openmrs.org
-
-ufw_rules:
-  elastic:
-    port: 9200
-    proto: tcp
-    rule: allow
-  fhir:
-    port: 8092
-    proto: tcp
-    rule: allow
 
 nginx_vhosts:
   - listen: "80 default_server"
-    server_name: "namanga.openmrs.org"
-    filename: "namanga.openmrs.org.80.conf"
-    extra_parameters: |
-      return 301 https://$host$request_uri;
-  - listen: "443 ssl"
-    server_name: "namanga.openmrs.org"
-    extra_parameters: |
-      access_log /var/log/nginx/openhim_access.log;
-      error_log /var/log/nginx/openhim_error.log;
-      ssl_certificate /etc/letsencrypt/live/namanga.openmrs.org/fullchain.pem;
-      ssl_certificate_key /etc/letsencrypt/live/namanga.openmrs.org/privkey.pem;
-      location ^~ /.well-known/acme-challenge/ {
-        root /usr/share/nginx/html;
-      }
-      location / {
-        proxy_pass http://127.0.0.1:9000/;
-      }
-  - listen: "80"
     server_name: "openhim.openmrs.org"
     filename: "openhim.openmrs.org.80.conf"
     extra_parameters: |
@@ -64,24 +34,6 @@ nginx_vhosts:
       }
       location / {
         proxy_pass http://127.0.0.1:9000/;
-      }
-  - listen: "80"
-    server_name: "opencr.openmrs.org"
-    filename: "opencr.openmrs.org.80.conf"
-    extra_parameters: |
-      return 301 https://$host$request_uri;
-  - listen: "443 ssl"
-    server_name: "opencr.openmrs.org"
-    extra_parameters: |
-      access_log /var/log/nginx/opencr_access.log;
-      error_log /var/log/nginx/opencr_error.log;
-      ssl_certificate /etc/letsencrypt/live/namanga.openmrs.org/fullchain.pem;
-      ssl_certificate_key /etc/letsencrypt/live/namanga.openmrs.org/privkey.pem;
-      location ^~ /.well-known/acme-challenge/ {
-        root /usr/share/nginx/html;
-      }
-      location / {
-        proxy_pass http://127.0.0.1:3000/;
       }
   - listen: "80"
     server_name: "hapifhir.openmrs.org"
@@ -101,6 +53,25 @@ nginx_vhosts:
       location / {
         proxy_pass http://127.0.0.1:8091/;
       }
+  - listen: "80"
+    server_name: "namanga.openmrs.org"
+    filename: "namanga.openmrs.org.80.conf"
+    extra_parameters: |
+      return 301 https://$host$request_uri;
+  - listen: "443 ssl"
+    server_name: "namanga.openmrs.org"
+    extra_parameters: |
+      access_log /var/log/nginx/openhim_access.log;
+      error_log /var/log/nginx/openhim_error.log;
+      ssl_certificate /etc/letsencrypt/live/namanga.openmrs.org/fullchain.pem;
+      ssl_certificate_key /etc/letsencrypt/live/namanga.openmrs.org/privkey.pem;
+      location ^~ /.well-known/acme-challenge/ {
+        root /usr/share/nginx/html;
+      }
+      location / {
+        proxy_pass http://127.0.0.1:9000/;
+      }
+
 
 aws_access_key_id: '{{ vault_aws_access_key_id }}'
 aws_secret_access_key: '{{ vault_aws_secret_access_key }}'
