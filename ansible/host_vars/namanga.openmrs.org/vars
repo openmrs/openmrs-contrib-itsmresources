@@ -51,7 +51,7 @@ nginx_vhosts:
         root /usr/share/nginx/html;
       }
       location / {
-        proxy_pass http://127.0.0.1:8091/;
+        proxy_pass http://127.0.0.1:8093/;
       }
   - listen: "80"
     server_name: "namanga.openmrs.org"
@@ -69,7 +69,7 @@ nginx_vhosts:
         root /usr/share/nginx/html;
       }
       location / {
-        proxy_pass http://127.0.0.1:9000/;
+        proxy_pass http://127.0.0.1:3000/;
       }
 
 
