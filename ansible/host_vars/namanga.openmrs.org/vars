@@ -15,6 +15,8 @@ letsencrypt_cert_domains:
   - namanga.openmrs.org
   - openhim.openmrs.org
   - hapifhir.openmrs.org
+  - openhimclientport.openmrs.org
+  - openhimcore.openmrs.org
 
 nginx_vhosts:
   - listen: "80 default_server"
