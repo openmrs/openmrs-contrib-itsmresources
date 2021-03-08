@@ -54,6 +54,42 @@ nginx_vhosts:
         proxy_pass http://127.0.0.1:8091/;
       }
   - listen: "80"
+    server_name: "openhimcore.openmrs.org"
+    filename: "openhimcore.openmrs.org.80.conf"
+    extra_parameters: |
+      return 301 https://$host$request_uri;
+  - listen: "443 ssl"
+    server_name: "openhimcore.openmrs.org"
+    extra_parameters: |
+      access_log /var/log/nginx/openhimcore_access.log;
+      error_log /var/log/nginx/openhimcore_error.log;
+      ssl_certificate /etc/letsencrypt/live/namanga.openmrs.org/fullchain.pem;
+      ssl_certificate_key /etc/letsencrypt/live/namanga.openmrs.org/privkey.pem;
+      location ^~ /.well-known/acme-challenge/ {
+        root /usr/share/nginx/html;
+      }
+      location / {
+        proxy_pass http://127.0.0.1:8093/;
+      }
+  - listen: "80"
+    server_name: "openhimclientport.openmrs.org"
+    filename: "openhimclientport.openmrs.org.80.conf"
+    extra_parameters: |
+      return 301 https://$host$request_uri;
+  - listen: "443 ssl"
+    server_name: "openhimclientport.openmrs.org"
+    extra_parameters: |
+      access_log /var/log/nginx/openhimclientport_access.log;
+      error_log /var/log/nginx/openhimclientport_error.log;
+      ssl_certificate /etc/letsencrypt/live/namanga.openmrs.org/fullchain.pem;
+      ssl_certificate_key /etc/letsencrypt/live/namanga.openmrs.org/privkey.pem;
+      location ^~ /.well-known/acme-challenge/ {
+        root /usr/share/nginx/html;
+      }
+      location / {
+        proxy_pass http://127.0.0.1:5555/;
+      }
+  - listen: "80"
     server_name: "namanga.openmrs.org"
     filename: "namanga.openmrs.org.80.conf"
     extra_parameters: |
