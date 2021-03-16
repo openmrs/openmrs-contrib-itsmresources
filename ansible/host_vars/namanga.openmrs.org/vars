@@ -71,7 +71,7 @@ nginx_vhosts:
         root /usr/share/nginx/html;
       }
       location / {
-        proxy_pass http://127.0.0.1:8093/;
+        proxy_pass https://127.0.0.1:8093/;
       }
   - listen: "80"
     server_name: "openhimclientport.openmrs.org"
