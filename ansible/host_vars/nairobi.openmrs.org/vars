@@ -58,6 +58,7 @@ letsencrypt_cert_domains:
    - flower.openconceptlab.org
    - openmrs.openconceptlab.org
    - msp.openconceptlab.org
+   - openmrs2.openconceptlab.org
 
 nginx_keepalive_timeout: "600"
 nginx_keepalive_requests: "600"
