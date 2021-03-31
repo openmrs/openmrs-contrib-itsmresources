@@ -72,8 +72,7 @@ nginx_vhosts:
         ### By default we don't want to redirect it ####
         proxy_redirect     off;
 
-        rewrite ^/nexus/content/repositories/(.*) /$1 break;
-        proxy_pass https://openmrs.jfrog.io/artifactory;
+        proxy_pass https://openmrs.jfrog.io/artifactory/;
       }
 
       location / {
