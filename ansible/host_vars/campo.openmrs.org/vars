@@ -14,6 +14,14 @@
 #   - https://mavenrepo.openmrs.org/releases/
 #
 
+
+users:
+ bamboo:
+  comment: CI Bamboo User
+  groups: 'admin'
+  ssh_key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDLecv3TGVSot9PTmhi3ddmx9ah1KL9tkdHFfugisT4yT3jaI8YV/GDPG+mVo9ru+x8yNWVzxk5YOUWEvjboOq3cMjjHpEeoXiNOTVT3bWwNGXfUkrAO4Oyuk+IW2enLFbiFDKaMvtoCEbkBI24TSb7vOSbuJz6FH0gWBzCqm9/cBSE9QK5JORhzVHNGO5gzN0POiO41MFanmgCEPmEMz56K8b5pkVPUAgj9UTs1maV0C8csItnghQtLJNbEDFGesHw1pUoW+GKQ9cgvbLLEUWi0lJXTpqJDtr8ojgoIsG13CVocQAVt5H6Jgf5UMGhpYMIXjPrJcfoABklo3B3jvqrlUcoEKMnGfS10EFAL1en/VLjDLXHMnpaXirwLqBc/fM3mpOzuc6/coKmvuB/1SBFqPSTi7UMPwgdtB5HmuNTdBYLF0Yk7M3g5oc+i6spUkvMLvFQ1V3iY+FnItW7ifo+kHj2RCtMi/RdsdbUnENi/VMmG33cBP59FGo0vVqRD8U1N51q/7q8Cgep9Hc81uJkOs+PrzJPGyOnyM7WSElmpjwFnQoKWxcNwKv/WHQQG9abSqVnUwrzuLxVCGMAlsrLhPCRj7SktJrktHQdUnQHhfqhh5AKH5mFFvZeyNnS6CZQEDb6C/91EI3J99PIfMYi0TLlixmaK+tnT/0ruWI2bw== bambooagent"
+ 
+
 datadog_tags_extra:
   - "service:maven"
   - "service:http-redirect"
