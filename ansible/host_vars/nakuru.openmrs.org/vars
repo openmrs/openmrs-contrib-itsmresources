@@ -59,17 +59,17 @@ docker_deployable_images:
 
 letsencrypt_cert_domains:
    - nakuru.openmrs.org
-   - staging.openconceptlab.org
-   - api.staging.openconceptlab.org
-   - flower.staging.openconceptlab.org
+   - staging.v1.openconceptlab.org
+   - api.staging.v1.openconceptlab.org
+   - flower.staging.v1.openconceptlab.org
    - demo.openconceptlab.org
    - api.demo.openconceptlab.org
    - flower.demo.openconceptlab.org
    - openmrs.demo.openconceptlab.org
-   - openmrs.staging.openconceptlab.org
+   - openmrs.staging.v1.openconceptlab.org
    - msp.demo.openconceptlab.org
-   - msp.staging.openconceptlab.org
-   - openmrs.staging2.openconceptlab.org
+   - msp.staging.v1.openconceptlab.org
+   - openmrs.staging.openconceptlab.org
 
 
 nginx_keepalive_timeout: "600"
@@ -77,12 +77,12 @@ nginx_keepalive_requests: "600"
 
 nginx_vhosts:
   - listen: "80 default_server"
-    server_name: "staging.openconceptlab.org"
-    filename: "staging.openconceptlab.org.80.conf"
+    server_name: "staging.v1.openconceptlab.org"
+    filename: "staging.v1.openconceptlab.org.80.conf"
     extra_parameters: |
       return 301 https://$host$request_uri;
   - listen: "443 ssl"
-    server_name: "staging.openconceptlab.org"
+    server_name: "staging.v1.openconceptlab.org"
     extra_parameters: |
       access_log /var/log/nginx/oclweb_access.log;
       error_log /var/log/nginx/oclweb_error.log;
@@ -95,12 +95,12 @@ nginx_vhosts:
         proxy_pass http://127.0.0.1:7000/;
       }
   - listen: "80"
-    server_name: "api.staging.openconceptlab.org"
-    filename: "api.staging.openconceptlab.org.80.conf"
+    server_name: "api.staging.v1.openconceptlab.org"
+    filename: "api.staging.v1.openconceptlab.org.80.conf"
     extra_parameters: |
       return 301 https://$host$request_uri;
   - listen: "443 ssl"
-    server_name: "api.staging.openconceptlab.org"
+    server_name: "api.staging.v1.openconceptlab.org"
     extra_parameters: |
       access_log /var/log/nginx/oclapi_access.log;
       error_log /var/log/nginx/oclapi_error.log;
@@ -148,12 +148,12 @@ nginx_vhosts:
         proxy_pass http://127.0.0.1:8000/;
       }
   - listen: "80"
-    server_name: "flower.staging.openconceptlab.org"
-    filename: "flower.staging.openconceptlab.org.80.conf"
+    server_name: "flower.staging.v1.openconceptlab.org"
+    filename: "flower.staging.v1.openconceptlab.org.80.conf"
     extra_parameters: |
       return 301 https://$host$request_uri;
   - listen: "443 ssl"
-    server_name: "flower.staging.openconceptlab.org"
+    server_name: "flower.staging.v1.openconceptlab.org"
     extra_parameters: |
       access_log /var/log/nginx/oclapi_access.log;
       error_log /var/log/nginx/oclapi_error.log;
@@ -273,12 +273,12 @@ nginx_vhosts:
         proxy_pass http://127.0.0.1:8081/;
       }
   - listen: "80"
-    server_name: "openmrs.staging.openconceptlab.org"
-    filename: "openmrs.staging.openconceptlab.org.80.conf"
+    server_name: "openmrs.staging.v1.openconceptlab.org"
+    filename: "openmrs.staging.v1.openconceptlab.org.80.conf"
     extra_parameters: |
       return 301 https://$host$request_uri;
   - listen: "443 ssl"
-    server_name: "openmrs.staging.openconceptlab.org"
+    server_name: "openmrs.staging.v1.openconceptlab.org"
     extra_parameters: |
       access_log /var/log/nginx/oclclientstg_access.log;
       error_log /var/log/nginx/oclclientstg_error.log;
@@ -309,12 +309,12 @@ nginx_vhosts:
         proxy_pass http://127.0.0.1:8083/;
       }
   - listen: "80"
-    server_name: "msp.staging.openconceptlab.org"
-    filename: "msp.staging.openconceptlab.org.80.conf"
+    server_name: "msp.staging.v1.openconceptlab.org"
+    filename: "msp.staging.v1.openconceptlab.org.80.conf"
     extra_parameters: |
       return 301 https://$host$request_uri;
   - listen: "443 ssl"
-    server_name: "msp.staging.openconceptlab.org"
+    server_name: "msp.staging.v1.openconceptlab.org"
     extra_parameters: |
       access_log /var/log/nginx/oclclient_access.log;
       error_log /var/log/nginx/oclclient_error.log;
@@ -340,12 +340,12 @@ nginx_vhosts:
         proxy_pass http://127.0.0.1:3000/;
       }
   - listen: "80"
-    server_name: "openmrs.staging2.openconceptlab.org"
-    filename: "openmrs.staging2.openconceptlab.org.80.conf"
+    server_name: "openmrs.staging.openconceptlab.org"
+    filename: "openmrs.staging.openconceptlab.org.80.conf"
     extra_parameters: |
       return 301 https://$host$request_uri;
   - listen: "443 ssl"
-    server_name: "openmrs.staging2.openconceptlab.org"
+    server_name: "openmrs.staging.openconceptlab.org"
     extra_parameters: |
       access_log /var/log/nginx/oclclientstg_access.log;
       error_log /var/log/nginx/oclclientstg_error.log;
