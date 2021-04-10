@@ -52,25 +52,25 @@ docker_deployable_images:
 
 letsencrypt_cert_domains:
    - nairobi.openmrs.org
-   - www.openconceptlab.org
-   - openconceptlab.org
-   - api.openconceptlab.org
-   - flower.openconceptlab.org
+   - www.v1.openconceptlab.org
+   - v1.openconceptlab.org
+   - api.v1.openconceptlab.org
+   - flower.v1.openconceptlab.org
+   - openmrs.v1.openconceptlab.org
+   - msp.v1.openconceptlab.org
    - openmrs.openconceptlab.org
-   - msp.openconceptlab.org
-   - openmrs2.openconceptlab.org
 
 nginx_keepalive_timeout: "600"
 nginx_keepalive_requests: "600"
 
 nginx_vhosts:
   - listen: "80 default_server"
-    server_name: "www.openconceptlab.org openconceptlab.org"
-    filename: "www.openconceptlab.org.80.conf"
+    server_name: "www.v1.openconceptlab.org v1.openconceptlab.org"
+    filename: "www.v1.openconceptlab.org.80.conf"
     extra_parameters: |
       return 301 https://$host$request_uri;
   - listen: "443 ssl"
-    server_name: "www.openconceptlab.org openconceptlab.org"
+    server_name: "www.v1.openconceptlab.org v1.openconceptlab.org"
     extra_parameters: |
       access_log /var/log/nginx/oclweb_access.log;
       error_log /var/log/nginx/oclweb_error.log;
@@ -83,12 +83,12 @@ nginx_vhosts:
         proxy_pass http://127.0.0.1:7000/;
       }
   - listen: "80"
-    server_name: "api.openconceptlab.org"
-    filename: "api.openconceptlab.org.80.conf"
+    server_name: "api.v1.openconceptlab.org"
+    filename: "api.v1.openconceptlab.org.80.conf"
     extra_parameters: |
       return 301 https://$host$request_uri;
   - listen: "443 ssl"
-    server_name: "api.openconceptlab.org"
+    server_name: "api.v1.openconceptlab.org"
     extra_parameters: |
       access_log /var/log/nginx/oclapi_access.log;
       error_log /var/log/nginx/oclapi_error.log;
@@ -136,12 +136,12 @@ nginx_vhosts:
         proxy_pass http://127.0.0.1:8000/;
       }
   - listen: "80"
-    server_name: "flower.openconceptlab.org"
-    filename: "flower.openconceptlab.org.80.conf"
+    server_name: "flower.v1.openconceptlab.org"
+    filename: "flower.v1.openconceptlab.org.80.conf"
     extra_parameters: |
       return 301 https://$host$request_uri;
   - listen: "443 ssl"
-    server_name: "flower.openconceptlab.org"
+    server_name: "flower.v1.openconceptlab.org"
     extra_parameters: |
       access_log /var/log/nginx/oclapi_access.log;
       error_log /var/log/nginx/oclapi_error.log;
@@ -154,12 +154,12 @@ nginx_vhosts:
         proxy_pass http://127.0.0.1:5555/;
       }
   - listen: "80"
-    server_name: "openmrs.openconceptlab.org"
-    filename: "openmrs.openconceptlab.org.80.conf"
+    server_name: "openmrs.v1.openconceptlab.org"
+    filename: "openmrs.v1.openconceptlab.org.80.conf"
     extra_parameters: |
       return 301 https://$host$request_uri;
   - listen: "443 ssl"
-    server_name: "openmrs.openconceptlab.org"
+    server_name: "openmrs.v1.openconceptlab.org"
     extra_parameters: |
       access_log /var/log/nginx/oclclient_access.log;
       error_log /var/log/nginx/oclclient_error.log;
@@ -172,12 +172,12 @@ nginx_vhosts:
         proxy_pass http://127.0.0.1:8081/;
       }
   - listen: "80"
-    server_name: "msp.openconceptlab.org"
-    filename: "msp.openconceptlab.org.80.conf"
+    server_name: "msp.v1.openconceptlab.org"
+    filename: "msp.v1.openconceptlab.org.80.conf"
     extra_parameters: |
       return 301 https://$host$request_uri;
   - listen: "443 ssl"
-    server_name: "msp.openconceptlab.org"
+    server_name: "msp.v1.openconceptlab.org"
     extra_parameters: |
       access_log /var/log/nginx/oclmsp_access.log;
       error_log /var/log/nginx/oclmsp_error.log;
@@ -203,12 +203,12 @@ nginx_vhosts:
         proxy_pass http://127.0.0.1:3000/;
       }
   - listen: "80"
-    server_name: "openmrs2.openconceptlab.org"
-    filename: "openmrs2.openconceptlab.org.80.conf"
+    server_name: "openmrs.openconceptlab.org"
+    filename: "openmrs.openconceptlab.org.80.conf"
     extra_parameters: |
       return 301 https://$host$request_uri;
   - listen: "443 ssl"
-    server_name: "openmrs2.openconceptlab.org"
+    server_name: "openmrs.openconceptlab.org"
     extra_parameters: |
       access_log /var/log/nginx/oclclient_access.log;
       error_log /var/log/nginx/oclclient_error.log;
