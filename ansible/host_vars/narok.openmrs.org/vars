@@ -142,7 +142,7 @@ nginx_vhosts:
     extra_parameters: |
       return 301 https://$host$request_uri;
   - listen: "443 ssl"
-    server_name: "msp.qa.openconceptlab.org"
+    server_name: "msp.qa.v1.openconceptlab.org"
     extra_parameters: |
       access_log /var/log/nginx/oclclient_access.log;
       error_log /var/log/nginx/oclclient_error.log;
