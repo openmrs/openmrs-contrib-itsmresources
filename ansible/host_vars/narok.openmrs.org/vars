@@ -52,24 +52,24 @@ docker_deployable_images:
 
 letsencrypt_cert_domains:
    - narok.openmrs.org
-   - qa.openconceptlab.org
-   - api.qa.openconceptlab.org
-   - flower.qa.openconceptlab.org
+   - qa.v1.openconceptlab.org
+   - api.qa.v1.openconceptlab.org
+   - flower.qa.v1.openconceptlab.org
+   - openmrs.qa.v1.openconceptlab.org
+   - msp.qa.v1.openconceptlab.org
    - openmrs.qa.openconceptlab.org
-   - msp.qa.openconceptlab.org
-   - openmrs.qa2.openconceptlab.org
 
 nginx_keepalive_timeout: "600"
 nginx_keepalive_requests: "600"
 
 nginx_vhosts:
   - listen: "80 default_server"
-    server_name: "qa.openconceptlab.org"
-    filename: "qa.openconceptlab.org.80.conf"
+    server_name: "qa.v1.openconceptlab.org"
+    filename: "qa.v1.openconceptlab.org.80.conf"
     extra_parameters: |
       return 301 https://$host$request_uri;
   - listen: "443 ssl"
-    server_name: "qa.openconceptlab.org"
+    server_name: "qa.v1.openconceptlab.org"
     extra_parameters: |
       access_log /var/log/nginx/oclweb_access.log;
       error_log /var/log/nginx/oclweb_error.log;
@@ -82,12 +82,12 @@ nginx_vhosts:
         proxy_pass http://127.0.0.1:7000/;
       }
   - listen: "80"
-    server_name: "api.qa.openconceptlab.org"
-    filename: "api.qa.openconceptlab.org.80.conf"
+    server_name: "api.qa.v1.openconceptlab.org"
+    filename: "api.qa.v1.openconceptlab.org.80.conf"
     extra_parameters: |
       return 301 https://$host$request_uri;
   - listen: "443 ssl"
-    server_name: "api.qa.openconceptlab.org"
+    server_name: "api.qa.v1.openconceptlab.org"
     extra_parameters: |
       access_log /var/log/nginx/oclapi_access.log;
       error_log /var/log/nginx/oclapi_error.log;
@@ -101,12 +101,12 @@ nginx_vhosts:
         proxy_pass http://127.0.0.1:8000/;
       }
   - listen: "80"
-    server_name: "flower.qa.openconceptlab.org"
-    filename: "flower.qa.openconceptlab.org.80.conf"
+    server_name: "flower.qa.v1.openconceptlab.org"
+    filename: "flower.qa.v1.openconceptlab.org.80.conf"
     extra_parameters: |
       return 301 https://$host$request_uri;
   - listen: "443 ssl"
-    server_name: "flower.qa.openconceptlab.org"
+    server_name: "flower.qa.v1.openconceptlab.org"
     extra_parameters: |
       access_log /var/log/nginx/oclapi_access.log;
       error_log /var/log/nginx/oclapi_error.log;
@@ -119,12 +119,12 @@ nginx_vhosts:
         proxy_pass http://127.0.0.1:5555/;
       }
   - listen: "80"
-    server_name: "openmrs.qa.openconceptlab.org"
-    filename: "openmrs.qa.openconceptlab.org.80.conf"
+    server_name: "openmrs.qa.v1.openconceptlab.org"
+    filename: "openmrs.qa.v1.openconceptlab.org.80.conf"
     extra_parameters: |
       return 301 https://$host$request_uri;
   - listen: "443 ssl"
-    server_name: "openmrs.qa.openconceptlab.org"
+    server_name: "openmrs.qa.v1.openconceptlab.org"
     extra_parameters: |
       access_log /var/log/nginx/oclclient_access.log;
       error_log /var/log/nginx/oclclient_error.log;
@@ -137,8 +137,8 @@ nginx_vhosts:
         proxy_pass http://127.0.0.1:8081/;
       }
   - listen: "80"
-    server_name: "msp.qa.openconceptlab.org"
-    filename: "msp.qa.openconceptlab.org.80.conf"
+    server_name: "msp.qa.v1.openconceptlab.org"
+    filename: "msp.qa.v1.openconceptlab.org.80.conf"
     extra_parameters: |
       return 301 https://$host$request_uri;
   - listen: "443 ssl"
@@ -168,12 +168,12 @@ nginx_vhosts:
         proxy_pass http://127.0.0.1:3000/;
       }
   - listen: "80"
-    server_name: "openmrs.qa2.openconceptlab.org"
-    filename: "openmrs.qa2.openconceptlab.org.80.conf"
+    server_name: "openmrs.qa.openconceptlab.org"
+    filename: "openmrs.qa.openconceptlab.org.80.conf"
     extra_parameters: |
       return 301 https://$host$request_uri;
   - listen: "443 ssl"
-    server_name: "openmrs.qa2.openconceptlab.org"
+    server_name: "openmrs.qa.openconceptlab.org"
     extra_parameters: |
       access_log /var/log/nginx/oclclient_access.log;
       error_log /var/log/nginx/oclclient_error.log;
