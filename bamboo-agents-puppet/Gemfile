@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
 
-gem 'puppet', '~>4.5.0'
+gem 'puppet', '~>6.13.0'
 gem 'hiera-eyaml'
 gem 'r10k'
