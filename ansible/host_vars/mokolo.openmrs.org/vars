@@ -36,8 +36,6 @@ docker_deployment:
 docker_deployable_images:
   - repository: openmrs/openmrs-quizgrader
     compose: quizgrader
-  - repository: openmrs/openmrs-contrib-pmtool
-    compose: pmtool
   - repository: openmrsinfra/shields
     compose: shields
 
@@ -45,7 +43,6 @@ letsencrypt_cert_domains:
   - mokolo.openmrs.org
   - sonar.openmrs.org
   - implementation.openmrs.org
-  - notes-new.openmrs.org
   - quizgrader.openmrs.org
   - shields.openmrs.org
 
