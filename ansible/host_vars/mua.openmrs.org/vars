@@ -1,5 +1,11 @@
 ---
 # wordpress
+users:
+ jslawinski:
+   comment: Jakub Slawinski
+   groups: 'admin'
+   ssh_key: "ssh-rsa ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEA3YOIWpOnwDcTAeCQnDr2dmHVRV5Zzqg5aVGxl8Tmn0T61o6FInS2b1I6V5EpvUmSeAdLdpndNNsqdzz/roOjkcYUc+IPPgmMCGpNtWhdRRB7NFY1YPBKN8XHfJarfvajITsJrlz3bMiKscmebs7vNczjtWMCeB9UmIoUZSYpcXwdyERYEOx263dWMD5LIx1qQS1ek2PuIxeMQMU3HKzThrkKdItGhoydHtf9sChyq3UNx6mm5rQY/NXBMqLjH0PnhvfiK86eDFWwB8w6tpJ+T/YgtQrkNrsgmiC7gun2o2e2MDn+LggCEX+cknXOyqz80nAm83BeNipdI0DdLuxp8w== jslawinski"
+
 datadog_tags_extra:
   - "service:wordpress"
   - "service:yourls"
