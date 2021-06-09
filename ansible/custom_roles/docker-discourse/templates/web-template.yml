@@ -71,7 +71,6 @@ hooks:
           - git clone https://github.com/discourse/discourse-github.git
           - git clone https://github.com/discourse/discourse-solved.git
           - git clone https://github.com/discourse/discourse-data-explorer.git
-          - git clone https://github.com/PoloGT/abbreviation-discourse-plugin.git
           - git clone https://github.com/discourse/discourse-akismet.git
           - git clone https://github.com/discourse/discourse-spoiler-alert.git
           - git clone https://github.com/cpradio/discourse-plugin-replygif.git
