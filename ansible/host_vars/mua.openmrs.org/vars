@@ -115,7 +115,7 @@ nginx_vhosts:
       location ^~ /.well-known/acme-challenge/ {
         root /usr/share/nginx/html;
       }
-      location ~ /t/(\d+\/?\d+)$ {
+      location ~ /t/(\d+\/?\d+)/?$ {
         return 302 https://talk.openmrs.org/t/$1;
       }
       location / {
