@@ -11,12 +11,8 @@ class profiles::docker (
     ensure  => 'present',
     version => '1.21.2',
   }
-  #Enable multi-arch builds
-  package { ['qemu', 'qemu-user-static']:
-    ensure  => present,
-    require => Exec['apt_update'],
-  }
-  exec { "docker run --privileged --rm tonistiigi/binfmt --install all":
+  #Enable multi-arch builds (not working until kernel upgraded to 4.8 or newer)
+  exec { "docker run --rm --privileged multiarch/qemu-user-static --reset -p yes":
     path         => ["/usr/bin", "/usr/sbin"],
     subscribe    => [
                   Class['::docker'],
