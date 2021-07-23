@@ -5,6 +5,7 @@ Installation of Bamboo Agents.
 
 ## Updating Production/Staging machines
 ```
+$ sudo -s
 $ /etc/openmrs-puppet/bin/pull-changes.sh
 $ /etc/openmrs-puppet/bin/run-puppet.sh
 ```
