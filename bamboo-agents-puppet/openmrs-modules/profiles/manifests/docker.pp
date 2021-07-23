@@ -16,8 +16,6 @@ class profiles::docker (
     path         => ["/usr/bin", "/usr/sbin"],
     subscribe    => [
                   Class['::docker'],
-                  Package['qemu'],
-                  Package['qemu-user-static'],
                ],
     refreshonly => true,
   }
@@ -25,8 +23,6 @@ class profiles::docker (
     path         => ["/usr/bin", "/usr/sbin"],
     subscribe    => [
                   Class['::docker'],
-                  Package['qemu'],
-                  Package['qemu-user-static'],
                ],
     refreshonly => true,
   }
