@@ -12,18 +12,14 @@ class profiles::docker (
     version => '1.21.2',
   }
   #Enable multi-arch builds
-  package { 'qemu':
-    ensure  => present,
-    require => Exec['apt_update'],
-  }
-  package { 'qemu-user-static':
+  package { ['qemu', 'qemu-user-static']:
     ensure  => present,
     require => Exec['apt_update'],
   }
   exec { "docker run --privileged --rm tonistiigi/binfmt --install all":
     path         => ["/usr/bin", "/usr/sbin"],
     subscribe    => [
-                  Package['docker-ce'],
+                  Class['::docker'],
                   Package['qemu'],
                   Package['qemu-user-static'],
                ],
@@ -32,7 +28,7 @@ class profiles::docker (
   exec { "docker buildx create --name custom && docker buildx use custom":
     path         => ["/usr/bin", "/usr/sbin"],
     subscribe    => [
-                  Package['docker-ce'],
+                  Class['::docker'],
                   Package['qemu'],
                   Package['qemu-user-static'],
                ],
