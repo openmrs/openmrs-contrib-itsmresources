@@ -5,7 +5,7 @@ class profiles::docker (
     docker_users    => $users,
     dns             => ['8.8.8.8','8.8.4.4'],
     iptables        => true,
-    version         => '20.10.7~3-0~ubuntu',
+    version         => '5:20.10.7~3-0~ubuntu-xenial',
   }
   class { 'docker::compose':
     ensure  => 'present',
