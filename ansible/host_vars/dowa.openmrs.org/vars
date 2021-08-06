@@ -48,6 +48,7 @@ datadog_tags_extra:
 docker_deployment:
   - mdsbuilder
   - uat-platform
+  - emr-3-dev
 
 docker_deployable_images:
   - repository: openmrs/openmrs-reference-application-distro
@@ -57,6 +58,7 @@ letsencrypt_cert_domains:
    - dowa.openmrs.org
    - mdsbuilder.openmrs.org
    - uat-platform.openmrs.org
+   - emr-3-dev.openmrs.org
 
 nginx_vhosts:
   - listen: "80 default_server"
@@ -104,6 +106,29 @@ nginx_vhosts:
         proxy_set_header HOST $host;
         proxy_set_header  X-Forwarded-Proto $scheme;
         proxy_pass http://127.0.0.1:8081/openmrs;
+      }
+  - listen: "80"
+    server_name: "dev3.openmrs.org"
+    filename: "dev3.openmrs.org.80.conf"
+    extra_parameters: |
+      return 301 https://$host$request_uri;
+  - listen: "443 ssl"
+    server_name: "dev3.openmrs.org"
+    extra_parameters: |
+      access_log /var/log/nginx/uatplatform_access.log;
+      error_log /var/log/nginx/uatplatform_error.log;
+      ssl_certificate /etc/letsencrypt/live/dowa.openmrs.org/fullchain.pem;
+      ssl_certificate_key /etc/letsencrypt/live/dowa.openmrs.org/privkey.pem;
+      location ^~ /.well-known/acme-challenge/ {
+        root /usr/share/nginx/html;
+      }
+      location / {
+        return 301 https://dev3.openmrs.org/openmrs;
+      }
+      location /openmrs {
+        proxy_set_header HOST $host;
+        proxy_set_header  X-Forwarded-Proto $scheme;
+        proxy_pass http://127.0.0.1:8084/openmrs;
       }
   - listen: "443 ssl"
     server_name: "dowa.openmrs.org"
