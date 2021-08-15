@@ -18,6 +18,7 @@ letsencrypt_cert_domains:
    - shortener.openmrs.org
    - om.rs
    - beta.openmrs.org
+   - site-legacy.openmrs.org
 
 docker_deployment:
   - wordpress
@@ -47,12 +48,12 @@ nginx_vhosts:
         root /usr/share/nginx/html;
       }
   - listen: "80"
-    server_name: "site.openmrs.org openmrs.org www.openmrs.org"
-    filename: "site.openmrs.org.80.conf"
+    server_name: "site-legacy.openmrs.org"
+    filename: "site-legacy.openmrs.org.80.conf"
     extra_parameters: |
       return 301 https://$host$request_uri;
   - listen: "443 ssl"
-    server_name: "site.openmrs.org openmrs.org www.openmrs.org"
+    server_name: "site-legacy.openmrs.org"
     extra_parameters: |
       client_max_body_size 0;
       access_log /var/log/nginx/site_access.log;
@@ -71,12 +72,12 @@ nginx_vhosts:
         proxy_pass http://127.0.0.1:8080;
       }
   - listen: "80"
-    server_name: "beta.openmrs.org"
-    filename: "beta.openmrs.org.80.conf"
+    server_name: "site.openmrs.org openmrs.org www.openmrs.org"
+    filename: "site.openmrs.org.80.conf"
     extra_parameters: |
       return 301 https://$host$request_uri;
   - listen: "443 ssl"
-    server_name: "beta.openmrs.org"
+    server_name: "site.openmrs.org openmrs.org www.openmrs.org"
     extra_parameters: |
       client_max_body_size 0;
       access_log /var/log/nginx/site_stg_access.log;
