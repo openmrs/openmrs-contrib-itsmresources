@@ -30,297 +30,25 @@ datadog_tags_extra:
   - "service:ocl"
 
 docker_deployment:
-  - oclapi-stg
-  - oclweb-stg
   - oclclient-stg
-  - oclmsp-stg
-  - oclapi-demo
-  - oclweb-demo
   - oclclient-demo
-  - oclmsp-demo
-  - oclclient-stg2
 
 docker_deployable_images:
-  - repository: openconceptlab/oclweb
-    compose: oclweb-stg
-  - repository: openconceptlab/oclsolr
-    compose: oclapi-stg
-  - repository: openconceptlab/oclapi
-    compose: oclapi-stg
-  - repository: openconceptlab/oclmsp
-    compose: oclmsp-demo
-  - repository: openconceptlab/oclmsp
-    compose: oclmsp-stg
+  - repository: openmrs/oclclient-stg
+    compose: oclclient-stg
+  - repository: openmrs/oclclient-demo
+    compose: oclclient-demo  
 
 
 letsencrypt_cert_domains:
    - nakuru.openmrs.org
-   - staging.v1.openconceptlab.org
-   - api.staging.v1.openconceptlab.org
-   - flower.staging.v1.openconceptlab.org
-   - demo.v1.openconceptlab.org
-   - api.demo.v1.openconceptlab.org
-   - flower.demo.v1.openconceptlab.org
-   - openmrs.demo.v1.openconceptlab.org
-   - openmrs.staging.v1.openconceptlab.org
-   - msp.demo.v1.openconceptlab.org
-   - msp.staging.v1.openconceptlab.org
+   - openmrs.demo.openconceptlab.org
    - openmrs.staging.openconceptlab.org
 
 nginx_keepalive_timeout: "600"
 nginx_keepalive_requests: "600"
 
 nginx_vhosts:
-  - listen: "80 default_server"
-    server_name: "staging.v1.openconceptlab.org"
-    filename: "staging.v1.openconceptlab.org.80.conf"
-    extra_parameters: |
-      return 301 https://$host$request_uri;
-  - listen: "443 ssl"
-    server_name: "staging.v1.openconceptlab.org"
-    extra_parameters: |
-      access_log /var/log/nginx/oclweb_access.log;
-      error_log /var/log/nginx/oclweb_error.log;
-      ssl_certificate /etc/letsencrypt/live/nakuru.openmrs.org/fullchain.pem;
-      ssl_certificate_key /etc/letsencrypt/live/nakuru.openmrs.org/privkey.pem;
-      location ^~ /.well-known/acme-challenge/ {
-        root /usr/share/nginx/html;
-      }
-      location / {
-        proxy_pass http://127.0.0.1:7000/;
-      }
-  - listen: "80"
-    server_name: "api.staging.v1.openconceptlab.org"
-    filename: "api.staging.v1.openconceptlab.org.80.conf"
-    extra_parameters: |
-      return 301 https://$host$request_uri;
-  - listen: "443 ssl"
-    server_name: "api.staging.v1.openconceptlab.org"
-    extra_parameters: |
-      access_log /var/log/nginx/oclapi_access.log;
-      error_log /var/log/nginx/oclapi_error.log;
-      ssl_certificate /etc/letsencrypt/live/nakuru.openmrs.org/fullchain.pem;
-      ssl_certificate_key /etc/letsencrypt/live/nakuru.openmrs.org/privkey.pem;
-      location ^~ /.well-known/acme-challenge/ {
-        root /usr/share/nginx/html;
-      }
-      location / {
-        if ($request_method = 'OPTIONS') {
-          add_header 'Access-Control-Allow-Origin' '*';
-          add_header 'Access-Control-Allow-Methods' 'GET, OPTIONS, POST, PUT, DELETE';
-          #
-          # Custom headers and headers various browsers *should* be OK with but aren't
-          #
-          add_header 'Access-Control-Allow-Headers' 'num_found,num_returned,offset,authorization,DNT,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range';
-          #
-          # Tell client that this pre-flight info is valid for 20 days
-          #
-          add_header 'Access-Control-Max-Age' 1728000;
-          add_header 'Content-Type' 'text/plain; charset=utf-8';
-          add_header 'Content-Length' 0;
-          return 204;
-        }
-        if ($request_method = 'POST') {
-          add_header 'Access-Control-Allow-Methods' 'GET, OPTIONS, POST, PUT, DELETE';
-          add_header 'Access-Control-Allow-Headers' 'num_found,num_returned,offset,authorization,DNT,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range';
-          add_header 'Access-Control-Expose-Headers' 'Content-Length,Content-Range';
-        }
-        if ($request_method = 'PUT') {
-          add_header 'Access-Control-Allow-Methods' 'GET, OPTIONS, POST, PUT, DELETE';
-          add_header 'Access-Control-Allow-Headers' 'num_found,num_returned,offset,authorization,DNT,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range';
-          add_header 'Access-Control-Expose-Headers' 'Content-Length,Content-Range';
-        }
-        if ($request_method = 'GET') {
-          add_header 'Access-Control-Allow-Methods' 'GET, OPTIONS, POST, PUT, DELETE';
-          add_header 'Access-Control-Allow-Headers' 'num_found,num_returned,offset,authorization,DNT,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range';
-          add_header 'Access-Control-Expose-Headers' 'Content-Length,Content-Range';
-        }
-        if ($request_method = 'DELETE') {
-          add_header 'Access-Control-Allow-Methods' 'GET, OPTIONS, POST, PUT, DELETE';
-          add_header 'Access-Control-Allow-Headers' 'num_found,num_returned,offset,authorization,DNT,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range';
-          add_header 'Access-Control-Expose-Headers' 'Content-Length,Content-Range';
-        }
-        proxy_pass http://127.0.0.1:8000/;
-      }
-  - listen: "80"
-    server_name: "flower.staging.v1.openconceptlab.org"
-    filename: "flower.staging.v1.openconceptlab.org.80.conf"
-    extra_parameters: |
-      return 301 https://$host$request_uri;
-  - listen: "443 ssl"
-    server_name: "flower.staging.v1.openconceptlab.org"
-    extra_parameters: |
-      access_log /var/log/nginx/oclapi_access.log;
-      error_log /var/log/nginx/oclapi_error.log;
-      ssl_certificate /etc/letsencrypt/live/nakuru.openmrs.org/fullchain.pem;
-      ssl_certificate_key /etc/letsencrypt/live/nakuru.openmrs.org/privkey.pem;
-      location ^~ /.well-known/acme-challenge/ {
-        root /usr/share/nginx/html;
-      }
-      location / {
-        proxy_pass http://127.0.0.1:5555/;
-      }
-  - listen: "80"
-    server_name: "demo.v1.openconceptlab.org"
-    filename: "demo.v1.openconceptlab.org.80.conf"
-    extra_parameters: |
-      return 301 https://$host$request_uri;
-  - listen: "443 ssl"
-    server_name: "demo.v1.openconceptlab.org"
-    extra_parameters: |
-      access_log /var/log/nginx/oclweb_access.log;
-      error_log /var/log/nginx/oclweb_error.log;
-      ssl_certificate /etc/letsencrypt/live/nakuru.openmrs.org/fullchain.pem;
-      ssl_certificate_key /etc/letsencrypt/live/nakuru.openmrs.org/privkey.pem;
-      location ^~ /.well-known/acme-challenge/ {
-        root /usr/share/nginx/html;
-      }
-      location / {
-        proxy_pass http://127.0.0.1:7001/;
-      }
-  - listen: "80"
-    server_name: "api.demo.v1.openconceptlab.org"
-    filename: "api.demo.v1.openconceptlab.org.80.conf"
-    extra_parameters: |
-      return 301 https://$host$request_uri;
-  - listen: "443 ssl"
-    server_name: "api.demo.v1.openconceptlab.org"
-    extra_parameters: |
-      access_log /var/log/nginx/oclapi_access.log;
-      error_log /var/log/nginx/oclapi_error.log;
-      ssl_certificate /etc/letsencrypt/live/nakuru.openmrs.org/fullchain.pem;
-      ssl_certificate_key /etc/letsencrypt/live/nakuru.openmrs.org/privkey.pem;
-      location ^~ /.well-known/acme-challenge/ {
-        root /usr/share/nginx/html;
-      }
-      location / {
-        if ($request_method = 'OPTIONS') {
-          add_header 'Access-Control-Allow-Origin' '*';
-          add_header 'Access-Control-Allow-Methods' 'GET, OPTIONS, POST, PUT, DELETE';
-          #
-          # Custom headers and headers various browsers *should* be OK with but aren't
-          #
-          add_header 'Access-Control-Allow-Headers' 'num_found,num_returned,offset,authorization,DNT,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range';
-          #
-          # Tell client that this pre-flight info is valid for 20 days
-          #
-          add_header 'Access-Control-Max-Age' 1728000;
-          add_header 'Content-Type' 'text/plain; charset=utf-8';
-          add_header 'Content-Length' 0;
-          return 204;
-        }
-        if ($request_method = 'POST') {
-          add_header 'Access-Control-Allow-Methods' 'GET, OPTIONS, POST, PUT, DELETE';
-          add_header 'Access-Control-Allow-Headers' 'num_found,num_returned,offset,authorization,DNT,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range';
-          add_header 'Access-Control-Expose-Headers' 'Content-Length,Content-Range';
-        }
-        if ($request_method = 'PUT') {
-          add_header 'Access-Control-Allow-Methods' 'GET, OPTIONS, POST, PUT, DELETE';
-          add_header 'Access-Control-Allow-Headers' 'num_found,num_returned,offset,authorization,DNT,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range';
-          add_header 'Access-Control-Expose-Headers' 'Content-Length,Content-Range';
-        }
-        if ($request_method = 'GET') {
-          add_header 'Access-Control-Allow-Methods' 'GET, OPTIONS, POST, PUT, DELETE';
-          add_header 'Access-Control-Allow-Headers' 'num_found,num_returned,offset,authorization,DNT,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range';
-          add_header 'Access-Control-Expose-Headers' 'Content-Length,Content-Range';
-        }
-        if ($request_method = 'DELETE') {
-          add_header 'Access-Control-Allow-Methods' 'GET, OPTIONS, POST, PUT, DELETE';
-          add_header 'Access-Control-Allow-Headers' 'num_found,num_returned,offset,authorization,DNT,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range';
-          add_header 'Access-Control-Expose-Headers' 'Content-Length,Content-Range';
-        }
-        proxy_pass http://127.0.0.1:8001/;
-      }
-  - listen: "80"
-    server_name: "flower.demo.v1.openconceptlab.org"
-    filename: "flower.demo.v1.openconceptlab.org.80.conf"
-    extra_parameters: |
-      return 301 https://$host$request_uri;
-  - listen: "443 ssl"
-    server_name: "flower.demo.v1.openconceptlab.org"
-    extra_parameters: |
-      access_log /var/log/nginx/oclapi_access.log;
-      error_log /var/log/nginx/oclapi_error.log;
-      ssl_certificate /etc/letsencrypt/live/nakuru.openmrs.org/fullchain.pem;
-      ssl_certificate_key /etc/letsencrypt/live/nakuru.openmrs.org/privkey.pem;
-      location ^~ /.well-known/acme-challenge/ {
-        root /usr/share/nginx/html;
-      }
-      location / {
-        proxy_pass http://127.0.0.1:5556/;
-      }
-  - listen: "80"
-    server_name: "openmrs.demo.v1.openconceptlab.org"
-    filename: "openmrs.demo.v1.openconceptlab.org.80.conf"
-    extra_parameters: |
-      return 301 https://$host$request_uri;
-  - listen: "443 ssl"
-    server_name: "openmrs.demo.v1.openconceptlab.org"
-    extra_parameters: |
-      access_log /var/log/nginx/oclclient_access.log;
-      error_log /var/log/nginx/oclclient_error.log;
-      ssl_certificate /etc/letsencrypt/live/nakuru.openmrs.org/fullchain.pem;
-      ssl_certificate_key /etc/letsencrypt/live/nakuru.openmrs.org/privkey.pem;
-      location ^~ /.well-known/acme-challenge/ {
-        root /usr/share/nginx/html;
-      }
-      location / {
-        proxy_pass http://127.0.0.1:8081/;
-      }
-  - listen: "80"
-    server_name: "openmrs.staging.v1.openconceptlab.org"
-    filename: "openmrs.staging.v1.openconceptlab.org.80.conf"
-    extra_parameters: |
-      return 301 https://$host$request_uri;
-  - listen: "443 ssl"
-    server_name: "openmrs.staging.v1.openconceptlab.org"
-    extra_parameters: |
-      access_log /var/log/nginx/oclclientstg_access.log;
-      error_log /var/log/nginx/oclclientstg_error.log;
-      ssl_certificate /etc/letsencrypt/live/nakuru.openmrs.org/fullchain.pem;
-      ssl_certificate_key /etc/letsencrypt/live/nakuru.openmrs.org/privkey.pem;
-      location ^~ /.well-known/acme-challenge/ {
-        root /usr/share/nginx/html;
-      }
-      location / {
-        proxy_pass http://127.0.0.1:8082/;
-      }
-  - listen: "80"
-    server_name: "msp.demo.v1.openconceptlab.org"
-    filename: "msp.demo.v1.openconceptlab.org.80.conf"
-    extra_parameters: |
-      return 301 https://$host$request_uri;
-  - listen: "443 ssl"
-    server_name: "msp.demo.v1.openconceptlab.org"
-    extra_parameters: |
-      access_log /var/log/nginx/oclclient_access.log;
-      error_log /var/log/nginx/oclclient_error.log;
-      ssl_certificate /etc/letsencrypt/live/nakuru.openmrs.org/fullchain.pem;
-      ssl_certificate_key /etc/letsencrypt/live/nakuru.openmrs.org/privkey.pem;
-      location ^~ /.well-known/acme-challenge/ {
-        root /usr/share/nginx/html;
-      }
-      location / {
-        proxy_pass http://127.0.0.1:8083/;
-      }
-  - listen: "80"
-    server_name: "msp.staging.v1.openconceptlab.org"
-    filename: "msp.staging.v1.openconceptlab.org.80.conf"
-    extra_parameters: |
-      return 301 https://$host$request_uri;
-  - listen: "443 ssl"
-    server_name: "msp.staging.v1.openconceptlab.org"
-    extra_parameters: |
-      access_log /var/log/nginx/oclclient_access.log;
-      error_log /var/log/nginx/oclclient_error.log;
-      ssl_certificate /etc/letsencrypt/live/nakuru.openmrs.org/fullchain.pem;
-      ssl_certificate_key /etc/letsencrypt/live/nakuru.openmrs.org/privkey.pem;
-      location ^~ /.well-known/acme-challenge/ {
-        root /usr/share/nginx/html;
-      }
-      location / {
-        proxy_pass http://127.0.0.1:8084/;
-      }
   - listen: "443 ssl"
     server_name: "nakuru.openmrs.org"
     extra_parameters: |
@@ -333,6 +61,24 @@ nginx_vhosts:
       }
       location / {
         proxy_pass http://127.0.0.1:3000/;
+      }
+  - listen: "80"
+    server_name: "openmrs.demo.openconceptlab.org"
+    filename: "openmrs.demo.openconceptlab.org.80.conf"
+    extra_parameters: |
+      return 301 https://$host$request_uri;
+  - listen: "443 ssl"
+    server_name: "openmrs.demo.openconceptlab.org"
+    extra_parameters: |
+      access_log /var/log/nginx/oclclient_access.log;
+      error_log /var/log/nginx/oclclient_error.log;
+      ssl_certificate /etc/letsencrypt/live/nakuru.openmrs.org/fullchain.pem;
+      ssl_certificate_key /etc/letsencrypt/live/nakuru.openmrs.org/privkey.pem;
+      location ^~ /.well-known/acme-challenge/ {
+        root /usr/share/nginx/html;
+      }
+      location / {
+        proxy_pass http://127.0.0.1:8081/;
       }
   - listen: "80"
     server_name: "openmrs.staging.openconceptlab.org"
