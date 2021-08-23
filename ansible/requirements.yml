@@ -4,7 +4,7 @@
   version: v1.0.2
 - name: datadog
   src: Datadog.datadog
-  version: 4.0.1
+  version: 4.11.0
 - name: docker
   src: nickjj.docker
   version: v1.9.1
