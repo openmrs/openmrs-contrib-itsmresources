@@ -58,7 +58,7 @@ letsencrypt_cert_domains:
    - dowa.openmrs.org
    - mdsbuilder.openmrs.org
    - uat-platform.openmrs.org
-   - emr-3-dev.openmrs.org
+   - dev3.openmrs.org
 
 nginx_vhosts:
   - listen: "80 default_server"
