@@ -50,10 +50,6 @@ docker_deployment:
   - uat-platform
   - emr-3-dev
 
-docker_deployable_images:
-  - repository: openmrs/openmrs-reference-application-distro
-    compose: mdsbuilder
-
 letsencrypt_cert_domains:
    - dowa.openmrs.org
    - mdsbuilder.openmrs.org
