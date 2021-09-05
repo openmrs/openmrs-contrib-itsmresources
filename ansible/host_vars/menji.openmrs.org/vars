@@ -76,9 +76,9 @@ backup_tag: 'configured'
 confluence_pass: '{{ vault_confluence_pass }}'
 confluence_hash_salt: '{{ vault_confluence_hash_salt }}'
 confluence_user: 'confluence'
-confluence_archive: "atlassian-confluence-7.0.1.tar.gz"
+confluence_archive: "atlassian-confluence-7.13.0.tar.gz"
 confluence_catalina: "/opt/confluence"
-confluence_checksum: "sha256:e983a6d5c24e6fdd0ed82af1914642031eb28cb9dbb6c125aadc9772ba8140ae"
+confluence_checksum: "sha256:a3a63b6640b7c768e2e0575744db1f0b52e54b734ae2b520ecc8b298d99aa5cc"
 confluence_url: "https://product-downloads.atlassian.com/software/confluence/downloads/{{ confluence_archive }}"
 confluence_home: "/data/confluence_home"
 confluence_jvm_maximum_memory: "10g"
