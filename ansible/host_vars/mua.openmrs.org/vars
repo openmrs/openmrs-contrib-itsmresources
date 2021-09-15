@@ -5,6 +5,10 @@ users:
    comment: Jakub Slawinski
    groups: 'admin'
    ssh_key: "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEA3YOIWpOnwDcTAeCQnDr2dmHVRV5Zzqg5aVGxl8Tmn0T61o6FInS2b1I6V5EpvUmSeAdLdpndNNsqdzz/roOjkcYUc+IPPgmMCGpNtWhdRRB7NFY1YPBKN8XHfJarfvajITsJrlz3bMiKscmebs7vNczjtWMCeB9UmIoUZSYpcXwdyERYEOx263dWMD5LIx1qQS1ek2PuIxeMQMU3HKzThrkKdItGhoydHtf9sChyq3UNx6mm5rQY/NXBMqLjH0PnhvfiK86eDFWwB8w6tpJ+T/YgtQrkNrsgmiC7gun2o2e2MDn+LggCEX+cknXOyqz80nAm83BeNipdI0DdLuxp8w== jslawinski"
+ permissionerror:
+  comment: Ray Ma
+  groups: 'admin'
+  ssh_key: "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAv22EW0RN4uwv4etiuBj5PqW7SKgch5jwqtZpHOpI7eZ4uagxRoeePyhERxsxm9193FjWtQIDtIyKCsa8BeuGZ6+SOb/PqnDtR7p5i8bWxp38+wveAQk16AorvH5lvM4XF/vH+f3G8hfq6D9NAGr5jaVsOzU+XubZYRV1VgDD4t0cvka71MWiTyvbePx8VmHMcDSCL/fbisRuTolyplzXKCAvYDNaitWyzeoW6WE+Tdw7XhHir6b8gJOAe4aoYegAWj4fd/rAVjX33B4h6plK1aixKC3+yfVodf+ei990TrEdVP6/BOZJupUEXkr7PWN+a/tt4CqXv5G71kHPOXcakQ=="
 
 datadog_tags_extra:
   - "service:wordpress"
