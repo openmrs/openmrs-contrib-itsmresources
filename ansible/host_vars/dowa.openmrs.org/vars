@@ -119,12 +119,9 @@ nginx_vhosts:
         root /usr/share/nginx/html;
       }
       location / {
-        return 301 https://dev3.openmrs.org/openmrs;
-      }
-      location /openmrs {
         proxy_set_header HOST $host;
         proxy_set_header  X-Forwarded-Proto $scheme;
-        proxy_pass http://127.0.0.1:8084/openmrs;
+        proxy_pass http://127.0.0.1:8084/;
       }
   - listen: "443 ssl"
     server_name: "dowa.openmrs.org"
