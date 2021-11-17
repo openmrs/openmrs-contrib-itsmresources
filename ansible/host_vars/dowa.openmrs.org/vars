@@ -21,10 +21,6 @@ users:
     comment: Mutesasira Moses
     groups: 'admin'
     ssh_key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCshLocvRzUOR90M79FF9YrwbelsCdLdQdTZc92blRuY8AwE1AMAt9DQSatOD0+4ivhm6KaY5oRSfaieTuYU1t0DFbBPdBShT6dOpl6TPxjmd/4bWj2MKZaoML6ehpmLvsO7IrPuhxmb0vA8DI8ywdu3YODoYrOT3OZYWIb83MW+h8kNZo4MCyzGDv70ErkDqcZPvJzU8JjGF+S3dK+MNJtbtawLrTzzV5DtGQMcTOM/SoHPiuV8ToMOWzqg9alI8RbJxOGCsfsKJhEY5xsZ0CA/RUUZYZOOIgrO9SHNtdHrYlzC3rLUjOa3wsLEXUjL67X/id6+ly+Y+WFlWxR1ifd Dell@DESKTOP-676A5RJ"
-  permissionerror:
-    comment: Ray Ma
-    groups: 'admin'
-    ssh_key: "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAv22EW0RN4uwv4etiuBj5PqW7SKgch5jwqtZpHOpI7eZ4uagxRoeePyhERxsxm9193FjWtQIDtIyKCsa8BeuGZ6+SOb/PqnDtR7p5i8bWxp38+wveAQk16AorvH5lvM4XF/vH+f3G8hfq6D9NAGr5jaVsOzU+XubZYRV1VgDD4t0cvka71MWiTyvbePx8VmHMcDSCL/fbisRuTolyplzXKCAvYDNaitWyzeoW6WE+Tdw7XhHir6b8gJOAe4aoYegAWj4fd/rAVjX33B4h6plK1aixKC3+yfVodf+ei990TrEdVP6/BOZJupUEXkr7PWN+a/tt4CqXv5G71kHPOXcakQ=="
   raff:
     comment: Rafal
     groups: 'admin'

@@ -13,10 +13,6 @@ users:
     comment: Sai Sandeep Mutyala
     groups: 'admin'
     ssh_key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDhlmZhjT4V5UZfcNEJUh34FZdLxadk2XQMmvIAErfiuFhq38gQc9GQsRfdwXyhozf3qx6MPwPxxmIINspf2ZPCAGvLOlkNFkGKmh+2mpSQdZyX4a4IL6/Hjgpz71AAHo9uyelWVi9bosK4Og/ieTlSy3Y4gKHMT7IRFNhwP23/yRNhe594C1CMEXiAkcwup55MpXreZtenOwYNhefT+2GwcYgYfQNVXPb7LB+9ipJ20xsEqjMpCHWr6HeO7yAdl0BGtYb8Ua+qKeR4XV+Ok4jEGgRzr7fgGDPPkDvkTYWuC1UGelXlMn/NSmO7EECUVMEckrqLzYclaqcfnvBpCde3 krypt@krypt-Lenovo-Y520-15IKBN"
-  permissionerror:
-    comment: Ray Ma
-    groups: 'admin'
-    ssh_key: "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAv22EW0RN4uwv4etiuBj5PqW7SKgch5jwqtZpHOpI7eZ4uagxRoeePyhERxsxm9193FjWtQIDtIyKCsa8BeuGZ6+SOb/PqnDtR7p5i8bWxp38+wveAQk16AorvH5lvM4XF/vH+f3G8hfq6D9NAGr5jaVsOzU+XubZYRV1VgDD4t0cvka71MWiTyvbePx8VmHMcDSCL/fbisRuTolyplzXKCAvYDNaitWyzeoW6WE+Tdw7XhHir6b8gJOAe4aoYegAWj4fd/rAVjX33B4h6plK1aixKC3+yfVodf+ei990TrEdVP6/BOZJupUEXkr7PWN+a/tt4CqXv5G71kHPOXcakQ=="
 
 datadog_tags_extra:
   - "service:addons"
