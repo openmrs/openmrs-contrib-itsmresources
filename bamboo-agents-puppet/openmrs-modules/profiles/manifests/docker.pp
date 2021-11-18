@@ -6,10 +6,15 @@ class profiles::docker (
     mode    => '0711',
     owner   => 'root',
     group   => 'root',
+    recurse => true,
+    purge   => true,
+    source  => 'file:///var/lib/docker',
+    
   }
   file { '/var/lib/docker':
     ensure => 'link',
     target => '/data/docker',
+    force  => true,
   }
   class { '::docker':
     docker_users    => $users,
