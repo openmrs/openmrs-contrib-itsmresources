@@ -15,7 +15,7 @@ define bamboo_agent_home::link (
   } ->
   file { "/home/${bamboo_user}/${destination}":
     ensure => 'link',
-    target => '/data/${destination}',
+    target => "/data/${destination}",
     force  => true,
   }
 }
