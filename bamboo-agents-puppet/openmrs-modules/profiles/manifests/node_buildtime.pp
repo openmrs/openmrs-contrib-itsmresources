@@ -3,6 +3,7 @@ class profiles::node_buildtime (
   $bamboo_user_home = lookup('bamboo_agent_home::bamboo_user_home')
 ){
   
+  bamboo_agent_home::link { '.npm': }
   bamboo_agent_home::link { '.nvm': }
   
   class { 'nodejs':
