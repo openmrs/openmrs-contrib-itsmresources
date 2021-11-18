@@ -1,6 +1,16 @@
 class profiles::docker (
   $users,
 ){
+  file { '/data/docker' :
+    ensure  => directory,
+    mode    => '0711',
+    owner   => 'root',
+    group   => 'root',
+  }
+  file { '/var/lib/docker':
+    ensure => 'link',
+    target => '/data/docker',
+  }
   class { '::docker':
     docker_users    => $users,
     dns             => ['8.8.8.8','8.8.4.4'],
