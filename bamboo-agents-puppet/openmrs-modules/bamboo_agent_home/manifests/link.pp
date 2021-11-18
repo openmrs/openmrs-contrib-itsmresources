@@ -1,16 +1,23 @@
 define bamboo_agent_home::link (
   $bamboo_user = lookup('bamboo_agent_home::bamboo_user'),
-  $content,
   $destination = $name,
-  $mode   = '600',
+  $mode   = '700',
+  $recurse = false,
+  $purge = false,
+  $force = false,
+  $source = undef,
 ){
   include ::bamboo_agent_home
 
   file { "/data/${destination}":
+    ensure  => directory,
     mode    => $mode,
+    recurse => $recurse,
+    purge   => $purge,
+    force   => $force,
+    source  => $source,
     owner   => $bamboo_user,
     group   => $bamboo_user,
-    content => $content,
     require => User[$bamboo_user],
   }
   
