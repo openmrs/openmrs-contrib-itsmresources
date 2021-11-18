@@ -2,21 +2,18 @@ class profiles::docker (
   $users,
 ){
   file { '/data/docker' :
-    ensure  => present,
+    ensure  => directory,
     mode    => '0711',
     owner   => 'root',
     group   => 'root',
-    recurse => true,
-    purge   => true,
-    force   => true,
-    source  => 'file:///var/lib/docker',
     links   => follow,
-  }
+  } ->
   file { '/var/lib/docker':
     ensure => 'link',
     target => '/data/docker',
     force  => true,
   }
+  
   class { '::docker':
     docker_users    => $users,
     dns             => ['8.8.8.8','8.8.4.4'],
