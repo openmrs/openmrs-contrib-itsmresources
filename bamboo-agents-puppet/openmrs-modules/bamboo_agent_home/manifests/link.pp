@@ -2,6 +2,7 @@ define bamboo_agent_home::link (
   $bamboo_user = lookup('bamboo_agent_home::bamboo_user'),
   $destination = $name,
   $mode   = '700',
+  $backup = false,
 ){
   include ::bamboo_agent_home
 
@@ -17,5 +18,6 @@ define bamboo_agent_home::link (
     ensure => 'link',
     target => "/data/${destination}",
     force  => true,
+    backup => $backup,
   }
 }

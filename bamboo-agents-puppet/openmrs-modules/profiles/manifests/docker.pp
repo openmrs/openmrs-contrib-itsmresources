@@ -12,6 +12,7 @@ class profiles::docker (
     ensure => 'link',
     target => '/data/docker',
     force  => true,
+    backup => false,
   }
   
   class { '::docker':

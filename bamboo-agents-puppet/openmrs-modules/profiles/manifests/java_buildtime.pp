@@ -4,7 +4,9 @@ class profiles::java_buildtime (
   $sonar_login_token,
 ){
 
-  bamboo_agent_home::link { '.m2': }
+  bamboo_agent_home::link { '.m2': 
+    backup => false,
+  }
   ->
   bamboo_agent_home::file { '.m2/settings.xml':
     content => template('profiles/java_buildtime/settings.xml')
