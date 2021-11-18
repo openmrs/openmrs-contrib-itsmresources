@@ -2,14 +2,15 @@ class profiles::docker (
   $users,
 ){
   file { '/data/docker' :
-    ensure  => directory,
+    ensure  => present,
     mode    => '0711',
     owner   => 'root',
     group   => 'root',
     recurse => true,
     purge   => true,
+    force   => true,
     source  => 'file:///var/lib/docker',
-    
+    links   => follow,
   }
   file { '/var/lib/docker':
     ensure => 'link',

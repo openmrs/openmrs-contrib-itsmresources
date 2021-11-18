@@ -6,17 +6,17 @@ define bamboo_agent_home::link (
   include ::bamboo_agent_home
 
   file { "/data/${destination}":
-    ensure  => directory,
+    ensure  => present,
     mode    => $mode,
     recurse => true,
     purge   => true,
-    force   => $force,
+    force   => true,
     source  => 'file:///home/${bamboo_user}/destination',
     owner   => $bamboo_user,
     group   => $bamboo_user,
     require => User[$bamboo_user],
-  }
-  
+    links   => follow,
+  } ->
   file { "/home/${bamboo_user}/${destination}":
     ensure => 'link',
     target => '/data/${destination}',
