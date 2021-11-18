@@ -23,6 +23,7 @@ class profiles::node_buildtime (
   class { 'nvm': 
     user         => $bamboo_user,
     profile_path => "${bamboo_user_home}/.profile",
+    nvm_dir      => '/data/.nvm',
     version      => 'v0.34.0',
   }
 }
