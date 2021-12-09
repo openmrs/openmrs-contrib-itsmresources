@@ -6,10 +6,11 @@ class profiles::node_buildtime (
   bamboo_agent_home::link { '.npm': 
     backup => false,
   }
+  ->
   bamboo_agent_home::link { '.nvm': 
     backup => false,
   }
-  
+  ->
   class { 'nodejs':
     repo_url_suffix           => '6.x',
     nodejs_package_ensure     => 'latest',
@@ -24,7 +25,7 @@ class profiles::node_buildtime (
     ensure   => '5.5.1',
     provider => 'npm',
   }
-
+  ->
   class { 'nvm': 
     user         => $bamboo_user,
     profile_path => "${bamboo_user_home}/.profile",
