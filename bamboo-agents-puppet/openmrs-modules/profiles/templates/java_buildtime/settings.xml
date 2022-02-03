@@ -21,6 +21,11 @@
       <username>ci</username>
       <password><%= @maven_password %></password>
     </server>
+    <server>
+      <id>docker.io</id>
+      <username>openmrsci</username>
+      <password><%= @docker_password %></password>
+    </server>
   </servers>
 
   <profiles>

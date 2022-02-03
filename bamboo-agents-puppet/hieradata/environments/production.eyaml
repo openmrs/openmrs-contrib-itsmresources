@@ -9,6 +9,16 @@ profiles::java_buildtime::maven_password: >
     mmJjrM7oH4vROwVrDkilhm4/AP0VnTnafN1hqxA2PI2tHdVJI+cJTynvKXW7
     tuJYkTBMBgkqhkiG9w0BBwEwHQYJYIZIAWUDBAEqBBCahhhkxbLjO0EMBkrs
     K3mfgCCL4jgwbpf3CDjnqiT3KnEI6BovqplpnlWUFmhFKWd43A==]
+profiles::java_buildtime::docker_password: >
+    ENC[PKCS7,MIIBiQYJKoZIhvcNAQcDoIIBejCCAXYCAQAxggEhMIIBHQIBADAFMAACAQEw
+    DQYJKoZIhvcNAQEBBQAEggEAeDm/B4mZc9bBshRhvLUnPDkWmwNB5Fgby5Ek
+    USLNYpdEfq2QL+0kfABpjD4fk9V9Dv5sME9hiX8HZ7Es4fm5NeCDXHy7xhgs
+    PDvfUSwaC9mB33YhYWhbkfRU0V+dxOPWJHTZj0ot8Fg9Gv59MYvPqWXDxgT2
+    onUDvhgEBepnwtWRix3/g1c+db3ccTLPSOlrMg8ZNUFKs5PV0Z8szRJpTHbr
+    Y2/vXPrLat04uy/pwcT6pAvW94DS+YSEhtD3e/Fl0EsXpjSXFSX00uDV8Lo9
+    qa734ieFTDJDeAgcSwSXThNXtvkUwhnIjeaYbJ9pFRZMQcXNolPuJ/5WU9Eh
+    yaiL8zBMBgkqhkiG9w0BBwEwHQYJYIZIAWUDBAEqBBCF575DIiBaJmjN0san
+    +bPhgCA6Cu7gHtTzySHQ+SPYfvK0Hjs66euUXz3c9gZyxf0/kQ==]
 profiles::java_buildtime::sonar_login_token: >
     ENC[PKCS7,MIIBmQYJKoZIhvcNAQcDoIIBijCCAYYCAQAxggEhMIIBHQIBADAFMAACAQEw
     DQYJKoZIhvcNAQEBBQAEggEAaKrtQwdKmSQQdLVgwfEO2OmefnxEUkOYkIMZ
