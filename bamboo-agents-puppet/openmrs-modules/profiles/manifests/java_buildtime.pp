@@ -1,6 +1,7 @@
 class profiles::java_buildtime (
   $maven3_version,
   $maven_password,
+  $docker_password,
   $sonar_login_token,
 ){
 
