@@ -20,6 +20,7 @@ datadog_tags_extra:
   - "service:matterbridge"
   - "service:quizgrader"
   - "service:shields"
+  - "service:radarproxy"
 
 docker_deployment:
   - sonar
@@ -28,12 +29,15 @@ docker_deployment:
   - matterbridge
   - quizgrader
   - shields
+  - radarproxy
 
 docker_deployable_images:
   - repository: openmrs/openmrs-quizgrader
     compose: quizgrader
   - repository: openmrsinfra/shields
     compose: shields
+  - repository: openmrsinfra/radarproxy
+    compose: radarproxy
 
 letsencrypt_cert_domains:
   - mokolo.openmrs.org
@@ -41,6 +45,7 @@ letsencrypt_cert_domains:
   - implementation.openmrs.org
   - quizgrader.openmrs.org
   - shields.openmrs.org
+  - radarproxy.openmrs.org
 
 nginx_vhosts:
  - listen: "80 default_server"
@@ -143,6 +148,24 @@ nginx_vhosts:
      }
      location / {
        proxy_pass http://127.0.0.1:8083;
+     }
+ - listen: "80"
+   server_name: "radarproxy.openmrs.org"
+   filename: "radarproxy.openmrs.org.80.conf"
+   extra_parameters: |
+     return 301 https://$host$request_uri;
+ - listen: "443 ssl"
+   server_name: "radarproxy.openmrs.org"
+   extra_parameters: |
+     access_log /var/log/nginx/radarproxy_access.log;
+     error_log /var/log/nginx/radarproxy_error.log;
+     ssl_certificate /etc/letsencrypt/live/mokolo.openmrs.org/fullchain.pem;
+     ssl_certificate_key /etc/letsencrypt/live/mokolo.openmrs.org/privkey.pem;
+     location ^~ /.well-known/acme-challenge/ {
+       root /usr/share/nginx/html;
+     }
+     location / {
+       proxy_pass http://127.0.0.1:8085;
      }
 
 aws_access_key_id: '{{ vault_aws_access_key_id }}'
