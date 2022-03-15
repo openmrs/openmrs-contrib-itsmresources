@@ -46,6 +46,7 @@ docker_deployment:
   - uat-platform
   - emr-3-dev
   - emr-3-demo
+  - emr-3-ohri
 
 letsencrypt_cert_domains:
    - dowa.openmrs.org
