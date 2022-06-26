@@ -17,7 +17,7 @@ class profiles::bamboo_agent (
 	  agents     => {
 	    '1' => {
           'wrapper_conf_properties' => {
-              'wrapper.java.command' => '/usr/lib/jvm/java-11-openjdk-amd64/jre/bin/java',
+              'wrapper.java.command' => '/usr/lib/jvm/java-8-openjdk-amd64/bin/java',
            },
 	        'home'            => "$bamboo_user_home/bamboo-agent",
 	        'user_name'       => $bamboo_user,

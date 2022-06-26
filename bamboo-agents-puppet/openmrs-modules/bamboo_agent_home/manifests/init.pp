@@ -6,5 +6,6 @@ class bamboo_agent_home (
     ensure     => 'present',
     managehome => true,
     home       => $bamboo_user_home,
+    groups     => ['docker'],
   }
 }
