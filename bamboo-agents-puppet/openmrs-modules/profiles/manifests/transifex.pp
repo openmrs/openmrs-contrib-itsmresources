@@ -5,11 +5,11 @@ class profiles::transifex (
     ensure  => present,
   } ->
   package { 'cryptography':
-    ensure   => '3.0',
+    ensure   => '3.4.8',
     provider => 'pip3',
   } ->
   package { 'pyOpenSSL':
-    ensure   => '17.5.0',
+    ensure   => '21.0.0',
     provider => 'pip3',
   } ->
   package { 'transifex-client':

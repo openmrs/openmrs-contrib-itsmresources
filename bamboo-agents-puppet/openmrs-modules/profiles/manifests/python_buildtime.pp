@@ -1,5 +1,5 @@
 class profiles::python_buildtime {
-  package { ['python-pip', 'python-virtualenv', 'python3-pip']:
+  package { ['python3-pip', 'python3-virtualenv']:
     ensure  => present,
   }
 }

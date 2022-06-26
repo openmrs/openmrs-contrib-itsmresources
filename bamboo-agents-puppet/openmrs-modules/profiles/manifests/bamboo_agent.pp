@@ -17,7 +17,7 @@ class profiles::bamboo_agent (
 	  agents     => {
 	    '1' => {
           'wrapper_conf_properties' => {
-              'wrapper.java.command' => '/usr/lib/jvm/java-8-openjdk-amd64/jre/bin/java',
+              'wrapper.java.command' => '/usr/lib/jvm/java-11-openjdk-amd64/jre/bin/java',
            },
 	        'home'            => "$bamboo_user_home/bamboo-agent",
 	        'user_name'       => $bamboo_user,
@@ -33,11 +33,10 @@ class profiles::bamboo_agent (
 	    'system.jdk.JDK\ 11'                                    => '/usr/lib/jvm/java-11-openjdk-amd64',
 	    'system.builder.mvn3.Maven\ 3'                          => "/usr/share/apache-maven-${maven3_version}",
 	    "system.builder.grailsBuilder.Grails\\ $grails_version" => '/opt/grails',
-	    'system.builder.node.Node.js'                           => '/usr/bin/nodejs',
 	    'system.builder.grailsBuilder.Grails\ 2'                => '/opt/grails',
 	    'system.git.executable'                                 => '/usr/bin/git',
 	    'system.builder.command.transifex'                      => '/usr/bin/tx',
-      'system.builder.command.nvm'                            => 'nvm',
+      	'system.builder.command.nvm'                            => 'nvm'
 	  },
 	  require => Class['profiles::java'],
 	}
