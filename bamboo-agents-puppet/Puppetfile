@@ -1,18 +1,16 @@
 #!/usr/bin/env ruby
 
 forge "https://forgeapi.puppetlabs.com"
-#
+
 mod 'puppetlabs-apt', '6.0.0'
 mod 'puppetlabs/stdlib', '5.0.0'
 mod 'artberri-nvm', '1.1.1'
 mod 'puppet-archive', '3.2.0'
-
+mod 'kayak-r9util', '0.0.10'
 
 # mod 'cintiadr-bamboo_agent', '0.0.14'
-# mod 'kayak-r9util', '0.0.10'
 # mod 'puppetlabs/docker', '3.0.0'
 # mod 'puppet/nodejs', '6.0.0'
-# mod 'kayak-r9util', '0.0.10'
 # mod 'puppetlabs-java', '3.2.0'
 # mod 'puppetlabs-powershell', '2.1.5'
 # mod 'puppetlabs-reboot', '2.0.0'
