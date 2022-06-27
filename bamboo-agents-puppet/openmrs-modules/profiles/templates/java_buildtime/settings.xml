@@ -42,7 +42,7 @@
           <repositories>
                 <repository>
                     <id>openmrs-repo</id>
-                    <url>http://mavenrepo.openmrs.org/nexus/content/repositories/public</url>
+                    <url>https://mavenrepo.openmrs.org/nexus/content/repositories/public</url>
                     <snapshots>
                         <enabled>true</enabled>
                         <updatePolicy>always</updatePolicy>
@@ -59,7 +59,7 @@
             <pluginRepositories>
                 <pluginRepository>
                     <id>openmrs-repo</id>
-                    <url>http://mavenrepo.openmrs.org/nexus/content/repositories/public</url>
+                    <url>https://mavenrepo.openmrs.org/nexus/content/repositories/public</url>
                     <releases>
                         <checksumPolicy>warn</checksumPolicy>
                         <enabled>true</enabled>
