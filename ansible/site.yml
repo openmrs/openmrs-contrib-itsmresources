@@ -130,7 +130,7 @@
     - mysql
   roles:
     - { role: 'custom_roles/mysql' }
-    # - mysql-cron-backup  -> not yet working
+    - { role: 'custom_roles/mysql-cron-backup' }
 
 - hosts: discourse
   tags:
