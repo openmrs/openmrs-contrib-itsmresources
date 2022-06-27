@@ -22,9 +22,6 @@
 - name: letsencrypt
   src: https://github.com/thefinn93/ansible-letsencrypt
   version: 45a305261ba84eb31e23b85edb4030049a3e623f
-- name: mysql
-  src: https://github.com/cintiadr/ansible-role-mysql
-  version: 01cc42d68a26baa3b736e4d65daef957e746e931
 - name: sudo
   src: https://github.com/yatesr/ansible-sudo.git
   version: 2a55007541a2f340eec57e4e5a7efa1c3fc73d74

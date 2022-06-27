@@ -29,8 +29,22 @@
   when: not mysql_installed.stat.exists
 
 - name: Delete innodb log files created by apt package after initial install.
-  file: path={{ mysql_datadir }}/{{ item }} state=absent
+  file: path=/var/lib/mysql/{{ item }} state=absent
   with_items:
     - ib_logfile0
     - ib_logfile1
+  when: not mysql_installed.stat.exists
+
+- name: Copy datadir to new directory
+  copy:
+    src: /var/lib/mysql/
+    dest: "{{ mysql_datadir }}"
+    remote_src: yes
+    owner: mysql
+    group: mysql
+    mode: 0700
+  when: not mysql_installed.stat.exists
+
+- name: Disable apparmor for mysqld only
+  command: /usr/sbin/aa-complain /usr/sbin/mysqld
   when: not mysql_installed.stat.exists
