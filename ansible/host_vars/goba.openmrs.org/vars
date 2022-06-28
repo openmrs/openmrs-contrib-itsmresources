@@ -9,3 +9,27 @@ datadog_tags_extra:
   - "service:quizgrader"
   - "service:shields"
   - "service:radarproxy"
+
+
+letsencrypt_cert_domains:
+   - goba.openmrs.org
+   - addons-v2.openmrs.org.openmrs.org
+   - modules-v2.openmrs.org.openmrs.org
+   - atlas-v2.openmrs.org.openmrs.org
+   - implementation-v2.openmrs.org.openmrs.org
+   - quizgrader-v2.openmrs.org.openmrs.org
+   - shields-v2.openmrs.org.openmrs.org
+   - radarproxy-v2.openmrs.org.openmrs.org
+   - sonar-v2.openmrs.org.openmrs.org
+
+nginx_vhosts:
+  - listen: "80 default_server"
+    server_name: "addons-v2.openmrs.org"
+    filename: "addons.openmrs.org.80.conf"
+    extra_parameters: |
+      return 301 https://$host$request_uri;
+
+# Generated as terraform outputs when backup is configured
+aws_access_key_id: '{{ vault_aws_access_key_id }}'
+aws_secret_access_key: '{{ vault_aws_secret_access_key }}'
+backup_tag: 'configured'

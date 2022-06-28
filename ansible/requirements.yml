@@ -19,9 +19,6 @@
 - name: dhparam
   src: https://github.com/gronke/ansible-dhparam.git
   version: 9a24d9610f5b88458a27ce0df1dca9a4ccdfaa1e
-- name: letsencrypt
-  src: https://github.com/thefinn93/ansible-letsencrypt
-  version: 45a305261ba84eb31e23b85edb4030049a3e623f
 - name: sudo
   src: https://github.com/yatesr/ansible-sudo.git
   version: 2a55007541a2f340eec57e4e5a7efa1c3fc73d74

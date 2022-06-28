@@ -25,6 +25,7 @@ mokolo.openmrs.org
 nakuru.openmrs.org
 narok.openmrs.org
 namanga.openmrs.org
+gode.openmrs.org
 
 [tls]
 dowa.openmrs.org
@@ -34,6 +35,7 @@ mokolo.openmrs.org
 nakuru.openmrs.org
 narok.openmrs.org
 namanga.openmrs.org
+gode.openmrs.org
 
 [backup]
 dowa.openmrs.org
@@ -41,3 +43,4 @@ goura.openmrs.org
 lamu.openmrs.org
 mokolo.openmrs.org
 namanga.openmrs.org
+gode.openmrs.org

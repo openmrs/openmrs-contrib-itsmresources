@@ -4,9 +4,6 @@
 datadog_tags_extra:
   - "service:database"
 
-aws_access_key_id: '{{ vault_aws_access_key_id }}'
-aws_secret_access_key: '{{ vault_aws_secret_access_key }}'
-
 # atlassian products need to connect to mysql
 ufw_rules:
    mysql:
@@ -30,7 +27,6 @@ ufw_rules:
 #             schema_size_metrics: false
 #             disable_innodb_metrics: false
 
-backup_tag: 'configured'
 
 # Mysql configuration
 mysql_root_pass: '{{ vault_mysql_root_password }}'
@@ -116,3 +112,8 @@ gcoop_mysqldump_cron_entries:
 
 # Mysql Tuning
 mysql_new_data_dir: /data/mysql
+
+# Generated as terraform outputs when backup is configured
+aws_access_key_id: '{{ vault_aws_access_key_id }}'
+aws_secret_access_key: '{{ vault_aws_secret_access_key }}'
+backup_tag: 'configured'

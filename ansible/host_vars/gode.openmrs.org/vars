@@ -3,3 +3,22 @@
 datadog_tags_extra:
   - "service:addons"
   - "service:atlas"
+
+
+letsencrypt_cert_domains:
+   - gode.openmrs.org
+   - addons-stg-v2.openmrs.org.openmrs.org
+   - modules-stg-v2.openmrs.org.openmrs.org
+   - atlas-stg-v2.openmrs.org.openmrs.org
+
+nginx_vhosts:
+  - listen: "80 default_server"
+    server_name: "addons-stg-v2.openmrs.org"
+    filename: "addons-stg.openmrs.org.80.conf"
+    extra_parameters: |
+      return 301 https://$host$request_uri;
+
+# Generated as terraform outputs when backup is configured
+aws_access_key_id: '{{ vault_aws_access_key_id }}'
+aws_secret_access_key: '{{ vault_aws_secret_access_key }}'
+backup_tag: 'configured'

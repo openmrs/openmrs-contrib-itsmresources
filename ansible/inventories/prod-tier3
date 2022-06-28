@@ -10,11 +10,14 @@ limbe.openmrs.org
 [web]
 nairobi.openmrs.org
 limbe.openmrs.org
+goba.openmrs.org
 
 [tls]
 nairobi.openmrs.org
 limbe.openmrs.org
+goba.openmrs.org
 
 [backup]
 nairobi.openmrs.org
 limbe.openmrs.org
+goba.openmrs.org

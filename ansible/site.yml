@@ -40,7 +40,7 @@
     - include: tasks/extra-tls.yml
   roles:
     - dhparam
-    - letsencrypt
+    - { role: 'custom_roles/letsencrypt'}
   handlers:
     - include: handlers/monitoring.yml
 
