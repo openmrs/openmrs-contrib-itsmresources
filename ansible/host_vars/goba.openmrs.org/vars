@@ -1,0 +1,11 @@
+---
+
+datadog_tags_extra:
+  - "service:addons"
+  - "service:atlas"
+  - "service:sonarqube"
+  - "service:implementationid"
+  - "service:matterbridge"
+  - "service:quizgrader"
+  - "service:shields"
+  - "service:radarproxy"
