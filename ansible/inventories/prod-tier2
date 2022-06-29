@@ -5,7 +5,9 @@ mua.openmrs.org
 yak.openmrs.org
 yokobue.openmrs.org
 yue.openmrs.org
+xiao.openmrs.org
 xindi.openmrs.org
+yu.openmrs.org
 
 [docker]
 balaka.openmrs.org
@@ -25,14 +27,13 @@ mua.openmrs.org
 lobi.openmrs.org
 mua.openmrs.org
 
-[atlassian]
-lobi.openmrs.org
-
 [bamboo]
 lobi.openmrs.org
 
 [bambooagent]
-xindi.openmrs.org
 yak.openmrs.org
 yokobue.openmrs.org
 yue.openmrs.org
+xiao.openmrs.org
+xindi.openmrs.org
+yu.openmrs.org

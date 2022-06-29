@@ -3,13 +3,11 @@
 datadog_tags_extra:
   - "service:addons"
   - "service:atlas"
-  - "service:sonarqube"
   - "service:implementationid"
   - "service:matterbridge"
   - "service:quizgrader"
   - "service:shields"
   - "service:radarproxy"
-
 
 letsencrypt_cert_domains:
    - goba.openmrs.org
@@ -20,7 +18,6 @@ letsencrypt_cert_domains:
    - quizgrader-v2.openmrs.org.openmrs.org
    - shields-v2.openmrs.org.openmrs.org
    - radarproxy-v2.openmrs.org.openmrs.org
-   - sonar-v2.openmrs.org.openmrs.org
 
 nginx_vhosts:
   - listen: "80 default_server"
