@@ -17,4 +17,9 @@ class profiles::node_buildtime (
     nvm_dir      => '/data/.nvm',
     version      => 'v0.34.0',
   }
+  ->
+  file { '/data/.nvm/nvm.sh':
+    ensure      => present,
+    mode        => 'a+x',
+  }
 }
