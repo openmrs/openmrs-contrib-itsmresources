@@ -66,11 +66,10 @@
   become: true
   tags:
    - docker
+  pre_tasks:
+   - include: tasks/docker-config.yml
   roles:
-   - docker
    - docker-compose-openmrs
-  tasks:
-   - include: tasks/docker-install-hacks.yml
   handlers:
     - include: handlers/monitoring.yml
 

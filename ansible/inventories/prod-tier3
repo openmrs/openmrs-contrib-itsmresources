@@ -6,6 +6,7 @@ goba.openmrs.org
 [docker]
 nairobi.openmrs.org
 limbe.openmrs.org
+goba.openmrs.org
 
 [web]
 nairobi.openmrs.org

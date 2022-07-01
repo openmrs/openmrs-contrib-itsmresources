@@ -1,0 +1,65 @@
+---
+  - name: Retrieve original docker data directory
+    command: docker info --format  {% raw %}'{{json .DockerRootDir}}'{% endraw %} 
+    register: docker_original_data_dir
+
+  - name: Test if docker data directory is configured
+    shell: echo {{docker_original_data_dir.stdout}} | fgrep -q "{{docker_data_dir}}" 
+    register: docker_unconfigured_data_dir
+    ignore_errors: yes
+
+  - name: Stop docker service
+    command: systemctl stop docker
+    when: docker_unconfigured_data_dir.rc != 0
+
+  - name: Configure docker data directory
+    lineinfile:
+       dest:  /lib/systemd/system/docker.service
+       regexp: '^ExecStart='
+       line: "ExecStart=/usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock --data-root={{docker_data_dir}}"
+       state: present
+    when: docker_unconfigured_data_dir.rc != 0
+
+  - name: Move docker data directory
+    command: mv {{docker_original_data_dir.stdout}} {{docker_data_dir}}
+    when: docker_unconfigured_data_dir.rc != 0
+
+  - name: Reload docker service
+    command: systemctl daemon-reload
+    when: docker_unconfigured_data_dir.rc != 0
+
+  - name: Start docker service
+    command: systemctl start docker
+    when: docker_unconfigured_data_dir.rc != 0
+
+  - name: Adding dd-agent to docker group
+    user: name='dd-agent'
+        groups='docker'
+        append=yes
+
+  - name: Configure datadog service to start after docker
+    lineinfile:
+       dest: /lib/systemd/system/datadog-agent.service
+       regexp: '^After='
+       line: "After=network.target docker.service"
+       state: present
+    notify: restart datadog-agent
+
+  - name: Docker cleanup script copy
+    copy:
+      src: 'files/docker-cleanup.sh'
+      dest: "/usr/sbin/docker-cleanup.sh"
+      owner: 'root'
+      group: 'root'
+      mode: '0700'
+  - name: Docker cleanup cron
+    cron:
+      name: "docker-cleanup"
+      minute: "0"
+      hour: "2"
+      job: "/usr/sbin/docker-cleanup.sh"
+      
+  - name: Setup docker for ElasticSearch
+    sysctl: name={{ item.key }} value={{ item.value }}
+    with_items:
+      - { key: "vm.max_map_count", value: "262144" }

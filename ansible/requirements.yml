@@ -5,9 +5,6 @@
 - name: datadog
   src: Datadog.datadog
   version: 4.11.0
-- name: docker
-  src: nickjj.docker
-  version: v1.9.1
 - name: nginx
   src: geerlingguy.nginx
   version: 2.7.0

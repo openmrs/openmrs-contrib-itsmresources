@@ -1,5 +1,5 @@
 ---
-docker__backup_flags: "--data-root=/data/docker"
+docker_data_dir: "/data/docker"
 
 backup_tag: 'bootstrapped'
 backup_user: 'backup-s3'

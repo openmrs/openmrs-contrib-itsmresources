@@ -1,4 +1,18 @@
 ---
+users:
+ bamboo:
+  comment: CI Bamboo User
+  groups: 'admin'
+  ssh_key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDLecv3TGVSot9PTmhi3ddmx9ah1KL9tkdHFfugisT4yT3jaI8YV/GDPG+mVo9ru+x8yNWVzxk5YOUWEvjboOq3cMjjHpEeoXiNOTVT3bWwNGXfUkrAO4Oyuk+IW2enLFbiFDKaMvtoCEbkBI24TSb7vOSbuJz6FH0gWBzCqm9/cBSE9QK5JORhzVHNGO5gzN0POiO41MFanmgCEPmEMz56K8b5pkVPUAgj9UTs1maV0C8csItnghQtLJNbEDFGesHw1pUoW+GKQ9cgvbLLEUWi0lJXTpqJDtr8ojgoIsG13CVocQAVt5H6Jgf5UMGhpYMIXjPrJcfoABklo3B3jvqrlUcoEKMnGfS10EFAL1en/VLjDLXHMnpaXirwLqBc/fM3mpOzuc6/coKmvuB/1SBFqPSTi7UMPwgdtB5HmuNTdBYLF0Yk7M3g5oc+i6spUkvMLvFQ1V3iY+FnItW7ifo+kHj2RCtMi/RdsdbUnENi/VMmG33cBP59FGo0vVqRD8U1N51q/7q8Cgep9Hc81uJkOs+PrzJPGyOnyM7WSElmpjwFnQoKWxcNwKv/WHQQG9abSqVnUwrzuLxVCGMAlsrLhPCRj7SktJrktHQdUnQHhfqhh5AKH5mFFvZeyNnS6CZQEDb6C/91EI3J99PIfMYi0TLlixmaK+tnT/0ruWI2bw== bambooagent"
+ raff:
+  comment: Rafal
+  groups: 'admin'
+  ssh_key: "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAgc4Q+9e1XMDInFm4GNkuYErYkgDt0KNnmLDTFa+0HV1MuQKP+TE3Ee9Qdx5rugNkg9+e45Hzfze/vX/nYjrNAkWcxYaxEAdej/6QW4Bh4r6rRLnNoqnksG3+WVXl2cqOf9odji2L+uzA2E+zX5tEYqVkN9+0z1Ewwe6lcSg0zRQyJ+phIo595eftYJGAiLAhIfSotg8SxWJhSHUsNtphyXRld7FtxXDgfu6SkejvakymwXEuMe7yS2mES9U8IlJh4CyADGaqb0WSWfqsejcgMuXJmnEqpMqVwcDaP4B+NZLTKfUUlc2D8DiUKRqlnxuGCFmkpghTQkX4dE0YhxJSjQ== raff"
+ djazayeri:
+  comment: Darius Jazayeri
+  groups: 'admin'
+  ssh_key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC0ted8ZbMokU7mjwoNHhNRuPKyIr2T4NDtatZSHZa/A6e0t+tDi8K1znFMbgZ3ZcVQQh0czcrnwTMMUprTiVyn5WB16Qs0WrfiHfr83/HDkcJA9LbQ3s1bM/f9QJ9Uo5vP5TMpJL8gGueKiSMP1+x6JwJ4EuUZKdsUz+q/WtzxU10ImECWOeOnwGaUkmitPREBzbJSIv8pciq4QJ/fHuYeuvRZOmUYC+V+Rn3C1XEJf1jhRIBahT5KhV02wfmbfXchIAd/WrIbqvVQ5YGg8UwqdN47cxHvNwR5BCqpTY1C3XyCrj13NqflPCGyYyj6+mxs74EMJYAh0nDT/ZSeUvbf jazayeri@alum.mit.edu"
+
 
 datadog_tags_extra:
   - "service:addons"
@@ -8,23 +22,175 @@ datadog_tags_extra:
   - "service:quizgrader"
   - "service:shields"
   - "service:radarproxy"
+  - "service:implementationid"
+  - "service:matterbridge"
+  - "service:quizgrader"
+  - "service:shields"
+  - "service:radarproxy"
 
 letsencrypt_cert_domains:
    - goba.openmrs.org
-   - addons-v2.openmrs.org.openmrs.org
-   - modules-v2.openmrs.org.openmrs.org
-   - atlas-v2.openmrs.org.openmrs.org
-   - implementation-v2.openmrs.org.openmrs.org
-   - quizgrader-v2.openmrs.org.openmrs.org
-   - shields-v2.openmrs.org.openmrs.org
-   - radarproxy-v2.openmrs.org.openmrs.org
+   - addons-v2.openmrs.org
+   - modules-v2.openmrs.org
+   - atlas-v2.openmrs.org
+   - implementation-v2.openmrs.org
+   - quizgrader-v2.openmrs.org
+   - shields-v2.openmrs.org
+   - radarproxy-v2.openmrs.org
+
+
+docker_deployment:
+  - addons
+  - atlas
+  - implementationid
+  - matterbridge
+  - quizgrader
+  - shields
+  - radarproxy
 
 nginx_vhosts:
+  - listen: "80"
+    server_name: "modules-v2.openmrs.org"
+    filename: "modules.openmrs.org.80.conf"
+    extra_parameters: |
+      return 301 https://$host$request_uri;
+  - listen: "443 ssl"
+    server_name: "modules-v2.openmrs.org"
+    extra_parameters: |
+      access_log /var/log/nginx/modules_access.log;
+      error_log /var/log/nginx/modules_error.log;
+      ssl_certificate /etc/letsencrypt/live/goba.openmrs.org/fullchain.pem;
+      ssl_certificate_key /etc/letsencrypt/live/goba.openmrs.org/privkey.pem;
+      location ^~ /.well-known/acme-challenge/ {
+        root /usr/share/nginx/html;
+      }
+      location / {
+        return 301 https://addons.openmrs.org$request_uri;
+      }
   - listen: "80 default_server"
     server_name: "addons-v2.openmrs.org"
     filename: "addons.openmrs.org.80.conf"
     extra_parameters: |
       return 301 https://$host$request_uri;
+  - listen: "443 ssl"
+    server_name: "addons-v2.openmrs.org"
+    extra_parameters: |
+      access_log /var/log/nginx/addons_access.log;
+      error_log /var/log/nginx/addons_error.log;
+      ssl_certificate /etc/letsencrypt/live/goba.openmrs.org/fullchain.pem;
+      ssl_certificate_key /etc/letsencrypt/live/goba.openmrs.org/privkey.pem;
+      location ^~ /.well-known/acme-challenge/ {
+        root /usr/share/nginx/html;
+      }
+      location / {
+        proxy_pass http://127.0.0.1:8081/;
+      }
+  - listen: "80"
+    server_name: "atlas-v2.openmrs.org"
+    filename: "atlas.openmrs.org.80.conf"
+    extra_parameters: |
+      return 301 https://$host$request_uri;
+  - listen: "443 ssl"
+    server_name: "atlas-v2.openmrs.org"
+    extra_parameters: |
+      access_log /var/log/nginx/atlas_access.log;
+      error_log /var/log/nginx/atlas_error.log;
+      ssl_certificate /etc/letsencrypt/live/goba.openmrs.org/fullchain.pem;
+      ssl_certificate_key /etc/letsencrypt/live/goba.openmrs.org/privkey.pem;
+      location ^~ /.well-known/acme-challenge/ {
+        root /usr/share/nginx/html;
+      }
+      location / {
+        proxy_set_header HOST $host;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_pass http://127.0.0.1:8548/;
+        fastcgi_buffers 16 16k;
+        fastcgi_buffer_size 32k;
+        proxy_buffer_size   128k;
+        proxy_buffers   4 256k;
+        proxy_busy_buffers_size   256k;
+      }
+  - listen: "443 ssl"
+    server_name: "implementation-v2.openmrs.org"
+    extra_parameters: |
+      access_log /var/log/nginx/implementation_access.log;
+      error_log /var/log/nginx/implementation_error.log;
+      ssl_certificate /etc/letsencrypt/live/goba.openmrs.org/fullchain.pem;
+      ssl_certificate_key /etc/letsencrypt/live/goba.openmrs.org/privkey.pem;
+      location ^~ /.well-known/acme-challenge/ {
+       root /usr/share/nginx/html;
+      }
+      location / {
+       proxy_set_header  X-Forwarded-Proto $scheme;
+       proxy_pass http://127.0.0.1:8000;
+      }
+  - listen: "80"
+    server_name: "quizgrader-v2.openmrs.org"
+    filename: "quizgrader.openmrs.org.80.conf"
+    extra_parameters: |
+      return 301 https://$host$request_uri;
+  - listen: "443 ssl"
+    server_name: "quizgrader-v2.openmrs.org"
+    extra_parameters: |
+     access_log /var/log/nginx/quizgrader_access.log;
+     error_log /var/log/nginx/quizgrader_error.log;
+     ssl_certificate /etc/letsencrypt/live/goba.openmrs.org/fullchain.pem;
+     ssl_certificate_key /etc/letsencrypt/live/goba.openmrs.org/privkey.pem;
+     location ^~ /.well-known/acme-challenge/ {
+       root /usr/share/nginx/html;
+     }
+     location / {
+       proxy_pass http://127.0.0.1:8081;
+     }
+  - listen: "80"
+    server_name: "shields-v2.openmrs.org"
+    filename: "shields.openmrs.org.80.conf"
+    extra_parameters: |
+     return 301 https://$host$request_uri;
+  - listen: "443 ssl"
+    server_name: "shields-v2.openmrs.org"
+    extra_parameters: |
+     access_log /var/log/nginx/shields_access.log;
+     error_log /var/log/nginx/shields_error.log;
+     ssl_certificate /etc/letsencrypt/live/goba.openmrs.org/fullchain.pem;
+     ssl_certificate_key /etc/letsencrypt/live/goba.openmrs.org/privkey.pem;
+     location ^~ /.well-known/acme-challenge/ {
+       root /usr/share/nginx/html;
+     }
+     location / {
+       proxy_pass http://127.0.0.1:8083;
+     }
+  - listen: "80"
+    server_name: "radarproxy-v2.openmrs.org"
+    filename: "radarproxy.openmrs.org.80.conf"
+    extra_parameters: |
+     return 301 https://$host$request_uri;
+  - listen: "443 ssl"
+    server_name: "radarproxy-v2.openmrs.org"
+    extra_parameters: |
+     access_log /var/log/nginx/radarproxy_access.log;
+     error_log /var/log/nginx/radarproxy_error.log;
+     ssl_certificate /etc/letsencrypt/live/goba.openmrs.org/fullchain.pem;
+     ssl_certificate_key /etc/letsencrypt/live/goba.openmrs.org/privkey.pem;
+     location ^~ /.well-known/acme-challenge/ {
+       root /usr/share/nginx/html;
+     }
+     location / {
+       proxy_pass http://127.0.0.1:8085;
+     }
+  - listen: "443 ssl"
+    server_name: "goba.openmrs.org"
+    extra_parameters: |
+      access_log /var/log/nginx/deployer_access.log;
+      error_log /var/log/nginx/deployer_error.log;
+      ssl_certificate /etc/letsencrypt/live/goba.openmrs.org/fullchain.pem;
+      ssl_certificate_key /etc/letsencrypt/live/goba.openmrs.org/privkey.pem;
+      location ^~ /.well-known/acme-challenge/ {
+        root /usr/share/nginx/html;
+      }
+      
 
 # Generated as terraform outputs when backup is configured
 aws_access_key_id: '{{ vault_aws_access_key_id }}'
