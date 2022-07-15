@@ -4,7 +4,6 @@
 users:
  discourse:
   comment: Discourse user mapped in docker
-  groups: 'discourse'
   shell: '/usr/sbin/nologin'
   uid: 1000
   createhome: no
