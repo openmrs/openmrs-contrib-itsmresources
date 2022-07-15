@@ -1,52 +1,42 @@
 [prod]
 dowa.openmrs.org
-goura.openmrs.org
 lamu.openmrs.org
 mokolo.openmrs.org
 nakuru.openmrs.org
 narok.openmrs.org
-namanga.openmrs.org
 bonga.openmrs.org
 gode.openmrs.org
 
 [docker]
 dowa.openmrs.org
-goura.openmrs.org
 lamu.openmrs.org
 mokolo.openmrs.org
 nakuru.openmrs.org
 narok.openmrs.org
-namanga.openmrs.org
 bonga.openmrs.org
 gode.openmrs.org
 
 [web]
 dowa.openmrs.org
-goura.openmrs.org
 lamu.openmrs.org
 mokolo.openmrs.org
 nakuru.openmrs.org
 narok.openmrs.org
-namanga.openmrs.org
 bonga.openmrs.org
 gode.openmrs.org
 
 [tls]
 dowa.openmrs.org
-goura.openmrs.org
 lamu.openmrs.org
 mokolo.openmrs.org
 nakuru.openmrs.org
 narok.openmrs.org
-namanga.openmrs.org
 bonga.openmrs.org
 gode.openmrs.org
 
 [backup]
 dowa.openmrs.org
-goura.openmrs.org
 lamu.openmrs.org
 mokolo.openmrs.org
-namanga.openmrs.org
 bonga.openmrs.org
 gode.openmrs.org
