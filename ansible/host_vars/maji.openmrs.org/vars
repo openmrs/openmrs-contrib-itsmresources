@@ -13,8 +13,6 @@ datadog_tags_extra:
 
 docker_deployment: []
 
-docker_deployable_images: []
-
 letsencrypt_cert_domains:
   - maji.openmrs.org
   - talk-v2.openmrs.org

@@ -189,8 +189,8 @@ nginx_vhosts:
     extra_parameters: |
       access_log /var/log/nginx/oclclient_access.log;
       error_log /var/log/nginx/oclclient_error.log;
-      ssl_certificate /etc/letsencrypt/live/narok.openmrs.org/fullchain.pem;
-      ssl_certificate_key /etc/letsencrypt/live/narok.openmrs.org/privkey.pem;
+      ssl_certificate /etc/letsencrypt/live/bonga.openmrs.org/fullchain.pem;
+      ssl_certificate_key /etc/letsencrypt/live/bonga.openmrs.org/privkey.pem;
       location ^~ /.well-known/acme-challenge/ {
         root /usr/share/nginx/html;
       }

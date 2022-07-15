@@ -40,8 +40,6 @@ letsencrypt_cert_domains:
   - demo-v2.openmrs.org
   - mdsbuilder-v2.openmrs.org
   - o3-v2.openmrs.org
-  - ohri.o3-v2.openmrs.org
-  - formbuilder.o3-v2.openmrs.org
   - openconceptlab.openmrs.org
 
 

@@ -1,12 +1,12 @@
 [prod]
-ako.openmrs.org
-ambam.openmrs.org
-baragoi.openmrs.org
-campo.openmrs.org
-likoma.openmrs.org
-menji.openmrs.org
-salima.openmrs.org
-maroua.openmrs.org
+; ako.openmrs.org
+; ambam.openmrs.org
+; baragoi.openmrs.org
+; campo.openmrs.org
+; likoma.openmrs.org
+; menji.openmrs.org
+; salima.openmrs.org
+; maroua.openmrs.org
 adaba.openmrs.org
 jinka.openmrs.org
 maji.openmrs.org
@@ -15,21 +15,21 @@ mota.openmrs.org
 sawla.openmrs.org
 
 [docker]
-ako.openmrs.org
-baragoi.openmrs.org
-likoma.openmrs.org
+; ako.openmrs.org
+; baragoi.openmrs.org
+; likoma.openmrs.org
 adaba.openmrs.org
 maji.openmrs.org
 jinka.openmrs.org
 
 [web]
-ako.openmrs.org
-ambam.openmrs.org
-baragoi.openmrs.org
-campo.openmrs.org
-likoma.openmrs.org
-menji.openmrs.org
-maroua.openmrs.org
+; ako.openmrs.org
+; ambam.openmrs.org
+; baragoi.openmrs.org
+; campo.openmrs.org
+; likoma.openmrs.org
+; menji.openmrs.org
+; maroua.openmrs.org
 adaba.openmrs.org
 maji.openmrs.org
 mojo.openmrs.org
@@ -37,26 +37,27 @@ mota.openmrs.org
 jinka.openmrs.org
 
 [tls]
-ako.openmrs.org
-ambam.openmrs.org
-baragoi.openmrs.org
-campo.openmrs.org
-likoma.openmrs.org
-menji.openmrs.org
-maroua.openmrs.org
+; ako.openmrs.org
+; ambam.openmrs.org
+; baragoi.openmrs.org
+; campo.openmrs.org
+; likoma.openmrs.org
+; menji.openmrs.org
+; maroua.openmrs.org
 adaba.openmrs.org
 maji.openmrs.org
+mojo.openmrs.org
 mota.openmrs.org
 jinka.openmrs.org
 
 [backup]
-ako.openmrs.org
-ambam.openmrs.org
-baragoi.openmrs.org
-likoma.openmrs.org
-menji.openmrs.org
-salima.openmrs.org
-maroua.openmrs.org
+; ako.openmrs.org
+; ambam.openmrs.org
+; baragoi.openmrs.org
+; likoma.openmrs.org
+; menji.openmrs.org
+; salima.openmrs.org
+; maroua.openmrs.org
 adaba.openmrs.org
 mojo.openmrs.org
 mota.openmrs.org
@@ -64,18 +65,18 @@ jinka.openmrs.org
 sawla.openmrs.org
 
 [jira]
-maroua.openmrs.org
+; maroua.openmrs.org
 
 [confluence]
-menji.openmrs.org
+; menji.openmrs.org
 
 [crowd]
-ambam.openmrs.org
+; ambam.openmrs.org
 
 [mysql]
-salima.openmrs.org
+; salima.openmrs.org
 sawla.openmrs.org
 
 [discourse]
-likoma.openmrs.org
+; likoma.openmrs.org
 maji.openmrs.org

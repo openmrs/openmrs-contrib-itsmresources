@@ -1,35 +1,35 @@
 [prod]
-balaka.openmrs.org
-lobi.openmrs.org
-mua.openmrs.org
+; balaka.openmrs.org
+; lobi.openmrs.org
+; mua.openmrs.org
 worabe.openmrs.org
 xiao.openmrs.org
 xindi.openmrs.org
 yu.openmrs.org
 
 [docker]
-balaka.openmrs.org
-mua.openmrs.org
+; balaka.openmrs.org
+; mua.openmrs.org
 
 [web]
-balaka.openmrs.org
-lobi.openmrs.org
-mua.openmrs.org
+; balaka.openmrs.org
+; lobi.openmrs.org
+; mua.openmrs.org
 worabe.openmrs.org
 
 [tls]
-balaka.openmrs.org
-lobi.openmrs.org
-mua.openmrs.org
+; balaka.openmrs.org
+; lobi.openmrs.org
+; mua.openmrs.org
 worabe.openmrs.org
 
 [backup]
-lobi.openmrs.org
-mua.openmrs.org
+; lobi.openmrs.org
+; mua.openmrs.org
 worabe.openmrs.org
 
 [bamboo]
-lobi.openmrs.org
+; lobi.openmrs.org
 
 [bambooagent]
 xiao.openmrs.org

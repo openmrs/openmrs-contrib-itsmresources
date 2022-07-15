@@ -2,7 +2,7 @@
 # bamboo
 
 ufw_rules:
-   http:
+   remote-agents-http:
      port: 54663
      proto: tcp
      rule: allow

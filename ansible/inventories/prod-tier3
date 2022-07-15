@@ -1,29 +1,29 @@
 [prod]
-nairobi.openmrs.org
-limbe.openmrs.org
+; nairobi.openmrs.org
+; limbe.openmrs.org
 bele.openmrs.org
 goba.openmrs.org
 
 [docker]
-nairobi.openmrs.org
-limbe.openmrs.org
+; nairobi.openmrs.org
+; limbe.openmrs.org
 bele.openmrs.org
 goba.openmrs.org
 
 [web]
-nairobi.openmrs.org
-limbe.openmrs.org
+; nairobi.openmrs.org
+; limbe.openmrs.org
 bele.openmrs.org
 goba.openmrs.org
 
 [tls]
-nairobi.openmrs.org
-limbe.openmrs.org
+; nairobi.openmrs.org
+; limbe.openmrs.org
 bele.openmrs.org
 goba.openmrs.org
 
 [backup]
-nairobi.openmrs.org
-limbe.openmrs.org
+; nairobi.openmrs.org
+; limbe.openmrs.org
 bele.openmrs.org
 goba.openmrs.org
