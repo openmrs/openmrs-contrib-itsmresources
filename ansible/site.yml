@@ -15,7 +15,7 @@
   tags:
     - soe
   roles:
-   - users
+   - { role: 'custom_roles/users' }
    - sudo
    - { role: 'custom_roles/sshd' }
    - ufw

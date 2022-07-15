@@ -1,0 +1,108 @@
+---
+# tasks file for hswong3i.crowd
+
+- name: create group
+  group:
+    name: "{{ crowd_user }}"
+    gid: "{{ crowd_gid | default(None) or omit }}"
+  when: crowd_pass is string and crowd_hash_salt is string
+  notify: restart crowd
+  tags: hswong3i.crowd
+
+- name: create user
+  user:
+    name: "{{ crowd_user }}"
+    password: "{{ crowd_pass | password_hash('sha512', crowd_hash_salt) }}"
+    home: "{{ crowd_home }}"
+    group: "{{ crowd_user }}"
+    uid: "{{ crowd_uid | default(None) or omit }}"
+    shell: "/bin/bash"
+  when: crowd_pass is string and crowd_hash_salt is string
+  notify: restart crowd
+  tags: hswong3i.crowd
+
+- name: prepare files
+  file:
+    dest: "{{ item.dest }}"
+    owner: "{{ item.owner }}"
+    group: "{{ item.group }}"
+    mode: "{{ item.mode }}"
+    state: "{{ item.state }}"
+  with_items:
+    - { dest: "{{ crowd_catalina }}", owner: "{{ crowd_user }}", group: "{{ crowd_user }}", mode: "0755", state: "directory" }
+  notify: restart crowd
+  tags: hswong3i.crowd
+
+- name: download package
+  get_url:
+    url: "{{ crowd_url }}"
+    dest: "/tmp/{{ crowd_archive }}"
+    checksum: "{{ crowd_checksum }}"
+  tags: hswong3i.crowd
+
+- name: unarchive package
+  shell: |
+    tar zxvf /tmp/{{ crowd_archive }} -C {{ crowd_catalina }} --strip-components=1
+    chown -Rf {{ crowd_user }}:{{ crowd_user }} {{ crowd_catalina }}
+  args:
+    creates: "{{ crowd_catalina }}/start_crowd.sh"
+  notify: restart crowd
+  tags: hswong3i.crowd
+
+- name: remove stuff due to custom context path
+  file:
+    dest: "{{ item.dest }}"
+    owner: "{{ item.owner }}"
+    group: "{{ item.group }}"
+    mode: "{{ item.mode }}"
+    state: "{{ item.state }}"
+  with_items:
+    - { dest: "{{ crowd_catalina }}/apache-tomcat/webapps/ROOT", owner: "{{ crowd_user }}", group: "{{ crowd_user }}", mode: "0755", state: "absent" }
+    - { dest: "{{ crowd_catalina }}/apache-tomcat/conf/Catalina/localhost/crowd.xml", owner: "{{ crowd_user }}", group: "{{ crowd_user }}", mode: "0644", state: "absent" }
+  notify: restart crowd
+  tags: hswong3i.crowd
+
+- name: copy templates
+  template:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+    owner: "{{ item.owner }}"
+    group: "{{ item.group }}"
+    mode: "{{ item.mode }}"
+  with_items:
+    - { src: "usr/share/crowd/build.properties.j2", dest: "{{ crowd_catalina }}/build.properties", owner: "{{ crowd_user }}", group: "{{ crowd_user }}", mode: "0644" }
+  register: build_properties_result
+  notify: restart crowd
+  tags: hswong3i.crowd
+
+- name: update build with ant
+  shell: |
+    cd {{ crowd_catalina }}
+    ./build.sh
+    chown -Rf {{ crowd_user }}:{{ crowd_user }} {{ crowd_catalina }}
+  when: build_properties_result.changed
+  register: build_result
+  changed_when: build_result.rc != 0
+  notify: restart crowd
+  tags: hswong3i.crowd
+
+- name: copy templates
+  template:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+    owner: "{{ item.owner }}"
+    group: "{{ item.group }}"
+    mode: "{{ item.mode }}"
+  with_items:
+    - { src: "etc/init.d/crowd.j2", dest: "/etc/init.d/crowd", owner: "root", group: "root", mode: "0755" }
+    - { src: "usr/share/crowd/apache-tomcat/bin/setenv.sh.j2", dest: "{{ crowd_catalina }}/apache-tomcat/bin/setenv.sh", owner: "{{ crowd_user }}", group: "{{ crowd_user }}", mode: "0644" }
+    - { src: "usr/share/crowd/apache-tomcat/conf/server.xml.j2", dest: "{{ crowd_catalina }}/apache-tomcat/conf/server.xml", owner: "{{ crowd_user }}", group: "{{ crowd_user }}", mode: "0644" }
+  notify: restart crowd
+  tags: hswong3i.crowd
+
+- name: enable service
+  service:
+    name: "crowd"
+    enabled: "yes"
+  notify: restart crowd
+  tags: hswong3i.crowd

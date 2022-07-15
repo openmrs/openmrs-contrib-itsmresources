@@ -1,0 +1,4 @@
+---
+# Manage users/groups/ssh keys
+- include: users.yml
+  when: manage_users

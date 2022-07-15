@@ -1,0 +1,7 @@
+---
+# handlers file for hswong3i.jira
+
+- name: restart jira
+  service:
+    name: "jira"
+    state: "restarted"

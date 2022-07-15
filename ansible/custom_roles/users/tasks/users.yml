@@ -1,0 +1,73 @@
+---
+- name: Manage user groups for users with UIDs
+  group: name={{item.key}}
+         gid={{item.value.uid}}
+         state={{item.value.state | default('present')}}
+  ignore_errors: yes
+  with_dict: "{{users | default({})}}"
+  when: (item.value.uid is defined and users_default_create_user_group)
+  tags: ['users','groups']
+
+- name: Manage user groups for users with no UIDs
+  group: name={{item.key}}
+         state={{item.value.state | default('present')}}
+  ignore_errors: yes
+  with_dict: "{{users | default({})}}"
+  when: (item.value.uid is not defined and users_default_create_user_group)
+  tags: ['users','groups']
+
+- name: Manage other groups with GIDs
+  group: name={{item.key}}
+         gid={{item.value.gid}}
+         state={{item.value.state | default('present')}}
+  with_dict: "{{othergroups | default({})}}"
+  when: (item.value.gid is defined)
+  tags: ['users','groups']
+
+- name: Manage other groups with no GIDs
+  group: name={{item.key}}
+         state={{item.value.state | default('present')}}
+  with_dict: "{{othergroups | default({})}}"
+  when: (item.value.gid is not defined)
+  tags: ['users','groups']
+
+- name: Manage users with UIDs
+  user: name="{{item.key}}"
+        group={{item.value.group | default(item.key)}}
+        groups="{{item.value.groups | default()}}"
+        shell={{item.value.shell if item.value.shell is defined else users_default_shell}}
+        comment="{{item.value.comment | default()}}"
+        uid={{item.value.uid}}
+        createhome={{item.value.createhome if item.value.createhome is defined else users_default_createhome}}
+        generate_ssh_key={{item.value.generate_ssh_key | default('no')}}
+        system={{item.value.system | default('no')}}
+        state={{item.value.state | default('present')}}
+        remove={{item.value.remove | default('no')}}
+  with_dict: "{{users | default({})}}"
+  when: (item.value.uid is defined)
+  tags: ['users','groups']
+
+- name: Manage users without UIDs
+  user: name={{item.key}}
+        group={{item.value.group | default(item.key)}}
+        groups="{{item.value.groups | default()}}"
+        shell={{item.value.shell if item.value.shell is defined else users_default_shell}}
+        comment="{{item.value.comment | default()}}"
+        createhome={{item.value.createhome if item.value.createhome is defined else users_default_createhome}}
+        generate_ssh_key={{item.value.generate_ssh_key | default('no')}}
+        system={{item.value.system | default('no')}}
+        state={{item.value.state | default('present')}}
+        remove={{item.value.remove | default('no')}}
+  with_dict: "{{users | default({})}}"
+  when: (item.value.uid is not defined)
+  tags: ['users','groups']
+
+
+- name: Manage SSH Keys
+  authorized_key: user={{item.key}}
+                  key="{{item.value.ssh_key}}"
+                  manage_dir=yes
+                  exclusive=yes
+  with_dict: "{{users | default({})}}"
+  when: (item.value.ssh_key is defined)
+  tags: ['users','ssh-key']

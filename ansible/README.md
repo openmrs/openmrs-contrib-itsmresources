@@ -84,6 +84,9 @@ and can be opened using private GPG keys previously added to the key ring.
 
 Ansible will run over SSH, you your SSH needs to be working to the target machines.
 
+Please note that instead of forking roles into their own repos, we are keeping files in `custom_roles`. 
+That makes it simpler to modify them without requiring multiple repositories and coordination. 
+
 ## Repository
 
   - _site.yml_: default playbook, used to install everything
@@ -96,6 +99,7 @@ Ansible will run over SSH, you your SSH needs to be working to the target machin
   - _inventories_ : machine definitions (groups per machine)
   - _tasks_: tasks used in playbooks
   - _roles_: external roles/modules downloaded by `galaxy`
+  - _custom_roles_: modules we ended up forking or creating ourselves
   - _requirements.txt_: roles to be downloaded by `galaxy` into _roles_ folder
   - _ansible.cfg_: ansible configuration file
   - _Vagrantfile_: VM definition to test VMs locally
