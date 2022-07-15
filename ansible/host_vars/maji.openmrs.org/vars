@@ -1,0 +1,75 @@
+---
+# Docker host (jetstream) for discourse
+
+users:
+ discourse:
+  comment: Discourse user mapped in docker
+  groups: 'discourse'
+  shell: '/usr/sbin/nologin'
+  uid: 1000
+  createhome: no
+
+datadog_tags_extra:
+  - "service:discourse"
+
+docker_deployment: []
+
+docker_deployable_images: []
+
+letsencrypt_cert_domains:
+  - maji.openmrs.org
+  - talk-v2.openmrs.org
+
+nginx_vhosts:
+ - listen: "80 default_server"
+   server_name: "talk-v2.openmrs.org"
+   filename: "talk.openmrs.org.80.conf"
+   extra_parameters: |
+     return 301 https://$host$request_uri;
+ - listen: "443 ssl"
+   server_name: "talk-v2.openmrs.org"
+   extra_parameters: |
+     access_log /var/log/nginx/talk_access.log;
+     error_log /var/log/nginx/talk_error.log;
+     ssl_certificate /etc/letsencrypt/live/maji.openmrs.org/fullchain.pem;
+     ssl_certificate_key /etc/letsencrypt/live/maji.openmrs.org/privkey.pem;
+     location ^~ /.well-known/acme-challenge/ {
+       root /usr/share/nginx/html;
+     }
+     location / {
+       proxy_set_header X-Forwarded-Proto https;
+       proxy_set_header    Host              $host;
+       proxy_set_header    X-Real-IP         $remote_addr;
+       proxy_set_header    X-Forwarded-For   $proxy_add_x_forwarded_for;
+       proxy_pass http://127.0.0.1:9000;
+     }
+
+aws_access_key_id: '{{ vault_aws_access_key_id }}'
+aws_secret_access_key: '{{ vault_aws_secret_access_key }}'
+
+#Required Variables
+DISCOURSE_HTTP_PORT: 9000
+
+DISCOURSE_HOSTNAME: talk.openmrs.org
+
+DISCOURSE_DEVELOPER_EMAILS: 'infrastructure+talk@openmrs.org'
+DISCOURSE_SMTP_ADDRESS: '{{ vault_discourse_smtp_address }}'
+DISCOURSE_SMTP_PORT: '587'
+DISCOURSE_SMTP_USER_NAME: '{{ vault_discourse_smtp_username }}'
+DISCOURSE_SMTP_PASSWORD: '{{ vault_discourse_smtp_password }}'
+DISCOURSE_SMTP_ENABLE_START_TLS: 'true'
+DISCOURSE_FROM_EMAIL: 'talk@openmrs.org'
+DISCOURSE_DB_PASSWORD: '{{ vault_discourse_db_password  }}'
+
+# Optinal Variables
+DISCOURSE_INSTALLATION_DIR: /opt/discourse
+DISCOURSE_WEB_DIR: /data/discourse/web
+DISCOURSE_DATA_DIR: /data/discourse/data
+DISCOURSE_DB_SHARED_BUFFERS: 1GB
+DISCOURSE_DB_WORD_MEMORY: 40MB
+DISCOURSE_UNICORN_WORKERS: 4
+DISCOURSE_DEFAULT_LOCALE: en
+DISCOURSE_VERSION: tests-passed
+DISCOURSE_WEB_CONTAINER_NAME: web
+DISCOURSE_DATA_CONTAINER_NAME: data
+DISCOURSE_REPO_VERSION: master
