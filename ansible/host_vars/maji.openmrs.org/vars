@@ -1,12 +1,12 @@
 ---
 # Docker host (jetstream) for discourse
 
-users:
- discourse:
-  comment: Discourse user mapped in docker
-  shell: '/usr/sbin/nologin'
-  uid: 1000
-  createhome: no
+# users:
+#  discourse:
+#   comment: Discourse user mapped in docker
+#   shell: '/usr/sbin/nologin'
+#   uid: 1000
+#   createhome: no
 
 datadog_tags_extra:
   - "service:discourse"
