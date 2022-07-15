@@ -1,0 +1,215 @@
+---
+
+# Maven repository is also here
+# Needs to support the following URLs (baked into old POM files)
+#   - http://mavenrepo.openmrs.org/nexus/content/repositories/public/
+#   - http://mavenrepo.openmrs.org/nexus/content/repositories/modules/
+#   - http://mavenrepo.openmrs.org/nexus/content/repositories/snapshots/
+#   - http://mavenrepo.openmrs.org/nexus/content/repositories/releases/
+#
+# Some new recommended URLs:
+#   - https://mavenrepo.openmrs.org/public/
+#   - https://mavenrepo.openmrs.org/modules/
+#   - https://mavenrepo.openmrs.org/snapshots/
+#   - https://mavenrepo.openmrs.org/releases/
+#
+
+
+datadog_tags_extra:
+  - "service:wordpress"
+  - "service:yourls"
+  - "service:maven"
+  - "service:http-redirect"
+
+
+letsencrypt_cert_domains:
+   - jinka.openmrs.org
+   - site-v2.openmrs.org
+  #  - openmrs.org
+   - www-v2.openmrs.org
+   - shortener-v2.openmrs.org
+  #  - om.rs
+   - mavenrepo-v2.openmrs.org
+   - mavenrepo-redirect-v2.openmrs.org
+   - help-v2.openmrs.org
+
+docker_deployment:
+  - wordpress
+  - yourls
+
+
+nginx_vhosts:
+  - listen: "80 default_server"
+    server_name: "jinka.openmrs.org"
+    filename: "jinka.openmrs.org.80.conf"
+    extra_parameters: |
+      return 301 https://$host$request_uri;
+  - listen: "443 ssl"
+    server_name: "jinka.openmrs.org"
+    extra_parameters: |
+      access_log /var/log/nginx/deployer_access.log;
+      error_log /var/log/nginx/deployer_error.log;
+      ssl_certificate /etc/letsencrypt/live/jinka.openmrs.org/fullchain.pem;
+      ssl_certificate_key /etc/letsencrypt/live/jinka.openmrs.org/privkey.pem;
+      location ^~ /.well-known/acme-challenge/ {
+        root /usr/share/nginx/html;
+      }
+      location / {
+        root /usr/share/nginx/html;
+      }
+  - listen: "80"
+    server_name: "site-v2.openmrs.org www-v2.openmrs.org"
+    filename: "site.openmrs.org.80.conf"
+    extra_parameters: |
+      return 301 https://$host$request_uri;
+  - listen: "443 ssl"
+    server_name: "site-v2.openmrs.org www-v2.openmrs.org"
+    extra_parameters: |
+      client_max_body_size 0;
+      access_log /var/log/nginx/site_stg_access.log;
+      error_log /var/log/nginx/site_stg_error.log;
+      ssl_certificate /etc/letsencrypt/live/jinka.openmrs.org/fullchain.pem;
+      ssl_certificate_key /etc/letsencrypt/live/jinka.openmrs.org/privkey.pem;
+      location ^~ /.well-known/acme-challenge/ {
+        root /usr/share/nginx/html;
+      }
+      location / {
+        add_header X-Frame-Options "SAMEORIGIN";
+        proxy_set_header HOST $host;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_pass http://127.0.0.1:8081;
+      }
+  - listen: "80"
+    server_name: "shortener-v2.openmrs.org"
+    filename: "shortener.openmrs.org.80.conf"
+    extra_parameters: |
+      return 301 https://$host$request_uri;
+  - listen: "443 ssl"
+    server_name: "shortener-v2.openmrs.org om.rs *.om.rs"
+    extra_parameters: |
+      if ($http_host = ^(.*)\.is\.om\.rs) {
+        rewrite (.*)  https://talk.openmrs.org/users/%1/activity;
+      }
+      if ($http_host = ^(.*)\.om\.rs ) {
+        rewrite (.*)  https://om.rs/%1;
+      }
+      access_log /var/log/nginx/shortener_access.log;
+      error_log /var/log/nginx/shortener_error.log;
+      ssl_certificate /etc/letsencrypt/live/jinka.openmrs.org/fullchain.pem;
+      ssl_certificate_key /etc/letsencrypt/live/jinka.openmrs.org/privkey.pem;
+      location ^~ /.well-known/acme-challenge/ {
+        root /usr/share/nginx/html;
+      }
+      location ~ /t/(\d+\/?\d+)/?$ {
+        return 302 https://talk.openmrs.org/t/$1;
+      }
+      location / {
+        add_header X-Frame-Options "SAMEORIGIN";
+        proxy_set_header HOST $host;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_pass http://127.0.0.1:8848/;
+      }
+ - listen: "80"
+    server_name: "mavenrepo-v2.openmrs.org"
+    filename: "mavenrepo.openmrs.org.80.conf"
+    extra_parameters: |
+      return 301 https://$host$request_uri;
+  - listen: "443 ssl"
+    server_name: "mavenrepo-v2.openmrs.org"
+    extra_parameters: |
+      client_max_body_size 0;
+      access_log /var/log/nginx/mavenrepo_access.log;
+      error_log /var/log/nginx/mavenrepo_error.log;
+      ssl_certificate /etc/letsencrypt/live/jinka.openmrs.org/fullchain.pem;
+      ssl_certificate_key /etc/letsencrypt/live/jinka.openmrs.org/privkey.pem;
+      set $remote_path "https://openmrs.jfrog.io";
+      location ^~ /.well-known/acme-challenge/ {
+        root /usr/share/nginx/html;
+      }
+
+      location / {
+        if ($request_method = GET ) {
+          rewrite ^/nexus/content/repositories/(.*) $remote_path/artifactory/$1 permanent;
+          return 301 $remote_path/artifactory$request_uri;
+        }
+
+        if ($request_method = HEAD ) {
+          rewrite ^/nexus/content/repositories/(.*) $remote_path/artifactory/$1 permanent;
+          return 301 $remote_path/artifactory$request_uri;
+        }
+
+        ### We need to fully proxy put/post otherwise it doesn't pass authentication
+        ### https://issues.apache.org/jira/browse/WAGON-590
+        resolver 8.8.8.8 valid=10s;
+        resolver_timeout 10s;
+
+        # https://medium.com/@adilatilgan/nginx-reverse-proxy-dns-resolve-problem-dff3fb94aba5
+
+        ### force timeouts if one of backend is died ##
+        proxy_next_upstream error timeout invalid_header http_500 http_502 http_503 http_504;
+
+        ### Set headers ####
+        proxy_set_header        Accept-Encoding   "";
+        proxy_set_header        Host            openmrs.jfrog.io;
+        proxy_set_header        X-Real-IP       $remote_addr;
+        proxy_set_header        X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header        X-Forwarded-Proto $scheme;
+        add_header              Front-End-Https   on;
+
+        ### By default we don't want to redirect it ####
+        proxy_redirect     off;
+
+        rewrite /nexus/content/repositories/(.*) /artifactory/$1 break;
+        rewrite /(.*) /artifactory/$1 break;
+        proxy_pass $remote_path;
+      }
+
+  - listen: "80"
+    server_name: "mavenrepo-redirect-v2.openmrs.org"
+    filename: "mavenrepo-redirect.openmrs.org.80.conf"
+    extra_parameters: |
+       return 301 https://$host$request_uri;
+  - listen: "443 ssl"
+    server_name: "mavenrepo-redirect-v2.openmrs.org"
+    extra_parameters: |
+       access_log /var/log/nginx/mavenrepo_redirect_access.log;
+       error_log /var/log/nginx/mavenrepo_redirect_error.log;
+       ssl_certificate /etc/letsencrypt/live/jinka.openmrs.org/fullchain.pem;
+       ssl_certificate_key /etc/letsencrypt/live/jinka.openmrs.org/privkey.pem;
+
+       location ^~ /.well-known/acme-challenge/ {
+         root /usr/share/nginx/html;
+       }
+
+       location / {
+         return 200 'Be happy!';
+         add_header Content-Type text/plain;
+       }
+  - listen: "80"
+    server_name: "help-v2.openmrs.org"
+    filename: "help.openmrs.org.80.conf"
+    extra_parameters: |
+      return 301 https://$host$request_uri;
+  - listen: "443 ssl"
+    server_name: "help-v2.openmrs.org"
+    extra_parameters: |
+      access_log /var/log/nginx/help_access.log;
+      error_log /var/log/nginx/help_error.log;
+      ssl_certificate /etc/letsencrypt/live/jinka.openmrs.org/fullchain.pem;
+      ssl_certificate_key /etc/letsencrypt/live/jinka.openmrs.org/privkey.pem;
+      set $remote_path "https://openmrs.atlassian.net/servicedesk";
+      location ^~ /.well-known/acme-challenge/ {
+        root /usr/share/nginx/html;
+      }
+
+      location / {
+        return 301 $remote_path$request_uri;
+      }
+
+aws_access_key_id: '{{ vault_aws_access_key_id }}'
+aws_secret_access_key: '{{ vault_aws_secret_access_key }}'
+backup_tag: 'configured'

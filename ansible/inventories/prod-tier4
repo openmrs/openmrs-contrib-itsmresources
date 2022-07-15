@@ -6,6 +6,7 @@ mokolo.openmrs.org
 nakuru.openmrs.org
 narok.openmrs.org
 namanga.openmrs.org
+bonga.openmrs.org
 gode.openmrs.org
 
 [docker]
@@ -16,6 +17,7 @@ mokolo.openmrs.org
 nakuru.openmrs.org
 narok.openmrs.org
 namanga.openmrs.org
+bonga.openmrs.org
 gode.openmrs.org
 
 [web]
@@ -26,6 +28,7 @@ mokolo.openmrs.org
 nakuru.openmrs.org
 narok.openmrs.org
 namanga.openmrs.org
+bonga.openmrs.org
 gode.openmrs.org
 
 [tls]
@@ -36,6 +39,7 @@ mokolo.openmrs.org
 nakuru.openmrs.org
 narok.openmrs.org
 namanga.openmrs.org
+bonga.openmrs.org
 gode.openmrs.org
 
 [backup]
@@ -44,4 +48,5 @@ goura.openmrs.org
 lamu.openmrs.org
 mokolo.openmrs.org
 namanga.openmrs.org
+bonga.openmrs.org
 gode.openmrs.org

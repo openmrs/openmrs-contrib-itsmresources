@@ -7,12 +7,16 @@ likoma.openmrs.org
 menji.openmrs.org
 salima.openmrs.org
 maroua.openmrs.org
+adaba.openmrs.org
+jinka.openmrs.org
 sawla.openmrs.org
 
 [docker]
 ako.openmrs.org
 baragoi.openmrs.org
 likoma.openmrs.org
+adaba.openmrs.org
+jinka.openmrs.org
 
 [web]
 ako.openmrs.org
@@ -22,6 +26,8 @@ campo.openmrs.org
 likoma.openmrs.org
 menji.openmrs.org
 maroua.openmrs.org
+adaba.openmrs.org
+jinka.openmrs.org
 
 [tls]
 ako.openmrs.org
@@ -31,6 +37,8 @@ campo.openmrs.org
 likoma.openmrs.org
 menji.openmrs.org
 maroua.openmrs.org
+adaba.openmrs.org
+jinka.openmrs.org
 
 [backup]
 ako.openmrs.org
@@ -40,15 +48,9 @@ likoma.openmrs.org
 menji.openmrs.org
 salima.openmrs.org
 maroua.openmrs.org
+adaba.openmrs.org
 sawla.openmrs.org
-
-[id]
-ako.openmrs.org
-ambam.openmrs.org
-baragoi.openmrs.org
-
-[ldap]
-ako.openmrs.org
+jinka.openmrs.org
 
 [jira]
 maroua.openmrs.org
