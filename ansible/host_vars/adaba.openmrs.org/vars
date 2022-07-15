@@ -21,22 +21,21 @@ docker_deployment:
    - id
 
 nginx_vhosts:
- - listen: "80 default_server"
-   server_name: "ldap-v2.openmrs.org"
-   filename: "ldap.openmrs.org.80.conf"
-   extra_parameters: |
-     return 301 https://$host$request_uri;
- - listen: "443 ssl"
-   server_name: "ldap-v2.openmrs.org"
-   extra_parameters: |
-     access_log /var/log/nginx/demo_access.log;
-     error_log /var/log/nginx/demo_error.log;
-     ssl_certificate /etc/letsencrypt/live/adaba.openmrs.org/fullchain.pem;
-     ssl_certificate_key /etc/letsencrypt/live/adaba.openmrs.org/privkey.pem;
-     location ^~ /.well-known/acme-challenge/ {
-       root /usr/share/nginx/html;
-     }
-
+  - listen: "80 default_server"
+    server_name: "ldap-v2.openmrs.org"
+    filename: "ldap.openmrs.org.80.conf"
+    extra_parameters: |
+      return 301 https://$host$request_uri;
+  - listen: "443 ssl"
+    server_name: "ldap-v2.openmrs.org"
+    extra_parameters: |
+      access_log /var/log/nginx/demo_access.log;
+      error_log /var/log/nginx/demo_error.log;
+      ssl_certificate /etc/letsencrypt/live/adaba.openmrs.org/fullchain.pem;
+      ssl_certificate_key /etc/letsencrypt/live/adaba.openmrs.org/privkey.pem;
+      location ^~ /.well-known/acme-challenge/ {
+        root /usr/share/nginx/html;
+      }
   - listen: "80"
     server_name: "crowd-v2.openmrs.org"
     filename: "crowd.openmrs.org.80.conf"
