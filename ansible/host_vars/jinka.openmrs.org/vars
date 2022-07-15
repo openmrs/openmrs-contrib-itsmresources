@@ -114,10 +114,10 @@ nginx_vhosts:
         proxy_pass http://127.0.0.1:8848/;
       }
   - listen: "80"
-      server_name: "mavenrepo-v2.openmrs.org"
-      filename: "mavenrepo.openmrs.org.80.conf"
-      extra_parameters: |
-        return 301 https://$host$request_uri;
+    server_name: "mavenrepo-v2.openmrs.org"
+    filename: "mavenrepo.openmrs.org.80.conf"
+    extra_parameters: |
+      return 301 https://$host$request_uri;
   - listen: "443 ssl"
     server_name: "mavenrepo-v2.openmrs.org"
     extra_parameters: |
@@ -167,7 +167,6 @@ nginx_vhosts:
         rewrite /(.*) /artifactory/$1 break;
         proxy_pass $remote_path;
       }
-
   - listen: "80"
     server_name: "mavenrepo-redirect-v2.openmrs.org"
     filename: "mavenrepo-redirect.openmrs.org.80.conf"

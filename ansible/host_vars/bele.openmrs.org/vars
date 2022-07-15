@@ -101,87 +101,87 @@ nginx_vhosts:
     extra_parameters: |
       return 301 https://$host$request_uri;
   - listen: "443 ssl"
-      server_name: "o3-v2.openmrs.org"
-      extra_parameters: |
-        access_log /var/log/nginx/o3_access.log;
-        error_log /var/log/nginx/o3_error.log;
-        ssl_certificate /etc/letsencrypt/live/bele.openmrs.org/fullchain.pem;
-        ssl_certificate_key /etc/letsencrypt/live/bele.openmrs.org/privkey.pem;
-        location ^~ /.well-known/acme-challenge/ {
-          root /usr/share/nginx/html;
-        }
-        location / {
-          proxy_set_header HOST $host;
-          proxy_set_header  X-Forwarded-Proto $scheme;
-          proxy_set_header  X-Real-IP $remote_addr;
-          proxy_set_header  X-Forwarded-For $proxy_add_x_forwarded_for;
-          proxy_pass http://127.0.0.1:8085/;
-        }
+    server_name: "o3-v2.openmrs.org"
+    extra_parameters: |
+      access_log /var/log/nginx/o3_access.log;
+      error_log /var/log/nginx/o3_error.log;
+      ssl_certificate /etc/letsencrypt/live/bele.openmrs.org/fullchain.pem;
+      ssl_certificate_key /etc/letsencrypt/live/bele.openmrs.org/privkey.pem;
+      location ^~ /.well-known/acme-challenge/ {
+        root /usr/share/nginx/html;
+      }
+      location / {
+        proxy_set_header HOST $host;
+        proxy_set_header  X-Forwarded-Proto $scheme;
+        proxy_set_header  X-Real-IP $remote_addr;
+        proxy_set_header  X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_pass http://127.0.0.1:8085/;
+      }
   - listen: "80"
     server_name: "ohri.o3-v2.openmrs.org"
     filename: "ohri.o3.openmrs.org.80.conf"
     extra_parameters: |
       return 301 https://$host$request_uri;
   - listen: "443 ssl"
-      server_name: "ohri.o3-v2.openmrs.org"
-      extra_parameters: |
-        access_log /var/log/nginx/ohri_o3_access.log;
-        error_log /var/log/nginx/ohri_o3_error.log;
-        ssl_certificate /etc/letsencrypt/live/bele.openmrs.org/fullchain.pem;
-        ssl_certificate_key /etc/letsencrypt/live/bele.openmrs.org/privkey.pem;
-        location ^~ /.well-known/acme-challenge/ {
-          root /usr/share/nginx/html;
-        }
-        location / {
-          proxy_set_header HOST $host;
-          proxy_set_header  X-Forwarded-Proto $scheme;
-          proxy_set_header  X-Real-IP $remote_addr;
-          proxy_set_header  X-Forwarded-For $proxy_add_x_forwarded_for;
-          proxy_pass http://127.0.0.1:8086/;
-        }
+    server_name: "ohri.o3-v2.openmrs.org"
+    extra_parameters: |
+      access_log /var/log/nginx/ohri_o3_access.log;
+      error_log /var/log/nginx/ohri_o3_error.log;
+      ssl_certificate /etc/letsencrypt/live/bele.openmrs.org/fullchain.pem;
+      ssl_certificate_key /etc/letsencrypt/live/bele.openmrs.org/privkey.pem;
+      location ^~ /.well-known/acme-challenge/ {
+        root /usr/share/nginx/html;
+      }
+      location / {
+        proxy_set_header HOST $host;
+        proxy_set_header  X-Forwarded-Proto $scheme;
+        proxy_set_header  X-Real-IP $remote_addr;
+        proxy_set_header  X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_pass http://127.0.0.1:8086/;
+      }
   - listen: "80"
     server_name: "formbuilder.o3-v2.openmrs.org"
     filename: "formbuilder.o3.openmrs.org.80.conf"
     extra_parameters: |
       return 301 https://$host$request_uri;
   - listen: "443 ssl"
-      server_name: "formbuilder.o3-v2.openmrs.org"
-      extra_parameters: |
-        access_log /var/log/nginx/formbuilder_access.log;
-        error_log /var/log/nginx/form_builder_error.log;
-        ssl_certificate /etc/letsencrypt/live/bele.openmrs.org/fullchain.pem;
-        ssl_certificate_key /etc/letsencrypt/live/bele.openmrs.org/privkey.pem;
-        location ^~ /.well-known/acme-challenge/ {
-          root /usr/share/nginx/html;
-        }
-        location / {
-          proxy_set_header HOST $host;
-          proxy_set_header  X-Forwarded-Proto $scheme;
-          proxy_set_header  X-Real-IP $remote_addr;
-          proxy_set_header  X-Forwarded-For $proxy_add_x_forwarded_for;
-          proxy_pass http://127.0.0.1:8087/;
-        }
+    server_name: "formbuilder.o3-v2.openmrs.org"
+    extra_parameters: |
+      access_log /var/log/nginx/formbuilder_access.log;
+      error_log /var/log/nginx/form_builder_error.log;
+      ssl_certificate /etc/letsencrypt/live/bele.openmrs.org/fullchain.pem;
+      ssl_certificate_key /etc/letsencrypt/live/bele.openmrs.org/privkey.pem;
+      location ^~ /.well-known/acme-challenge/ {
+        root /usr/share/nginx/html;
+      }
+      location / {
+        proxy_set_header HOST $host;
+        proxy_set_header  X-Forwarded-Proto $scheme;
+        proxy_set_header  X-Real-IP $remote_addr;
+        proxy_set_header  X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_pass http://127.0.0.1:8087/;
+      }
   - listen: "80"
     server_name: "openconceptlab.openmrs.org"
     filename: "openconceptlab.openmrs.org.80.conf"
     extra_parameters: |
       return 301 https://$host$request_uri;
   - listen: "443 ssl"
-      server_name: "openconceptlab.openmrs.org"
-      extra_parameters: |
-        access_log /var/log/nginx/oclclient_access.log;
-        error_log /var/log/nginx/oclclient_error.log;
-        ssl_certificate /etc/letsencrypt/live/bele.openmrs.org/fullchain.pem;
-        ssl_certificate_key /etc/letsencrypt/live/bele.openmrs.org/privkey.pem;
-        location ^~ /.well-known/acme-challenge/ {
-          root /usr/share/nginx/html;
-        }
-        location / {
-          proxy_pass http://127.0.0.1:8083/;
-        }
+    server_name: "openconceptlab.openmrs.org"
+    extra_parameters: |
+      access_log /var/log/nginx/oclclient_access.log;
+      error_log /var/log/nginx/oclclient_error.log;
+      ssl_certificate /etc/letsencrypt/live/bele.openmrs.org/fullchain.pem;
+      ssl_certificate_key /etc/letsencrypt/live/bele.openmrs.org/privkey.pem;
+      location ^~ /.well-known/acme-challenge/ {
+        root /usr/share/nginx/html;
+      }
+      location / {
+        proxy_pass http://127.0.0.1:8083/;
+      }
   - listen: "443 ssl"
-   server_name: "bele.openmrs.org"
-   extra_parameters: |
+    server_name: "bele.openmrs.org"
+    extra_parameters: |
      access_log /var/log/nginx/deployer_access.log;
      error_log /var/log/nginx/deployer_error.log;
      ssl_certificate /etc/letsencrypt/live/bele.openmrs.org/fullchain.pem;
