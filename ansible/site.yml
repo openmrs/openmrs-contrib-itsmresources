@@ -77,9 +77,9 @@
   become: true
   pre_tasks:
     - include: tasks/install-openjdk.yml
-  roles:
-    - jira
-    - mysql-connector-java
+  # roles:
+  #   - jira
+  #   - mysql-connector-java
   tags:
     - jira
 
@@ -87,9 +87,9 @@
   become: true
   pre_tasks:
     - include: tasks/install-openjdk.yml
-  roles:
-    - confluence
-    - mysql-connector-java
+  # roles:
+  #   - confluence
+  #   - mysql-connector-java
   tags:
     - confluence
 
@@ -97,10 +97,10 @@
   become: true
   pre_tasks:
     - include: tasks/install-openjdk.yml
-  roles:
-    - bamboo
-    - mysql-connector-java
-    - logrotate
+  # roles:
+  #   - bamboo
+  #   - mysql-connector-java
+  #   - logrotate
   tags:
     - bamboo
 
@@ -115,9 +115,9 @@
   become: true
   pre_tasks:
     - include: tasks/install-openjdk.yml
-  roles:
-    - crowd
-    - mysql-connector-java
+  # roles:
+  #   - crowd
+  #   - mysql-connector-java
   tags:
     - crowd
 

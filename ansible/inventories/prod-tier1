@@ -66,12 +66,15 @@ sawla.openmrs.org
 
 [jira]
 ; maroua.openmrs.org
+mojo.openmrs.org
 
 [confluence]
 ; menji.openmrs.org
+mota.openmrs.org
 
 [crowd]
 ; ambam.openmrs.org
+adaba.openmrs.org
 
 [mysql]
 ; salima.openmrs.org
