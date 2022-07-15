@@ -60,7 +60,7 @@ ufw_rules:
     proto: tcp
     rule: allow
 
-datadog_agent_version: 1:6.13.0-1
+datadog_agent_version: 7.37.1
 
 datadog_agent_allow_downgrade: true
 
@@ -94,7 +94,7 @@ datadog_checks:
           timeout: 8
   disk:
     init_config:
-        file_system_global_blacklist:
+        file_system_global_exclude:
             - squashfs
     instances:
         - service_check_rw: true

@@ -16,7 +16,7 @@ class UpdatesCheck(AgentCheck):
         if output is None:
             return
 
-        parts = output.split(';', 1)
+        parts = str(output).split(';', 1)
         if len(parts) != 2:
             self.log.debug("Unknown format: {0}".format(output))
             return

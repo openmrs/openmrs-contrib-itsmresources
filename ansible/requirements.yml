@@ -4,7 +4,7 @@
   version: v1.0.2
 - name: datadog
   src: Datadog.datadog
-  version: 4.11.0
+  version: 4.16.0
 - name: nginx
   src: geerlingguy.nginx
   version: 2.7.0
