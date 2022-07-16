@@ -16,7 +16,7 @@ datadog_tags_extra:
 
 letsencrypt_cert_domains:
    - worabe.openmrs.org
-   - ci-v2.openmrs.org
+   - ci.openmrs.org
 
 nginx_vhosts:
   - listen: "80 default_server"
@@ -35,12 +35,12 @@ nginx_vhosts:
         root /usr/share/nginx/html;
       }
   - listen: "80"
-    server_name: "ci-v2.openmrs.org"
+    server_name: "ci.openmrs.org"
     filename: "ci.openmrs.org.80.conf"
     extra_parameters: |
       return 301 https://$host$request_uri;
   - listen: "443 ssl"
-    server_name: "ci-v2.openmrs.org"
+    server_name: "ci.openmrs.org"
     extra_parameters: |
       client_max_body_size 0;
       access_log /var/log/nginx/ci_access.log;
@@ -76,7 +76,7 @@ bamboo_catalina: "/opt/bamboo"
 bamboo_home: "/data/bamboo_home"
 bamboo_jvm_maximum_memory: "4096m"
 bamboo_jvm_minimum_memory: "4096m"
-bamboo_proxy_name: 'ci-v2.openmrs.org'
+bamboo_proxy_name: 'ci.openmrs.org'
 bamboo_scheme: 'https'
 mysql_connector_java_dest: '{{ bamboo_catalina }}/lib'
 mysql_connector_java_user: '{{ bamboo_user }}'
