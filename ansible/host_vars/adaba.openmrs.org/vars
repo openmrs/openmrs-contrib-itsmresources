@@ -110,23 +110,23 @@ ufw_rules:
 
 
 
-# crowd_pass: '{{ vault_crowd_pass }}'
-# crowd_hash_salt: '{{ vault_crowd_hash_salt }}'
-# crowd_user: 'crowd'
-# crowd_archive: "atlassian-crowd-3.6.0.tar.gz"
-# crowd_catalina: "/opt/crowd"
-# crowd_checksum: "sha256:47eafd0d0db13ed599c25103e845734ed957b6c9bd2279cf738aa9656ad59d83"
-# crowd_home: "/data/crowd_home"
-# crowd_jvm_maximum_memory: "10g"
-# crowd_jvm_minimum_memory: "10g"
-# crowd_jvm_support_recommended_args: "-Datlassian.plugins.enable.wait=300 -XX:+UseG1GC -Xloggc:/opt/crowd/logs/gc.log -XX:+UseGCLogFileRotation -XX:NumberOfGCLogFiles=5 -XX:GCLogFileSize=2M -XX:-PrintGCDetails -XX:+PrintGCTimeStamps -XX:-PrintTenuringDistribution"
-# crowd_proxy_name: 'crowd.openmrs.org'
-# crowd_scheme: 'https'
-# crowd_url: "https://product-downloads.atlassian.com/software/crowd/downloads/{{ crowd_archive }}"
-# mysql_connector_java_dest: '{{ crowd_catalina }}/apache-tomcat/lib'
-# mysql_connector_java_user: '{{ crowd_user }}'
-# mysql_connector_java_archive: 'mysql-connector-java-8.0.17.tar.gz'
-# mysql_connector_java_jar: 'mysql-connector-java-8.0.17.jar'
-# mysql_connector_java_url: "https://dev.mysql.com/get/Downloads/Connector-J/{{ mysql_connector_java_archive }}"
-# mysql_connector_java_checksum: 'sha256:20116c90f01402406fa3a0783c308fb0bf9937b1d99cb6130407a1ad77ae7dd9'
+crowd_pass: '{{ vault_crowd_pass }}'
+crowd_hash_salt: '{{ vault_crowd_hash_salt }}'
+crowd_user: 'crowd'
+crowd_archive: "atlassian-crowd-5.0.1.tar.gz"
+crowd_catalina: "/opt/crowd"
+crowd_checksum: "sha256:71c5d236e8973f4f9bf5639b6e88a4a957749ca1f4162da0315105dfe580c793"
+crowd_home: "/data/crowd_home"
+crowd_jvm_maximum_memory: "6g"
+crowd_jvm_minimum_memory: "6g"
+crowd_jvm_support_recommended_args: "-Datlassian.plugins.enable.wait=300 -XX:+UseG1GC"
+crowd_proxy_name: 'crowd-v2.openmrs.org'
+crowd_scheme: 'https'
+crowd_url: "https://product-downloads.atlassian.com/software/crowd/downloads/{{ crowd_archive }}"
+mysql_connector_java_dest: '{{ crowd_catalina }}/apache-tomcat/lib'
+mysql_connector_java_user: '{{ crowd_user }}'
+mysql_connector_java_archive: 'mysql-connector-java-8.0.17.tar.gz'
+mysql_connector_java_jar: 'mysql-connector-java-8.0.17.jar'
+mysql_connector_java_url: "https://dev.mysql.com/get/Downloads/Connector-J/{{ mysql_connector_java_archive }}"
+mysql_connector_java_checksum: 'sha256:20116c90f01402406fa3a0783c308fb0bf9937b1d99cb6130407a1ad77ae7dd9'
 

@@ -115,9 +115,9 @@
   become: true
   pre_tasks:
     - include: tasks/install-openjdk.yml
-  # roles:
-  #   - crowd
-  #   - mysql-connector-java
+  roles:
+    - crowd
+    - mysql-connector-java
   tags:
     - crowd
 
