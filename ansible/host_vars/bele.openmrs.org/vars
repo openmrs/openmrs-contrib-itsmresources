@@ -31,15 +31,14 @@ datadog_tags_extra:
 docker_deployment:
  - demo
  - mdsbuilder
- - emr-3-ohri
- - formbuilder
+ - emr-3-demo
  - oclclient-prd
 
 letsencrypt_cert_domains:
   - bele.openmrs.org
-  - demo-v2.openmrs.org
-  - mdsbuilder-v2.openmrs.org
-  - o3-v2.openmrs.org
+  - demo.openmrs.org
+  - mdsbuilder.openmrs.org
+  - o3.openmrs.org
   - openconceptlab.openmrs.org
 
 
@@ -48,12 +47,12 @@ nginx_keepalive_requests: "600"
 
 nginx_vhosts:
   - listen: "80 default_server"
-    server_name: "demo-v2.openmrs.org"
+    server_name: "demo.openmrs.org"
     filename: "demo.openmrs.org.80.conf"
     extra_parameters: |
       return 301 https://$host$request_uri;
   - listen: "443 ssl"
-    server_name: "demo-v2.openmrs.org"
+    server_name: "demo.openmrs.org"
     extra_parameters: |
       access_log /var/log/nginx/demo_access.log;
       error_log /var/log/nginx/demo_error.log;
@@ -71,12 +70,12 @@ nginx_vhosts:
         proxy_pass http://127.0.0.1:8080/openmrs;
       }
   - listen: "80"
-    server_name: "mdsbuilder-v2.openmrs.org"
+    server_name: "mdsbuilder.openmrs.org"
     filename: "mdsbuilder.openmrs.org.80.conf"
     extra_parameters: |
       return 301 https://$host$request_uri;
   - listen: "443 ssl"
-    server_name: "mdsbuilder-v2.openmrs.org"
+    server_name: "mdsbuilder.openmrs.org"
     extra_parameters: |
       access_log /var/log/nginx/mdsbuilder_access.log;
       error_log /var/log/nginx/mdsbuilder_error.log;
@@ -91,7 +90,7 @@ nginx_vhosts:
       location /openmrs {
         proxy_set_header HOST $host;
         proxy_set_header  X-Forwarded-Proto $scheme;
-        proxy_pass http://127.0.0.1:8080/openmrs;
+        proxy_pass http://127.0.0.1:8081/openmrs;
       }
   - listen: "80"
     server_name: "o3.openmrs.org"
@@ -99,7 +98,7 @@ nginx_vhosts:
     extra_parameters: |
       return 301 https://$host$request_uri;
   - listen: "443 ssl"
-    server_name: "o3-v2.openmrs.org"
+    server_name: "o3.openmrs.org"
     extra_parameters: |
       access_log /var/log/nginx/o3_access.log;
       error_log /var/log/nginx/o3_error.log;
@@ -114,50 +113,6 @@ nginx_vhosts:
         proxy_set_header  X-Real-IP $remote_addr;
         proxy_set_header  X-Forwarded-For $proxy_add_x_forwarded_for;
         proxy_pass http://127.0.0.1:8085/;
-      }
-  - listen: "80"
-    server_name: "ohri.o3-v2.openmrs.org"
-    filename: "ohri.o3.openmrs.org.80.conf"
-    extra_parameters: |
-      return 301 https://$host$request_uri;
-  - listen: "443 ssl"
-    server_name: "ohri.o3-v2.openmrs.org"
-    extra_parameters: |
-      access_log /var/log/nginx/ohri_o3_access.log;
-      error_log /var/log/nginx/ohri_o3_error.log;
-      ssl_certificate /etc/letsencrypt/live/bele.openmrs.org/fullchain.pem;
-      ssl_certificate_key /etc/letsencrypt/live/bele.openmrs.org/privkey.pem;
-      location ^~ /.well-known/acme-challenge/ {
-        root /usr/share/nginx/html;
-      }
-      location / {
-        proxy_set_header HOST $host;
-        proxy_set_header  X-Forwarded-Proto $scheme;
-        proxy_set_header  X-Real-IP $remote_addr;
-        proxy_set_header  X-Forwarded-For $proxy_add_x_forwarded_for;
-        proxy_pass http://127.0.0.1:8086/;
-      }
-  - listen: "80"
-    server_name: "formbuilder.o3-v2.openmrs.org"
-    filename: "formbuilder.o3.openmrs.org.80.conf"
-    extra_parameters: |
-      return 301 https://$host$request_uri;
-  - listen: "443 ssl"
-    server_name: "formbuilder.o3-v2.openmrs.org"
-    extra_parameters: |
-      access_log /var/log/nginx/formbuilder_access.log;
-      error_log /var/log/nginx/form_builder_error.log;
-      ssl_certificate /etc/letsencrypt/live/bele.openmrs.org/fullchain.pem;
-      ssl_certificate_key /etc/letsencrypt/live/bele.openmrs.org/privkey.pem;
-      location ^~ /.well-known/acme-challenge/ {
-        root /usr/share/nginx/html;
-      }
-      location / {
-        proxy_set_header HOST $host;
-        proxy_set_header  X-Forwarded-Proto $scheme;
-        proxy_set_header  X-Real-IP $remote_addr;
-        proxy_set_header  X-Forwarded-For $proxy_add_x_forwarded_for;
-        proxy_pass http://127.0.0.1:8087/;
       }
   - listen: "80"
     server_name: "openconceptlab.openmrs.org"
@@ -187,6 +142,4 @@ nginx_vhosts:
      location ^~ /.well-known/acme-challenge/ {
        root /usr/share/nginx/html;
      }
-     location / {
-       proxy_pass http://127.0.0.1:3000/;
-     }
+
