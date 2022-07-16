@@ -97,10 +97,10 @@
   become: true
   pre_tasks:
     - include: tasks/install-openjdk.yml
-  # roles:
-  #   - bamboo
-  #   - mysql-connector-java
-  #   - logrotate
+  roles:
+    - bamboo
+    - mysql-connector-java
+    - logrotate
   tags:
     - bamboo
 

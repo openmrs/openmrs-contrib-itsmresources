@@ -34,10 +34,6 @@ nginx_vhosts:
       location ^~ /.well-known/acme-challenge/ {
         root /usr/share/nginx/html;
       }
-      location / {
-        #proxy_pass http://127.0.0.1:8080/;
-        root /usr/share/nginx/html;
-      }
   - listen: "80"
     server_name: "ci-v2.openmrs.org"
     filename: "ci.openmrs.org.80.conf"
@@ -70,24 +66,24 @@ aws_access_key_id: '{{ vault_aws_access_key_id }}'
 aws_secret_access_key: '{{ vault_aws_secret_access_key }}'
 backup_tag: 'configured'
 
-# bamboo_pass: '{{ vault_bamboo_pass }}'
-# bamboo_hash_salt: '{{ vault_bamboo_hash_salt }}'
-# bamboo_user: 'bamboo'
-# bamboo_checksum: 'sha256:1bad4400285f30424c05bab2d6c9c4943e954b985b8b05f1775d40bfc9772c60'
-# bamboo_archive: "atlassian-bamboo-6.10.2.tar.gz"
-# bamboo_url: "https://product-downloads.atlassian.com/software/bamboo/downloads/{{ bamboo_archive }}"
-# bamboo_catalina: "/opt/bamboo"
-# bamboo_home: "/data/bamboo_home"
-# bamboo_jvm_maximum_memory: "4096m"
-# bamboo_jvm_minimum_memory: "2048m"
-# bamboo_proxy_name: 'ci.openmrs.org'
-# bamboo_scheme: 'https'
-# mysql_connector_java_dest: '{{ bamboo_catalina }}/lib'
-# mysql_connector_java_user: '{{ bamboo_user }}'
-# mysql_connector_java_archive: 'mysql-connector-java-8.0.17.tar.gz'
-# mysql_connector_java_jar: 'mysql-connector-java-8.0.17.jar'
-# mysql_connector_java_url: "https://dev.mysql.com/get/Downloads/Connector-J/{{ mysql_connector_java_archive }}"
-# mysql_connector_java_checksum: 'sha256:20116c90f01402406fa3a0783c308fb0bf9937b1d99cb6130407a1ad77ae7dd9'
+bamboo_pass: '{{ vault_bamboo_pass }}'
+bamboo_hash_salt: '{{ vault_bamboo_hash_salt }}'
+bamboo_user: 'bamboo'
+bamboo_checksum: 'sha256:29465c00b63d54272a29e98119773c25b10c42f868fd948c99ee60d037670f1b'
+bamboo_archive: "atlassian-bamboo-8.2.4.tar.gz"
+bamboo_url: "https://product-downloads.atlassian.com/software/bamboo/downloads/{{ bamboo_archive }}"
+bamboo_catalina: "/opt/bamboo"
+bamboo_home: "/data/bamboo_home"
+bamboo_jvm_maximum_memory: "4096m"
+bamboo_jvm_minimum_memory: "4096m"
+bamboo_proxy_name: 'ci-v2.openmrs.org'
+bamboo_scheme: 'https'
+mysql_connector_java_dest: '{{ bamboo_catalina }}/lib'
+mysql_connector_java_user: '{{ bamboo_user }}'
+mysql_connector_java_archive: 'mysql-connector-java-8.0.17.tar.gz'
+mysql_connector_java_jar: 'mysql-connector-java-8.0.17.jar'
+mysql_connector_java_url: "https://dev.mysql.com/get/Downloads/Connector-J/{{ mysql_connector_java_archive }}"
+mysql_connector_java_checksum: 'sha256:20116c90f01402406fa3a0783c308fb0bf9937b1d99cb6130407a1ad77ae7dd9'
 
 logrotate_scripts:
   - name: bamboologs
