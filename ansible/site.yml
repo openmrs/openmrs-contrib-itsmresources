@@ -77,9 +77,9 @@
   become: true
   pre_tasks:
     - include: tasks/install-openjdk.yml
-  # roles:
-  #   - jira
-  #   - mysql-connector-java
+  roles:
+    - jira
+    - mysql-connector-java
   tags:
     - jira
 
