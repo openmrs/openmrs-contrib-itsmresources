@@ -12,7 +12,7 @@ letsencrypt_cert_domains:
    - adaba.openmrs.org
    - ldap-v2.openmrs.org
    - crowd.openmrs.org
-   - id-v2.openmrs.org
+   - id.openmrs.org
 
 #letsencrypt_renewal_command_args: '--renew-hook "docker restart openldap"'
 
@@ -60,12 +60,12 @@ nginx_vhosts:
         root /usr/share/nginx/html;
       }
   - listen: "80"
-    server_name: "id-v2.openmrs.org"
+    server_name: "id.openmrs.org"
     filename: "id.openmrs.org.80.conf"
     extra_parameters: |
       return 301 https://$host$request_uri;
   - listen: "443 ssl"
-    server_name: "id-v2.openmrs.org"
+    server_name: "id.openmrs.org"
     extra_parameters: |
       access_log /var/log/nginx/deployer_access.log;
       error_log /var/log/nginx/deployer_error.log;
