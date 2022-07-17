@@ -10,7 +10,7 @@ datadog_tags_extra:
 
 letsencrypt_cert_domains:
    - adaba.openmrs.org
-   - ldap-v2.openmrs.org
+   - ldap.openmrs.org
    - crowd.openmrs.org
    - id.openmrs.org
 
@@ -22,12 +22,12 @@ docker_deployment:
 
 nginx_vhosts:
   - listen: "80 default_server"
-    server_name: "ldap-v2.openmrs.org"
+    server_name: "ldap.openmrs.org"
     filename: "ldap.openmrs.org.80.conf"
     extra_parameters: |
       return 301 https://$host$request_uri;
   - listen: "443 ssl"
-    server_name: "ldap-v2.openmrs.org"
+    server_name: "ldap.openmrs.org"
     extra_parameters: |
       access_log /var/log/nginx/demo_access.log;
       error_log /var/log/nginx/demo_error.log;
