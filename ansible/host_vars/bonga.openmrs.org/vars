@@ -45,9 +45,9 @@ letsencrypt_cert_domains:
   - qa-refapp.openmrs.org
   - uat-platform.openmrs.org
   - dev3.openmrs.org
-  - openconceptlab-demo.openmrs.org
-  - openconceptlab-staging.openmrs.org
-  - openconceptlab-qa.openmrs.org
+  - openmrs.demo.openconceptlab.org.org
+  - openmrs.staging.openconceptlab.org.org
+  - openmrs.qa.openconceptlab.org.org
 
 nginx_keepalive_timeout: "600"
 nginx_keepalive_requests: "600"
@@ -178,7 +178,7 @@ nginx_vhosts:
         proxy_pass http://127.0.0.1:8090/;
       }
   - listen: "80"
-    server_name: "openconceptlab-qa.openmrs.org"
+    server_name: "openmrs.qa.openconceptlab.org"
     filename: "openmrs.qa.openconceptlab.org.80.conf"
     extra_parameters: |
       return 301 https://$host$request_uri;
@@ -196,7 +196,7 @@ nginx_vhosts:
         proxy_pass http://127.0.0.1:8096/;
       }
   - listen: "80"
-    server_name: "openconceptlab-demo.openmrs.org"
+    server_name: "openmrs.demo.openconceptlab.org"
     filename: "openmrs.demo.openconceptlab.org.80.conf"
     extra_parameters: |
       return 301 https://$host$request_uri;
@@ -214,7 +214,7 @@ nginx_vhosts:
         proxy_pass http://127.0.0.1:8097/;
       }
   - listen: "80"
-    server_name: "openconceptlab-staging.openmrs.org"
+    server_name: "openmrs.staging.openconceptlab.org"
     filename: "openmrs.staging.openconceptlab.org.80.conf"
     extra_parameters: |
       return 301 https://$host$request_uri;
