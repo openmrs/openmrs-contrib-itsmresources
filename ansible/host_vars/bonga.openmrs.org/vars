@@ -33,6 +33,7 @@ docker_deployment:
  - modules-refapp
  - uat-refapp
  - uat-platform
+ - oclclient-prd
  - oclclient-qa
  - oclclient-demo
  - oclclient-stg
@@ -45,6 +46,7 @@ letsencrypt_cert_domains:
   - qa-refapp.openmrs.org
   - uat-platform.openmrs.org
   - dev3.openmrs.org
+  - openmrs.openconceptlab.org
   - openmrs.demo.openconceptlab.org
   - openmrs.staging.openconceptlab.org
   - openmrs.qa.openconceptlab.org
@@ -176,6 +178,24 @@ nginx_vhosts:
         proxy_set_header  X-Real-IP $remote_addr;
         proxy_set_header  X-Forwarded-For $proxy_add_x_forwarded_for;
         proxy_pass http://127.0.0.1:8090/;
+      }
+  - listen: "80"
+    server_name: "openmrs.openconceptlab.org"
+    filename: "openmrs.openconceptlab.org.80.conf"
+    extra_parameters: |
+      return 301 https://$host$request_uri;
+  - listen: "443 ssl"
+    server_name: "openmrs.openconceptlab.org"
+    extra_parameters: |
+      access_log /var/log/nginx/oclclientprd_access.log;
+      error_log /var/log/nginx/oclclientprd_error.log;
+      ssl_certificate /etc/letsencrypt/live/bonga.openmrs.org/fullchain.pem;
+      ssl_certificate_key /etc/letsencrypt/live/bonga.openmrs.org/privkey.pem;
+      location ^~ /.well-known/acme-challenge/ {
+        root /usr/share/nginx/html;
+      }
+      location / {
+        proxy_pass http://127.0.0.1:8094/;
       }
   - listen: "80"
     server_name: "openmrs.qa.openconceptlab.org"
