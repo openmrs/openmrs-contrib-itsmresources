@@ -183,7 +183,7 @@ nginx_vhosts:
     extra_parameters: |
       return 301 https://$host$request_uri;
   - listen: "443 ssl"
-    server_name: "openconceptlab-qa.openmrs.org"
+    server_name: "openmrs.qa.openconceptlab.org"
     extra_parameters: |
       access_log /var/log/nginx/oclclient_access.log;
       error_log /var/log/nginx/oclclient_error.log;
@@ -201,7 +201,7 @@ nginx_vhosts:
     extra_parameters: |
       return 301 https://$host$request_uri;
   - listen: "443 ssl"
-    server_name: "openconceptlab-demo.openmrs.org"
+    server_name: "openmrs.demo.openconceptlab.org"
     extra_parameters: |
       access_log /var/log/nginx/oclclient_access.log;
       error_log /var/log/nginx/oclclient_error.log;
@@ -219,7 +219,7 @@ nginx_vhosts:
     extra_parameters: |
       return 301 https://$host$request_uri;
   - listen: "443 ssl"
-    server_name: "openconceptlab-staging.openmrs.org"
+    server_name: "openmrs.staging.openconceptlab.org"
     extra_parameters: |
       access_log /var/log/nginx/oclclientstg_access.log;
       error_log /var/log/nginx/oclclientstg_error.log;
