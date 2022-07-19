@@ -28,9 +28,11 @@ class profiles::docker (
   exec { "docker run --rm --privileged multiarch/qemu-user-static --reset -p yes":
     path         => ["/usr/bin", "/usr/sbin"],
     user         => $bamboo_user,
+    refreshonly  => true
   } ~>
   exec { "docker buildx create --name cibuilder --use":
     path         => ["/usr/bin", "/usr/sbin"],
-    user        => $bamboo_user,
+    user         => $bamboo_user,
+    refreshonly  => true
   }
 }
