@@ -13,22 +13,19 @@ class profiles::docker (
     target => '/data/docker',
     force  => true,
     backup => false,
+  } ->
+  #Enable multi-arch builds
+  archive { "/usr/local/lib/docker/cli-plugins/docker-buildx":
+    ensure => present,
+    source => 'https://github.com/docker/buildx/releases/download/v0.8.2/buildx-v0.8.2.linux-amd64',
+    user   => 'root',
+    mode   => '0755',
+  } ->
+  exec { "docker buildx create --name cibuilder --use":
+    path         => ["/usr/bin", "/usr/sbin"],
+    subscribe    => [
+                  Class['::docker'],
+               ],
+    refreshonly => true,
   }
-  
-
-  #Enable multi-arch builds (not working until kernel upgraded to 4.8 or newer)
-  #exec { "docker run --rm --privileged multiarch/qemu-user-static --reset -p yes":
-  #  path         => ["/usr/bin", "/usr/sbin"],
-  #  subscribe    => [
-  #                Class['::docker'],
-  #             ],
-  #  refreshonly => true,
-  #}
-  #exec { "docker buildx create --name custom && docker buildx use custom":
-  #  path         => ["/usr/bin", "/usr/sbin"],
-  #  subscribe    => [
-  #                Class['::docker'],
-  #             ],
-  #  refreshonly => true,
-  #}
 }
