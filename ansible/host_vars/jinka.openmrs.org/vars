@@ -24,14 +24,14 @@ datadog_tags_extra:
 
 letsencrypt_cert_domains:
    - jinka.openmrs.org
-   - site-v2.openmrs.org
-  #  - openmrs.org
-   - www-v2.openmrs.org
-   - shortener-v2.openmrs.org
-  #  - om.rs
-   - mavenrepo-v2.openmrs.org
-   - mavenrepo-redirect-v2.openmrs.org
-   - help-v2.openmrs.org
+   - site.openmrs.org
+   - openmrs.org
+   - www.openmrs.org
+   - shortener.openmrs.org
+   - om.rs
+   - mavenrepo.openmrs.org
+   - mavenrepo-redirect.openmrs.org
+   - help.openmrs.org
 
 docker_deployment:
   - wordpress
@@ -39,7 +39,7 @@ docker_deployment:
 
 
 nginx_vhosts:
-  - listen: "80 default_server"
+  - listen: "80"
     server_name: "jinka.openmrs.org"
     filename: "jinka.openmrs.org.80.conf"
     extra_parameters: |
@@ -57,13 +57,13 @@ nginx_vhosts:
       location / {
         root /usr/share/nginx/html;
       }
-  - listen: "80"
-    server_name: "site-v2.openmrs.org www-v2.openmrs.org"
+  - listen: "80 default_server"
+    server_name: "site.openmrs.org www.openmrs.org openmrs.org"
     filename: "site.openmrs.org.80.conf"
     extra_parameters: |
       return 301 https://$host$request_uri;
   - listen: "443 ssl"
-    server_name: "site-v2.openmrs.org www-v2.openmrs.org"
+    server_name: "site.openmrs.org www.openmrs.org openmrs.org"
     extra_parameters: |
       client_max_body_size 0;
       access_log /var/log/nginx/site_stg_access.log;
@@ -82,12 +82,12 @@ nginx_vhosts:
         proxy_pass http://127.0.0.1:8081;
       }
   - listen: "80"
-    server_name: "shortener-v2.openmrs.org"
+    server_name: "shortener.openmrs.org"
     filename: "shortener.openmrs.org.80.conf"
     extra_parameters: |
       return 301 https://$host$request_uri;
   - listen: "443 ssl"
-    server_name: "shortener-v2.openmrs.org om.rs *.om.rs"
+    server_name: "shortener.openmrs.org om.rs *.om.rs"
     extra_parameters: |
       if ($http_host = ^(.*)\.is\.om\.rs) {
         rewrite (.*)  https://talk.openmrs.org/users/%1/activity;
@@ -114,12 +114,12 @@ nginx_vhosts:
         proxy_pass http://127.0.0.1:8848/;
       }
   - listen: "80"
-    server_name: "mavenrepo-v2.openmrs.org"
+    server_name: "mavenrepo.openmrs.org"
     filename: "mavenrepo.openmrs.org.80.conf"
     extra_parameters: |
       return 301 https://$host$request_uri;
   - listen: "443 ssl"
-    server_name: "mavenrepo-v2.openmrs.org"
+    server_name: "mavenrepo.openmrs.org"
     extra_parameters: |
       client_max_body_size 0;
       access_log /var/log/nginx/mavenrepo_access.log;
@@ -168,12 +168,12 @@ nginx_vhosts:
         proxy_pass $remote_path;
       }
   - listen: "80"
-    server_name: "mavenrepo-redirect-v2.openmrs.org"
+    server_name: "mavenrepo-redirect.openmrs.org"
     filename: "mavenrepo-redirect.openmrs.org.80.conf"
     extra_parameters: |
         return 301 https://$host$request_uri;
   - listen: "443 ssl"
-    server_name: "mavenrepo-redirect-v2.openmrs.org"
+    server_name: "mavenrepo-redirect.openmrs.org"
     extra_parameters: |
         access_log /var/log/nginx/mavenrepo_redirect_access.log;
         error_log /var/log/nginx/mavenrepo_redirect_error.log;
@@ -189,12 +189,12 @@ nginx_vhosts:
           add_header Content-Type text/plain;
         }
   - listen: "80"
-    server_name: "help-v2.openmrs.org"
+    server_name: "help.openmrs.org"
     filename: "help.openmrs.org.80.conf"
     extra_parameters: |
       return 301 https://$host$request_uri;
   - listen: "443 ssl"
-    server_name: "help-v2.openmrs.org"
+    server_name: "help.openmrs.org"
     extra_parameters: |
       access_log /var/log/nginx/help_access.log;
       error_log /var/log/nginx/help_error.log;
