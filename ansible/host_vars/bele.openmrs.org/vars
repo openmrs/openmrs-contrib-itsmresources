@@ -39,7 +39,7 @@ letsencrypt_cert_domains:
   - demo.openmrs.org
   - mdsbuilder.openmrs.org
   - o3.openmrs.org
-  - openconceptlab.openmrs.org
+  - openmrs.openconceptlab.org
 
 
 nginx_keepalive_timeout: "600"
@@ -115,12 +115,12 @@ nginx_vhosts:
         proxy_pass http://127.0.0.1:8085/;
       }
   - listen: "80"
-    server_name: "openconceptlab.openmrs.org"
-    filename: "openconceptlab.openmrs.org.80.conf"
+    server_name: "openmrs.openconceptlab.org"
+    filename: "openmrs.openconceptlab.org.80.conf"
     extra_parameters: |
       return 301 https://$host$request_uri;
   - listen: "443 ssl"
-    server_name: "openconceptlab.openmrs.org"
+    server_name: "openmrs.openconceptlab.org"
     extra_parameters: |
       access_log /var/log/nginx/oclclient_access.log;
       error_log /var/log/nginx/oclclient_error.log;

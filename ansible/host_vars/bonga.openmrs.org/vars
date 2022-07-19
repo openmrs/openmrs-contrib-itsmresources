@@ -33,10 +33,10 @@ docker_deployment:
  - modules-refapp
  - uat-refapp
  - uat-platform
- - oclclient-prd
  - oclclient-qa
  - oclclient-demo
  - oclclient-stg
+ - oclclient-dev
  - emr-3-dev
 
 letsencrypt_cert_domains:
@@ -46,10 +46,10 @@ letsencrypt_cert_domains:
   - qa-refapp.openmrs.org
   - uat-platform.openmrs.org
   - dev3.openmrs.org
-  - openmrs.openconceptlab.org
   - openmrs.demo.openconceptlab.org
   - openmrs.staging.openconceptlab.org
   - openmrs.qa.openconceptlab.org
+  - openmrs.dev.openconceptlab.org
 
 nginx_keepalive_timeout: "600"
 nginx_keepalive_requests: "600"
@@ -180,24 +180,6 @@ nginx_vhosts:
         proxy_pass http://127.0.0.1:8090/;
       }
   - listen: "80"
-    server_name: "openmrs.openconceptlab.org"
-    filename: "openmrs.openconceptlab.org.80.conf"
-    extra_parameters: |
-      return 301 https://$host$request_uri;
-  - listen: "443 ssl"
-    server_name: "openmrs.openconceptlab.org"
-    extra_parameters: |
-      access_log /var/log/nginx/oclclientprd_access.log;
-      error_log /var/log/nginx/oclclientprd_error.log;
-      ssl_certificate /etc/letsencrypt/live/bonga.openmrs.org/fullchain.pem;
-      ssl_certificate_key /etc/letsencrypt/live/bonga.openmrs.org/privkey.pem;
-      location ^~ /.well-known/acme-challenge/ {
-        root /usr/share/nginx/html;
-      }
-      location / {
-        proxy_pass http://127.0.0.1:8094/;
-      }
-  - listen: "80"
     server_name: "openmrs.qa.openconceptlab.org"
     filename: "openmrs.qa.openconceptlab.org.80.conf"
     extra_parameters: |
@@ -250,4 +232,22 @@ nginx_vhosts:
       }
       location / {
         proxy_pass http://127.0.0.1:8095/;
+      }
+  - listen: "80"
+    server_name: "openmrs.dev.openconceptlab.org"
+    filename: "openmrs.dev.openconceptlab.org.80.conf"
+    extra_parameters: |
+      return 301 https://$host$request_uri;
+  - listen: "443 ssl"
+    server_name: "openmrs.dev.openconceptlab.org"
+    extra_parameters: |
+      access_log /var/log/nginx/oclclientdev_access.log;
+      error_log /var/log/nginx/oclclientdev_error.log;
+      ssl_certificate /etc/letsencrypt/live/bonga.openmrs.org/fullchain.pem;
+      ssl_certificate_key /etc/letsencrypt/live/bonga.openmrs.org/privkey.pem;
+      location ^~ /.well-known/acme-challenge/ {
+        root /usr/share/nginx/html;
+      }
+      location / {
+        proxy_pass http://127.0.0.1:8094/;
       }
