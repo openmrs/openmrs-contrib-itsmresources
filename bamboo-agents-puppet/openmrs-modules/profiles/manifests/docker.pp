@@ -1,5 +1,6 @@
 class profiles::docker (
   $users,
+  $bamboo_user      = lookup('bamboo_agent_home::bamboo_user'),
 ){
   file { '/data/docker' :
     ensure  => directory,
@@ -21,11 +22,20 @@ class profiles::docker (
     user   => 'root',
     mode   => '0755',
   } ->
+  exec { "docker run --rm --privileged multiarch/qemu-user-static --reset -p yes":
+    path         => ["/usr/bin", "/usr/sbin"],
+    subscribe    => [
+      Class['::docker'],
+    ],
+    refreshonly => true,
+    user         => $bamboo_user,
+  } ->
   exec { "docker buildx create --name cibuilder --use":
     path         => ["/usr/bin", "/usr/sbin"],
     subscribe    => [
-                  Class['::docker'],
-               ],
+      Class['::docker'],
+    ],
     refreshonly => true,
+    user        => $bamboo_user,
   }
 }
