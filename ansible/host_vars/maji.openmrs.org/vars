@@ -47,7 +47,7 @@ aws_secret_access_key: '{{ vault_aws_secret_access_key }}'
 #Required Variables
 DISCOURSE_HTTP_PORT: 9000
 
-DISCOURSE_HOSTNAME: talk.openmrs.org
+DISCOURSE_HOSTNAME: talk-v2.openmrs.org
 
 DISCOURSE_DEVELOPER_EMAILS: 'infrastructure+talk@openmrs.org'
 DISCOURSE_SMTP_ADDRESS: '{{ vault_discourse_smtp_address }}'
