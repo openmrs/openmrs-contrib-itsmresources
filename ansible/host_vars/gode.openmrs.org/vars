@@ -20,9 +20,9 @@ datadog_tags_extra:
 
 letsencrypt_cert_domains:
    - gode.openmrs.org
-   - addons-stg-v2.openmrs.org
-   - modules-stg-v2.openmrs.org
-   - atlas-stg-v2.openmrs.org
+   - addons-stg.openmrs.org
+   - modules-stg.openmrs.org
+   - atlas-stg.openmrs.org
 
 docker_deployment:
   - addons-stg
@@ -30,12 +30,12 @@ docker_deployment:
 
 nginx_vhosts:
   - listen: "80 default_server"
-    server_name: "addons-stg-v2.openmrs.org"
+    server_name: "addons-stg.openmrs.org"
     filename: "addons-stg.openmrs.org.80.conf"
     extra_parameters: |
       return 301 https://$host$request_uri;
   - listen: "443 ssl"
-    server_name: "addons-stg-v2.openmrs.org"
+    server_name: "addons-stg.openmrs.org"
     extra_parameters: |
       access_log /var/log/nginx/addons_access.log;
       error_log /var/log/nginx/addons_error.log;
@@ -48,12 +48,12 @@ nginx_vhosts:
         proxy_pass http://127.0.0.1:8081/;
       }
   - listen: "80"
-    server_name: "atlas-stg-v2.openmrs.org"
+    server_name: "atlas-stg.openmrs.org"
     filename: "atlas-stg.openmrs.org.80.conf"
     extra_parameters: |
       return 301 https://$host$request_uri;
   - listen: "443 ssl"
-    server_name: "atlas-stg-v2.openmrs.org"
+    server_name: "atlas-stg.openmrs.org"
     extra_parameters: |
       access_log /var/log/nginx/atlas_access.log;
       error_log /var/log/nginx/atlas_error.log;
@@ -71,12 +71,12 @@ nginx_vhosts:
         proxy_busy_buffers_size   256k;
       }
   - listen: "80"
-    server_name: "modules-stg-v2.openmrs.org"
+    server_name: "modules-stg.openmrs.org"
     filename: "modules-stg.openmrs.org.80.conf"
     extra_parameters: |
       return 301 https://$host$request_uri;
   - listen: "443 ssl"
-    server_name: "modules-stg-v2.openmrs.org"
+    server_name: "modules-stg.openmrs.org"
     extra_parameters: |
       access_log /var/log/nginx/modules_access.log;
       error_log /var/log/nginx/modules_error.log;
@@ -86,7 +86,7 @@ nginx_vhosts:
         root /usr/share/nginx/html;
       }
       location / {
-        return 301 https://addons-stg-v2.openmrs.org$request_uri;
+        return 301 https://addons-stg.openmrs.org$request_uri;
       }
   - listen: "443 ssl"
     server_name: "gode.openmrs.org"
