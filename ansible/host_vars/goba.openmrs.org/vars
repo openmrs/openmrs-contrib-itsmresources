@@ -33,10 +33,10 @@ letsencrypt_cert_domains:
    - addons.openmrs.org
    - modules.openmrs.org
    - atlas.openmrs.org
-   - implementation-v2.openmrs.org
-   - quizgrader-v2.openmrs.org
-   - shields-v2.openmrs.org
-   - radarproxy-v2.openmrs.org
+   - implementation.openmrs.org
+   - quizgrader.openmrs.org
+   - shields.openmrs.org
+   - radarproxy.openmrs.org
 
 
 docker_deployment:
@@ -113,7 +113,7 @@ nginx_vhosts:
         proxy_busy_buffers_size   256k;
       }
   - listen: "443 ssl"
-    server_name: "implementation-v2.openmrs.org"
+    server_name: "implementation.openmrs.org"
     extra_parameters: |
       access_log /var/log/nginx/implementation_access.log;
       error_log /var/log/nginx/implementation_error.log;
@@ -127,12 +127,12 @@ nginx_vhosts:
        proxy_pass http://127.0.0.1:8000;
       }
   - listen: "80"
-    server_name: "quizgrader-v2.openmrs.org"
+    server_name: "quizgrader.openmrs.org"
     filename: "quizgrader.openmrs.org.80.conf"
     extra_parameters: |
       return 301 https://$host$request_uri;
   - listen: "443 ssl"
-    server_name: "quizgrader-v2.openmrs.org"
+    server_name: "quizgrader.openmrs.org"
     extra_parameters: |
      access_log /var/log/nginx/quizgrader_access.log;
      error_log /var/log/nginx/quizgrader_error.log;
@@ -142,15 +142,15 @@ nginx_vhosts:
        root /usr/share/nginx/html;
      }
      location / {
-       proxy_pass http://127.0.0.1:8081;
+       proxy_pass http://127.0.0.1:8084;
      }
   - listen: "80"
-    server_name: "shields-v2.openmrs.org"
+    server_name: "shields.openmrs.org"
     filename: "shields.openmrs.org.80.conf"
     extra_parameters: |
      return 301 https://$host$request_uri;
   - listen: "443 ssl"
-    server_name: "shields-v2.openmrs.org"
+    server_name: "shields.openmrs.org"
     extra_parameters: |
      access_log /var/log/nginx/shields_access.log;
      error_log /var/log/nginx/shields_error.log;
@@ -163,12 +163,12 @@ nginx_vhosts:
        proxy_pass http://127.0.0.1:8083;
      }
   - listen: "80"
-    server_name: "radarproxy-v2.openmrs.org"
+    server_name: "radarproxy.openmrs.org"
     filename: "radarproxy.openmrs.org.80.conf"
     extra_parameters: |
      return 301 https://$host$request_uri;
   - listen: "443 ssl"
-    server_name: "radarproxy-v2.openmrs.org"
+    server_name: "radarproxy.openmrs.org"
     extra_parameters: |
      access_log /var/log/nginx/radarproxy_access.log;
      error_log /var/log/nginx/radarproxy_error.log;
