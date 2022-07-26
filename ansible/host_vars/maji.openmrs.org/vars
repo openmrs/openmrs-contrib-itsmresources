@@ -17,16 +17,16 @@ docker_data_dir: "/data/docker"
 
 letsencrypt_cert_domains:
   - maji.openmrs.org
-  - talk-v2.openmrs.org
+  - talk.openmrs.org
 
 nginx_vhosts:
  - listen: "80 default_server"
-   server_name: "talk-v2.openmrs.org"
+   server_name: "talk.openmrs.org"
    filename: "talk.openmrs.org.80.conf"
    extra_parameters: |
      return 301 https://$host$request_uri;
  - listen: "443 ssl"
-   server_name: "talk-v2.openmrs.org"
+   server_name: "talk.openmrs.org"
    extra_parameters: |
      access_log /var/log/nginx/talk_access.log;
      error_log /var/log/nginx/talk_error.log;
@@ -49,7 +49,7 @@ aws_secret_access_key: '{{ vault_aws_secret_access_key }}'
 #Required Variables
 DISCOURSE_HTTP_PORT: 9000
 
-DISCOURSE_HOSTNAME: talk-v2.openmrs.org
+DISCOURSE_HOSTNAME: talk.openmrs.org
 
 DISCOURSE_DEVELOPER_EMAILS: 'infrastructure+talk@openmrs.org'
 DISCOURSE_SMTP_ADDRESS: '{{ vault_discourse_smtp_address }}'
