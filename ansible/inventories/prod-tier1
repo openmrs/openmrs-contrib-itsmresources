@@ -1,12 +1,4 @@
 [prod]
-; ako.openmrs.org
-; ambam.openmrs.org
-; baragoi.openmrs.org
-; campo.openmrs.org
-; likoma.openmrs.org
-; menji.openmrs.org
-; salima.openmrs.org
-; maroua.openmrs.org
 adaba.openmrs.org
 jinka.openmrs.org
 maji.openmrs.org
@@ -15,21 +7,11 @@ mota.openmrs.org
 sawla.openmrs.org
 
 [docker]
-; ako.openmrs.org
-; baragoi.openmrs.org
-; likoma.openmrs.org
 adaba.openmrs.org
 maji.openmrs.org
 jinka.openmrs.org
 
 [web]
-; ako.openmrs.org
-; ambam.openmrs.org
-; baragoi.openmrs.org
-; campo.openmrs.org
-; likoma.openmrs.org
-; menji.openmrs.org
-; maroua.openmrs.org
 adaba.openmrs.org
 maji.openmrs.org
 mojo.openmrs.org
@@ -37,13 +19,6 @@ mota.openmrs.org
 jinka.openmrs.org
 
 [tls]
-; ako.openmrs.org
-; ambam.openmrs.org
-; baragoi.openmrs.org
-; campo.openmrs.org
-; likoma.openmrs.org
-; menji.openmrs.org
-; maroua.openmrs.org
 adaba.openmrs.org
 maji.openmrs.org
 mojo.openmrs.org
@@ -51,13 +26,6 @@ mota.openmrs.org
 jinka.openmrs.org
 
 [backup]
-; ako.openmrs.org
-; ambam.openmrs.org
-; baragoi.openmrs.org
-; likoma.openmrs.org
-; menji.openmrs.org
-; salima.openmrs.org
-; maroua.openmrs.org
 adaba.openmrs.org
 mojo.openmrs.org
 mota.openmrs.org
@@ -65,21 +33,16 @@ jinka.openmrs.org
 sawla.openmrs.org
 
 [jira]
-; maroua.openmrs.org
 mojo.openmrs.org
 
 [confluence]
-; menji.openmrs.org
 mota.openmrs.org
 
 [crowd]
-; ambam.openmrs.org
 adaba.openmrs.org
 
 [mysql]
-; salima.openmrs.org
 sawla.openmrs.org
 
 [discourse]
-; likoma.openmrs.org
 maji.openmrs.org
