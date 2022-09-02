@@ -21,7 +21,10 @@ users:
    comment: Maurya
    groups: 'admin'
    ssh_key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDDZ5/06Fs0pcx37McO9A+sV6z6ozSuTsvdqYXmTMiog4cjCumyhMhQ7rDehaft2/zDsuAibHFfLcG30Tahb76Gt19qKFB7VogORtmXzlqf2xKVKkaWWN0EHB/ilcfwwCnCGrqnGHbiRfO7P79SB6Yj6I1L0qkhwUhFEGv4w7VhbKiffAc2oUmO7KcbuaPIlRpMQHfBvmbamjEeaTIu1LTX6Vp8P2D2XNfYWEMjawWJo/bXUh3idan+7VD5nFZbQBz/p+0efiXD6FzjcFeiOBOMCiwQm425m/cozGkJ3FRmWAZzAk8w/Pd1IEECdK/USLF5pSYa8SEVTPKlrin+HA+b maurya@zatara.local"
-
+#  akanter:
+#    comment: Andy Kanter
+#    groups: 'admin'
+#    ssh_key: <pending>
 
 datadog_tags_extra:
   - "service:openmrs-refapp"
@@ -33,9 +36,11 @@ docker_deployment:
  - mdsbuilder
  - emr-3-demo
  - oclclient-prd
+ - cieladmin
 
 letsencrypt_cert_domains:
   - bele.openmrs.org
+  - cieladmin.openmrs.org
   - demo.openmrs.org
   - mdsbuilder.openmrs.org
   - o3.openmrs.org
@@ -142,4 +147,27 @@ nginx_vhosts:
      location ^~ /.well-known/acme-challenge/ {
        root /usr/share/nginx/html;
      }
+  - listen: "80"
+    server_name: "cieladmin.openmrs.org"
+    filename: "cieladmin.openmrs.org.80.conf"
+    extra_parameters: |
+      return 301 https://$host$request_uri;
+  - listen: "443 ssl"
+    server_name: "cieladmin.openmrs.org"
+    extra_parameters: |
+      access_log /var/log/nginx/cieladmin_access.log;
+      error_log /var/log/nginx/cieladmin_error.log;
+      ssl_certificate /etc/letsencrypt/live/bele.openmrs.org/fullchain.pem;
+      ssl_certificate_key /etc/letsencrypt/live/bele.openmrs.org/privkey.pem;
+      location ^~ /.well-known/acme-challenge/ {
+        root /usr/share/nginx/html;
+      }
+      location / {
+        return 301 https://cieladmin.openmrs.org/openmrs;
+      }
+      location /openmrs {
+        proxy_set_header HOST $host;
+        proxy_set_header  X-Forwarded-Proto $scheme;
+        proxy_pass http://127.0.0.1:8084/openmrs;
+      }
 
