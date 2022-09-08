@@ -21,10 +21,10 @@ users:
    comment: Maurya
    groups: 'admin'
    ssh_key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDDZ5/06Fs0pcx37McO9A+sV6z6ozSuTsvdqYXmTMiog4cjCumyhMhQ7rDehaft2/zDsuAibHFfLcG30Tahb76Gt19qKFB7VogORtmXzlqf2xKVKkaWWN0EHB/ilcfwwCnCGrqnGHbiRfO7P79SB6Yj6I1L0qkhwUhFEGv4w7VhbKiffAc2oUmO7KcbuaPIlRpMQHfBvmbamjEeaTIu1LTX6Vp8P2D2XNfYWEMjawWJo/bXUh3idan+7VD5nFZbQBz/p+0efiXD6FzjcFeiOBOMCiwQm425m/cozGkJ3FRmWAZzAk8w/Pd1IEECdK/USLF5pSYa8SEVTPKlrin+HA+b maurya@zatara.local"
-#  akanter:
-#    comment: Andy Kanter
-#    groups: 'admin'
-#    ssh_key: <pending>
+ akanter:
+   comment: Andy Kanter
+   groups: 'admin'
+   ssh_key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCwbMh9MAexKoRwTP3rjvnTTTY5/hfuBY9v5K/gTiiZTjAbZijkvWZhp4OtVyqRAEn4m7BR2k87ln9GFGaGuKoLbsi+4N5M7QRYz9gBcfzhxEm9otOIPO9jO9oMqWKjMXnQRRUNjIvcow9skzwRwzyW/mfHxdb3Tr2UAAP8H2d44g5J7/KALWUf+6Z6tpDN/+gz76Au/fb4ncATTXP1rAK6G2+rd4GC19dk6yRgvHTyU3NnqTY/8vVJbe54zqy7zBPwEIwNWGUc5xnfrlnNxLWlguC+Ps/7mxlFdXy1M0d8Xd5b235tg6Dut72iV1kpxeSW2yt/JY60SVFqq/F8yTUh akanter"
 
 datadog_tags_extra:
   - "service:openmrs-refapp"
