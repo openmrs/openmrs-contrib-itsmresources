@@ -65,12 +65,12 @@ datadog_agent_version: 7.37.1
 datadog_agent_allow_downgrade: true
 
 datadog_tags_default:
-    - "provider:{{ansible_local.provisioning.general.provider}}"
-    - "region:{{ansible_local.provisioning.general.region}}"
-    - "environment:{{ansible_local.provisioning.general.inventory}}"
+#    - "provider:{{ansible_local.provisioning.general.provider}}"
+#    - "region:{{ansible_local.provisioning.general.region}}"
+#    - "environment:{{ansible_local.provisioning.general.inventory}}"
     - "backup:{{backup_tag}}"
     - "ansible:{{ansible_tag}}"
-    - "provisioner:{{ansible_local.provisioning.general.provisioner}}"
+#    - "provisioner:{{ansible_local.provisioning.general.provisioner}}"
 
 datadog_config:
   process_config:
