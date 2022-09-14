@@ -179,7 +179,7 @@ nginx_vhosts:
     extra_parameters: |
       return 301 https://$host$request_uri;
   - listen: "443 ssl"
-    server_name: "formbuilder.3.openmrs.org"
+    server_name: "formbuilder.o3.openmrs.org"
     extra_parameters: |
       access_log /var/log/nginx/formbuilder_o3_access.log;
       error_log /var/log/nginx/formbuilder_o3_error.log;
