@@ -3,7 +3,7 @@ Host github.com
 	StrictHostKeyChecking no
 
 Host *.sourceforge.net
-	IdentityFile ~/.ssh/sourceforge/id_rsa
+	IdentityFile ~/.ssh/sourceforge/id_ed25519
 	StrictHostKeyChecking no
 
 Host *.openmrs.org
