@@ -25,6 +25,10 @@ users:
    comment: Andy Kanter
    groups: 'admin'
    ssh_key: command="sudo docker exec -it `sudo docker ps --filter name=cieladmin_db -q -l` bash -c 'mysql --user=\"$MYSQL_USER\" --password=\"$MYSQL_PASSWORD\" openmrs'" "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCwbMh9MAexKoRwTP3rjvnTTTY5/hfuBY9v5K/gTiiZTjAbZijkvWZhp4OtVyqRAEn4m7BR2k87ln9GFGaGuKoLbsi+4N5M7QRYz9gBcfzhxEm9otOIPO9jO9oMqWKjMXnQRRUNjIvcow9skzwRwzyW/mfHxdb3Tr2UAAP8H2d44g5J7/KALWUf+6Z6tpDN/+gz76Au/fb4ncATTXP1rAK6G2+rd4GC19dk6yRgvHTyU3NnqTY/8vVJbe54zqy7zBPwEIwNWGUc5xnfrlnNxLWlguC+Ps/7mxlFdXy1M0d8Xd5b235tg6Dut72iV1kpxeSW2yt/JY60SVFqq/F8yTUh akanter"
+ jwnasambu:
+   comment: Juliet Wamalwa
+   groups: 'admin'
+   ssh_key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCrFnM2CNLUHViK6x0WbyVVLZqA/Flw0ZOsR10ZjNBiF4i/UifV4EhU5+aYhXGq6ZSl5q5POV1d2UB0PEmSBAXahjQnwcf1QPwf3taP8TUXVfNRQV8D2t95ieQhSB39GTUMDRuFQYvllEOXIGL7uckAWZAGFbeXpFxYsW2ePt1d0S82QFP3zbvL7Js0S2CaRpwP1jRu7PcW7MhAzdsaBEAINiOMK5OYo3jwUkLtuaCUqoOf7WiF/Wrmc12vA17ndDNL7p9/oUBH9aBwyWIpF1/YX0RWssmns8gJTEC76CKEnfmm2Jqt9j9tubl27ebFdmqWfPkaweTJuwS/sCdECitx denis@Deniss-Air"
 
 datadog_tags_extra:
   - "service:openmrs-refapp"
