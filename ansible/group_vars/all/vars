@@ -9,10 +9,10 @@ othergroups:
    gid: 8001
 
 users:
- pascal:
-   comment: Pascal
-   groups: 'admin'
-   ssh_key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC4wrilBh6lA3I41X5vQlB++uQYf3hogTqpAPr0TuW2Ae8DLSgi+CYuRjygNBEALQJdON8EXVOteaGb/gI3GV7Dl4CZqATaRN9CBA7XkvgNYVAPZm5Y1F2nZYtILH2f+FFbBDtSNdHS1onTevg3GAv6n0oCVBrrsx5DdulhhWXEi6swA9Tn9Qed43i0yAeVmARdNw2u1xvb6LDjWPtDz9bTA6VnNt7XsuTJLX2R9/4EZ/JxbcDevUrfsIhSiMLrjbfn99ufnQGQLOcNyXNzro87YlVg0CCyIEq+iGRsFjSrz71lDDhAwqMA0W99XkNaEGcRlDEB9SOYYkGC/wQrb2/f pascal@Pascals-MacBook-Pro.local"
+ raff:
+  comment: Rafal
+  groups: 'admin'
+  ssh_key: "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAgc4Q+9e1XMDInFm4GNkuYErYkgDt0KNnmLDTFa+0HV1MuQKP+TE3Ee9Qdx5rugNkg9+e45Hzfze/vX/nYjrNAkWcxYaxEAdej/6QW4Bh4r6rRLnNoqnksG3+WVXl2cqOf9odji2L+uzA2E+zX5tEYqVkN9+0z1Ewwe6lcSg0zRQyJ+phIo595eftYJGAiLAhIfSotg8SxWJhSHUsNtphyXRld7FtxXDgfu6SkejvakymwXEuMe7yS2mES9U8IlJh4CyADGaqb0WSWfqsejcgMuXJmnEqpMqVwcDaP4B+NZLTKfUUlc2D8DiUKRqlnxuGCFmkpghTQkX4dE0YhxJSjQ== raff"
  burke:
    comment: Burke
    groups: 'admin'
