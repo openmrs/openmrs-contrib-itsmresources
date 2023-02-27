@@ -21,7 +21,10 @@ users:
    comment: Maurya
    groups: 'admin'
    ssh_key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDDZ5/06Fs0pcx37McO9A+sV6z6ozSuTsvdqYXmTMiog4cjCumyhMhQ7rDehaft2/zDsuAibHFfLcG30Tahb76Gt19qKFB7VogORtmXzlqf2xKVKkaWWN0EHB/ilcfwwCnCGrqnGHbiRfO7P79SB6Yj6I1L0qkhwUhFEGv4w7VhbKiffAc2oUmO7KcbuaPIlRpMQHfBvmbamjEeaTIu1LTX6Vp8P2D2XNfYWEMjawWJo/bXUh3idan+7VD5nFZbQBz/p+0efiXD6FzjcFeiOBOMCiwQm425m/cozGkJ3FRmWAZzAk8w/Pd1IEECdK/USLF5pSYa8SEVTPKlrin+HA+b maurya@zatara.local"
-
+ dennis:
+   comment: Dennis
+   groups: 'admin'
+   ssh_key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIE7VMKTN/UOXrJK5ITt7w9ZpquAwRL2pUwdpdB65w8nH dennis@openmrs.org"
 
 datadog_tags_extra:
   - "service:openmrs-refapp"
