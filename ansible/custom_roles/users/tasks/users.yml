@@ -68,6 +68,7 @@
                   key="{{item.value.ssh_key}}"
                   manage_dir=yes
                   exclusive=yes
+                  key_options="{{item.value.key_options | default() }}"
   with_dict: "{{users | default({})}}"
   when: (item.value.ssh_key is defined)
   tags: ['users','ssh-key']
