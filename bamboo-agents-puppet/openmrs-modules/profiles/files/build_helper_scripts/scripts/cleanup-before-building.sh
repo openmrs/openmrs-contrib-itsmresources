@@ -8,3 +8,6 @@ docker system prune -af --filter until=48h
 
 echo "Removing all unused docker volumes except for m2-repo"
 docker volume ls -q -f dangling=true | grep -v 'm2-repo' | xargs -r docker volume rm -f
+
+echo "Removing SDK temp files"
+rm -Rf /tmp/openmrs-sdk-*
