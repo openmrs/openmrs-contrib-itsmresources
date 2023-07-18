@@ -29,17 +29,12 @@ users:
 datadog_tags_extra:
   - "service:openmrs-refapp"
   - "service:openmrs-platform"
-  - "service:ocl"
 
 docker_deployment:
  - qa-refapp
  - modules-refapp
  - uat-refapp
  - uat-platform
- - oclclient-qa
- - oclclient-demo
- - oclclient-stg
- - oclclient-dev
  - emr-3-dev
  - emr-3-qa
 
@@ -51,10 +46,6 @@ letsencrypt_cert_domains:
   - uat-platform.openmrs.org
   - dev3.openmrs.org
   - test3.openmrs.org
-  - openmrs.demo.openconceptlab.org
-  - openmrs.staging.openconceptlab.org
-  - openmrs.qa.openconceptlab.org
-  - openmrs.dev.openconceptlab.org
 
 nginx_keepalive_timeout: "600"
 nginx_keepalive_requests: "600"
@@ -205,76 +196,4 @@ nginx_vhosts:
         proxy_set_header  X-Real-IP $remote_addr;
         proxy_set_header  X-Forwarded-For $proxy_add_x_forwarded_for;
         proxy_pass http://127.0.0.1:8091/;
-      }
-  - listen: "80"
-    server_name: "openmrs.qa.openconceptlab.org"
-    filename: "openmrs.qa.openconceptlab.org.80.conf"
-    extra_parameters: |
-      return 301 https://$host$request_uri;
-  - listen: "443 ssl"
-    server_name: "openmrs.qa.openconceptlab.org"
-    extra_parameters: |
-      access_log /var/log/nginx/oclclient_access.log;
-      error_log /var/log/nginx/oclclient_error.log;
-      ssl_certificate /etc/letsencrypt/live/bonga.openmrs.org/fullchain.pem;
-      ssl_certificate_key /etc/letsencrypt/live/bonga.openmrs.org/privkey.pem;
-      location ^~ /.well-known/acme-challenge/ {
-        root /usr/share/nginx/html;
-      }
-      location / {
-        proxy_pass http://127.0.0.1:8096/;
-      }
-  - listen: "80"
-    server_name: "openmrs.demo.openconceptlab.org"
-    filename: "openmrs.demo.openconceptlab.org.80.conf"
-    extra_parameters: |
-      return 301 https://$host$request_uri;
-  - listen: "443 ssl"
-    server_name: "openmrs.demo.openconceptlab.org"
-    extra_parameters: |
-      access_log /var/log/nginx/oclclient_access.log;
-      error_log /var/log/nginx/oclclient_error.log;
-      ssl_certificate /etc/letsencrypt/live/bonga.openmrs.org/fullchain.pem;
-      ssl_certificate_key /etc/letsencrypt/live/bonga.openmrs.org/privkey.pem;
-      location ^~ /.well-known/acme-challenge/ {
-        root /usr/share/nginx/html;
-      }
-      location / {
-        proxy_pass http://127.0.0.1:8097/;
-      }
-  - listen: "80"
-    server_name: "openmrs.staging.openconceptlab.org"
-    filename: "openmrs.staging.openconceptlab.org.80.conf"
-    extra_parameters: |
-      return 301 https://$host$request_uri;
-  - listen: "443 ssl"
-    server_name: "openmrs.staging.openconceptlab.org"
-    extra_parameters: |
-      access_log /var/log/nginx/oclclientstg_access.log;
-      error_log /var/log/nginx/oclclientstg_error.log;
-      ssl_certificate /etc/letsencrypt/live/bonga.openmrs.org/fullchain.pem;
-      ssl_certificate_key /etc/letsencrypt/live/bonga.openmrs.org/privkey.pem;
-      location ^~ /.well-known/acme-challenge/ {
-        root /usr/share/nginx/html;
-      }
-      location / {
-        proxy_pass http://127.0.0.1:8095/;
-      }
-  - listen: "80"
-    server_name: "openmrs.dev.openconceptlab.org"
-    filename: "openmrs.dev.openconceptlab.org.80.conf"
-    extra_parameters: |
-      return 301 https://$host$request_uri;
-  - listen: "443 ssl"
-    server_name: "openmrs.dev.openconceptlab.org"
-    extra_parameters: |
-      access_log /var/log/nginx/oclclientdev_access.log;
-      error_log /var/log/nginx/oclclientdev_error.log;
-      ssl_certificate /etc/letsencrypt/live/bonga.openmrs.org/fullchain.pem;
-      ssl_certificate_key /etc/letsencrypt/live/bonga.openmrs.org/privkey.pem;
-      location ^~ /.well-known/acme-challenge/ {
-        root /usr/share/nginx/html;
-      }
-      location / {
-        proxy_pass http://127.0.0.1:8094/;
       }
