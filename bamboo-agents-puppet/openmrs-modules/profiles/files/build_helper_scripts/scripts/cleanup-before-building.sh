@@ -11,3 +11,8 @@ docker volume ls -q -f dangling=true | grep -v 'm2-repo' | xargs -r docker volum
 
 echo "Removing SDK temp files"
 rm -Rf /tmp/openmrs-sdk-*
+
+if [ $(df /data --output='pcent' | grep -o "[0-9]*") -gt 80 ]; then
+       echo "Disk space lower than 80%. Removing all docker containers and volumes."
+       docker system prune -af;
+fi
