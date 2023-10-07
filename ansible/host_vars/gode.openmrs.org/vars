@@ -94,8 +94,8 @@ nginx_vhosts:
   - listen: "443 ssl"
     server_name: "id-stg.openmrs.org"
     extra_parameters: |
-      access_log /var/log/nginx/addons_access.log;
-      error_log /var/log/nginx/addons_error.log;
+      access_log /var/log/nginx/id_access.log;
+      error_log /var/log/nginx/id_error.log;
       ssl_certificate /etc/letsencrypt/live/gode.openmrs.org/fullchain.pem;
       ssl_certificate_key /etc/letsencrypt/live/gode.openmrs.org/privkey.pem;
       location ^~ /.well-known/acme-challenge/ {
