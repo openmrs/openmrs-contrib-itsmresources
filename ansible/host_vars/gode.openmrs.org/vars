@@ -20,6 +20,7 @@ datadog_tags_extra:
 
 letsencrypt_cert_domains:
    - gode.openmrs.org
+   - ldap-stg.openmrs.org
    - addons-stg.openmrs.org
    - modules-stg.openmrs.org
    - atlas-stg.openmrs.org
@@ -27,8 +28,27 @@ letsencrypt_cert_domains:
 docker_deployment:
   - addons-stg
   - atlas-stg
+  - ldap-stg
 
 nginx_vhosts:
+  - listen: "389"
+    server_name: "ldap-stg.openmrs.org"
+    filename: "ldap-stg.openmrs.org.80.conf"
+    extra_parameters: |
+      return 301 ldaps://$host$request_uri;
+  - listen: "636 ssl"
+    server_name: "ldap-stg.openmrs.org"
+    extra_parameters: |
+      access_log /var/log/nginx/ldap_access.log;
+      error_log /var/log/nginx/ldap_error.log;
+      ssl_certificate /etc/letsencrypt/live/gode.openmrs.org/fullchain.pem;
+      ssl_certificate_key /etc/letsencrypt/live/gode.openmrs.org/privkey.pem;
+      location ^~ /.well-known/acme-challenge/ {
+        root /usr/share/nginx/html;
+      }
+      location / {
+        proxy_pass ldap://127.0.0.1:1389;
+      }
   - listen: "80 default_server"
     server_name: "addons-stg.openmrs.org"
     filename: "addons-stg.openmrs.org.80.conf"
