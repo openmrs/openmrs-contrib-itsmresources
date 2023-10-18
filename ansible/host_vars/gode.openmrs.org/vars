@@ -24,11 +24,13 @@ letsencrypt_cert_domains:
    - addons-stg.openmrs.org
    - modules-stg.openmrs.org
    - atlas-stg.openmrs.org
+   - id-stg.openmrs.org
 
 docker_deployment:
   - addons-stg
   - atlas-stg
   - ldap-stg
+  - id-stg
 
 nginx_extra_conf_options: |
   load_module /usr/lib/nginx/modules/ngx_stream_module.so;
@@ -75,6 +77,24 @@ nginx_vhosts:
       location / {
         proxy_pass http://127.0.0.1:8081/;
       }
+  - listen: "80"
+      server_name: "id-stg.openmrs.org"
+      filename: "id-stg.openmrs.org.80.conf"
+      extra_parameters: |
+        return 301 https://$host$request_uri;
+  - listen: "443 ssl"
+      server_name: "id-stg.openmrs.org"
+      extra_parameters: |
+        access_log /var/log/nginx/id_access.log;
+        error_log /var/log/nginx/id_error.log;
+        ssl_certificate /etc/letsencrypt/live/gode.openmrs.org/fullchain.pem;
+        ssl_certificate_key /etc/letsencrypt/live/gode.openmrs.org/privkey.pem;
+        location ^~ /.well-known/acme-challenge/ {
+          root /usr/share/nginx/html;
+        }
+        location / {
+          proxy_pass http://127.0.0.1:8080/;
+        }
   - listen: "80"
     server_name: "atlas-stg.openmrs.org"
     filename: "atlas-stg.openmrs.org.80.conf"
