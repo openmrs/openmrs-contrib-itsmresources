@@ -30,25 +30,33 @@ docker_deployment:
   - atlas-stg
   - ldap-stg
 
+nginx_extra_conf_options: |
+  load_module /usr/lib/nginx/modules/ngx_stream_module.so;
+
+  stream {
+    log_format basic '$remote_addr [$time_local] '
+                     '$protocol $status $bytes_sent $bytes_received '
+                     '$session_time';
+
+    access_log  /var/log/nginx/access_stream.log basic;
+    error_log   /var/log/nginx/error_stream.log warn;
+
+    server {
+        #LDAPS proxy
+        listen 636 ssl;
+        proxy_pass localhost:1389;
+        ssl_certificate         /etc/letsencrypt/live/gode.openmrs.org/fullchain.pem;
+        ssl_certificate_key     /etc/letsencrypt/live/gode.openmrs.org/privkey.pem;
+    }
+
+    server {
+        #LDAP proxy (for local access only)
+        listen 389;
+        proxy_pass localhost:1389;
+    }
+  }
+
 nginx_vhosts:
-  - listen: "389"
-    server_name: "ldap-stg.openmrs.org"
-    filename: "ldap-stg.openmrs.org.80.conf"
-    extra_parameters: |
-      return 301 ldaps://$host$request_uri;
-  - listen: "636 ssl"
-    server_name: "ldap-stg.openmrs.org"
-    extra_parameters: |
-      access_log /var/log/nginx/ldap_access.log;
-      error_log /var/log/nginx/ldap_error.log;
-      ssl_certificate /etc/letsencrypt/live/gode.openmrs.org/fullchain.pem;
-      ssl_certificate_key /etc/letsencrypt/live/gode.openmrs.org/privkey.pem;
-      location ^~ /.well-known/acme-challenge/ {
-        root /usr/share/nginx/html;
-      }
-      location / {
-        proxy_pass ldap://127.0.0.1:1389;
-      }
   - listen: "80 default_server"
     server_name: "addons-stg.openmrs.org"
     filename: "addons-stg.openmrs.org.80.conf"
@@ -123,3 +131,10 @@ nginx_vhosts:
 aws_access_key_id: '{{ vault_aws_access_key_id }}'
 aws_secret_access_key: '{{ vault_aws_secret_access_key }}'
 backup_tag: 'configured'
+
+# Uncomment for external access to LDAPS
+#ufw_rules:
+#   ldap:
+#     port: 636
+#     proto: tcp
+#     rule: allow
