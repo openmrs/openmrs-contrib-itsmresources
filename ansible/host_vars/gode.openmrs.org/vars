@@ -25,38 +25,13 @@ letsencrypt_cert_domains:
    - modules-stg.openmrs.org
    - atlas-stg.openmrs.org
    - id-stg.openmrs.org
+   - smtp-stg.openmrs.org
 
 docker_deployment:
   - addons-stg
   - atlas-stg
   - ldap-stg
   - id-stg
-
-nginx_extra_conf_options: |
-  load_module /usr/lib/nginx/modules/ngx_stream_module.so;
-
-  stream {
-    log_format basic '$remote_addr [$time_local] '
-                     '$protocol $status $bytes_sent $bytes_received '
-                     '$session_time';
-
-    access_log  /var/log/nginx/access_stream.log basic;
-    error_log   /var/log/nginx/error_stream.log warn;
-
-    server {
-        #LDAPS proxy
-        listen 636 ssl;
-        proxy_pass localhost:1389;
-        ssl_certificate         /etc/letsencrypt/live/gode.openmrs.org/fullchain.pem;
-        ssl_certificate_key     /etc/letsencrypt/live/gode.openmrs.org/privkey.pem;
-    }
-
-    server {
-        #LDAP proxy (for local access only)
-        listen 389;
-        proxy_pass localhost:1389;
-    }
-  }
 
 nginx_vhosts:
   - listen: "80 default_server"
@@ -78,23 +53,26 @@ nginx_vhosts:
         proxy_pass http://127.0.0.1:8081/;
       }
   - listen: "80"
-      server_name: "id-stg.openmrs.org"
-      filename: "id-stg.openmrs.org.80.conf"
-      extra_parameters: |
-        return 301 https://$host$request_uri;
+    server_name: "id-stg.openmrs.org"
+    filename: "id-stg.openmrs.org.80.conf"
+    extra_parameters: |
+      return 301 https://$host$request_uri;
   - listen: "443 ssl"
-      server_name: "id-stg.openmrs.org"
-      extra_parameters: |
-        access_log /var/log/nginx/id_access.log;
-        error_log /var/log/nginx/id_error.log;
-        ssl_certificate /etc/letsencrypt/live/gode.openmrs.org/fullchain.pem;
-        ssl_certificate_key /etc/letsencrypt/live/gode.openmrs.org/privkey.pem;
-        location ^~ /.well-known/acme-challenge/ {
-          root /usr/share/nginx/html;
-        }
-        location / {
-          proxy_pass http://127.0.0.1:8080/;
-        }
+    server_name: "id-stg.openmrs.org"
+    extra_parameters: |
+      access_log /var/log/nginx/id_access.log;
+      error_log /var/log/nginx/id_error.log;
+      ssl_certificate /etc/letsencrypt/live/gode.openmrs.org/fullchain.pem;
+      ssl_certificate_key /etc/letsencrypt/live/gode.openmrs.org/privkey.pem;
+      location ^~ /.well-known/acme-challenge/ {
+        root /usr/share/nginx/html;
+      }
+      location / {
+        proxy_set_header  X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header  X-Forwarded-Proto $scheme; # Needed for admin console to work
+        proxy_set_header  X-Forwarded-Host  $host;
+        proxy_pass http://127.0.0.1:8080/;
+      }
   - listen: "80"
     server_name: "atlas-stg.openmrs.org"
     filename: "atlas-stg.openmrs.org.80.conf"
@@ -152,9 +130,13 @@ aws_access_key_id: '{{ vault_aws_access_key_id }}'
 aws_secret_access_key: '{{ vault_aws_secret_access_key }}'
 backup_tag: 'configured'
 
-# Uncomment for external access to LDAPS
-#ufw_rules:
-#   ldap:
-#     port: 636
-#     proto: tcp
-#     rule: allow
+# Uncomment for external access to LDAPS and SMTPS
+ufw_rules:
+   ldap:
+     port: 636
+     proto: tcp
+     rule: allow
+   smtp:
+     port: 587
+     proto: tcp
+     rule: allow
