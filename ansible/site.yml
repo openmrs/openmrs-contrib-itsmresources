@@ -48,6 +48,8 @@
   become: true
   tags:
     - web
+  tasks:
+    - include: tasks/nginx.yml
   roles:
    - nginx
 

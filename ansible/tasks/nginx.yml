@@ -1,0 +1,8 @@
+---
+  - name: Copy nginx root html
+    copy:
+      owner: root
+      group: root
+      mode: 0755
+      src: files/nginx/
+      dest: /usr/share/nginx/html/
