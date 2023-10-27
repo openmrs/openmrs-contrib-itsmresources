@@ -140,6 +140,10 @@ ufw_rules:
      proto: tcp
      rule: allow
    smtp:
+     port: 25
+     proto: tcp
+     rule: allow
+   smtps:
      port: 587
      proto: tcp
      rule: allow
