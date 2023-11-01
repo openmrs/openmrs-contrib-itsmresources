@@ -1,6 +1,8 @@
 # {{ ansible_managed }}
 
-# See the CATALINA_OPTS below for tuning the JVM arguments used to start Confluence.
+#-----------------------------------------------------------------------------------
+# See the CATALINA_OPTS below for tuning the JVM arguments used to start Confluence
+#-----------------------------------------------------------------------------------
 
 echo "If you encounter issues starting up Confluence, please see the Installation guide at http://confluence.atlassian.com/display/DOC/Confluence+Installation+Guide"
 
@@ -62,7 +64,6 @@ export CONFLUENCE_CONTEXT_PATH
 $JRE_HOME/bin/java -jar $CATALINA_HOME/bin/synchrony-proxy-watchdog.jar $CATALINA_HOME
 echo "---------------------------------------------------------------------------"
 
-
 #----------------------------------------------------------------------------------- 
 # This section contains commonly modified Java options and system properties
 # When upgrading Confluence, copy this section to reapply your customizations
@@ -98,12 +99,10 @@ CATALINA_OPTS="-Dconfluence.upgrade.recovery.file.enabled=false ${CATALINA_OPTS}
 #CATALINA_OPTS="-Dexample.property=true ${CATALINA_OPTS}"
 CATALINA_OPTS="{{ confluence_jvm_support_recommended_args }} ${CATALINA_OPTS}"
 
-
-CATALINA_OPTS="-Dconfluence.home={{ confluence_home }} ${CATALINA_OPTS}"
-
-
 # Uncomment this line to disable email notifications
 #CATALINA_OPTS="-Datlassian.mail.senddisabled=true -Datlassian.mail.fetchdisabled=true ${CATALINA_OPTS}"
+
+CATALINA_OPTS="-Dconfluence.home={{ confluence_home }} ${CATALINA_OPTS}"
 
 #-----------------------------------------------------------------------------------
 # End of commonly modified Java options. You should not need to change the options 
