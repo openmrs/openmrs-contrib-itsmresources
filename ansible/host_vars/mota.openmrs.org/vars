@@ -83,5 +83,5 @@ mysql_connector_java_dest: '{{ confluence_catalina }}/lib'
 mysql_connector_java_user: '{{ confluence_user }}'
 mysql_connector_java_archive: 'mysql-connector-j-8.2.0.tar.gz'
 mysql_connector_java_jar: 'mysql-connector-j-8.2.0.jar'
-mysql_connector_java_url: "https://dev.mysql.com/get/Downloads/Connector-J/{{ mysql_connector_java_archive }}"
+mysql_connector_java_url: "https://cdn.mysql.com/Downloads/Connector-J/{{ mysql_connector_java_archive }}"
 mysql_connector_java_checksum: 'sha256:e763d33ee838dc7a363e7e0a326b2c862df57a3a830263f5dccc81ccbfe41af9'
