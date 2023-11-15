@@ -88,29 +88,29 @@ nginx_vhosts:
         proxy_pass http://127.0.0.1:3000/;
       }
   - listen: "80"
-      server_name: "id-new.openmrs.org"
-      filename: "id-new.openmrs.org.80.conf"
-      extra_parameters: |
-        return 301 https://$host$request_uri;
-    - listen: "443 ssl"
-      server_name: "id-new.openmrs.org"
-      extra_parameters: |
-        access_log /var/log/nginx/deployer_access.log;
-        error_log /var/log/nginx/deployer_error.log;
-        ssl_certificate /etc/letsencrypt/live/adaba.openmrs.org/fullchain.pem;
-        ssl_certificate_key /etc/letsencrypt/live/adaba.openmrs.org/privkey.pem;
-        location ^~ /.well-known/acme-challenge/ {
-          root /usr/share/nginx/html;
-        }
-        location =/atlassian-domain-verification.html { # Used to verify domain by Atlassian to manage accounts
-          root /usr/share/nginx/html;
-        }
-        location / {
-          proxy_set_header  X-Forwarded-For $proxy_add_x_forwarded_for;
-          proxy_set_header  X-Forwarded-Proto $scheme; # Needed for admin console to work
-          proxy_set_header  X-Forwarded-Host  $host;
-          proxy_pass http://127.0.0.1:8080/;
-        }
+    server_name: "id-new.openmrs.org"
+    filename: "id-new.openmrs.org.80.conf"
+    extra_parameters: |
+      return 301 https://$host$request_uri;
+  - listen: "443 ssl"
+    server_name: "id-new.openmrs.org"
+    extra_parameters: |
+      access_log /var/log/nginx/deployer_access.log;
+      error_log /var/log/nginx/deployer_error.log;
+      ssl_certificate /etc/letsencrypt/live/adaba.openmrs.org/fullchain.pem;
+      ssl_certificate_key /etc/letsencrypt/live/adaba.openmrs.org/privkey.pem;
+      location ^~ /.well-known/acme-challenge/ {
+        root /usr/share/nginx/html;
+      }
+      location =/atlassian-domain-verification.html { # Used to verify domain by Atlassian to manage accounts
+        root /usr/share/nginx/html;
+      }
+      location / {
+        proxy_set_header  X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header  X-Forwarded-Proto $scheme; # Needed for admin console to work
+        proxy_set_header  X-Forwarded-Host  $host;
+        proxy_pass http://127.0.0.1:8080/;
+      }
   - listen: "80"
     server_name: "adaba.openmrs.org"
     filename: "adaba.openmrs.org.80.conf"
