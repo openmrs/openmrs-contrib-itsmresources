@@ -82,6 +82,9 @@ nginx_vhosts:
       location ^~ /.well-known/acme-challenge/ {
         root /usr/share/nginx/html;
       }
+      location =/atlassian-domain-verification.html { # Used to verify domain by Atlassian to manage accounts
+        root /usr/share/nginx/html;
+      }
       location / {
         proxy_set_header HOST $host;
         proxy_set_header  X-Forwarded-Proto $scheme;
