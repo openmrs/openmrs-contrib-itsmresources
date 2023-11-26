@@ -7,7 +7,9 @@ datadog_tags_extra:
 letsencrypt_cert_domains:
    - mojo.openmrs.org
    - issues.openmrs.org
+   - issues-old.openmrs.org
    - tickets.openmrs.org
+   - tickets-old.openmrs.org
 
 nginx_vhosts:
   - listen: "80 default_server"
@@ -36,6 +38,24 @@ nginx_vhosts:
       return 301 https://$host$request_uri;
   - listen: "443 ssl"
     server_name: "issues.openmrs.org tickets.openmrs.org"
+    extra_parameters: |
+      access_log /var/log/nginx/deployer_access.log;
+      error_log /var/log/nginx/deployer_error.log;
+      ssl_certificate /etc/letsencrypt/live/mojo.openmrs.org/fullchain.pem;
+      ssl_certificate_key /etc/letsencrypt/live/mojo.openmrs.org/privkey.pem;
+      location ^~ /.well-known/acme-challenge/ {
+        root /usr/share/nginx/html;
+      }
+      location / {
+        return 302 https://openmrs.atlassian.net/jira/dashboards/10000;
+      }
+  - listen: "80"
+    server_name: "issues-old.openmrs.org tickets-old.openmrs.org"
+    filename: "issues-old.openmrs.org.80.conf"
+    extra_parameters: |
+      return 301 https://$host$request_uri;
+  - listen: "443 ssl"
+    server_name: "issues-old.openmrs.org tickets-old.openmrs.org"
     extra_parameters: |
       access_log /var/log/nginx/deployer_access.log;
       error_log /var/log/nginx/deployer_error.log;
