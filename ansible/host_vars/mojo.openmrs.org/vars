@@ -46,8 +46,11 @@ nginx_vhosts:
       location ^~ /.well-known/acme-challenge/ {
         root /usr/share/nginx/html;
       }
+      location ^~ /browse/ {
+        return 301 https://openmrs.atlassian.net$request_uri;
+      }
       location / {
-        return 302 https://openmrs.atlassian.net/jira/dashboards/10000;
+        return 301 https://openmrs.atlassian.net/jira/dashboards/10000;
       }
   - listen: "80"
     server_name: "issues-old.openmrs.org tickets-old.openmrs.org"
