@@ -75,16 +75,6 @@
   handlers:
     - include: handlers/monitoring.yml
 
-- hosts: jira
-  become: true
-  pre_tasks:
-    - include: tasks/install-openjdk.yml
-  roles:
-    - { role: 'custom_roles/jira'}
-    - mysql-connector-java
-  tags:
-    - jira
-
 - hosts: confluence
   become: true
   pre_tasks:
