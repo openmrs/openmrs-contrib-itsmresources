@@ -1,4 +1,4 @@
 ---
 # Manage users/groups/ssh keys
-- include: users.yml
+- import_tasks: users.yml
   when: manage_users

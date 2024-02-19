@@ -6,9 +6,9 @@
   tags:
     - basic-os
   tasks:
-   - include: tasks/hostname.yml # should happen before installing datadog
-   - include: tasks/updates.yml
-   - include: tasks/cleanup.yml
+   - import_tasks: tasks/hostname.yml # should happen before installing datadog
+   - import_tasks: tasks/updates.yml
+   - import_tasks: tasks/cleanup.yml
 
 - hosts: all
   become: true
@@ -21,9 +21,9 @@
    - ufw
    - datadog
   tasks:
-    - include: tasks/extra-monitoring.yml
+    - import_tasks: tasks/extra-monitoring.yml
   handlers:
-    - include: handlers/monitoring.yml
+    - import_tasks: handlers/monitoring.yml
 
 - hosts: vagrant
   become: true
@@ -37,19 +37,19 @@
     - tls
   become: true
   tasks:
-    - include: tasks/extra-tls.yml
+    - import_tasks: tasks/extra-tls.yml
   roles:
     - dhparam
     - { role: 'custom_roles/letsencrypt'}
   handlers:
-    - include: handlers/monitoring.yml
+    - import_tasks: handlers/monitoring.yml
 
 - hosts: web
   become: true
   tags:
     - web
   tasks:
-    - include: tasks/nginx.yml
+    - import_tasks: tasks/nginx.yml
   roles:
    - nginx
 
@@ -58,27 +58,27 @@
   tags:
    - backup
   tasks:
-   - include: tasks/backup.yml
+   - import_tasks: tasks/backup.yml
   roles:
    - aws-cli
   handlers:
-    - include: handlers/monitoring.yml
+    - import_tasks: handlers/monitoring.yml
 
 - hosts: docker
   become: true
   tags:
    - docker
   pre_tasks:
-   - include: tasks/docker-config.yml
+   - import_tasks: tasks/docker-config.yml
   roles:
    - docker-compose-openmrs
   handlers:
-    - include: handlers/monitoring.yml
+    - import_tasks: handlers/monitoring.yml
 
 - hosts: confluence
   become: true
   pre_tasks:
-    - include: tasks/install-openjdk.yml
+    - import_tasks: tasks/install-openjdk.yml
   roles:
     - { role: 'custom_roles/confluence'}
     - mysql-connector-java
@@ -88,7 +88,7 @@
 - hosts: bamboo
   become: true
   pre_tasks:
-    - include: tasks/install-openjdk.yml
+    - import_tasks: tasks/install-openjdk.yml
   roles:
     - { role: 'custom_roles/bamboo'}
     - mysql-connector-java
@@ -99,14 +99,14 @@
 - hosts: bambooagent
   become: true
   tasks:
-   - include: tasks/bamboo-agent.yml
+   - import_tasks: tasks/bamboo-agent.yml
   tags:
     - bambooagent
 
 - hosts: crowd
   become: true
   pre_tasks:
-    - include: tasks/install-openjdk.yml
+    - import_tasks: tasks/install-openjdk.yml
   roles:
     - { role: 'custom_roles/crowd'}
     - mysql-connector-java
