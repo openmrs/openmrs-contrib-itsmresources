@@ -1,6 +1,12 @@
 ---
 # Wiki
 
+users:
+  jayasanka:
+    comment: Jayasanka Weerasinghe
+    groups: 'admin'
+    ssh_key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDAxRE0WsKB8J7Qkg3LiCaspqsYzIjuv2BTPnzywBlVs5LCyzDNpT2QqaJxlrI8fEucQFAzMSIPwgBV+HzhhQ3uoPbjALAhMkoxPHM8dVdqbvKIrIpJq3sOEw41GGWmP454aXqAv6YwGwxPpAF5w/46p1c81HXqpEYkDB5TN9u0tG7R/fY8eUt+bQcnqU+QJiThKp/vxCm8fBQ7O708A0WpK9zWYh0Ut2Oc3FhkdaFlA4HyHwfX+Yp4YDjVcpDxVPICvlEb8lLh8+H3Rm5Rk3gmOnXmKCEy7eqYD0LXJmqA//b6RhukZI/nUk5JnixtOXGhhKvd7ijoM42YlxtJu7bbiFyCmHUw3WLox+oEaOe4mHLqUBvmN+jeI9NY+XWHv2T7UQTCfch2EI9/eVLhFtepauBwhOnBOjwa7gQFBiV1RuI6j80pFv8BvciSc/LKhFcsAJStYt3pd841jA2+GBErNJowEuKBAYKrTZqD7SgneW0CzoHpu5hrPmhiZkjFIjGRhLs3LSjzHkl/efyEzmbkwjuVp5fmCnpkV4QIwS644ZMPTx1qXJ0uRSSnAsvlN+45+HhgFC2risS1h+LDzbBLib58xaz7OR1GhbymbA+EFoms2Pa5aN7MwcGLYEDLl1Ggk/zJ+u52/E66xsZHy6lRQJ2kriRDCWz/lgJZALOSIw== jayasanka@Jayasankas-MacBook-Pro.local"
+
 datadog_tags_extra:
   - "service:confluence"
 
