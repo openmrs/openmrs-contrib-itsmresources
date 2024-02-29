@@ -49,7 +49,7 @@ nginx_vhosts:
         root /usr/share/nginx/html;
       }
       location ^~ /display/ {
-        return 301 https://openmrs.atlassian.net$request_uri;
+        return 301 https://openmrs.atlassian.net/wiki$request_uri;
       }
       location / {
         return 301 https://openmrs.atlassian.net/wiki;
