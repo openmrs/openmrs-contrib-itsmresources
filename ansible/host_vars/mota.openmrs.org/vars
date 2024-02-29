@@ -52,7 +52,7 @@ nginx_vhosts:
         return 301 https://openmrs.atlassian.net/wiki$request_uri;
       }
       location / {
-        return 301 https://openmrs.atlassian.net/wiki;
+        return 301 https://openmrs.atlassian.net/wiki/spaces/docs/overview;
       }
 
 aws_access_key_id: '{{ vault_aws_access_key_id }}'
