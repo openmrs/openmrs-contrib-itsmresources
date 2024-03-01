@@ -57,9 +57,6 @@ mysql_databases:
   - name: bamboo
     encoding: utf8
     collation: utf8_bin
-  - name: confluence
-    encoding: utf8
-    collation: utf8_bin
 mysql_users:
   - name: '{{ vault_mysql_user_name }}'
     host: "%"
@@ -69,10 +66,6 @@ mysql_users:
     host: "localhost"
     password: '{{ vault_mysql_backup_user_password }}'
     priv: "*.*:ALL"
-  - name: 'confluence_user'
-    host: "%"
-    password: '{{ vault_mysql_confluence_user_password }}'
-    priv: "confluence.*:ALL"
 
 # Mysql Backup Configuration
 gcoop_mysqldump_mysql_username: '{{ backup_user }}'
@@ -90,12 +83,6 @@ gcoop_mysqldump_cron_entries:
     hour: 2
     day: '*'
     database: 'crowd'
-    format: '%F'
-  - name: daily-confluence
-    minute: 0
-    hour: 2
-    day: '*'
-    database: 'confluence'
     format: '%F'
   - name: daily-bamboo
     minute: 0

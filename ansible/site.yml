@@ -75,16 +75,6 @@
   handlers:
     - import_tasks: handlers/monitoring.yml
 
-- hosts: confluence
-  become: true
-  pre_tasks:
-    - import_tasks: tasks/install-openjdk.yml
-  roles:
-    - { role: 'custom_roles/confluence'}
-    - mysql-connector-java
-  tags:
-    - confluence
-
 - hosts: bamboo
   become: true
   pre_tasks:
