@@ -46,14 +46,29 @@ nginx_vhosts:
       error_log /var/log/nginx/wiki_error.log;
       ssl_certificate /etc/letsencrypt/live/mota.openmrs.org/fullchain.pem;
       ssl_certificate_key /etc/letsencrypt/live/mota.openmrs.org/privkey.pem;
+      map $request_uri $old_id {
+        "~^/pages/viewpage.action?pageId=([0-9]+) $1;
+      }
+      map $old_id $new_path {
+        include /etc/nginx/snippets/wiki_pageid_rewritemap.conf;
+      }
+      map $request_uri $old_tinyurl {
+        "~^/x/(.+) $1;
+      }
+      map $old_tinyurl $new_path {
+        include /etc/nginx/snippets/wiki_tinyurl_rewritemap.conf;
+      }
       location ^~ /.well-known/acme-challenge/ {
         root /usr/share/nginx/html;
       }
-      location ^~ /display/ {
-        return 301 https://openmrs.atlassian.net/wiki$request_uri;
+      if ($new_path) {
+        return 301 $new_path;
+      }
+      location = / {
+        return 301 https://openmrs.atlassian.net/wiki/spaces/docs/overview;
       }
       location / {
-        return 301 https://openmrs.atlassian.net/wiki/spaces/docs/overview;
+        return 301 https://openmrs.atlassian.net/wiki$request_uri;
       }
   - listen: "80"
       server_name: "wiki-old.openmrs.org"
