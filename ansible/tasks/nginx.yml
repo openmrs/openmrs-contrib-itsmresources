@@ -4,5 +4,13 @@
       owner: root
       group: root
       mode: 0755
-      src: files/nginx/
+      src: files/nginx/html/
       dest: /usr/share/nginx/html/
+
+  - name: Copy nginx snippets
+    copy:
+      owner: root
+      group: root
+      mode: 0755
+      src: files/nginx/snippets/
+      dest: /etc/nginx/snippets/
