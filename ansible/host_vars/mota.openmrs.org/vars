@@ -13,6 +13,7 @@ datadog_tags_extra:
 letsencrypt_cert_domains:
    - mota.openmrs.org
    - wiki.openmrs.org
+   - wiki-old.openmrs.org
 
 nginx_vhosts:
   - listen: "80 default_server"
@@ -54,6 +55,35 @@ nginx_vhosts:
       location / {
         return 301 https://openmrs.atlassian.net/wiki/spaces/docs/overview;
       }
+  - listen: "80"
+      server_name: "wiki-old.openmrs.org"
+      filename: "wiki-old.openmrs.org.80.conf"
+      extra_parameters: |
+        return 301 https://$host$request_uri;
+  - listen: "443 ssl"
+      server_name: "wiki-old.openmrs.org"
+      extra_parameters: |
+        access_log /var/log/nginx/wiki_access.log;
+        error_log /var/log/nginx/wiki_error.log;
+        ssl_certificate /etc/letsencrypt/live/mota.openmrs.org/fullchain.pem;
+        ssl_certificate_key /etc/letsencrypt/live/mota.openmrs.org/privkey.pem;
+        location / {
+          client_max_body_size 100m;
+          proxy_set_header HOST $host;
+          proxy_set_header X-Forwarded-Server $host;
+          proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+          proxy_set_header  X-Forwarded-Proto $scheme;
+          proxy_pass http://127.0.0.1:8090;
+        }
+        location /synchrony {
+          proxy_set_header X-Forwarded-Host $host;
+          proxy_set_header X-Forwarded-Server $host;
+          proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+          proxy_pass http://localhost:8091/synchrony;
+          proxy_http_version 1.1;
+          proxy_set_header Upgrade $http_upgrade;
+          proxy_set_header Connection "Upgrade";
+        }
 
 aws_access_key_id: '{{ vault_aws_access_key_id }}'
 aws_secret_access_key: '{{ vault_aws_secret_access_key }}'
