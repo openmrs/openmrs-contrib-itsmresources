@@ -41,23 +41,24 @@ nginx_vhosts:
       return 301 https://$host$request_uri;
   - listen: "443 ssl"
     server_name: "wiki.openmrs.org"
-    extra_parameters: |
-      access_log /var/log/nginx/wiki_access.log;
-      error_log /var/log/nginx/wiki_error.log;
-      ssl_certificate /etc/letsencrypt/live/mota.openmrs.org/fullchain.pem;
-      ssl_certificate_key /etc/letsencrypt/live/mota.openmrs.org/privkey.pem;
+    nginx_extra_http_options: |
       map $request_uri $old_id {
-        "~^/pages/viewpage.action?pageId=([0-9]+) $1;
+        "~^/pages/viewpage.action?pageId=([0-9]+)" $1;
       }
       map $old_id $new_path {
         include /etc/nginx/snippets/wiki_pageid_rewritemap.conf;
       }
       map $request_uri $old_tinyurl {
-        "~^/x/(.+) $1;
+        "~^/x/(.+)" $1;
       }
       map $old_tinyurl $new_path {
         include /etc/nginx/snippets/wiki_tinyurl_rewritemap.conf;
       }
+    extra_parameters: |
+      access_log /var/log/nginx/wiki_access.log;
+      error_log /var/log/nginx/wiki_error.log;
+      ssl_certificate /etc/letsencrypt/live/mota.openmrs.org/fullchain.pem;
+      ssl_certificate_key /etc/letsencrypt/live/mota.openmrs.org/privkey.pem;
       location ^~ /.well-known/acme-challenge/ {
         root /usr/share/nginx/html;
       }
@@ -71,34 +72,34 @@ nginx_vhosts:
         return 301 https://openmrs.atlassian.net/wiki$request_uri;
       }
   - listen: "80"
-      server_name: "wiki-old.openmrs.org"
-      filename: "wiki-old.openmrs.org.80.conf"
-      extra_parameters: |
-        return 301 https://$host$request_uri;
+    server_name: "wiki-old.openmrs.org"
+    filename: "wiki-old.openmrs.org.80.conf"
+    extra_parameters: |
+      return 301 https://$host$request_uri;
   - listen: "443 ssl"
-      server_name: "wiki-old.openmrs.org"
-      extra_parameters: |
-        access_log /var/log/nginx/wiki_access.log;
-        error_log /var/log/nginx/wiki_error.log;
-        ssl_certificate /etc/letsencrypt/live/mota.openmrs.org/fullchain.pem;
-        ssl_certificate_key /etc/letsencrypt/live/mota.openmrs.org/privkey.pem;
-        location / {
-          client_max_body_size 100m;
-          proxy_set_header HOST $host;
-          proxy_set_header X-Forwarded-Server $host;
-          proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-          proxy_set_header  X-Forwarded-Proto $scheme;
-          proxy_pass http://127.0.0.1:8090;
-        }
-        location /synchrony {
-          proxy_set_header X-Forwarded-Host $host;
-          proxy_set_header X-Forwarded-Server $host;
-          proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-          proxy_pass http://localhost:8091/synchrony;
-          proxy_http_version 1.1;
-          proxy_set_header Upgrade $http_upgrade;
-          proxy_set_header Connection "Upgrade";
-        }
+    server_name: "wiki-old.openmrs.org"
+    extra_parameters: |
+      access_log /var/log/nginx/wiki_access.log;
+      error_log /var/log/nginx/wiki_error.log;
+      ssl_certificate /etc/letsencrypt/live/mota.openmrs.org/fullchain.pem;
+      ssl_certificate_key /etc/letsencrypt/live/mota.openmrs.org/privkey.pem;
+      location / {
+        client_max_body_size 100m;
+        proxy_set_header HOST $host;
+        proxy_set_header X-Forwarded-Server $host;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header  X-Forwarded-Proto $scheme;
+        proxy_pass http://127.0.0.1:8090;
+      }
+      location /synchrony {
+        proxy_set_header X-Forwarded-Host $host;
+        proxy_set_header X-Forwarded-Server $host;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_pass http://localhost:8091/synchrony;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "Upgrade";
+      }
 
 aws_access_key_id: '{{ vault_aws_access_key_id }}'
 aws_secret_access_key: '{{ vault_aws_secret_access_key }}'
