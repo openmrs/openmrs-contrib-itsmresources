@@ -15,6 +15,20 @@ letsencrypt_cert_domains:
    - wiki.openmrs.org
    - wiki-old.openmrs.org
 
+nginx_extra_http_options: |
+   map $request_uri $old_id {
+     "~^/pages/viewpage.action?pageId=([0-9]+)" $1;
+   }
+   map $old_id $new_path {
+     include /etc/nginx/snippets/wiki_pageid_rewritemap.conf;
+   }
+   map $request_uri $old_tinyurl {
+     "~^/x/(.+)" $1;
+   }
+   map $old_tinyurl $new_path {
+     include /etc/nginx/snippets/wiki_tinyurl_rewritemap.conf;
+   }
+
 nginx_vhosts:
   - listen: "80 default_server"
     server_name: "mota.openmrs.org"
@@ -41,19 +55,6 @@ nginx_vhosts:
       return 301 https://$host$request_uri;
   - listen: "443 ssl"
     server_name: "wiki.openmrs.org"
-    nginx_extra_http_options: |
-      map $request_uri $old_id {
-        "~^/pages/viewpage.action?pageId=([0-9]+)" $1;
-      }
-      map $old_id $new_path {
-        include /etc/nginx/snippets/wiki_pageid_rewritemap.conf;
-      }
-      map $request_uri $old_tinyurl {
-        "~^/x/(.+)" $1;
-      }
-      map $old_tinyurl $new_path {
-        include /etc/nginx/snippets/wiki_tinyurl_rewritemap.conf;
-      }
     extra_parameters: |
       access_log /var/log/nginx/wiki_access.log;
       error_log /var/log/nginx/wiki_error.log;
