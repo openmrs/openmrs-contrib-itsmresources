@@ -87,6 +87,9 @@ nginx_vhosts:
       error_log /var/log/nginx/wiki_old_error.log;
       ssl_certificate /etc/letsencrypt/live/mota.openmrs.org/fullchain.pem;
       ssl_certificate_key /etc/letsencrypt/live/mota.openmrs.org/privkey.pem;
+      location ^~ /.well-known/acme-challenge/ {
+        root /usr/share/nginx/html;
+      }
       location / {
         client_max_body_size 100m;
         proxy_set_header HOST $host;
