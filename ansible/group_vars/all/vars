@@ -36,6 +36,10 @@ users:
    comment: Ray Ma
    groups: 'admin'
    ssh_key: "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAv22EW0RN4uwv4etiuBj5PqW7SKgch5jwqtZpHOpI7eZ4uagxRoeePyhERxsxm9193FjWtQIDtIyKCsa8BeuGZ6+SOb/PqnDtR7p5i8bWxp38+wveAQk16AorvH5lvM4XF/vH+f3G8hfq6D9NAGr5jaVsOzU+XubZYRV1VgDD4t0cvka71MWiTyvbePx8VmHMcDSCL/fbisRuTolyplzXKCAvYDNaitWyzeoW6WE+Tdw7XhHir6b8gJOAe4aoYegAWj4fd/rAVjX33B4h6plK1aixKC3+yfVodf+ei990TrEdVP6/BOZJupUEXkr7PWN+a/tt4CqXv5G71kHPOXcakQ=="
+ scott:
+   comment: Scott Businge
+   groups: 'admin'
+   ssh_key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDB1XiSzv0DgNPcs57C/m0LQ2p7Y2zGpDu2izJ667vD6TAwauNwyBKbiSeckY+FR7IbdrsNJduUyryRiSzh4y4AQEvCiyjeZME+1MAv8hYs/hDyQjrcCQinSmyQyFIfyvKO395etydOYrDr2YyrsQgpyPEQ1cbU/2fOz5oieZpTIBA006tinWo+7GNOrx6dEAlZOo6C3FIZPU4KWQa7o2iFObMNad4rTO6lTal3TuXfc+cpGsgfLI+g5kL0Wfo0UYUJNm3wDaJSg8bAQmwcjivzwMRSbN98Hyfb3hjOxXJU8uNFNd5IKkGgcJ/M/S5rfX2TVV/O31sqnGfLfatqmZ7P scott@Mrs-MacBook-Pro.local"
 
 # Sudo users, % for groups. Default to nopasswd.
 sudo_users:
