@@ -51,6 +51,11 @@ env:
   ## The CDN address for this Discourse instance (configured to pull)
   #DISCOURSE_CDN_URL: //discourse-cdn.example.com
   #LETSENCRYPT_ACCOUNT_EMAIL: 'infrastructure@openmrs.org'
+  ##
+  ## MAXMIND license key for reverse lookups
+  ## https://meta.discourse.org/t/configure-maxmind-for-reverse-ip-lookups/173941
+  DISCOURSE_MAXMIND_ACCOUNT_ID: {{DISCOURSE_MAXMIND_ACCOUNT_ID}}
+  DISCOURSE_MAXMIND_LICENSE_KEY: '{{DISCOURSE_MAXMIND_LICENSE_KEY}}'
 
 volumes:
   - volume:
