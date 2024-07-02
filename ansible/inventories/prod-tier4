@@ -6,6 +6,7 @@
 ; narok.openmrs.org
 bonga.openmrs.org
 gode.openmrs.org
+dimtu.openmrs.org
 
 [docker]
 ; dowa.openmrs.org
@@ -15,6 +16,7 @@ gode.openmrs.org
 ; narok.openmrs.org
 bonga.openmrs.org
 gode.openmrs.org
+dimtu.openmrs.org
 
 [web]
 ; dowa.openmrs.org
@@ -24,6 +26,7 @@ gode.openmrs.org
 ; narok.openmrs.org
 bonga.openmrs.org
 gode.openmrs.org
+dimtu.openmrs.org
 
 [tls]
 ; dowa.openmrs.org
@@ -33,6 +36,7 @@ gode.openmrs.org
 ; narok.openmrs.org
 bonga.openmrs.org
 gode.openmrs.org
+dimtu.openmrs.org
 
 [backup]
 ; dowa.openmrs.org
@@ -40,3 +44,4 @@ gode.openmrs.org
 ; mokolo.openmrs.org
 bonga.openmrs.org
 gode.openmrs.org
+dimtu.openmrs.org
