@@ -1,0 +1,64 @@
+---
+# Docker host with openmrs instances
+users:
+ bamboo:
+  comment: CI Bamboo User
+  groups: 'admin'
+  ssh_key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDLecv3TGVSot9PTmhi3ddmx9ah1KL9tkdHFfugisT4yT3jaI8YV/GDPG+mVo9ru+x8yNWVzxk5YOUWEvjboOq3cMjjHpEeoXiNOTVT3bWwNGXfUkrAO4Oyuk+IW2enLFbiFDKaMvtoCEbkBI24TSb7vOSbuJz6FH0gWBzCqm9/cBSE9QK5JORhzVHNGO5gzN0POiO41MFanmgCEPmEMz56K8b5pkVPUAgj9UTs1maV0C8csItnghQtLJNbEDFGesHw1pUoW+GKQ9cgvbLLEUWi0lJXTpqJDtr8ojgoIsG13CVocQAVt5H6Jgf5UMGhpYMIXjPrJcfoABklo3B3jvqrlUcoEKMnGfS10EFAL1en/VLjDLXHMnpaXirwLqBc/fM3mpOzuc6/coKmvuB/1SBFqPSTi7UMPwgdtB5HmuNTdBYLF0Yk7M3g5oc+i6spUkvMLvFQ1V3iY+FnItW7ifo+kHj2RCtMi/RdsdbUnENi/VMmG33cBP59FGo0vVqRD8U1N51q/7q8Cgep9Hc81uJkOs+PrzJPGyOnyM7WSElmpjwFnQoKWxcNwKv/WHQQG9abSqVnUwrzuLxVCGMAlsrLhPCRj7SktJrktHQdUnQHhfqhh5AKH5mFFvZeyNnS6CZQEDb6C/91EI3J99PIfMYi0TLlixmaK+tnT/0ruWI2bw== bambooagent"
+ djazayeri:
+  comment: Darius Jazayeri
+  groups: 'admin'
+  ssh_key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC0ted8ZbMokU7mjwoNHhNRuPKyIr2T4NDtatZSHZa/A6e0t+tDi8K1znFMbgZ3ZcVQQh0czcrnwTMMUprTiVyn5WB16Qs0WrfiHfr83/HDkcJA9LbQ3s1bM/f9QJ9Uo5vP5TMpJL8gGueKiSMP1+x6JwJ4EuUZKdsUz+q/WtzxU10ImECWOeOnwGaUkmitPREBzbJSIv8pciq4QJ/fHuYeuvRZOmUYC+V+Rn3C1XEJf1jhRIBahT5KhV02wfmbfXchIAd/WrIbqvVQ5YGg8UwqdN47cxHvNwR5BCqpTY1C3XyCrj13NqflPCGyYyj6+mxs74EMJYAh0nDT/ZSeUvbf jazayeri@alum.mit.edu"
+ dkayiwa:
+  comment: Daniel Kayiwa
+  groups: 'admin'
+  ssh_key: "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAx+1orGXyy5xp1vM1uDUIa/sj0/3Z04n0x2EBJvSGAs98LitJbrucMGOoC2o3vmDbQLhgjDDIp9WcXyNX2CRF9Ez3ZQFY3UYErA87zfXC3aUCXH72PypaiTngNYI/z2Z7r1xVlcsogxW4IeGitk144J4CD3rSA3hO2uTjnc1Vblrj92VjNLv+/0y9yRUgM7EF0hxKrb4NTYXRSAEM95KoJqzGKz8Kb9MPT4NsjBdOynVUGTaNv9mTV5QOZa+4n2W24zDPoRirws7koib8vbAj8J+IilBvOtXWzJdgEokbUmzbooaGT4OCjEwMpt0JUrBWrMlwazeiZEWaZVNgS97ubQ== danielkayiwa@Daniel-Kayiwas-MacBook-Pro.local"
+ raff:
+  comment: Rafal
+  groups: 'admin'
+  ssh_key: "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAgc4Q+9e1XMDInFm4GNkuYErYkgDt0KNnmLDTFa+0HV1MuQKP+TE3Ee9Qdx5rugNkg9+e45Hzfze/vX/nYjrNAkWcxYaxEAdej/6QW4Bh4r6rRLnNoqnksG3+WVXl2cqOf9odji2L+uzA2E+zX5tEYqVkN9+0z1Ewwe6lcSg0zRQyJ+phIo595eftYJGAiLAhIfSotg8SxWJhSHUsNtphyXRld7FtxXDgfu6SkejvakymwXEuMe7yS2mES9U8IlJh4CyADGaqb0WSWfqsejcgMuXJmnEqpMqVwcDaP4B+NZLTKfUUlc2D8DiUKRqlnxuGCFmkpghTQkX4dE0YhxJSjQ== raff"
+ maurya:
+   comment: Maurya
+   groups: 'admin'
+   ssh_key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDDZ5/06Fs0pcx37McO9A+sV6z6ozSuTsvdqYXmTMiog4cjCumyhMhQ7rDehaft2/zDsuAibHFfLcG30Tahb76Gt19qKFB7VogORtmXzlqf2xKVKkaWWN0EHB/ilcfwwCnCGrqnGHbiRfO7P79SB6Yj6I1L0qkhwUhFEGv4w7VhbKiffAc2oUmO7KcbuaPIlRpMQHfBvmbamjEeaTIu1LTX6Vp8P2D2XNfYWEMjawWJo/bXUh3idan+7VD5nFZbQBz/p+0efiXD6FzjcFeiOBOMCiwQm425m/cozGkJ3FRmWAZzAk8w/Pd1IEECdK/USLF5pSYa8SEVTPKlrin+HA+b maurya@zatara.local"
+ dennis:
+   comment: Dennis
+   groups: 'admin'
+   ssh_key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBikFDy2gHpgU2Qe7rP7jKyueawfU6CUtKHbQapN1CSS dennis@openmrs.org"
+
+datadog_tags_extra:
+  - "service:dev-his"
+
+# docker_deployment:
+#  - 
+
+letsencrypt_cert_domains:
+  - dimtu.openmrs.org
+  - dev-his.openmrs.org
+
+nginx_keepalive_timeout: "600"
+nginx_keepalive_requests: "600"
+
+nginx_vhosts:
+  - listen: "80 default_server"
+    server_name: "dev-his.openmrs.org"
+    filename: "dev-his.openmrs.org.80.conf"
+    extra_parameters: |
+      return 301 https://$host$request_uri;
+  - listen: "443 ssl"
+    server_name: "dev-his.openmrs.org"
+    extra_parameters: |
+      access_log /var/log/nginx/deployer_access.log;
+      error_log /var/log/nginx/deployer_error.log;
+      ssl_certificate /etc/letsencrypt/live/dimtu.openmrs.org/fullchain.pem;
+      ssl_certificate_key /etc/letsencrypt/live/dimtu.openmrs.org/privkey.pem;
+      location ^~ /.well-known/acme-challenge/ {
+        root /usr/share/nginx/html;
+      }
+      location / {
+        root /usr/share/nginx/html;
+      }
+
+aws_access_key_id: '{{ vault_aws_access_key_id }}'
+aws_secret_access_key: '{{ vault_aws_secret_access_key }}'
+backup_tag: 'configured'
