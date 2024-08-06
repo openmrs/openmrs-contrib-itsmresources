@@ -1,0 +1,10 @@
+{% for log_location in locations %}
+{{ log_location }}{
+  {{ period }}
+  rotate {{ rotate_count }}
+  size {{ size_threshold }}
+  compress
+  copytruncate
+  missingok
+ }
+{% endfor %}

@@ -1,0 +1,22 @@
+--- 
+- name: "Install logrotate"
+  apt: name=logrotate state=present
+  tags: 
+    - rotate_log
+
+- name: "Generating conf for {{ app_name }}"
+  template:
+    src: "{{ role_path }}/templates/conf.j2" 
+    dest: "/etc/logrotate.d/{{ app_name }}.conf"
+  tags: 
+    - rotate_log
+    
+- name: "Rotate data from {{ app_name }}"
+  command: "logrotate /etc/logrotate.d/{{ app_name }}.conf"
+  register: result
+  failed_when: "'FAILED' in result.stderr"
+  tags: 
+    - rotate_log
+
+
+

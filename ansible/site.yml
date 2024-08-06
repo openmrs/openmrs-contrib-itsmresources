@@ -53,6 +53,15 @@
   roles:
    - nginx
 
+- hosts: logrotate
+  become: true
+  tags:
+    - rotate_log
+  tasks:
+    - import_tasks: tasks/main.yml
+  roles:
+   - logrotate
+
 - hosts: backup
   become: true
   tags:

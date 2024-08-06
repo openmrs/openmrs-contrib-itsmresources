@@ -1,0 +1,9 @@
+---
+# defaults file for mesos-rotator
+period: daily
+rotate_count: 4
+#SIZE suffixes / M for MB / K for KB
+#default is Byte.
+size_threshold: 1M
+locations: ['/var/log/apt/term.log'] 
+app_name: apt
