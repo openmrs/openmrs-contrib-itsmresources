@@ -44,6 +44,14 @@
   handlers:
     - import_tasks: handlers/monitoring.yml
 
+- hosts: certbot
+  tags:
+    - certbot
+  tasks:
+    - import_tasks: tasks/main.yml
+  roles:
+   - certbot
+
 - hosts: web
   become: true
   tags:
