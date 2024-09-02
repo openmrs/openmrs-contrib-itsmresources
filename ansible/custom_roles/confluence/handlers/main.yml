@@ -1,7 +1,0 @@
----
-# handlers file for hswong3i.confluence
-
-- name: restart confluence
-  service:
-    name: "confluence"
-    state: "restarted"
