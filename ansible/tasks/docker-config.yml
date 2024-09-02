@@ -52,6 +52,15 @@
       owner: 'root'
       group: 'root'
       mode: '0700'
+
+  - name: LetsEncrypt post renew hook open LDAP restart script
+    copy:
+      src: 'files/restart-id.sh'
+      dest: "/etc/letsencrypt/renewal-hooks/post/restart-id.sh"
+      owner: 'root'
+      group: 'root'
+      mode: '0700'
+
   - name: Docker cleanup cron
     cron:
       name: "docker-cleanup"
