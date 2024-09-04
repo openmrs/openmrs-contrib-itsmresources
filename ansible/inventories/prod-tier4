@@ -2,6 +2,7 @@
 bonga.openmrs.org
 gode.openmrs.org
 dimtu.openmrs.org
+mota.openmrs.org
 
 [docker]
 bonga.openmrs.org
@@ -12,13 +13,19 @@ dimtu.openmrs.org
 bonga.openmrs.org
 gode.openmrs.org
 dimtu.openmrs.org
+mota.openmrs.org
 
 [tls]
 bonga.openmrs.org
 gode.openmrs.org
 dimtu.openmrs.org
+mota.openmrs.org
 
 [backup]
 bonga.openmrs.org
 gode.openmrs.org
 dimtu.openmrs.org
+mota.openmrs.org
+
+[mysql]
+mota.openmrs.org

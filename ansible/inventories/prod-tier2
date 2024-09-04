@@ -1,4 +1,5 @@
 [prod]
+sawla.openmrs.org
 worabe.openmrs.org
 xiao.openmrs.org
 xindi.openmrs.org
@@ -12,6 +13,7 @@ worabe.openmrs.org
 
 [backup]
 worabe.openmrs.org
+sawla.openmrs.org
 
 [bamboo]
 worabe.openmrs.org
@@ -20,3 +22,6 @@ worabe.openmrs.org
 xiao.openmrs.org
 xindi.openmrs.org
 yu.openmrs.org
+
+[mysql]
+sawla.openmrs.org

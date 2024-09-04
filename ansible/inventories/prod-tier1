@@ -2,9 +2,6 @@
 adaba.openmrs.org
 jinka.openmrs.org
 maji.openmrs.org
-mojo.openmrs.org
-mota.openmrs.org
-sawla.openmrs.org
 
 [docker]
 adaba.openmrs.org
@@ -14,26 +11,16 @@ jinka.openmrs.org
 [web]
 adaba.openmrs.org
 maji.openmrs.org
-mojo.openmrs.org
-mota.openmrs.org
 jinka.openmrs.org
 
 [tls]
 adaba.openmrs.org
 maji.openmrs.org
-mojo.openmrs.org
-mota.openmrs.org
 jinka.openmrs.org
 
 [backup]
 adaba.openmrs.org
-mojo.openmrs.org
-mota.openmrs.org
 jinka.openmrs.org
-sawla.openmrs.org
-
-[mysql]
-sawla.openmrs.org
 
 [discourse]
 maji.openmrs.org
