@@ -23,7 +23,7 @@ $ ansible-galaxy install -p roles -r requirements.yml --force
 
 ### Running ansible for remote machines
 
-In order to run ansible for any machine, you need to know which inventory they belong to. The [tiers](inventory/README.md) docs can explain our support tiers, as well as their expectations
+In order to run ansible for any machine, you need to know which inventory they belong to. The [tiers](inventories/README.md) docs can explain our support tiers, as well as their expectations
 
 ```
 # Run main ansible playbook in a single testing machine (e.g. narok)
