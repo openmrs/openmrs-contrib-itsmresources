@@ -16,7 +16,6 @@ syedahmedmansoor:
   ssh_key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQC0ZhZ5oRr/nBaHre8a+Ay3XdhkXs64MHZFlurInw+Lcc2MChMtnEmA99twIPZsNVCu/3d+NAF2P0GDb9s1vBvdA7h11oNxJGGKIwwDuDjbN0DZVuhgMnw9C6j0+GgCDtOYJm1TD5asAmZQfrBGy1nDss2r+wFpeM2+aTZh53k3LejHx2bcrz0Q/0rYP4xo2x4eZGJsLW7weUhWlpDdE011JJeqaNp3FmZSdoYqVXVBlddIV1pxycvyQ+SQjTobSBl7w8baV6fYFuPFszlO/ZXfsRWN56ugHz0ZGJlMam7QFDFs6Xo/jrhM178XkUXnU/Alc+Jqefb816g9kSmBkLmb/fSxpBOP5XK9zLk5zfCiH4P1392t4KZOStfrxf64sEEzbIx0EN7v8/uZRNJPcU/Cd1iYwBrXqvZjuchaNwXstL6UbvgdXNeI4JEa+l/Ck6sQIOxHZS1kND7mRoprtK6O2XHnwOQS52pyQzPK3VjMGFc2IAZ00OfGvF3yFcPfA3s="
 
 datadog_tags_extra:
-  - "service:confluence"
   - "service:ci-stg"
   - "service:database"
 
