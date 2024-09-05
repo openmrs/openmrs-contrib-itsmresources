@@ -26,7 +26,7 @@ letsencrypt_cert_domains:
    - jinka.openmrs.org
    - site.openmrs.org
    - openmrs.org
-  #  - www.openmrs.org
+   - www.openmrs.org
    - shortener.openmrs.org
    - om.rs
    - mavenrepo.openmrs.org
@@ -34,7 +34,7 @@ letsencrypt_cert_domains:
    - help.openmrs.org
    - issues.openmrs.org
    - tickets.openmrs.org
-  #  - wiki.openmrs.org
+   - wiki.openmrs.org
 
 
 docker_deployment:
