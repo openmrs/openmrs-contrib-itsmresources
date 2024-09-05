@@ -13,15 +13,16 @@ users:
 
 datadog_tags_extra:
   - "service:ldap"
-  - "service:crowd"
   - "service-group:id"
-  - "service:id-dashboard"
+  - "service:id"
+  - "service:keycloak"
+  - "service:postfix"
+
 
 
 letsencrypt_cert_domains:
    - adaba.openmrs.org
    - ldap.openmrs.org
-   - crowd.openmrs.org
    - id.openmrs.org
    - smtp.openmrs.org
    - id-new.openmrs.org # TODO: discard once id is free
@@ -47,29 +48,6 @@ nginx_vhosts:
       ssl_certificate /etc/letsencrypt/live/adaba.openmrs.org/fullchain.pem;
       ssl_certificate_key /etc/letsencrypt/live/adaba.openmrs.org/privkey.pem;
       location ^~ /.well-known/acme-challenge/ {
-        root /usr/share/nginx/html;
-      }
-  - listen: "80"
-    server_name: "crowd.openmrs.org"
-    filename: "crowd.openmrs.org.80.conf"
-    extra_parameters: |
-      return 301 https://$host$request_uri;
-  - listen: "443 ssl"
-    server_name: "crowd.openmrs.org"
-    extra_parameters: |
-      proxy_read_timeout 600;
-      access_log /var/log/nginx/deployer_access.log;
-      error_log /var/log/nginx/deployer_error.log;
-      ssl_certificate /etc/letsencrypt/live/adaba.openmrs.org/fullchain.pem;
-      ssl_certificate_key /etc/letsencrypt/live/adaba.openmrs.org/privkey.pem;
-      location ^~ /.well-known/acme-challenge/ {
-        root /usr/share/nginx/html;
-      }
-      location /console/forgottenlogindetails {
-        return 302 https://id.openmrs.org/reset;
-      }
-      location / {
-        proxy_pass http://127.0.0.1:8095/;
         root /usr/share/nginx/html;
       }
   - listen: "80"
@@ -159,26 +137,3 @@ ufw_rules:
      port: 587
      proto: tcp
      rule: allow
-
-
-crowd_pass: '{{ vault_crowd_pass }}'
-crowd_hash_salt: '{{ vault_crowd_hash_salt }}'
-crowd_user: 'crowd'
-crowd_archive: "atlassian-crowd-5.0.1.tar.gz"
-crowd_catalina: "/opt/crowd"
-crowd_checksum: "sha256:71c5d236e8973f4f9bf5639b6e88a4a957749ca1f4162da0315105dfe580c793"
-crowd_home: "/data/crowd_home"
-crowd_jvm_maximum_memory: "6g"
-crowd_jvm_minimum_memory: "6g"
-crowd_jvm_support_recommended_args: "-Datlassian.plugins.enable.wait=300 -XX:+UseG1GC"
-crowd_proxy_name: 'crowd.openmrs.org'
-crowd_scheme: 'https'
-crowd_url: "https://product-downloads.atlassian.com/software/crowd/downloads/{{ crowd_archive }}"
-mysql_connector_java_dest: '{{ crowd_catalina }}/apache-tomcat/lib'
-mysql_connector_java_user: '{{ crowd_user }}'
-mysql_connector_java_archive: 'mysql-connector-java-8.0.17.tar.gz'
-mysql_connector_java_jar: 'mysql-connector-java-8.0.17.jar'
-#mysql_connector_java_url: "https://dev.mysql.com/get/Downloads/Connector-J/{{ mysql_connector_java_archive }}"
-mysql_connector_java_url: "https://cdn.mysql.com//archives/mysql-connector-java-8.0/{{ mysql_connector_java_archive }}"
-mysql_connector_java_checksum: 'sha256:20116c90f01402406fa3a0783c308fb0bf9937b1d99cb6130407a1ad77ae7dd9'
-
