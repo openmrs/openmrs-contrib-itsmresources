@@ -3,9 +3,9 @@
   stat: path=/etc/init.d/mysql
   register: mysql_installed
 
-# - name: Update apt cache if MySQL is not yet installed.
-#   apt: update_cache=yes
-#   when: not mysql_installed.stat.exists
+- name: Update apt cache if MySQL is not yet installed.
+  apt: update_cache=yes
+  when: not mysql_installed.stat.exists
 
 - name: Determine required MySQL Python libraries.
   set_fact:
