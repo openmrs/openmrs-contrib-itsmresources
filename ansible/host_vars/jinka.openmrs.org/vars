@@ -32,9 +32,10 @@ letsencrypt_cert_domains:
    - mavenrepo.openmrs.org
    - mavenrepo-redirect.openmrs.org
    - help.openmrs.org
-  #  - wiki.openmrs.org
-  #  - issues.openmrs.org
-  #  - tickets.openmrs.org
+   - issues.openmrs.org
+   - tickets.openmrs.org
+   - wiki.openmrs.org
+
 
 docker_deployment:
   - wordpress
@@ -246,7 +247,7 @@ nginx_vhosts:
       location / {
         return 301 https://openmrs.atlassian.net/jira/dashboards/10000;
       }
-      - listen: "80"
+  - listen: "80"
     server_name: "wiki.openmrs.org"
     filename: "wiki.openmrs.org.80.conf"
     extra_parameters: |
