@@ -32,9 +32,9 @@ letsencrypt_cert_domains:
    - mavenrepo.openmrs.org
    - mavenrepo-redirect.openmrs.org
    - help.openmrs.org
-  #  - wiki.openmrs.org
-  #  - issues.openmrs.org
-  #  - tickets.openmrs.org
+   - wiki.openmrs.org
+   - issues.openmrs.org
+   - tickets.openmrs.org
 
 docker_deployment:
   - wordpress

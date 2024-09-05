@@ -13,15 +13,16 @@ users:
 
 datadog_tags_extra:
   - "service:ldap"
-  - "service:crowd"
   - "service-group:id"
-  - "service:id-dashboard"
+  - "service:id"
+  - "service:keycloak"
+  - "service:postfix"
+
 
 
 letsencrypt_cert_domains:
    - adaba.openmrs.org
    - ldap.openmrs.org
-   - crowd.openmrs.org
    - id.openmrs.org
    - smtp.openmrs.org
    - id-new.openmrs.org # TODO: discard once id is free
@@ -47,29 +48,6 @@ nginx_vhosts:
       ssl_certificate /etc/letsencrypt/live/adaba.openmrs.org/fullchain.pem;
       ssl_certificate_key /etc/letsencrypt/live/adaba.openmrs.org/privkey.pem;
       location ^~ /.well-known/acme-challenge/ {
-        root /usr/share/nginx/html;
-      }
-  - listen: "80"
-    server_name: "crowd.openmrs.org"
-    filename: "crowd.openmrs.org.80.conf"
-    extra_parameters: |
-      return 301 https://$host$request_uri;
-  - listen: "443 ssl"
-    server_name: "crowd.openmrs.org"
-    extra_parameters: |
-      proxy_read_timeout 600;
-      access_log /var/log/nginx/deployer_access.log;
-      error_log /var/log/nginx/deployer_error.log;
-      ssl_certificate /etc/letsencrypt/live/adaba.openmrs.org/fullchain.pem;
-      ssl_certificate_key /etc/letsencrypt/live/adaba.openmrs.org/privkey.pem;
-      location ^~ /.well-known/acme-challenge/ {
-        root /usr/share/nginx/html;
-      }
-      location /console/forgottenlogindetails {
-        return 302 https://id.openmrs.org/reset;
-      }
-      location / {
-        proxy_pass http://127.0.0.1:8095/;
         root /usr/share/nginx/html;
       }
   - listen: "80"
