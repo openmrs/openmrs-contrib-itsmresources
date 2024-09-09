@@ -15,4 +15,8 @@ class profiles::basic_configuration {
     command => "/usr/sbin/tmpreaper 1d /tmp -a -T 120",
     require => Package['tmpreaper'],
   }
+
+  bamboo_agent_home::data_dirextory { 'scratch':
+    backup => false,
+  }
 }
