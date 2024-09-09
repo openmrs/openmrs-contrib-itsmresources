@@ -16,7 +16,7 @@ class profiles::basic_configuration {
     require => Package['tmpreaper'],
   }
 
-  bamboo_agent_home::data_dirextory { 'scratch':
+  bamboo_agent_home::data_directory { 'scratch':
     backup => false,
   }
 }
