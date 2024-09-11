@@ -18,7 +18,5 @@ class profiles::basic_configuration {
 
   include ::bamboo_agent_home
 
-  bamboo_agent_home::data_directory { 'scratch':
-    backup => false,
-  }
+  bamboo_agent_home::data_directory { 'scratch' }
 }
