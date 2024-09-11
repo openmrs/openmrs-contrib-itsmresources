@@ -21,8 +21,8 @@ users:
 datadog_tags_extra:
   - "service:dev-his"
 
-# docker_deployment:
-#  - his-dev
+docker_deployment:
+  - his-dev
 
 letsencrypt_cert_domains:
   - dimtu.openmrs.org
@@ -31,7 +31,7 @@ letsencrypt_cert_domains:
   - erp.dev-his.openmrs.org
   - lims.dev-his.openmrs.org
 
-nginx_keepalive_timeout: "600"`
+nginx_keepalive_timeout: "600"
 nginx_keepalive_requests: "600"
 
 nginx_vhosts:
