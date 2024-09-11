@@ -1,15 +1,13 @@
-define bamboo_agent_home::directory (
+define bamboo_agent_home::data_directory (
   $bamboo_user = lookup('bamboo_agent_home::bamboo_user'),
   $destination = $name,
-  $mode   = '700',
+  $mode   = '770',
   $recurse = false,
   $purge = false,
   $force = false,
   $source = undef,
-){
-  include ::bamboo_agent_home
-
-  file { "/home/${bamboo_user}/${destination}":
+) {
+  file { "/data/${destination}":
     ensure  => directory,
     mode    => $mode,
     recurse => $recurse,
