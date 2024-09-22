@@ -38,8 +38,8 @@ letsencrypt_cert_domains:
    - smtp-stg.openmrs.org
 
 docker_deployment:
-  - addons-stg
-  - atlas-stg
+  # - addons-stg
+  # - atlas-stg
   - ldap-stg
   - id-stg
 
