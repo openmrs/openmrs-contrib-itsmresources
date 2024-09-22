@@ -44,6 +44,13 @@
   handlers:
     - import_tasks: handlers/monitoring.yml
 
+- hosts: ldap
+  tags:
+    - ldap
+  become: true
+  tasks:
+    - import_tasks: tasks/extra-tls-ldap.yml
+
 - hosts: web
   become: true
   tags:

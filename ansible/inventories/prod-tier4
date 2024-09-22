@@ -29,3 +29,6 @@ mota.openmrs.org
 
 [mysql]
 ;mota.openmrs.org
+
+[ldap]
+gode.openmrs.org

@@ -29,7 +29,7 @@ log "Running post-renewal hook."
 
 # Change to open ldap directory and restart using the docker-compose file there
 for f in /root/docker/ldap*; do
-    echo "Running docker compose recreate for $f"
+    log "Running docker compose recreate for $f"
     cd $f
     DOCKER_OUTPUT=$(docker-compose down && docker-compose up -d --force-recreate 2>&1)
 
