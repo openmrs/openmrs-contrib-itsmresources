@@ -52,6 +52,7 @@
       owner: 'root'
       group: 'root'
       mode: '0700'
+
   - name: Docker cleanup cron
     cron:
       name: "docker-cleanup"

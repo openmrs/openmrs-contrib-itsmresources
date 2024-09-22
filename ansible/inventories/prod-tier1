@@ -24,3 +24,6 @@ jinka.openmrs.org
 
 [discourse]
 maji.openmrs.org
+
+[ldap]
+;adaba.openmrs.org
