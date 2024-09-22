@@ -33,12 +33,11 @@ letsencrypt_cert_domains:
    - smtp.openmrs.org
    - id-new.openmrs.org # TODO: discard once id is free
 
-#letsencrypt_renewal_command_args: '--renew-hook "docker restart openldap"'
-
 docker_deployment:
    - ldap
    - id
    - id-new
+   - ldap-new
 
 nginx_vhosts:
   - listen: "80 default_server"
