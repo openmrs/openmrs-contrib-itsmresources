@@ -32,10 +32,28 @@ letsencrypt_cert_domains:
    - mavenrepo.openmrs.org
    - mavenrepo-redirect.openmrs.org
    - help.openmrs.org
+   - issues.openmrs.org
+   - tickets.openmrs.org
+   - wiki.openmrs.org
+
 
 docker_deployment:
   - wordpress
   - yourls
+
+nginx_extra_http_options: |
+   map $request_uri $old_id {
+     "~^/pages/viewpage.action\?pageId=([0-9]+)" $1;
+   }
+   map $old_id $new_id_path {
+     include /etc/nginx/snippets/wiki_pageid_rewritemap.conf;
+   }
+   map $request_uri $old_tinyurl {
+     "~^/x/(.+)" $1;
+   }
+   map $old_tinyurl $new_tinyurl_path {
+     include /etc/nginx/snippets/wiki_tinyurl_rewritemap.conf;
+   }
 
 
 nginx_vhosts:
@@ -207,6 +225,54 @@ nginx_vhosts:
 
       location / {
         return 301 $remote_path$request_uri;
+      }
+  - listen: "80"
+    server_name: "issues.openmrs.org tickets.openmrs.org"
+    filename: "issues.openmrs.org.80.conf"
+    extra_parameters: |
+      return 301 https://$host$request_uri;
+  - listen: "443 ssl"
+    server_name: "issues.openmrs.org tickets.openmrs.org"
+    extra_parameters: |
+      access_log /var/log/nginx/deployer_access.log;
+      error_log /var/log/nginx/deployer_error.log;
+      ssl_certificate /etc/letsencrypt/live/jinka.openmrs.org/fullchain.pem;
+      ssl_certificate_key /etc/letsencrypt/live/jinka.openmrs.org/privkey.pem;
+      location ^~ /.well-known/acme-challenge/ {
+        root /usr/share/nginx/html;
+      }
+      location ^~ /browse/ {
+        return 301 https://openmrs.atlassian.net$request_uri;
+      }
+      location / {
+        return 301 https://openmrs.atlassian.net/jira/dashboards/10000;
+      }
+  - listen: "80"
+    server_name: "wiki.openmrs.org"
+    filename: "wiki.openmrs.org.80.conf"
+    extra_parameters: |
+      return 301 https://$host$request_uri;
+  - listen: "443 ssl"
+    server_name: "wiki.openmrs.org"
+    extra_parameters: |
+      access_log /var/log/nginx/wiki_access.log;
+      error_log /var/log/nginx/wiki_error.log;
+      ssl_certificate /etc/letsencrypt/live/jinka.openmrs.org/fullchain.pem;
+      ssl_certificate_key /etc/letsencrypt/live/jinka.openmrs.org/privkey.pem;
+      location ^~ /.well-known/acme-challenge/ {
+        root /usr/share/nginx/html;
+      }
+      if ($new_id_path) {
+        return 302 https://openmrs.atlassian.net$new_id_path;
+      }
+      if ($new_tinyurl_path) {
+        return 302 https://openmrs.atlassian.net$new_tinyurl_path;
+      }
+      location = / {
+        return 302 https://openmrs.atlassian.net/wiki/spaces/docs/overview;
+      }
+      location / {
+        return 302 https://openmrs.atlassian.net/wiki$request_uri;
       }
 
 aws_access_key_id: '{{ vault_aws_access_key_id }}'
