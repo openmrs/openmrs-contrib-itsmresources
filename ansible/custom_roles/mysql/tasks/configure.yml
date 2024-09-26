@@ -15,6 +15,16 @@
     force: "{{ overwrite_global_mycnf }}"
   notify: restart mysql
 
+- name: Change datadir permissions to 777
+  file:
+    path: "{{ datadir }}"
+    state: directory
+    owner: root
+    group: root
+    mode: '0777'
+    recurse: yes
+  when: mysql_config_include_files | length
+
 - name: Verify mysql include directory exists.
   file:
     path: "{{ mysql_config_include_dir }}"

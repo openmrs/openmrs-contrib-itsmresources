@@ -17,7 +17,7 @@ bamboo_context_path: ~
 bamboo_home: "/var/lib/bamboo"
 bamboo_jvm_maximum_memory: "1024m"
 bamboo_jvm_minimum_memory: "512m"
-bamboo_jvm_support_recommended_args: "-Datlassian.plugins.enable.wait=300"
+bamboo_jvm_support_recommended_args: "-Datlassian.plugins.enable.wait=300 -Djava.net.preferIPv4Stack=true -Djava.net.preferIPv4Addresses=true"
 bamboo_proxy_name: ~
 bamboo_scheme: ~
 bamboo_server_port: "8007"
