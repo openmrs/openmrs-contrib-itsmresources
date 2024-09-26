@@ -15,6 +15,16 @@ users:
     groups: 'admin'
     ssh_key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDP8mYKtK1QvKJacv4Gobo7u6RpZlhQJa1q3P8cJXb13rX1UyJt9fhahJjMJriQH9c4POhVmU/fQ+C2OGf1Htbz3KAigxTACFSM1r74J6wL7SfMfUmIjc3K5V618FvdLcmNgenyYnqBq4f89L8LZgWbzQKptccOfLNtLJgYeuyBgGK4s/f0AlwaTPg1y4EgQrfVvkTpIQzQeRd6H5dgrdwl2G3Lx2Eyy2Q6bOlStCxOXpGs4ObPCKY18q60d/56wt9/anMEmdqQM1ez7H7B/kK64MAv2GzJS3z/ieFap3EPLgbRmCeyAl4F/d/BIgXuHinTJ/KNhsoytfLZWGcH4ovqWu9guUBrQNprUo3eBpQC6SEAraFJQYjCb+2dySZ6yZRJT1l9bUKxOpaGUwFVqYngJ2tDkgANTk0HEFIiWoewUdRhwXvf+JMurbrRna1er4oJfqXmaw6L2x04nZmz61pm1BbuU6mrXtpsNeOODm/sud5XMFwDKaqkoe64gX1x0vE= syedmuhammadahmed@Ahmeds-MacBook-Air.local"
 
+ufw_rules:
+   remote-agents-http:
+     port: 54663
+     proto: tcp
+     rule: allow
+   remote-agent-ssl:
+     port: 54667
+     proto: tcp
+     rule: allow
+
 datadog_tags_extra:
   - "service:ci-stg"
   - "service:database"
@@ -41,6 +51,33 @@ nginx_vhosts:
       }
       location / {
         root /usr/share/nginx/html;
+      }
+  - listen: "80"
+    server_name: "ci-stg.openmrs.org"
+    filename: "ci-stg.openmrs.org.80.conf"
+    extra_parameters: |
+      return 301 https://$host$request_uri;
+  - listen: "443 ssl"
+    server_name: "ci-stg.openmrs.org"
+    extra_parameters: |
+      client_max_body_size 0;
+      access_log /var/log/nginx/ci-stg_access.log;
+      error_log /var/log/nginx/ci-stg_error.log;
+      ssl_certificate /etc/letsencrypt/live/mota.openmrs.org/fullchain.pem;
+      ssl_certificate_key /etc/letsencrypt/live/mota.openmrs.org/privkey.pem;
+      location ^~ /.well-known/acme-challenge/ {
+        root /usr/share/nginx/html;
+      }
+      location /authors/ {
+        return 423;
+      }
+      location /reports/ {
+        return 423;
+      }
+      location / {
+        proxy_set_header HOST $host;
+        proxy_set_header  X-Forwarded-Proto $scheme;
+        proxy_pass http://127.0.0.1:8085/;
       }
 
 aws_access_key_id: '{{ vault_aws_access_key_id }}'
@@ -105,3 +142,35 @@ gcoop_mysqldump_cron_entries:
     day: '*'
     database: 'bamboo'
     format: '%F'
+
+# Bamboo Configuration
+bamboo_pass: '{{ vault_bamboo_pass }}'
+bamboo_hash_salt: '{{ vault_bamboo_hash_salt }}'
+bamboo_user: 'bamboo'
+bamboo_checksum: 'sha256:29465c00b63d54272a29e98119773c25b10c42f868fd948c99ee60d037670f1b'
+bamboo_archive: "atlassian-bamboo-8.2.4.tar.gz"
+bamboo_url: "https://product-downloads.atlassian.com/software/bamboo/downloads/{{ bamboo_archive }}"
+bamboo_catalina: "/opt/bamboo"
+bamboo_home: "/data/bamboo_home"
+bamboo_jvm_maximum_memory: "4096m"
+bamboo_jvm_minimum_memory: "4096m"
+bamboo_proxy_name: 'ci-stg.openmrs.org'
+bamboo_scheme: 'https'
+mysql_connector_java_dest: '{{ bamboo_catalina }}/lib'
+mysql_connector_java_user: '{{ bamboo_user }}'
+mysql_connector_java_archive: 'mysql-connector-java-8.0.17.tar.gz'
+mysql_connector_java_jar: 'mysql-connector-java-8.0.17.jar'
+#mysql_connector_java_url: "https://dev.mysql.com/get/Downloads/Connector-J/{{ mysql_connector_java_archive }}"
+mysql_connector_java_url: "https://cdn.mysql.com//archives/mysql-connector-java-8.0/{{ mysql_connector_java_archive }}"
+mysql_connector_java_checksum: 'sha256:20116c90f01402406fa3a0783c308fb0bf9937b1d99cb6130407a1ad77ae7dd9'
+
+logrotate_scripts:
+  - name: bamboologs
+    path: /opt/bamboo/logs/catalina.out
+    options:
+      - su bamboo bamboo
+      - weekly
+      - size 500M
+      - rotate 2
+      - missingok
+      - create 644 bamboo bamboo
