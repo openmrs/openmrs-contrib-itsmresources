@@ -15,6 +15,10 @@
     force: "{{ overwrite_global_mycnf }}"
   notify: restart mysql
 
+# MySQL was going into error state with the error "13 Permission denied" when trying to write to the datadir. 
+# Tried setting the permissions/ownership for /data/mysql but that didn't fix it either. Setting the parent directory permissions to 777 fixed the issue.
+# https://dba.stackexchange.com/questions/101732/how-do-i-move-a-mysql-data-directory-to-an-external-hard-drive#:~:text=Change%20the%20permissions,root%3Aroot%20media
+
 - name: Change datadir permissions to 777
   file:
     path: "{{ datadir }}"
