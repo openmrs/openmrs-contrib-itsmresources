@@ -9,14 +9,14 @@ users:
   comment: Daniel Kayiwa
   groups: 'admin'
   ssh_key: "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAx+1orGXyy5xp1vM1uDUIa/sj0/3Z04n0x2EBJvSGAs98LitJbrucMGOoC2o3vmDbQLhgjDDIp9WcXyNX2CRF9Ez3ZQFY3UYErA87zfXC3aUCXH72PypaiTngNYI/z2Z7r1xVlcsogxW4IeGitk144J4CD3rSA3hO2uTjnc1Vblrj92VjNLv+/0y9yRUgM7EF0hxKrb4NTYXRSAEM95KoJqzGKz8Kb9MPT4NsjBdOynVUGTaNv9mTV5QOZa+4n2W24zDPoRirws7koib8vbAj8J+IilBvOtXWzJdgEokbUmzbooaGT4OCjEwMpt0JUrBWrMlwazeiZEWaZVNgS97ubQ== danielkayiwa@Daniel-Kayiwas-MacBook-Pro.local"
- raff:
-  comment: Rafal
-  groups: 'admin'
-  ssh_key: "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAgc4Q+9e1XMDInFm4GNkuYErYkgDt0KNnmLDTFa+0HV1MuQKP+TE3Ee9Qdx5rugNkg9+e45Hzfze/vX/nYjrNAkWcxYaxEAdej/6QW4Bh4r6rRLnNoqnksG3+WVXl2cqOf9odji2L+uzA2E+zX5tEYqVkN9+0z1Ewwe6lcSg0zRQyJ+phIo595eftYJGAiLAhIfSotg8SxWJhSHUsNtphyXRld7FtxXDgfu6SkejvakymwXEuMe7yS2mES9U8IlJh4CyADGaqb0WSWfqsejcgMuXJmnEqpMqVwcDaP4B+NZLTKfUUlc2D8DiUKRqlnxuGCFmkpghTQkX4dE0YhxJSjQ== raff"
  dennis:
-   comment: Dennis
-   groups: 'admin'
-   ssh_key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBikFDy2gHpgU2Qe7rP7jKyueawfU6CUtKHbQapN1CSS dennis@openmrs.org"
+  comment: Dennis
+  groups: 'admin'
+  ssh_key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBikFDy2gHpgU2Qe7rP7jKyueawfU6CUtKHbQapN1CSS dennis@openmrs.org"
+ emmanuel:
+  comment: Emmanuel
+  groups: 'admin'
+  ssh_key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDV3cRBBruV3dAKdYfy2HA+bv4KpP1yYodhjDrnZIussouut9k2JFLw28E8rB8/T/fNe4E1Y3TidOLddwRndbKFLaiWSIPrMtufY9b4qoqfk0X9yCWxCY+yVf5e9y/1++TqUQEmM+Nv9dYcfAevY+V9CnBikZeJXVoDdiYhswYHe2j/d/KuuJGvo3iL12WnYhePJNQ+7DwuRWhs+c/ntlcnZg1ndj6S6ZL9ReN3nPCuRHLe5Y3Vi5zjYIW5aQ+/M9YLuvi7BpNgZzE8Sfoz0WT7otQzI4ZyNG1nBWbz7KtmL67QhHN8MjAAiZx/XOnkFMooI90VjQKrIUsKtmF4SCW00B7tdtssplIoPE8vFqX2mCEjohqkRhuCbS6FTJEtrZJ3e+ZGbx1+6D6JvQXdBRVHMmkCXP2FlKecpqrGWOEByt0/0a/30S1hlB4rE/M2ObZIDJaUXUG+k/de3NAi0a+mErjT12zkTX+lHS6n0mvE88aZV4G7dhP4/Jf/6CrTUA0= emmanuelnyachoke@Emmanuels-MacBook-Pro.local"
 
 datadog_tags_extra:
   - "service:dev-his"
