@@ -85,7 +85,7 @@ bamboo_pass: '{{ vault_bamboo_pass }}'
 bamboo_hash_salt: '{{ vault_bamboo_hash_salt }}'
 bamboo_user: 'bamboo'
 bamboo_checksum: 'sha256:29465c00b63d54272a29e98119773c25b10c42f868fd948c99ee60d037670f1b'
-bamboo_archive: "atlassian-bamboo-8.2.4.tar.gz"
+bamboo_archive: "atlassian-bamboo-10.0.1.tar.gz"
 bamboo_url: "https://product-downloads.atlassian.com/software/bamboo/downloads/{{ bamboo_archive }}"
 bamboo_catalina: "/opt/bamboo"
 bamboo_home: "/data/bamboo_home"
