@@ -34,7 +34,7 @@ letsencrypt_cert_domains:
    - id-new.openmrs.org # TODO: discard once id is free
 
 docker_deployment:
-   - ldap
+  #  - ldap
    - id
    - id-new
    - ldap-new
