@@ -21,6 +21,29 @@
   notify: restart bamboo
   tags: hswong3i.bamboo
 
+- name: install dependencies
+  apt:
+    name: "{{ item }}"
+    state: "present"
+    update_cache: yes
+  with_items:
+    - "openjdk-17-jre"
+    - "openjdk-17-jdk"
+  when: ansible_os_family == 'Debian'
+  tags: hswong3i.bamboo
+
+- name: Correct java version selected
+  alternatives:
+    name: "java"
+    path: /usr/lib/jvm/java-17-openjdk-amd64/bin/javac
+
+- name: Set JAVA_HOME in /etc/environment
+  lineinfile:
+    path: /etc/environment
+    regexp: '^JAVA_HOME='
+    line: 'JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64/'
+    state: present
+
 - name: prepare files
   file:
     dest: "{{ item.dest }}"
@@ -62,6 +85,13 @@
     - { src: "usr/share/bamboo/conf/server.xml.j2", dest: "{{ bamboo_catalina }}/conf/server.xml", owner: "{{ bamboo_user }}", group: "{{ bamboo_user }}", mode: "0644" }
   notify: restart bamboo
   tags: hswong3i.bamboo
+
+- name: Configure Bamboo home directory
+  lineinfile:
+    path: "{{ bamboo_catalina }}/atlassian-bamboo/WEB-INF/classes/bamboo-init.properties"
+    regexp: '^#?bamboo.home='
+    line: "bamboo.home={{ bamboo_home }}"
+    state: present
 
 - name: enable service
   service:

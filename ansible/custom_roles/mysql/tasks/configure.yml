@@ -23,11 +23,8 @@
   file:
     path: "{{ datadir }}"
     state: directory
-    owner: root
-    group: root
     mode: '0777'
     recurse: yes
-  when: mysql_config_include_files | length
 
 - name: Verify mysql include directory exists.
   file:

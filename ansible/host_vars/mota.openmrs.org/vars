@@ -147,10 +147,10 @@ gcoop_mysqldump_cron_entries:
 bamboo_pass: '{{ vault_bamboo_pass }}'
 bamboo_hash_salt: '{{ vault_bamboo_hash_salt }}'
 bamboo_user: 'bamboo'
-bamboo_checksum: 'sha256:29465c00b63d54272a29e98119773c25b10c42f868fd948c99ee60d037670f1b'
-bamboo_archive: "atlassian-bamboo-8.2.4.tar.gz"
+bamboo_checksum: 'sha256:c1f05bded267024678a1faf1384f11ef797549371abf2f6ac64958a7b7b3108b'
+bamboo_archive: "atlassian-bamboo-10.0.1.tar.gz"
 bamboo_url: "https://product-downloads.atlassian.com/software/bamboo/downloads/{{ bamboo_archive }}"
-bamboo_catalina: "/opt/bamboo"
+bamboo_catalina: "/opt/atlassian/bamboo"
 bamboo_home: "/data/bamboo_home"
 bamboo_jvm_maximum_memory: "4096m"
 bamboo_jvm_minimum_memory: "4096m"
@@ -158,11 +158,11 @@ bamboo_proxy_name: 'ci-stg.openmrs.org'
 bamboo_scheme: 'https'
 mysql_connector_java_dest: '{{ bamboo_catalina }}/lib'
 mysql_connector_java_user: '{{ bamboo_user }}'
-mysql_connector_java_archive: 'mysql-connector-java-8.0.17.tar.gz'
-mysql_connector_java_jar: 'mysql-connector-java-8.0.17.jar'
+mysql_connector_java_archive: 'mysql-connector-j-9.0.0.tar.gz'
+mysql_connector_java_jar: 'mysql-connector-j-9.0.0.jar'
 #mysql_connector_java_url: "https://dev.mysql.com/get/Downloads/Connector-J/{{ mysql_connector_java_archive }}"
-mysql_connector_java_url: "https://cdn.mysql.com//archives/mysql-connector-java-8.0/{{ mysql_connector_java_archive }}"
-mysql_connector_java_checksum: 'sha256:20116c90f01402406fa3a0783c308fb0bf9937b1d99cb6130407a1ad77ae7dd9'
+mysql_connector_java_url: "https://cdn.mysql.com//Downloads/Connector-J/{{ mysql_connector_java_archive }}"
+mysql_connector_java_checksum: 'sha256:02cd65cfa7ba61db415479bc3ff14cd86f63698971756abc7d9c9beb6331d99f'
 
 logrotate_scripts:
   - name: bamboologs
