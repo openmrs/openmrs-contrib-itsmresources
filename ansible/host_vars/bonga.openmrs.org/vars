@@ -85,12 +85,12 @@ nginx_vhosts:
         proxy_pass http://127.0.0.1:8082/openmrs;
       }
   - listen: "80"
-    server_name: "uat-refapp.openmrs.org"
+    server_name: "uat-refapp2.openmrs.org uat-refapp.openmrs.org"
     filename: "uat-refapp.openmrs.org.80.conf"
     extra_parameters: |
       return 301 https://$host$request_uri;
   - listen: "443 ssl"
-    server_name: "uat-refapp.openmrs.org"
+    server_name: "uat-refapp2.openmrs.org uat-refapp.openmrs.org"
     extra_parameters: |
       access_log /var/log/nginx/uat_access.log;
       error_log /var/log/nginx/uat_error.log;
@@ -108,12 +108,12 @@ nginx_vhosts:
         proxy_pass http://127.0.0.1:8083/openmrs;
       }
   - listen: "80"
-    server_name: "qa-refapp.openmrs.org"
+    server_name: "qa-refapp2.openmrs.org qa-refapp.openmrs.org"
     filename: "qa-refapp.openmrs.org.80.conf"
     extra_parameters: |
       return 301 https://$host$request_uri;
   - listen: "443 ssl"
-    server_name: "qa-refapp.openmrs.org"
+    server_name: "qa-refapp2.openmrs.org qa-refapp.openmrs.org"
     extra_parameters: |
       access_log /var/log/nginx/qa-refapp_access.log;
       error_log /var/log/nginx/qa-refapp_access.log;
