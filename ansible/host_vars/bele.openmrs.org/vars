@@ -64,7 +64,7 @@ nginx_vhosts:
     extra_parameters: |
       return 301 https://$host$request_uri;
   - listen: "443 ssl"
-    server_name: "demo.openmrs.org"
+    server_name: "o2.openmrs.org demo.openmrs.org"
     extra_parameters: |
       access_log /var/log/nginx/demo_access.log;
       error_log /var/log/nginx/demo_error.log;
