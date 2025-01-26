@@ -59,7 +59,7 @@ nginx_keepalive_requests: "600"
 
 nginx_vhosts:
   - listen: "80 default_server"
-    server_name: "demo.openmrs.org"
+    server_name: "o2.openmrs.org demo.openmrs.org"
     filename: "demo.openmrs.org.80.conf"
     extra_parameters: |
       return 301 https://$host$request_uri;
