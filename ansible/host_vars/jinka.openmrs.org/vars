@@ -91,6 +91,9 @@ nginx_vhosts:
       location ^~ /.well-known/acme-challenge/ {
         root /usr/share/nginx/html;
       }
+      location ^~ /.well-known/funding-manifest-urls {
+        root /usr/share/nginx/html;
+      }
       location / {
         add_header X-Frame-Options "SAMEORIGIN";
         proxy_set_header HOST $host;
