@@ -93,6 +93,15 @@ nginx_vhosts:
       }
       location ^~ /.well-known/funding-manifest-urls {
         root /usr/share/nginx/html;
+        add_header 'Access-Control-Allow-Origin' '*';
+        add_header 'Content-Type' 'text/plain';
+        try_files /funding-manifest-urls =404;
+      }
+      location ^~ /openmrs-inc/.well-known/funding-manifest-urls {
+        root /usr/share/nginx/html;
+        add_header 'Access-Control-Allow-Origin' '*';
+        add_header 'Content-Type' 'text/plain';
+        try_files /funding-manifest-urls =404;
       }
       location / {
         add_header X-Frame-Options "SAMEORIGIN";
