@@ -60,7 +60,10 @@ DISCOURSE_SMTP_ENABLE_START_TLS: 'true'
 DISCOURSE_FROM_EMAIL: 'talk@openmrs.org'
 DISCOURSE_DB_PASSWORD: '{{ vault_discourse_db_password  }}'
 
-# Optinal Variables
+DISCOURSE_MAXMIND_ACCOUNT_ID: '{{ vault_discourse_maxmind_account_id }}'
+DISCOURSE_MAXMIND_LICENSE_KEY: '{{ vault_discourse_maxmind_license_key }}'
+
+# Optional Variables
 DISCOURSE_INSTALLATION_DIR: /opt/discourse
 DISCOURSE_WEB_DIR: /data/discourse/web
 DISCOURSE_DATA_DIR: /data/discourse/data
