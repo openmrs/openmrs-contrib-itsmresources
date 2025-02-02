@@ -50,6 +50,7 @@ letsencrypt_cert_domains:
   - cieladmin.openmrs.org
   - demo.openmrs.org
   - mdsbuilder.openmrs.org
+  - o2.openmrs.org
   - o3.openmrs.org
   - formbuilder.o3.openmrs.org
 
