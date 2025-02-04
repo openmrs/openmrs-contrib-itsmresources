@@ -42,7 +42,9 @@ letsencrypt_cert_domains:
   - bonga.openmrs.org
   - modules-refapp.openmrs.org
   - uat-refapp.openmrs.org
+  - uat-refapp2.openmrs.org
   - qa-refapp.openmrs.org
+  - qa-refapp2.openmrs.org
   - uat-platform.openmrs.org
   - dev3.openmrs.org
   - test3.openmrs.org
