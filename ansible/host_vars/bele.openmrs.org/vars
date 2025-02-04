@@ -98,7 +98,7 @@ nginx_vhosts:
         proxy_set_header  X-Forwarded-Proto $scheme;
         proxy_pass http://127.0.0.1:8081/openmrs;
       }
-  - listen: "80 default_server"
+  - listen: "80"
     server_name: "o2.openmrs.org"
     filename: "o2.openmrs.org.80.conf"
     extra_parameters: |
