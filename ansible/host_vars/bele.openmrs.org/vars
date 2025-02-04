@@ -60,12 +60,12 @@ nginx_keepalive_requests: "600"
 
 nginx_vhosts:
   - listen: "80 default_server"
-    server_name: "o2.openmrs.org demo.openmrs.org"
+    server_name: "demo.openmrs.org"
     filename: "demo.openmrs.org.80.conf"
     extra_parameters: |
-      return 301 https://$host$request_uri;
+      return 302 https://o2.openmrs.org$request_uri;
   - listen: "443 ssl"
-    server_name: "o2.openmrs.org demo.openmrs.org"
+    server_name: "demo.openmrs.org"
     extra_parameters: |
       access_log /var/log/nginx/demo_access.log;
       error_log /var/log/nginx/demo_error.log;
@@ -74,14 +74,7 @@ nginx_vhosts:
       location ^~ /.well-known/acme-challenge/ {
         root /usr/share/nginx/html;
       }
-      location / {
-        return 301 https://demo.openmrs.org/openmrs;
-      }
-      location /openmrs {
-        proxy_set_header HOST $host;
-        proxy_set_header  X-Forwarded-Proto $scheme;
-        proxy_pass http://127.0.0.1:8080/openmrs;
-      }
+      return 302 https://o2.openmrs.org$request_uri;
   - listen: "80"
     server_name: "mdsbuilder.openmrs.org"
     filename: "mdsbuilder.openmrs.org.80.conf"
@@ -104,6 +97,29 @@ nginx_vhosts:
         proxy_set_header HOST $host;
         proxy_set_header  X-Forwarded-Proto $scheme;
         proxy_pass http://127.0.0.1:8081/openmrs;
+      }
+  - listen: "80 default_server"
+    server_name: "o2.openmrs.org"
+    filename: "o2.openmrs.org.80.conf"
+    extra_parameters: |
+      return 301 https://$host$request_uri;
+  - listen: "443 ssl"
+    server_name: "o2.openmrs.org"
+    extra_parameters: |
+      access_log /var/log/nginx/o2_access.log;
+      error_log /var/log/nginx/o2_error.log;
+      ssl_certificate /etc/letsencrypt/live/bele.openmrs.org/fullchain.pem;
+      ssl_certificate_key /etc/letsencrypt/live/bele.openmrs.org/privkey.pem;
+      location ^~ /.well-known/acme-challenge/ {
+        root /usr/share/nginx/html;
+      }
+      location / {
+        return 301 https://o2.openmrs.org/openmrs;
+      }
+      location /openmrs {
+        proxy_set_header HOST $host;
+        proxy_set_header  X-Forwarded-Proto $scheme;
+        proxy_pass http://127.0.0.1:8080/openmrs;
       }
   - listen: "80"
     server_name: "o3.openmrs.org"
