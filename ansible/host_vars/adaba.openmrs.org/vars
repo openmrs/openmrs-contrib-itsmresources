@@ -35,7 +35,7 @@ letsencrypt_cert_domains:
 
 docker_deployment:
   #  - ldap
-   - id
+  # - id
    - id-new
    - ldap-new
 
@@ -59,7 +59,7 @@ nginx_vhosts:
     server_name: "id.openmrs.org"
     filename: "id.openmrs.org.80.conf"
     extra_parameters: |
-      return 301 https://$host$request_uri;
+      return 301 https://id-new.openmrs.org$request_uri;
   - listen: "443 ssl"
     server_name: "id.openmrs.org"
     extra_parameters: |
@@ -74,9 +74,7 @@ nginx_vhosts:
         root /usr/share/nginx/html;
       }
       location / {
-        proxy_set_header HOST $host;
-        proxy_set_header  X-Forwarded-Proto $scheme;
-        proxy_pass http://127.0.0.1:3000/;
+        return 301 https://id-new.openmrs.org$request_uri;
       }
   - listen: "80"
     server_name: "id-new.openmrs.org"
