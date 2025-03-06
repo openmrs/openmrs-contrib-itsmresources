@@ -30,6 +30,11 @@ users:
    comment: Juliet Wamalwa
    groups: 'admin'
    ssh_key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCrFnM2CNLUHViK6x0WbyVVLZqA/Flw0ZOsR10ZjNBiF4i/UifV4EhU5+aYhXGq6ZSl5q5POV1d2UB0PEmSBAXahjQnwcf1QPwf3taP8TUXVfNRQV8D2t95ieQhSB39GTUMDRuFQYvllEOXIGL7uckAWZAGFbeXpFxYsW2ePt1d0S82QFP3zbvL7Js0S2CaRpwP1jRu7PcW7MhAzdsaBEAINiOMK5OYo3jwUkLtuaCUqoOf7WiF/Wrmc12vA17ndDNL7p9/oUBH9aBwyWIpF1/YX0RWssmns8gJTEC76CKEnfmm2Jqt9j9tubl27ebFdmqWfPkaweTJuwS/sCdECitx denis@Deniss-Air"
+ filipelopes:
+   comment: Filipe Lopes
+   groups: 'admin'
+   key_options: command="sudo docker exec -it `sudo docker ps --filter name=cieladmin_db -q -l` bash -c 'mysql --user=\"$MYSQL_USER\" --password=\"$MYSQL_PASSWORD\" openmrs'" 
+   ssh_key "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILs5Y3deK5oc9+g+0LJ+mNcs6YCJPzbNRTUqkPWxH1DY contato@filipelopes.med.br"
 
 datadog_tags_extra:
   - "service:openmrs-refapp"
