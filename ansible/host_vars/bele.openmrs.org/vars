@@ -34,7 +34,7 @@ users:
    comment: Filipe Lopes
    groups: 'admin'
    key_options: command="sudo docker exec -it `sudo docker ps --filter name=cieladmin_db -q -l` bash -c 'mysql --user=\"$MYSQL_USER\" --password=\"$MYSQL_PASSWORD\" openmrs'" 
-   ssh_key "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILs5Y3deK5oc9+g+0LJ+mNcs6YCJPzbNRTUqkPWxH1DY contato@filipelopes.med.br"
+   ssh_key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILs5Y3deK5oc9+g+0LJ+mNcs6YCJPzbNRTUqkPWxH1DY contato@filipelopes.med.br"
 
 datadog_tags_extra:
   - "service:openmrs-refapp"
