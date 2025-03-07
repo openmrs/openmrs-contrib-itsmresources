@@ -37,6 +37,8 @@ $ ansible-playbook -vv -i inventories/prod-tier4 site.yml
 # if you do not have your PGP key in our repo to unlock the .vault_pass file, you can get it from the LastPass folder and interactively enter it.
 $ ansible-playbook -vv -i inventories/prod-tier4 --limit narok.openmrs.org site.yml --ask-vault-pass
 
+# Adding a user to a specific server (after credentials placed in host_vars for server)
+$ ansible-playbook -vv -i inventories/prod-tier3 --limit bele.openmrs.org --tags soe site.yml
 
 # Adding or removing DNS entries to letsencrypt (example: narok)
 # after changing the host_vars
