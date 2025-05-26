@@ -2,15 +2,16 @@
 
 galaxy_info:
   author: Wong Hoi Sing Edison <hswong3i@pantarei-design.com>
+  role_name: bamboo
+  namespace: openmrscontrib
   description: Ansible Role for Atlassian Bamboo Installation.
   company: PantaRei Design
   license: MIT
-  min_ansible_version: 2.0
+  min_ansible_version: "2.0"
   platforms:
     - name: Ubuntu
       versions:
-        - trusty
-        - xenial
+        - all
   galaxy_tags:
     - system
 dependencies: []

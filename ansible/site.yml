@@ -18,10 +18,11 @@
    - { role: 'custom_roles/users' }
    - sudo
    - { role: 'custom_roles/sshd' }
-   - ufw
+  #  - ufw
    - datadog
   tasks:
     - import_tasks: tasks/extra-monitoring.yml
+    - import_tasks: tasks/ufw.yml
   handlers:
     - import_tasks: handlers/monitoring.yml
 

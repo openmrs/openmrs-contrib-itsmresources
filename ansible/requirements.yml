@@ -19,9 +19,9 @@
 - name: timezone
   src: https://github.com/yatesr/ansible-timezone.git
   version: 854af629e6740c92b9098026148906643a13465c
-- name: ufw
-  src: https://github.com/yatesr/ansible-ufw.git
-  version: f0f7615a9b1c03f29d501e169caa9ea2538cdded
+# - name: ufw
+#   src: https://github.com/yatesr/ansible-ufw.git
+#   version: f0f7615a9b1c03f29d501e169caa9ea2538cdded
 - name: logrotate
   src: https://github.com/nickhammond/ansible-logrotate
   version: 91d570f68c44261d2051a99a2b3c7d736306bf0d

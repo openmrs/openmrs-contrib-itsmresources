@@ -22,7 +22,7 @@ galaxy_info:
     versions:
     - 19
     - 20
-  categories:
+  galaxy_tags:
   - system
 dependencies: []
   

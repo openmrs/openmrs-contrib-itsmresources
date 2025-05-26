@@ -1,16 +1,16 @@
 ---
 # tasks file for hswong3i.bamboo
 
-- name: create group
-  group:
+- name: Create Group
+  ansible.builtin.group:
     name: "{{ bamboo_user }}"
     gid: "{{ bamboo_gid | default(None) or omit }}"
   when: bamboo_pass is string and bamboo_hash_salt is string
   notify: restart bamboo
   tags: hswong3i.bamboo
 
-- name: create user
-  user:
+- name: Create User
+  ansible.builtin.user:
     name: "{{ bamboo_user }}"
     password: "{{ bamboo_pass | password_hash('sha512', bamboo_hash_salt) }}"
     home: "{{ bamboo_home }}"
@@ -21,50 +21,63 @@
   notify: restart bamboo
   tags: hswong3i.bamboo
 
-- name: prepare files
-  file:
+- name: Prepare Files
+  ansible.builtin.file:
     dest: "{{ item.dest }}"
     owner: "{{ item.owner }}"
     group: "{{ item.group }}"
     mode: "{{ item.mode }}"
     state: "{{ item.state }}"
-  with_items:
+  loop:
     - { dest: "{{ bamboo_catalina }}", owner: "{{ bamboo_user }}", group: "{{ bamboo_user }}", mode: "0755", state: "directory" }
   notify: restart bamboo
   tags: hswong3i.bamboo
 
-- name: download package
-  get_url:
+- name: Download Package
+  ansible.builtin.get_url:
     url: "{{ bamboo_url }}"
     dest: "/tmp/{{ bamboo_archive }}"
     checksum: "{{ bamboo_checksum }}"
+    mode: '0644'
   tags: hswong3i.bamboo
 
-- name: unarchive package
-  shell: |
-    tar zxvf /tmp/{{ bamboo_archive }} -C {{ bamboo_catalina }} --strip-components=1
-    chown -Rf {{ bamboo_user }}:{{ bamboo_user }} {{ bamboo_catalina }}
-  args:
+- name: Unarchive Package
+  ansible.builtin.unarchive:
+    src: "/tmp/{{ bamboo_archive }}"
+    dest: "{{ bamboo_catalina }}"
+    remote_src: true
+    owner: "{{ bamboo_user }}"
+    group: "{{ bamboo_user }}"
+    extra_opts:
+      - --strip-components=1
     creates: "{{ bamboo_catalina }}/bin/start-bamboo.sh"
   notify: restart bamboo
   tags: hswong3i.bamboo
 
-- name: copy templates
-  template:
+- name: Copy Templates
+  ansible.builtin.template:
     src: "{{ item.src }}"
     dest: "{{ item.dest }}"
     owner: "{{ item.owner }}"
     group: "{{ item.group }}"
     mode: "{{ item.mode }}"
-  with_items:
-    - { src: "etc/init.d/bamboo.j2", dest: "/etc/init.d/bamboo",  owner: "root", group: "root", mode: "0755" }
-    - { src: "usr/share/bamboo/bin/setenv.sh.j2", dest: "{{ bamboo_catalina }}/bin/setenv.sh", owner: "{{ bamboo_user }}", group: "{{ bamboo_user }}", mode: "0644" }
-    - { src: "usr/share/bamboo/conf/server.xml.j2", dest: "{{ bamboo_catalina }}/conf/server.xml", owner: "{{ bamboo_user }}", group: "{{ bamboo_user }}", mode: "0644" }
+  loop:
+    - { src: "etc/init.d/bamboo.j2", dest: "/etc/init.d/bamboo", owner: "root", group: "root", mode: "0755" }
+    - { src: "usr/share/bamboo/bin/setenv.sh.j2",
+        dest: "{{ bamboo_catalina }}/bin/setenv.sh",
+        owner: "{{ bamboo_user }}",
+        group: "{{ bamboo_user }}",
+        mode: "0644" }
+    - { src: "usr/share/bamboo/conf/server.xml.j2",
+        dest: "{{ bamboo_catalina }}/conf/server.xml",
+        owner: "{{ bamboo_user }}",
+        group: "{{ bamboo_user }}",
+        mode: "0644" }
   notify: restart bamboo
   tags: hswong3i.bamboo
 
-- name: enable service
-  service:
+- name: Enable Service
+  ansible.builtin.service:
     name: "bamboo"
     enabled: "yes"
   notify: restart bamboo
