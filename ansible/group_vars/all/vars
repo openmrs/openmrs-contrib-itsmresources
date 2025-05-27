@@ -112,3 +112,7 @@ backup_tag: 'not-applicable'
 backup_user: 'not-applicable'
 
 docker_data_dir: "/var/lib/docker"
+
+nginx_enable: true
+nginx_start: true
+nginx_configure: true

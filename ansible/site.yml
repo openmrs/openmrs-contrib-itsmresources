@@ -61,7 +61,7 @@
   tasks:
     - import_tasks: tasks/nginx.yml
   roles:
-   - nginx
+    - nginx
 
 - hosts: backup
   become: true

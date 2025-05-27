@@ -3,12 +3,12 @@
 collections:
   - name: datadog.dd
     version: ">=6.1.0"
+  - name: ansible.posix
+    version: ">=2.0.0"
+  - name: community.general
+    version: ">=10.6.0"
 
 roles:
-- name: nginx
-  src: geerlingguy.nginx
-  version: 2.7.0
-
 # from git
 - name: dhparam
   src: https://github.com/gronke/ansible-dhparam.git
@@ -25,6 +25,8 @@ roles:
 - name: logrotate
   src: https://github.com/nickhammond/ansible-logrotate
   version: 91d570f68c44261d2051a99a2b3c7d736306bf0d
+- name: nginx
+  src: nginxinc.nginx
 
 # Forked/new modules will be in `custom_roles` folder
 
