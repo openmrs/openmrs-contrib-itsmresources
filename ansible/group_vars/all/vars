@@ -40,12 +40,17 @@ users:
    comment: Scott Businge
    groups: 'admin'
    ssh_key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDB1XiSzv0DgNPcs57C/m0LQ2p7Y2zGpDu2izJ667vD6TAwauNwyBKbiSeckY+FR7IbdrsNJduUyryRiSzh4y4AQEvCiyjeZME+1MAv8hYs/hDyQjrcCQinSmyQyFIfyvKO395etydOYrDr2YyrsQgpyPEQ1cbU/2fOz5oieZpTIBA006tinWo+7GNOrx6dEAlZOo6C3FIZPU4KWQa7o2iFObMNad4rTO6lTal3TuXfc+cpGsgfLI+g5kL0Wfo0UYUJNm3wDaJSg8bAQmwcjivzwMRSbN98Hyfb3hjOxXJU8uNFNd5IKkGgcJ/M/S5rfX2TVV/O31sqnGfLfatqmZ7P scott@Mrs-MacBook-Pro.local"
+ ahmed:
+   comment: Syed Ahmed
+   groups: 'admin'
+   ssh_key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDP8mYKtK1QvKJacv4Gobo7u6RpZlhQJa1q3P8cJXb13rX1UyJt9fhahJjMJriQH9c4POhVmU/fQ+C2OGf1Htbz3KAigxTACFSM1r74J6wL7SfMfUmIjc3K5V618FvdLcmNgenyYnqBq4f89L8LZgWbzQKptccOfLNtLJgYeuyBgGK4s/f0AlwaTPg1y4EgQrfVvkTpIQzQeRd6H5dgrdwl2G3Lx2Eyy2Q6bOlStCxOXpGs4ObPCKY18q60d/56wt9/anMEmdqQM1ez7H7B/kK64MAv2GzJS3z/ieFap3EPLgbRmCeyAl4F/d/BIgXuHinTJ/KNhsoytfLZWGcH4ovqWu9guUBrQNprUo3eBpQC6SEAraFJQYjCb+2dySZ6yZRJT1l9bUKxOpaGUwFVqYngJ2tDkgANTk0HEFIiWoewUdRhwXvf+JMurbrRna1er4oJfqXmaw6L2x04nZmz61pm1BbuU6mrXtpsNeOODm/sud5XMFwDKaqkoe64gX1x0vE= syedmuhammadahmed@Ahmeds-MacBook-Air.local"
 
 # Sudo users, % for groups. Default to nopasswd.
 sudo_users:
   - root
   - "%wheel"
   - "%admin"
+  - "%sudo"
 
 # timezone for all servers
 timezone: UTC
@@ -64,25 +69,25 @@ ufw_rules:
     proto: tcp
     rule: allow
 
-datadog_agent_version: 7.37.1
+datadog_agent_version: 7.66.0
 
 datadog_agent_allow_downgrade: true
 
 datadog_tags_default:
-    - "provider:{{ansible_local.provisioning.general.provider}}"
-    - "region:{{ansible_local.provisioning.general.region}}"
-    - "environment:{{ansible_local.provisioning.general.inventory}}"
-    - "backup:{{backup_tag}}"
-    - "ansible:{{ansible_tag}}"
-    - "provisioner:{{ansible_local.provisioning.general.provisioner}}"
+    - "provider:{{ ansible_local.provisioning.general.provider | default('unknown') }}"
+    - "region:{{ ansible_local.provisioning.general.region | default(ansible_default_ipv4.address | default('unknown')) }}"
+    - "environment:{{ ansible_local.provisioning.general.inventory | default('test') }}"
+    - "backup:{{ backup_tag }}"
+    - "ansible:{{ ansible_tag }}"
+    - "provisioner:{{ ansible_local.provisioning.general.provisioner | default('ansible') }}"
+
+datadog_tags_extra: []
 
 datadog_config:
   process_config:
     enabled: "true" # has to be set as a string
-  tags: "{{ datadog_tags_extra + datadog_tags_default }}"
+  tags: "{{ (datadog_tags_extra | default([])) + datadog_tags_default }}"
   hostname_fqdn: true
-
-
 
 datadog_checks:
   upgrades_check:

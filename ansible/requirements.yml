@@ -1,10 +1,10 @@
 # from Ansible Galaxy
-- name: aws-cli
-  src: badpacketsllc.aws_cli
-  version: v1.0.2
-- name: datadog
-  src: Datadog.datadog
-  version: 4.16.0
+---
+collections:
+  - name: datadog.dd
+    version: ">=6.1.0"
+
+roles:
 - name: nginx
   src: geerlingguy.nginx
   version: 2.7.0

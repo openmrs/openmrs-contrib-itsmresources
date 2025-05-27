@@ -1,7 +1,8 @@
 ---
 # Master Playbook
 
-- hosts: all
+- name: Basic OS setup
+  hosts: all
   become: true
   tags:
     - basic-os
@@ -10,7 +11,8 @@
    - import_tasks: tasks/updates.yml
    - import_tasks: tasks/cleanup.yml
 
-- hosts: all
+- name: Standard Operating Environment
+  hosts: all
   become: true
   tags:
     - soe
@@ -19,7 +21,7 @@
    - sudo
    - { role: 'custom_roles/sshd' }
   #  - ufw
-   - datadog
+   - datadog.dd.agent
   tasks:
     - import_tasks: tasks/extra-monitoring.yml
     - import_tasks: tasks/ufw.yml
@@ -68,7 +70,7 @@
   tasks:
    - import_tasks: tasks/backup.yml
   roles:
-   - aws-cli
+   - { role: 'custom_roles/aws-cli' }
   handlers:
     - import_tasks: handlers/monitoring.yml
 

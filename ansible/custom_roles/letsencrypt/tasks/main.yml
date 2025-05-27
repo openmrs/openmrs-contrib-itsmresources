@@ -1,6 +1,6 @@
 ---
   - apt: update_cache=yes cache_valid_time=3600
-    become: yes
+    become: true
     when: ansible_pkg_mgr == "apt"
     tags: install
 
@@ -33,20 +33,24 @@
     import_tasks: ubuntu-jammy.yml
     when: ansible_distribution == "Ubuntu" and ansible_distribution_release == "jammy"
 
+  - name: install certbot (Ubuntu Noble)
+    import_tasks: ubuntu-noble.yml
+    when: ansible_distribution == "Ubuntu" and ansible_distribution_release == "noble"
+
   - name: install certbot (using pip)
     import_tasks: install-with-pip.yml
-    when: ansible_distribution != "Debian" and (ansible_distribution != "Ubuntu" or ansible_distribution_release not in  ["xenial", "focal", "jammy"])
+    when: ansible_distribution != "Debian" and (ansible_distribution != "Ubuntu" or ansible_distribution_release not in  ["xenial", "focal", "jammy", "noble"])
 
   - name: Ensure webroot exists
     file:
       path: "{{ letsencrypt_webroot_path }}"
       state: directory
-      follow: yes
-    become: yes
+      follow: true
+    become: true
 
   - name: Attempt to get the certificate using the webroot authenticator
     command: "{{ letsencrypt_command }} -a webroot --webroot-path {{ letsencrypt_webroot_path }} certonly"
-    become: yes
+    become: true
     args:
       creates: "/etc/letsencrypt/live/{{ letsencrypt_cert_domains[0] }}"
     when: letsencrypt_authenticator == "webroot"
@@ -54,7 +58,7 @@
 
   - name: Attempt to get the certificate using the standalone authenticator (in case eg the webserver isn't running yet)
     command: "{{ letsencrypt_command }} -a standalone auth {{ letsencrypt_standalone_command_args }}"
-    become: yes
+    become: true
     args:
       creates: "/etc/letsencrypt/live/{{ letsencrypt_cert_domains[0] }}"
 
@@ -64,7 +68,7 @@
       option: "{{ item.key }}"
       value: "{{ item.value }}"
       dest: "/etc/letsencrypt/renewal/{{ letsencrypt_cert_domains[0] }}.conf"
-    become: yes
+    become: true
     with_dict:
       os_packages_only: False
       verb: certonly
@@ -79,11 +83,11 @@
       option: "{{ item }}"
       value: "{{ letsencrypt_webroot_path }}"
       dest: "/etc/letsencrypt/renewal/{{ letsencrypt_cert_domains[0] }}.conf"
-    become: yes
+    become: true
     with_items: "{{ letsencrypt_cert_domains }}"
 
   - name: Install renewal cron
-    become: yes
+    become: true
     cron:
       name: "Let's Encrypt Renewal"
       day: "{{ letsencrypt_renewal_frequency.day }}"
@@ -95,7 +99,7 @@
     file:
       path: '{{ item }}'
       state: directory
-      recurse: yes
+      recurse: true
     when: ssl_certificate is defined and ssl_certificate_key is defined
     with_items:
       - "{{ ssl_certificate|dirname }}"

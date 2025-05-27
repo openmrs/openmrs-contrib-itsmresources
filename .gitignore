@@ -17,3 +17,6 @@ Icon
 *.swo
 # ignore ansible testing files
 ansible/hosttest
+
+# Ansible downloaded collections
+.ansible

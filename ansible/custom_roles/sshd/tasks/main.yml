@@ -8,8 +8,8 @@
     group: root
     mode: "0600"
   notify:
-    - gen ssh keys
-    - restart ssh
+    - Gen SSH Keys
+    - Restart SSH
 
 - name: Attempt to remove pub key from local known_hosts
   ansible.builtin.known_hosts:
