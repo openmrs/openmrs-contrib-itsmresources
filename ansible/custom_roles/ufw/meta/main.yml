@@ -1,0 +1,19 @@
+---
+galaxy_info:
+  author: Syed Muhammad Ahmed
+  description: Role for managing ufw config and ufw rules.
+  company: "Beaty Consultancy"
+  license: Apache-2.0
+  min_ansible_version: "2.12"
+  platforms:
+    - name: Ubuntu
+      versions:
+        - focal
+        - jammy
+        - bionic
+        - noble
+    - name: Debian
+      versions:
+        - bullseye
+        - bookworm
+dependencies: []
