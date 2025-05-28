@@ -6,7 +6,7 @@
     name: "{{ bamboo_user }}"
     gid: "{{ bamboo_gid | default(None) or omit }}"
   when: bamboo_pass is string and bamboo_hash_salt is string
-  notify: restart bamboo
+  notify: Restart Bamboo
   tags: hswong3i.bamboo
 
 - name: Create User
@@ -18,7 +18,7 @@
     uid: "{{ bamboo_uid | default(None) or omit }}"
     shell: "/bin/bash"
   when: bamboo_pass is string and bamboo_hash_salt is string
-  notify: restart bamboo
+  notify: Restart Bamboo
   tags: hswong3i.bamboo
 
 - name: Prepare Files
@@ -30,7 +30,7 @@
     state: "{{ item.state }}"
   loop:
     - { dest: "{{ bamboo_catalina }}", owner: "{{ bamboo_user }}", group: "{{ bamboo_user }}", mode: "0755", state: "directory" }
-  notify: restart bamboo
+  notify: Restart Bamboo
   tags: hswong3i.bamboo
 
 - name: Download Package
@@ -51,7 +51,7 @@
     extra_opts:
       - --strip-components=1
     creates: "{{ bamboo_catalina }}/bin/start-bamboo.sh"
-  notify: restart bamboo
+  notify: Restart Bamboo
   tags: hswong3i.bamboo
 
 - name: Copy Templates
@@ -73,12 +73,12 @@
         owner: "{{ bamboo_user }}",
         group: "{{ bamboo_user }}",
         mode: "0644" }
-  notify: restart bamboo
+  notify: Restart Bamboo
   tags: hswong3i.bamboo
 
 - name: Enable Service
   ansible.builtin.service:
     name: "bamboo"
     enabled: "yes"
-  notify: restart bamboo
+  notify: Restart Bamboo
   tags: hswong3i.bamboo
