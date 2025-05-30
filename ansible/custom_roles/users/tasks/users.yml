@@ -3,7 +3,7 @@
   group: name={{item.key}}
          gid={{item.value.uid}}
          state={{item.value.state | default('present')}}
-  ignore_errors: yes
+  ignore_errors: true
   with_dict: "{{users | default({})}}"
   when: (item.value.uid is defined and users_default_create_user_group)
   tags: ['users','groups']
@@ -11,7 +11,7 @@
 - name: Manage user groups for users with no UIDs
   group: name={{item.key}}
          state={{item.value.state | default('present')}}
-  ignore_errors: yes
+  ignore_errors: true
   with_dict: "{{users | default({})}}"
   when: (item.value.uid is not defined and users_default_create_user_group)
   tags: ['users','groups']
@@ -64,11 +64,13 @@
 
 
 - name: Manage SSH Keys
-  authorized_key: user={{item.key}}
-                  key="{{item.value.ssh_key}}"
-                  manage_dir=yes
-                  exclusive=yes
-                  key_options="{{item.value.key_options | default() }}"
-  with_dict: "{{users | default({})}}"
-  when: (item.value.ssh_key is defined)
+  authorized_key:
+    user: "{{ item.key }}"
+    key: "{{ item.value.ssh_key }}"
+    manage_dir: yes
+    exclusive: yes
+    key_options: "{{ item.value.key_options | default() }}"
+  with_dict: "{{ users | default({}) }}"
+  when:
+    - item.value.ssh_key is defined
   tags: ['users','ssh-key']
