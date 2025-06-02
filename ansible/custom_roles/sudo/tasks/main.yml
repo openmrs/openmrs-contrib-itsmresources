@@ -1,0 +1,24 @@
+# Set up a simple sudoers file
+---
+- name: Install sudo (RedHat)
+  ansible.builtin.yum:
+    name: sudo
+    state: present
+  when: ansible_os_family == 'RedHat'
+  tags: ['sudo']
+
+- name: Install sudo (Debian)
+  ansible.builtin.apt:
+    name: sudo
+    state: present
+    update_cache: true
+    cache_valid_time: 86400
+  when: ansible_os_family == 'Debian'
+  tags: ['sudo']
+
+- name: Sudoers file
+  ansible.builtin.template:
+    src: sudoers.j2
+    dest: /etc/sudoers
+    validate: '/usr/sbin/visudo -cf %s'
+  tags: ['sudo']

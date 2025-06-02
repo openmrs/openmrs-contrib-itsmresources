@@ -11,3 +11,28 @@ ufw_rules:
      rule: allow
 
 nginx_remove_default_vhost: true
+
+nginx_http_template_enable: true
+nginx_http_template:
+  demo:
+    template_file: http/default.conf.j2
+    conf_file_name: "{{ nginx_vhosts[0].filename }}"
+    conf_file_location: /etc/nginx/conf.d/
+    servers:
+      demo_server:
+        listen:
+          demo_listen:
+            port: 80
+            opts: ["default_server"]
+        server_name: "{{ nginx_vhosts[0].server_name }}"
+        access_log:
+          - name: demo
+            location: /var/log/nginx/demo_access.log
+        error_log:
+          location: /var/log/nginx/demo_error.log
+          level: warn
+        root: /usr/share/nginx/html
+        location:
+          proxy:
+            location: /
+            proxy_pass: http://127.0.0.1:8080/

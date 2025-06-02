@@ -1,7 +1,7 @@
 ---
 # handlers file for hswong3i.bamboo
 
-- name: restart bamboo
-  service:
+- name: Restart Bamboo
+  ansible.builtin.service:
     name: "bamboo"
     state: "restarted"

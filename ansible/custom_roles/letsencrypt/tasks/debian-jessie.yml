@@ -5,23 +5,23 @@
     state: present
     filename: 'backports'
   register: jbp_added
-  become: yes
+  become: true
 
 - name: update the apt cache
   apt: update_cache=yes cache_valid_time=7200
-  become: yes
+  become: true
 
 # if jessie-backports has been added we should update the cache
 - name: force update the apt cache
   apt: update_cache=yes
   when: jbp_added.changed
-  become: yes
+  become: true
 
 - name: install certbot from backports
   apt: pkg={{item}} default_release=jessie-backports state=latest
   with_items:
     - certbot
-  become: yes
+  become: true
 
 - name: change the path to letsencrypt
   set_fact:

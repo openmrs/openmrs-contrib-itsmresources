@@ -1,32 +1,39 @@
 # from Ansible Galaxy
-- name: aws-cli
-  src: badpacketsllc.aws_cli
-  version: v1.0.2
-- name: datadog
-  src: Datadog.datadog
-  version: 4.16.0
-- name: nginx
-  src: geerlingguy.nginx
-  version: 2.7.0
+---
+collections:
+  - name: datadog.dd
+    version: ">=6.1.0"
+  - name: ansible.posix
+    version: ">=2.0.0"
+  - name: community.general
+    version: ">=10.6.0"
 
+roles:
 # from git
-- name: dhparam
-  src: https://github.com/gronke/ansible-dhparam.git
-  version: 9a24d9610f5b88458a27ce0df1dca9a4ccdfaa1e
-- name: sudo
-  src: https://github.com/yatesr/ansible-sudo.git
-  version: 2a55007541a2f340eec57e4e5a7efa1c3fc73d74
+# - name: dhparam
+#   src: https://github.com/gronke/ansible-dhparam.git
+#   version: 9a24d9610f5b88458a27ce0df1dca9a4ccdfaa1e
+# - name: sudo
+#   src: https://github.com/yatesr/ansible-sudo.git
+#   version: 2a55007541a2f340eec57e4e5a7efa1c3fc73d74
+# - name: timezone
+#   src: https://github.com/yatesr/ansible-timezone.git
+#   version: 854af629e6740c92b9098026148906643a13465c
+# - name: ufw
+#   src: https://github.com/yatesr/ansible-ufw.git
+#   version: f0f7615a9b1c03f29d501e169caa9ea2538cdded
+# - name: logrotate
+#   src: https://github.com/nickhammond/ansible-logrotate
+#   version: 91d570f68c44261d2051a99a2b3c7d736306bf0d
+
+# from custom_roles/Galaxy
 - name: timezone
-  src: https://github.com/yatesr/ansible-timezone.git
-  version: 854af629e6740c92b9098026148906643a13465c
-- name: ufw
-  src: https://github.com/yatesr/ansible-ufw.git
-  version: f0f7615a9b1c03f29d501e169caa9ea2538cdded
-- name: logrotate
-  src: https://github.com/nickhammond/ansible-logrotate
-  version: 91d570f68c44261d2051a99a2b3c7d736306bf0d
+  src: custom_roles/timezone
+- name: nginx
+  src: nginxinc.nginx
 
 # Forked/new modules will be in `custom_roles` folder
+# Commented out roles are imported into `custom_roles` folder as they are not being actively maintained.
 
 
 # Module to deploy docker apps 
