@@ -18,7 +18,7 @@
     - soe
   roles:
    - { role: 'custom_roles/users' }
-   - sudo
+   - { role: 'custom_roles/sudo' }
    - { role: 'custom_roles/sshd' }
    - { role: 'custom_roles/ufw' }
    - datadog.dd.agent
@@ -32,7 +32,7 @@
   tags:
     - vagrant
   roles:
-    - logrotate
+    - { role: 'custom_roles/logrotate'}
 
 - hosts: tls
   tags:
@@ -41,7 +41,7 @@
   tasks:
     - import_tasks: tasks/extra-tls.yml
   roles:
-    - dhparam
+    - { role: 'custom_roles/dhparam'}
     - { role: 'custom_roles/letsencrypt'}
   handlers:
     - import_tasks: handlers/monitoring.yml
@@ -91,7 +91,7 @@
   roles:
     - { role: 'custom_roles/bamboo'}
     - mysql-connector-java
-    - logrotate
+    - { role: 'custom_roles/logrotate'}
   tags:
     - bamboo
 
