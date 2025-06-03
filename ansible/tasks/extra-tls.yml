@@ -26,6 +26,6 @@
       owner: dd-agent
       group: dd-agent
       mode: 0755
-      src: files/monitoring/ssl_check_expire_days.py
+      src: files/monitoring/checks/ssl_check_expire_days.py
       dest: /etc/datadog-agent/checks.d/
     notify: restart datadog-agent

@@ -4,7 +4,7 @@
       owner: dd-agent
       group: dd-agent
       mode: 0755
-      src: files/monitoring/backups_pending_check.py
+      src: files/monitoring/checks/backups_pending_check.py
       dest: /etc/datadog-agent/checks.d/
     notify: restart datadog-agent
   - name: Add backup directory
