@@ -4,7 +4,7 @@
       owner: dd-agent
       group: dd-agent
       mode: 0755
-      src: files/monitoring/upgrades_check.py
+      src: files/monitoring/checks/upgrades_check.py
       dest: /etc/datadog-agent/checks.d/
     notify: restart datadog-agent
 
@@ -34,3 +34,33 @@
 
   - name:  Upgrade Python OpenSSL Module for SSL Expiry Check
     command: /opt/datadog-agent/embedded/bin/pip install --upgrade pyopenssl
+
+
+  ## Adding some versions as dynamic tags for datadog
+  - name: Copy datadog prep-environment script for service
+    copy:
+      owner: dd-agent
+      group: dd-agent
+      mode: 0755
+      src: files/monitoring/prep-environment.sh
+      dest: /etc/datadog-agent/
+    notify: restart datadog-agent
+
+  - name: Create empty datadog environment file
+    copy:
+      owner: dd-agent
+      group: dd-agent
+      mode: 0644
+      src: files/monitoring/environment
+      dest: /etc/datadog-agent/
+    notify: restart datadog-agent
+
+  - name: Add ExecStartPre to datadog service
+    ansible.builtin.lineinfile:
+      path: /lib/systemd/system/datadog-agent.service
+      regexp: '^ExecStartPre=.*'
+      insertbefore: '^ExecStart=.*'
+      line: 'ExecStartPre=/etc/datadog-agent/prep-environment.sh'
+
+  - name: Reload datadog service
+    command: systemctl daemon-reload
