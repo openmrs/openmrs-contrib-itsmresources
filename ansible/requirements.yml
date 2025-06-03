@@ -12,7 +12,8 @@ roles:
 
 # Forked/new modules will be in `custom_roles` folder
 # Commented out roles are imported into `custom_roles` folder as they are not being actively maintained.
-# I have since updated these imported roles to ensure they will remain compatible with future Ansible versions.
+# I have since updated these imported roles to ensure they will remain compatible with future Ansible versions
+# https://openmrs.atlassian.net/browse/INFRA-98
 # - name: dhparam
 #   src: https://github.com/gronke/ansible-dhparam.git
 #   version: 9a24d9610f5b88458a27ce0df1dca9a4ccdfaa1e
