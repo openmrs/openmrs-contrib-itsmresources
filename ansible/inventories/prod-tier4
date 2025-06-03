@@ -30,8 +30,8 @@ dimtu.openmrs.org
 mota.openmrs.org
 wokru.openmrs.org
 
-[mysql]
-mota.openmrs.org
+;[mysql]
+;mota.openmrs.org
 
 [ldap]
 gode.openmrs.org
