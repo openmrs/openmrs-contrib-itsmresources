@@ -11,15 +11,15 @@ All commands assume you are in the `ansible` directory.
 * ansible 2.18.6 installed on the same machine the repo is cloned to
 * Install [git-crypt](https://www.agwa.name/projects/git-crypt/) and run `git-crypt unlock`.
   * If you are not part of git-crypt by any reason, you'll need to retrieve the vault password file from LP or ask to be added in git-crypt.
-* Install `pip install passlib` (needed to create a jira user on OSX)
+* Install `pip3 install passlib` (needed to create a jira user on OSX)
 * [Optional] Install latest Vagrant and virtualbox (if you want to run tests locally)
 
 ### Downloading all roles
 
 ```
-# Download all roles/modules (needs to be done every time there's a commit to a role)
-$ ansible-galaxy install -p roles -r requirements.yml --force
+# Download all roles/modules (needs to be done every time there's a commit to a role, or a version changes)
 $ ansible-galaxy collection download -r requirements.yml
+$ ansible-galaxy install -r requirements.yml --force
 ```
 
 If you are having issues with certificates, you can temporarily use `--ignore-certs` while you configure python to use the OS trust store. 
@@ -94,7 +94,9 @@ and can be opened using private GPG keys previously added to the key ring.
 Ansible will run over SSH, you your SSH needs to be working to the target machines.
 
 Please note that instead of forking roles into their own repos, we are keeping files in `custom_roles`. 
-That makes it simpler to modify them without requiring multiple repositories and coordination. 
+That makes it simpler to modify them without requiring multiple repositories and coordination.
+
+Our terraform repository will create files into `/etc/ansible/facts.d/`, which can be propaged and used in ansible. 
 
 ## Repository
 
@@ -108,6 +110,7 @@ That makes it simpler to modify them without requiring multiple repositories and
   - _inventories_ : machine definitions (groups per machine)
   - _tasks_: tasks used in playbooks
   - _roles_: external roles/modules downloaded by `galaxy`
+  - _collections_: external collections downloaded by `galaxy`
   - _custom_roles_: modules we ended up forking or creating ourselves
   - _requirements.txt_: roles to be downloaded by `galaxy` into _roles_ folder
   - _ansible.cfg_: ansible configuration file
