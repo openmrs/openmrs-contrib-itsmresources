@@ -7,7 +7,8 @@ This repository contain all the ansible required to fully install OpenMRS commun
 All commands assume you are in the `ansible` directory.
 
 ### Requirements
-* ansible 2.10.3 installed on the same machine the repo is cloned to. That's a pretty old ansible, so an older python (3.10) is advisable. 
+* Python 3.11 or later
+* ansible 2.18.6 installed on the same machine the repo is cloned to
 * Install [git-crypt](https://www.agwa.name/projects/git-crypt/) and run `git-crypt unlock`.
   * If you are not part of git-crypt by any reason, you'll need to retrieve the vault password file from LP or ask to be added in git-crypt.
 * Install `pip install passlib` (needed to create a jira user on OSX)
