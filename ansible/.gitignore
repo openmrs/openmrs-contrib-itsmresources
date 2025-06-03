@@ -3,3 +3,4 @@
 .vagrant/
 *.log
 /.tmp/*.tar
+collections/

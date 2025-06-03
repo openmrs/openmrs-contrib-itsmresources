@@ -9,7 +9,7 @@ collections:
     version: ">=10.6.0"
 
 roles:
-# from git
+# from git, all imported into custom_roles now
 # - name: dhparam
 #   src: https://github.com/gronke/ansible-dhparam.git
 #   version: 9a24d9610f5b88458a27ce0df1dca9a4ccdfaa1e
@@ -26,9 +26,7 @@ roles:
 #   src: https://github.com/nickhammond/ansible-logrotate
 #   version: 91d570f68c44261d2051a99a2b3c7d736306bf0d
 
-# from custom_roles/Galaxy
-- name: timezone
-  src: custom_roles/timezone
+# from Galaxy
 - name: nginx
   src: nginxinc.nginx
 

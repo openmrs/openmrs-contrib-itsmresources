@@ -19,7 +19,11 @@ All commands assume you are in the `ansible` directory.
 ```
 # Download all roles/modules (needs to be done every time there's a commit to a role)
 $ ansible-galaxy install -p roles -r requirements.yml --force
+$ ansible-galaxy collection download -r requirements.yml
 ```
+
+If you are having issues with certificates, you can temporarily use `--ignore-certs` while you configure python to use the OS trust store. 
+
 
 
 ### Running ansible for remote machines
