@@ -1,0 +1,154 @@
+---
+- name: Install AWS CLI v2 on Ubuntu/Debian
+  block:
+    - name: Install required packages for AWS CLI installation
+      ansible.builtin.package:
+        name:
+          - curl
+          - unzip
+        state: present
+      become: true
+
+    - name: Check if AWS CLI v2 is already installed
+      ansible.builtin.command: aws --version
+      register: aws_version_check
+      failed_when: false
+      changed_when: false
+
+    - name: Detect system architecture
+      ansible.builtin.set_fact:
+        aws_cli_arch: "{{ 'aarch64' if ansible_architecture == 'aarch64' else 'x86_64' }}"
+
+    - name: Set AWS CLI download URL based on architecture
+      ansible.builtin.set_fact:
+        aws_cli_url: "https://awscli.amazonaws.com/awscli-exe-linux-{{ aws_cli_arch }}.zip"
+
+    - name: Download AWS CLI v2 installer
+      ansible.builtin.get_url:
+        url: "{{ aws_cli_url }}"
+        dest: "/tmp/awscliv2.zip"
+        mode: '0644'
+      when: aws_version_check.rc != 0 or aws_cli_force_install | default(false)
+
+    - name: Create temporary directory for AWS CLI installation
+      ansible.builtin.file:
+        path: /tmp/awscli-install
+        state: directory
+        mode: '0755'
+      when: aws_version_check.rc != 0 or aws_cli_force_install | default(false)
+
+    - name: Extract AWS CLI v2 installer
+      ansible.builtin.unarchive:
+        src: "/tmp/awscliv2.zip"
+        dest: "/tmp/awscli-install"
+        remote_src: true
+      when: aws_version_check.rc != 0 or aws_cli_force_install | default(false)
+
+    - name: Install AWS CLI v2
+      ansible.builtin.command: "/tmp/awscli-install/aws/install --bin-dir /usr/local/bin --install-dir /usr/local/aws-cli --update"
+      become: true
+      when: aws_version_check.rc != 0 or aws_cli_force_install | default(false)
+      register: aws_install_result
+      changed_when: aws_install_result.rc == 0
+
+    - name: Clean up installation files
+      ansible.builtin.file:
+        path: "{{ item }}"
+        state: absent
+      loop:
+        - "/tmp/awscliv2.zip"
+        - "/tmp/awscli-install"
+      when: aws_version_check.rc != 0 or aws_cli_force_install | default(false)
+
+    - name: Verify AWS CLI installation
+      ansible.builtin.command: aws --version
+      register: aws_final_version
+      changed_when: false
+
+    - name: Display AWS CLI version and architecture
+      ansible.builtin.debug:
+        msg: "AWS CLI installed: {{ aws_final_version.stdout }} for {{ aws_cli_arch }} architecture"
+
+  when: >
+    ansible_os_family == 'Debian' and 
+    aws_cli_package_state | default('present') == 'present'
+
+- name: Remove AWS CLI v2 on Ubuntu/Debian
+  block:
+    - name: Remove AWS CLI v2 installation
+      ansible.builtin.file:
+        path: "{{ item }}"
+        state: absent
+      loop:
+        - "/usr/local/aws-cli"
+        - "/usr/local/bin/aws"
+        - "/usr/local/bin/aws_completer"
+      become: true
+
+  when: >
+    ansible_os_family == 'Debian' and 
+    aws_cli_package_state | default('present') == 'absent'
+
+# Fallback to package manager for other distributions
+- name: Install or remove awscli via package manager (non-Debian)
+  ansible.builtin.package:
+    name: awscli
+    state: "{{ aws_cli_package_state | default('present') }}"
+  become: true
+  when: >
+    ansible_os_family != 'Debian' and
+    ansible_distribution != 'Amazon'
+
+- name: Install or remove aws-cli on Amazon Linux
+  ansible.builtin.package:
+    name: aws-cli
+    state: "{{ aws_cli_package_state | default('present') }}"
+  become: true
+  when: >
+    ansible_distribution == 'Amazon'
+
+- name: Create aws cli configuration files
+  block:
+    - name: Set home directory to /root
+      ansible.builtin.set_fact:
+        aws_user_dir: /root/.aws
+      when: >
+        aws_cli_user == 'root'
+
+    - name: Set home directory for non-root user
+      ansible.builtin.set_fact:
+        aws_user_dir: "/home/{{ aws_cli_user }}/.aws"
+      when: >
+        aws_cli_user != 'root'
+
+    - name: Create aws cli directory
+      ansible.builtin.file:
+        path: "{{ aws_user_dir }}"
+        state: directory
+        owner: "{{ aws_cli_user }}"
+        group: "{{ aws_cli_user_group }}"
+        mode: '0700'
+
+    - name: Create aws cli config file
+      ansible.builtin.template:
+        src: aws_config.j2
+        dest: "{{ aws_user_dir }}/config"
+        owner: "{{ aws_cli_user }}"
+        group: "{{ aws_cli_user_group }}"
+        mode: '0600'
+      when: aws_cli_config is defined
+
+    - name: Create aws cli credentials file
+      ansible.builtin.template:
+        src: aws_credentials.j2
+        dest: "{{ aws_user_dir }}/credentials"
+        owner: "{{ aws_cli_user }}"
+        group: "{{ aws_cli_user_group }}"
+        mode: '0600'
+      when: aws_cli_credentials is defined
+
+  when:
+    - aws_cli_package_state | default('present') == 'present'
+    - profiles is defined
+    - profiles != None
+    - profiles != [{}]

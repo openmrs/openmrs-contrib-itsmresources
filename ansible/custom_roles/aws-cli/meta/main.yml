@@ -1,0 +1,38 @@
+---
+galaxy_info:
+  role_name: aws_cli
+  description: Ansible role for configuring aws-cli
+  author: 'Mathew Woodyard'
+  company: 'Okta, Inc.'
+  license: 'Apache-2.0'
+  min_ansible_version: "2.4"
+  platforms:
+    - name: Amazon
+      versions:
+        - "2018.03"
+    - name: Amazon Linux
+      versions:
+        - all
+    - name: EL
+      versions:
+        - "7"
+    - name: Fedora
+      versions:
+        - "32"
+        - "31"
+    - name: Debian
+      versions:
+        - buster
+        - stretch
+    - name: Ubuntu
+      versions:
+        - focal
+        - bionic
+        - xenial
+        - trusty
+        - jammy
+        - noble
+  galaxy_tags:
+    - aws
+    - cloud
+    - development

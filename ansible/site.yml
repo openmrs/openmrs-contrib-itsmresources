@@ -1,7 +1,8 @@
 ---
 # Master Playbook
 
-- hosts: all
+- name: Basic OS setup
+  hosts: all
   become: true
   tags:
     - basic-os
@@ -10,16 +11,17 @@
    - import_tasks: tasks/updates.yml
    - import_tasks: tasks/cleanup.yml
 
-- hosts: all
+- name: Standard Operating Environment
+  hosts: all
   become: true
   tags:
     - soe
   roles:
    - { role: 'custom_roles/users' }
-   - sudo
+   - { role: 'custom_roles/sudo' }
    - { role: 'custom_roles/sshd' }
-   - ufw
-   - datadog
+   - { role: 'custom_roles/ufw' }
+   - datadog.dd.agent
   tasks:
     - import_tasks: tasks/extra-monitoring.yml
   handlers:
@@ -30,7 +32,7 @@
   tags:
     - vagrant
   roles:
-    - logrotate
+    - { role: 'custom_roles/logrotate'}
 
 - hosts: tls
   tags:
@@ -39,7 +41,7 @@
   tasks:
     - import_tasks: tasks/extra-tls.yml
   roles:
-    - dhparam
+    - { role: 'custom_roles/dhparam'}
     - { role: 'custom_roles/letsencrypt'}
   handlers:
     - import_tasks: handlers/monitoring.yml
@@ -58,7 +60,7 @@
   tasks:
     - import_tasks: tasks/nginx.yml
   roles:
-   - nginx
+    - nginx
 
 - hosts: backup
   become: true
@@ -67,7 +69,7 @@
   tasks:
    - import_tasks: tasks/backup.yml
   roles:
-   - aws-cli
+   - { role: 'custom_roles/aws-cli' }
   handlers:
     - import_tasks: handlers/monitoring.yml
 
@@ -89,7 +91,7 @@
   roles:
     - { role: 'custom_roles/bamboo'}
     - mysql-connector-java
-    - logrotate
+    - { role: 'custom_roles/logrotate'}
   tags:
     - bamboo
 

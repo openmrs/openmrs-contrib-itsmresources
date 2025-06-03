@@ -65,8 +65,8 @@ nginx_vhosts:
   - listen: "443 ssl"
     server_name: "jinka.openmrs.org"
     extra_parameters: |
-      access_log /var/log/nginx/deployer_access.log;
-      error_log /var/log/nginx/deployer_error.log;
+      access_log /data/log/nginx/deployer_access.log;
+      error_log /data/log/nginx/deployer_error.log;
       ssl_certificate /etc/letsencrypt/live/jinka.openmrs.org/fullchain.pem;
       ssl_certificate_key /etc/letsencrypt/live/jinka.openmrs.org/privkey.pem;
       location ^~ /.well-known/acme-challenge/ {
@@ -84,8 +84,8 @@ nginx_vhosts:
     server_name: "site.openmrs.org www.openmrs.org openmrs.org"
     extra_parameters: |
       client_max_body_size 0;
-      access_log /var/log/nginx/site_stg_access.log;
-      error_log /var/log/nginx/site_stg_error.log;
+      access_log /data/log/nginx/site_stg_access.log;
+      error_log /data/log/nginx/site_stg_error.log;
       ssl_certificate /etc/letsencrypt/live/jinka.openmrs.org/fullchain.pem;
       ssl_certificate_key /etc/letsencrypt/live/jinka.openmrs.org/privkey.pem;
       location ^~ /.well-known/acme-challenge/ {
@@ -125,8 +125,8 @@ nginx_vhosts:
       if ($http_host = ^(.*)\.om\.rs ) {
         rewrite (.*)  https://om.rs/%1;
       }
-      access_log /var/log/nginx/shortener_access.log;
-      error_log /var/log/nginx/shortener_error.log;
+      access_log /data/log/nginx/shortener_access.log;
+      error_log /data/log/nginx/shortener_error.log;
       ssl_certificate /etc/letsencrypt/live/jinka.openmrs.org/fullchain.pem;
       ssl_certificate_key /etc/letsencrypt/live/jinka.openmrs.org/privkey.pem;
       location ^~ /.well-known/acme-challenge/ {
@@ -152,8 +152,8 @@ nginx_vhosts:
     server_name: "mavenrepo.openmrs.org"
     extra_parameters: |
       client_max_body_size 0;
-      access_log /var/log/nginx/mavenrepo_access.log;
-      error_log /var/log/nginx/mavenrepo_error.log;
+      access_log /data/log/nginx/mavenrepo_access.log;
+      error_log /data/log/nginx/mavenrepo_error.log;
       ssl_certificate /etc/letsencrypt/live/jinka.openmrs.org/fullchain.pem;
       ssl_certificate_key /etc/letsencrypt/live/jinka.openmrs.org/privkey.pem;
       set $remote_path "https://openmrs.jfrog.io";
@@ -205,8 +205,8 @@ nginx_vhosts:
   - listen: "443 ssl"
     server_name: "mavenrepo-redirect.openmrs.org"
     extra_parameters: |
-        access_log /var/log/nginx/mavenrepo_redirect_access.log;
-        error_log /var/log/nginx/mavenrepo_redirect_error.log;
+        access_log /data/log/nginx/mavenrepo_redirect_access.log;
+        error_log /data/log/nginx/mavenrepo_redirect_error.log;
         ssl_certificate /etc/letsencrypt/live/jinka.openmrs.org/fullchain.pem;
         ssl_certificate_key /etc/letsencrypt/live/jinka.openmrs.org/privkey.pem;
 
@@ -226,8 +226,8 @@ nginx_vhosts:
   - listen: "443 ssl"
     server_name: "help.openmrs.org"
     extra_parameters: |
-      access_log /var/log/nginx/help_access.log;
-      error_log /var/log/nginx/help_error.log;
+      access_log /data/log/nginx/help_access.log;
+      error_log /data/log/nginx/help_error.log;
       ssl_certificate /etc/letsencrypt/live/jinka.openmrs.org/fullchain.pem;
       ssl_certificate_key /etc/letsencrypt/live/jinka.openmrs.org/privkey.pem;
       set $remote_path "https://openmrs.atlassian.net/servicedesk";
@@ -246,8 +246,8 @@ nginx_vhosts:
   - listen: "443 ssl"
     server_name: "issues.openmrs.org tickets.openmrs.org"
     extra_parameters: |
-      access_log /var/log/nginx/deployer_access.log;
-      error_log /var/log/nginx/deployer_error.log;
+      access_log /data/log/nginx/deployer_access.log;
+      error_log /data/log/nginx/deployer_error.log;
       ssl_certificate /etc/letsencrypt/live/jinka.openmrs.org/fullchain.pem;
       ssl_certificate_key /etc/letsencrypt/live/jinka.openmrs.org/privkey.pem;
       location ^~ /.well-known/acme-challenge/ {
@@ -267,8 +267,8 @@ nginx_vhosts:
   - listen: "443 ssl"
     server_name: "wiki.openmrs.org"
     extra_parameters: |
-      access_log /var/log/nginx/wiki_access.log;
-      error_log /var/log/nginx/wiki_error.log;
+      access_log /data/log/nginx/wiki_access.log;
+      error_log /data/log/nginx/wiki_error.log;
       ssl_certificate /etc/letsencrypt/live/jinka.openmrs.org/fullchain.pem;
       ssl_certificate_key /etc/letsencrypt/live/jinka.openmrs.org/privkey.pem;
       location ^~ /.well-known/acme-challenge/ {

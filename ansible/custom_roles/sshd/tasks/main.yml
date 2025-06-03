@@ -1,15 +1,20 @@
 ---
 
 - name: Insert sshd_config
-  template: src={{sshd_config_file}}
-            dest=/etc/ssh/sshd_config
-            owner=root
-            group=root
-            mode=0600
+  ansible.builtin.template:
+    src: "{{ sshd_config_file }}"
+    dest: /etc/ssh/sshd_config
+    owner: root
+    group: root
+    mode: "0600"
   notify:
-   - gen ssh keys
-   - restart ssh
+    - Gen SSH Keys
+    - Restart SSH
 
 - name: Attempt to remove pub key from local known_hosts
-  local_action: command ssh-keygen -f "$HOME/.ssh/known_hosts" -R {{inventory_hostname}}
+  ansible.builtin.known_hosts:
+    path: "{{ ansible_env.HOME }}/.ssh/known_hosts"
+    name: "{{ inventory_hostname }}"
+    state: absent
+  delegate_to: localhost
   become: false

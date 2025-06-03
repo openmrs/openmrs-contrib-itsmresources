@@ -1,6 +1,8 @@
 ---
-- name: gen ssh keys
-  command: ssh-keygen -A
+- name: Gen SSH Keys
+  ansible.builtin.command: ssh-keygen -A
 
-- name: restart ssh
-  service: name={{ssh_service_name}} state=restarted
+- name: Restart SSH
+  ansible.builtin.service:
+    name: "{{ ssh_service_name }}"
+    state: restarted

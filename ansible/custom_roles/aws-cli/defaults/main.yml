@@ -1,0 +1,7 @@
+---
+profiles: [{}]
+aws_cli_user: "{{ ansible_user_id }}"
+aws_cli_user_group: "{{ aws_cli_user }}"
+aws_user_dir: "/home/{{ aws_cli_user }}/.aws"
+aws_cli_package_state: present
+aws_cli_force_install: false

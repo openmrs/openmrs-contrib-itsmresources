@@ -35,6 +35,15 @@
     - ib_logfile1
   when: not mysql_installed.stat.exists
 
+- name: Ensure MySQL data directory exists
+  file:
+    path: "{{ mysql_datadir }}"
+    state: directory
+    owner: mysql
+    group: mysql
+    mode: 0700
+  when: not mysql_installed.stat.exists
+
 - name: Copy datadir to new directory
   copy:
     src: /var/lib/mysql/
