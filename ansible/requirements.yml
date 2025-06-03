@@ -9,7 +9,10 @@ collections:
     version: ">=10.6.0"
 
 roles:
-# from git, all imported into custom_roles now
+
+# Forked/new modules will be in `custom_roles` folder
+# Commented out roles are imported into `custom_roles` folder as they are not being actively maintained.
+# I have since updated these imported roles to ensure they will remain compatible with future Ansible versions.
 # - name: dhparam
 #   src: https://github.com/gronke/ansible-dhparam.git
 #   version: 9a24d9610f5b88458a27ce0df1dca9a4ccdfaa1e
@@ -29,9 +32,6 @@ roles:
 # from Galaxy
 - name: nginx
   src: nginxinc.nginx
-
-# Forked/new modules will be in `custom_roles` folder
-# Commented out roles are imported into `custom_roles` folder as they are not being actively maintained.
 
 
 # Module to deploy docker apps 
