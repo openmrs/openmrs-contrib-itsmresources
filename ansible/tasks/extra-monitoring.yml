@@ -53,6 +53,7 @@
       mode: 0644
       src: files/monitoring/environment
       dest: /etc/datadog-agent/
+      force: false
     notify: restart datadog-agent
 
   - name: Add ExecStartPre to datadog service
