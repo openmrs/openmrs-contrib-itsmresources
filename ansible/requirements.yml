@@ -16,9 +16,9 @@ roles:
 # - name: sudo
 #   src: https://github.com/yatesr/ansible-sudo.git
 #   version: 2a55007541a2f340eec57e4e5a7efa1c3fc73d74
-# - name: timezone
-#   src: https://github.com/yatesr/ansible-timezone.git
-#   version: 854af629e6740c92b9098026148906643a13465c
+- name: timezone
+  src: https://github.com/yatesr/ansible-timezone.git
+  version: effd41e5d67c5230c1a6021f4e59e5d9bb5f7462
 # - name: ufw
 #   src: https://github.com/yatesr/ansible-ufw.git
 #   version: f0f7615a9b1c03f29d501e169caa9ea2538cdded
@@ -26,9 +26,7 @@ roles:
 #   src: https://github.com/nickhammond/ansible-logrotate
 #   version: 91d570f68c44261d2051a99a2b3c7d736306bf0d
 
-# from custom_roles/Galaxy
-- name: timezone
-  src: custom_roles/timezone
+# from Galaxy
 - name: nginx
   src: nginxinc.nginx
 
