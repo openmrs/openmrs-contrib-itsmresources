@@ -9,15 +9,20 @@
     ignore_errors: yes
 
   - name: Stop docker service
-    command: systemctl stop docker
+    command: systemctl stop docker.service
+    when: docker_unconfigured_data_dir.rc != 0
+
+  - name: Stop docker socket
+    command: systemctl stop docker.socket
     when: docker_unconfigured_data_dir.rc != 0
 
   - name: Configure docker data directory
-    lineinfile:
-       dest:  /lib/systemd/system/docker.service
-       regexp: '^ExecStart='
-       line: "ExecStart=/usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock --data-root={{docker_data_dir}}"
-       state: present
+    copy:
+      owner: root
+      group: root
+      mode: 0644
+      src: files/docker/docker_daemon.json
+      dest: /etc/docker/daemon.json
     when: docker_unconfigured_data_dir.rc != 0
 
   - name: Move docker data directory
@@ -28,8 +33,12 @@
     command: systemctl daemon-reload
     when: docker_unconfigured_data_dir.rc != 0
 
+  - name: Start docker socket service
+    command: systemctl start docker.socket
+    when: docker_unconfigured_data_dir.rc != 0
+
   - name: Start docker service
-    command: systemctl start docker
+    command: systemctl start docker.service
     when: docker_unconfigured_data_dir.rc != 0
 
   - name: Adding dd-agent to docker group
