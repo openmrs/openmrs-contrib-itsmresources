@@ -25,9 +25,9 @@
       dest: /etc/docker/daemon.json
     when: docker_unconfigured_data_dir.rc != 0
 
-  - name: Move docker data directory
-    command: mv {{docker_original_data_dir.stdout}} {{docker_data_dir}}
-    when: docker_unconfigured_data_dir.rc != 0
+  # - name: Move docker data directory
+  #   command: mv {{docker_original_data_dir.stdout}} {{docker_data_dir}}
+  #   when: docker_unconfigured_data_dir.rc != 0
 
   - name: Reload docker service
     command: systemctl daemon-reload
