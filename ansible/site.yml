@@ -21,11 +21,19 @@
    - { role: 'custom_roles/sudo' }
    - { role: 'custom_roles/sshd' }
    - { role: 'custom_roles/ufw' }
+
+- name: All monitoring related stuff
+  hosts: all
+  become: true
+  tags:
+    - monitoring
+  roles:
    - datadog.dd.agent
   tasks:
     - import_tasks: tasks/extra-monitoring.yml
   handlers:
     - import_tasks: handlers/monitoring.yml
+
 
 - hosts: vagrant
   become: true
