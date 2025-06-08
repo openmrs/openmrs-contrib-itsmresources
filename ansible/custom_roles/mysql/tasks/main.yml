@@ -23,4 +23,6 @@
 - include_tasks: secure-installation.yml
 - include_tasks: databases.yml
 - include_tasks: users.yml
-- include_tasks: replication.yml
+
+# this is failing for sawla
+# - include_tasks: replication.yml
