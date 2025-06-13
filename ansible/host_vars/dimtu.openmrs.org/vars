@@ -38,11 +38,15 @@ nginx_keepalive_timeout: "600"
 nginx_keepalive_requests: "600"
 
 nginx_vhosts:
-  - listen: "443 ssl"
-    server_name: "dimtu.openmrs.org *.dimtu.openmrs.org"
+  - listen: "80"
+    server_name: "dimtu.openmrs.org"
     extra_parameters: |
-      access_log /var/log/nginx/deployer_access.log;
-      error_log /var/log/nginx/deployer_error.log;
+      return 301 https://$host$request_uri;
+  - listen: "443 ssl"
+    server_name: "dimtu.openmrs.org"
+    extra_parameters: |
+      access_log /var/log/nginx/dimtu_access.log;
+      error_log /var/log/nginx/dimtu_error.log;
       ssl_certificate /etc/letsencrypt/live/dimtu.openmrs.org/fullchain.pem;
       ssl_certificate_key /etc/letsencrypt/live/dimtu.openmrs.org/privkey.pem;
       location ^~ /.well-known/acme-challenge/ {
@@ -56,8 +60,8 @@ nginx_vhosts:
   - listen: "443 ssl"
     server_name: "dev-his.openmrs.org"
     extra_parameters: |
-      access_log /var/log/nginx/deployer_access.log;
-      error_log /var/log/nginx/deployer_error.log;
+      access_log /var/log/nginx/dev-his_access.log;
+      error_log /var/log/nginx/dev-his_error.log;
       ssl_certificate /etc/letsencrypt/live/dimtu.openmrs.org/fullchain.pem;
       ssl_certificate_key /etc/letsencrypt/live/dimtu.openmrs.org/privkey.pem;
       location ^~ /.well-known/acme-challenge/ {
