@@ -32,7 +32,7 @@ letsencrypt_cert_domains:
   - emr.dev-his.openmrs.org
   - erp.dev-his.openmrs.org
   - lims.dev-his.openmrs.org
-  - dev3.openmrs.org
+  - dev3-orig.openmrs.org
 
 nginx_keepalive_timeout: "600"
 nginx_keepalive_requests: "600"
@@ -152,12 +152,12 @@ nginx_vhosts:
         proxy_pass http://127.0.0.1:8081/;
       }
   - listen: "80"
-    server_name: "dev3.openmrs.org"
-    filename: "dev3.openmrs.org.80.conf"
+    server_name: "dev3-orig.openmrs.org"
+    filename: "dev3-orig.openmrs.org.80.conf"
     extra_parameters: |
       return 301 https://$host$request_uri;
   - listen: "443 ssl"
-    server_name: "dev3.openmrs.org"
+    server_name: "dev3-orig.openmrs.org"
     extra_parameters: |
       access_log /var/log/nginx/dev3_access.log;
       error_log /var/log/nginx/dev3_error.log;
