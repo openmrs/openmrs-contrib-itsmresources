@@ -18,8 +18,9 @@ All commands assume you are in the `ansible` directory.
 
 ```
 # Download all roles/modules (needs to be done every time there's a commit to a role, or a version changes)
-$ ansible-galaxy collection download -r requirements.yml
+
 $ ansible-galaxy install -r requirements.yml --force
+$ ansible-galaxy collection download -r requirements.yml
 ```
 
 If you are having issues with certificates, you can temporarily use `--ignore-certs` while you configure python to use the OS trust store. 
@@ -47,8 +48,8 @@ $ ansible-playbook -vv -i inventories/prod-tier3 --limit bele.openmrs.org --tags
 
 # Adding or removing DNS entries to letsencrypt (example: narok)
 # after changing the host_vars
-$ ansible-playbook -vv -i inventories/prod-tier4 --limit narok.openmrs.org remove-certs.yml
-$ ansible-playbook -vv -i inventories/prod-tier4 --limit narok.openmrs.org --tags tls,web,docker site.yml
+$ ansible-playbook -vv -i inventories/prod-tier4 --limit bonga.openmrs.org remove-certs.yml
+$ ansible-playbook -vv -i inventories/prod-tier4 --limit bonga.openmrs.org --tags tls,web site.yml
 ```
 
 ### Editing ansible encrypted files

@@ -28,7 +28,7 @@
   tags:
     - monitoring
   roles:
-   - datadog
+   - datadog.dd.agent
   tasks:
     - import_tasks: tasks/extra-monitoring.yml
   handlers:
