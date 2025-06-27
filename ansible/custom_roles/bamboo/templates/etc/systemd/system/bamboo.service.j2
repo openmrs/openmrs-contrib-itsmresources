@@ -1,0 +1,15 @@
+[Unit]
+Description=Atlassian Bamboo
+After=syslog.target network.target
+
+[Service]
+Type=forking
+User={{ bamboo_user }}
+Environment=CATALINA_PID={{ bamboo_catalina }}/bin/Catalina.pid
+PIDFile={{ bamboo_catalina }}/bin/Catalina.pid
+ExecStart={{ bamboo_catalina }}/bin/start-bamboo.sh
+ExecStop={{ bamboo_catalina }}/bin/stop-bamboo.sh
+SuccessExitStatus=143
+
+[Install]
+WantedBy=multi-user.target
