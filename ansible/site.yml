@@ -97,7 +97,7 @@
   pre_tasks:
     - import_tasks: tasks/install-openjdk.yml
   roles:
-    - { role: 'custom_roles/bamboo'}
+    - { role: 'custom_roles/bamboo' }
     - mysql-connector-java
     - { role: 'custom_roles/logrotate'}
   tags:
