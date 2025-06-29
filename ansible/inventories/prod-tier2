@@ -21,7 +21,7 @@ sawla.openmrs.org
 jinghu.openmrs.org
 
 [bamboo]
-worabe.openmrs.org
+;worabe.openmrs.org
 
 [bambooagent]
 xiao.openmrs.org
@@ -29,4 +29,4 @@ xindi.openmrs.org
 yu.openmrs.org
 
 [mysql]
-sawla.openmrs.org
+;sawla.openmrs.org
