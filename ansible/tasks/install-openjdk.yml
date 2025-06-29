@@ -1,5 +1,5 @@
 ---
-  - name: install openjdk11
+  - name: install openjdk21
     apt:
-      name: openjdk-11-jdk
+      name: openjdk-21-jdk
       state: present
