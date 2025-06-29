@@ -1,4 +1,6 @@
 [prod]
+jinghu.openmrs.org
+ploong.openmrs.org
 sawla.openmrs.org
 worabe.openmrs.org
 xiao.openmrs.org
@@ -7,13 +9,16 @@ yu.openmrs.org
 
 [web]
 worabe.openmrs.org
+jinghu.openmrs.org
 
 [tls]
 worabe.openmrs.org
+jinghu.openmrs.org
 
 [backup]
 worabe.openmrs.org
 sawla.openmrs.org
+jinghu.openmrs.org
 
 [bamboo]
 worabe.openmrs.org

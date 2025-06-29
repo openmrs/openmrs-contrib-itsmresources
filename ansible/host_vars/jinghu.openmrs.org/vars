@@ -1,0 +1,67 @@
+---
+# bamboo
+ufw_rules:
+   remote-agents-http:
+     port: 54663
+     proto: tcp
+     rule: allow
+   remote-agent-ssl:
+     port: 54667
+     proto: tcp
+     rule: allow
+
+datadog_tags_extra:
+  - "service:bamboo"
+
+letsencrypt_cert_domains:
+   - jinghu.openmrs.org
+   - ci-new.openmrs.org
+
+nginx_vhosts:
+  - listen: "80 default_server"
+    server_name: "jinghu.openmrs.org"
+    filename: "jinghu.openmrs.org.80.conf"
+    extra_parameters: |
+      return 301 https://$host$request_uri;
+  - listen: "443 ssl"
+    server_name: "jinghu.openmrs.org"
+    extra_parameters: |
+      access_log /var/log/nginx/deployer_access.log;
+      error_log /var/log/nginx/deployer_error.log;
+      ssl_certificate /etc/letsencrypt/live/worabe.openmrs.org/fullchain.pem;
+      ssl_certificate_key /etc/letsencrypt/live/worabe.openmrs.org/privkey.pem;
+      location ^~ /.well-known/acme-challenge/ {
+        root /usr/share/nginx/html;
+      }
+  - listen: "80"
+    server_name: "ci-new.openmrs.org"
+    filename: "ci-new.openmrs.org.80.conf"
+    extra_parameters: |
+      return 301 https://$host$request_uri;
+  - listen: "443 ssl"
+    server_name: "ci-new.openmrs.org"
+    extra_parameters: |
+      client_max_body_size 0;
+      access_log /var/log/nginx/ci_access.log;
+      error_log /var/log/nginx/ci_error.log;
+      ssl_certificate /etc/letsencrypt/live/jinghu.openmrs.org/fullchain.pem;
+      ssl_certificate_key /etc/letsencrypt/live/jinghu.openmrs.org/privkey.pem;
+      location ^~ /.well-known/acme-challenge/ {
+        root /usr/share/nginx/html;
+      }
+      location /authors/ {
+        return 423;
+      }
+      location /reports/ {
+        return 423;
+      }
+      location / {
+        proxy_set_header HOST $host;
+        proxy_set_header  X-Forwarded-Proto $scheme;
+        proxy_pass http://127.0.0.1:8085/;
+      }
+
+aws_access_key_id: '{{ vault_aws_access_key_id }}'
+aws_secret_access_key: '{{ vault_aws_secret_access_key }}'
+backup_tag: 'configured'
+
