@@ -20,7 +20,6 @@
    - { role: 'custom_roles/users' }
    - { role: 'custom_roles/sudo' }
    - { role: 'custom_roles/sshd' }
-   - { role: 'custom_roles/ufw' }
 
 - name: All monitoring related stuff
   hosts: all
@@ -113,7 +112,7 @@
 - hosts: mysql
   become: true
   vars:
-    ansible_python_interpreter: /usr/bin/python3
+    ansible_python_interpreter: /usr/bin/python3.11
   tags:
     - mysql
   roles:

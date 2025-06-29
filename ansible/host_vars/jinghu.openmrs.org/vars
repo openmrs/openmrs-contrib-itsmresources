@@ -1,14 +1,14 @@
 ---
 # bamboo
-ufw_rules:
-   remote-agents-http:
-     port: 54663
-     proto: tcp
-     rule: allow
-   remote-agent-ssl:
-     port: 54667
-     proto: tcp
-     rule: allow
+# ufw_rules:
+#    remote-agents-http:
+#      port: 54663
+#      proto: tcp
+#      rule: allow
+#    remote-agent-ssl:
+#      port: 54667
+#      proto: tcp
+#      rule: allow
 
 datadog_tags_extra:
   - "service:bamboo"
