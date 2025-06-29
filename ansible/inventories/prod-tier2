@@ -26,7 +26,7 @@ jinghu.openmrs.org
 [bambooagent]
 xiao.openmrs.org
 xindi.openmrs.org
-yu.openmrs.org
+;yu.openmrs.org
 
 [mysql]
 ;sawla.openmrs.org
