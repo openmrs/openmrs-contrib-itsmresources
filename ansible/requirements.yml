@@ -7,6 +7,8 @@ collections:
     version: "=2.0.0"
   - name: community.general
     version: "=10.7.0"
+  - name: community.mysql
+    version:  "=3.14.0"
 
 roles:
 
