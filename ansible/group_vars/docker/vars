@@ -1,12 +1,12 @@
 ---
 
 # https://docs.docker.com/engine/installation/linux/ubuntulinux/#/enable-ufw-forwarding
-ufw_config:
-  globalconfig:
-    direction: "routed"
-    logging: "off"
-    policy: allow
-    state: enabled
+# ufw_config:
+#   globalconfig:
+#     direction: "routed"
+#     logging: "off"
+#     policy: allow
+#     state: enabled
 
 datadog_checks:
   docker:
