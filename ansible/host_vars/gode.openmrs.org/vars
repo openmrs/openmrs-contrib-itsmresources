@@ -86,6 +86,15 @@ nginx_vhosts:
         proxy_set_header  X-Forwarded-Host  $host;
         proxy_pass http://127.0.0.1:8080/;
       }
+      location /postfix {
+        proxy_pass http://localhost:8090;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_set_header X-Forwarded-Host $host;
+        proxy_set_header X-Forwarded-Port $server_port;
+      }
   - listen: "80"
     server_name: "atlas-stg.openmrs.org"
     filename: "atlas-stg.openmrs.org.80.conf"
