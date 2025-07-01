@@ -185,6 +185,26 @@ mysql bamboo < /home/your-username/bamboo_backup.sql
    bamboo.home=/data/bamboo_home
    ```
 
+3. **Change the license key in bamboo.cfg.xml:**
+   ```bash
+   sudo nano /data/bamboo_home/bamboo.cfg.xml
+   <property name="license.string">YOUR_NEW_LICENSE_KEY</property>
+   ```
+   Update the license key as needed.
+   Get the license key from the Atlassian account.
+   https://www.atlassian.com/purchase/my/license-evaluation
+
+4. **Update the URL in bamboo.cfg.xml:**
+   ```bash
+   sudo nano /data/bamboo_home/bamboo.cfg.xml
+   <property name="bamboo.jms.broker.client.uri">failover:(tcp://YOUR_SUBDOMAIN.openmrs.org:54663?wireFormat.maxInactivityDuration=300000)?initialReconnectDelay=15000&amp;maxReconnectAttempts=10</property>
+   ```
+5. **Update the URL in bamboo_home/shared/configuration/administration.xml:**
+   ```bash
+   sudo nano /data/bamboo_home/shared/configuration/administration.xml
+   <myBaseUrl>https://YOUR_SUBDOMAIN.openmrs.org</myBaseUrl>
+   ```
+
 ### Step 9: Start and Verify New Instance
 
 1. **Start the new Bamboo service:**
