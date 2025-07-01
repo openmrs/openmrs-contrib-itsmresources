@@ -55,3 +55,5 @@ nginx_config_http_template:
 ```
 
 I'm not changing the existing NGINX configuration for all the other hosts. But moving forward, all new hosts should follow this template.
+
+Official documentation for Nginx Ansible configuration can be found here: [Nginx Documentation](https://github.com/nginx/ansible-role-nginx-config/blob/main/defaults/main/template.yml).
