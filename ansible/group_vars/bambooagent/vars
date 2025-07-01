@@ -19,3 +19,24 @@ users:
 
 datadog_tags_extra:
   - "service:bamboo-agent"
+
+# Bamboo agent variables
+bamboo_server_url: "{{ vault_bamboo_server_url }}"
+bambooagent_user: bamboo-agent
+bambooagent_group: bamboo-agent
+bambooagent_install_root: "/opt/bamboo-agent"
+bambooagent_agent_root: "/home/bamboo-agent/bamboo-agent"
+bambooagent_version: "11.0.2"
+maven3_version: "3.8.6"
+grails_version: "2.3.7"
+
+bamboo_capabilities:
+  system.builder.command.Bash: "/bin/bash"
+  system.jdk.openjdk-21-jdk: "/usr/lib/jvm/java-21-openjdk-amd64"
+  system.jdk.JDK\ 21: "/usr/lib/jvm/java-21-openjdk-amd64"
+  system.builder.mvn3.Maven\ 3: "/usr/share/apache-maven-{{ maven3_version }}"
+  system.builder.grailsBuilder.Grails\ 2: "/opt/grails"
+  system.git.executable: "/usr/bin/git"
+  system.builder.command.transifex: "/usr/bin/tx"
+  system.builder.command.nvm: "nvm"
+  system.docker.executable: "/usr/bin/docker"
