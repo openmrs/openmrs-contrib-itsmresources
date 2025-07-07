@@ -47,10 +47,10 @@ $ ansible-playbook -vv -i inventories/prod-tier4 --limit narok.openmrs.org site.
 # Adding a user to a specific server (after credentials placed in host_vars for server)
 $ ansible-playbook -vv -i inventories/prod-tier3 --limit bele.openmrs.org --tags soe site.yml
 
-# Adding or removing DNS entries to letsencrypt (example: narok)
+# Adding or removing DNS entries to letsencrypt (example: bonga)
 # after changing the host_vars
 $ ansible-playbook -vv -i inventories/prod-tier4 --limit bonga.openmrs.org remove-certs.yml
-$ ansible-playbook -vv -i inventories/prod-tier4 --limit bonga.openmrs.org --tags tls,web site.yml
+$ ansible-playbook -vv -i inventories/prod-tier4 --limit bonga.openmrs.org --tags tls site.yml
 ```
 
 ### Editing ansible encrypted files
