@@ -75,11 +75,7 @@ hooks:
           - git clone https://github.com/discourse/docker_manager.git
           - git clone https://github.com/discourse/discourse-github.git
           - git clone https://github.com/discourse/discourse-solved.git
-          - git clone https://github.com/discourse/discourse-data-explorer.git
           - git clone https://github.com/discourse/discourse-akismet.git
-          - git clone https://github.com/discourse/discourse-chat-integration
-          - git clone https://github.com/discourse/discourse-openid-connect
-          - git clone https://github.com/discourse/discourse-gamification
           - git clone https://github.com/discourse/discourse-perspective-api
 
 ## Remember, this is YAML syntax - you can only have one block with a name
