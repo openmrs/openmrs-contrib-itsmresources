@@ -25,10 +25,10 @@ jinghu.openmrs.org
 jinghu.openmrs.org
 
 [bambooagent]
-xiao.openmrs.org
-xindi.openmrs.org
+;xiao.openmrs.org
+;xindi.openmrs.org
 ;yu.openmrs.org
-ploong.openmrs.org
+;ploong.openmrs.org
 
 [mysql]
 ;sawla.openmrs.org
