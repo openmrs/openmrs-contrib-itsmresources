@@ -1,58 +1,7 @@
----
-# bamboo
-datadog_tags_extra:
-  - "service:bamboo"
-
-letsencrypt_cert_domains:
-   - jinghu.openmrs.org
-   - ci-new.openmrs.org
-
-# Correct nginx-config role variables
+Follow this template for Nginx configuration:
+```yaml
 nginx_config_http_template_enable: true
 nginx_config_http_template:
-  # HTTP redirect for jinghu.openmrs.org
-  - template_file: http/default.conf.j2
-    deployment_location: /etc/nginx/conf.d/jinghu.openmrs.org.80.conf
-    config:
-      servers:
-        - core:
-            listen:
-              - address: "0.0.0.0"
-                port: 80
-                opts:
-                  - default_server
-            server_name: jinghu.openmrs.org
-          locations:
-            - location: /
-              core:
-                return: "301 https://$host$request_uri"
-
-  # HTTPS for jinghu.openmrs.org (deployer)
-  - template_file: http/default.conf.j2
-    deployment_location: /etc/nginx/conf.d/jinghu.openmrs.org.conf
-    config:
-      servers:
-        - core:
-            listen:
-              - address: "0.0.0.0"
-                port: 443
-                opts:
-                  - ssl
-                  - http2
-            server_name: jinghu.openmrs.org
-          log:
-            access:
-              - path: /var/log/nginx/deployer_access.log
-            error:
-              - file: /var/log/nginx/deployer_error.log
-          ssl:
-            certificate: /etc/letsencrypt/live/jinghu.openmrs.org/fullchain.pem
-            certificate_key: /etc/letsencrypt/live/jinghu.openmrs.org/privkey.pem
-          locations:
-            - location: "^~ /.well-known/acme-challenge/"
-              core:
-                root: /usr/share/nginx/html
-
   # HTTP redirect for ci-new.openmrs.org
   - template_file: http/default.conf.j2
     deployment_location: /etc/nginx/conf.d/ci-new.openmrs.org.80.conf
@@ -68,7 +17,7 @@ nginx_config_http_template:
               core:
                 return: "301 https://$host$request_uri"
 
-  # HTTPS for ci-new.openmrs.org (bamboo)
+  # HTTPS for ci-new.openmrs.org
   - template_file: http/default.conf.j2
     deployment_location: /etc/nginx/conf.d/ci-new.openmrs.org.conf
     config:
@@ -103,8 +52,8 @@ nginx_config_http_template:
                     value: "$host"
                   - field: "X-Forwarded-Proto"
                     value: "$scheme"
+```
 
-aws_access_key_id: '{{ vault_aws_access_key_id }}'
-aws_secret_access_key: '{{ vault_aws_secret_access_key }}'
-backup_tag: 'configured'
+I'm not changing the existing NGINX configuration for all the other hosts. But moving forward, all new hosts should follow this template.
 
+Official documentation for Nginx Ansible configuration can be found here: [Nginx Documentation](https://github.com/nginx/ansible-role-nginx-config/blob/main/defaults/main/template.yml).
