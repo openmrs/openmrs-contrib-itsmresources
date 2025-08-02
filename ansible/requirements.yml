@@ -11,24 +11,6 @@ collections:
     version:  "=3.14.0"
 
 roles:
-
-# Forked/new modules will be in `custom_roles` folder
-# Commented out roles are imported into `custom_roles` folder as they are not being actively maintained.
-# I have since updated these imported roles to ensure they will remain compatible with future Ansible versions
-# https://openmrs.atlassian.net/browse/INFRA-98
-# - name: dhparam
-#   src: https://github.com/gronke/ansible-dhparam.git
-#   version: 9a24d9610f5b88458a27ce0df1dca9a4ccdfaa1e
-# - name: sudo
-#   src: https://github.com/yatesr/ansible-sudo.git
-#   version: 2a55007541a2f340eec57e4e5a7efa1c3fc73d74
-- name: timezone
-  src: https://github.com/yatesr/ansible-timezone.git
-  version: effd41e5d67c5230c1a6021f4e59e5d9bb5f7462
-# - name: logrotate
-#   src: https://github.com/nickhammond/ansible-logrotate
-#   version: 91d570f68c44261d2051a99a2b3c7d736306bf0d
-
 # from Galaxy
 - name: nginx
   src: geerlingguy.nginx

@@ -20,7 +20,6 @@
    - { role: 'custom_roles/users' }
    - { role: 'custom_roles/sudo' }
    - { role: 'custom_roles/sshd' }
-  #  - { role: 'custom_roles/ufw' }
 
 - name: All monitoring related stuff
   hosts: all
@@ -40,7 +39,7 @@
   tags:
     - vagrant
   roles:
-    - { role: 'custom_roles/logrotate'}
+    - { role: 'custom_roles/ci-server/logrotate'}
 
 - hosts: tls
   tags:
@@ -69,7 +68,6 @@
     - import_tasks: tasks/nginx.yml
   roles:
     - nginx
-    - nginx-config
 
 - hosts: backup
   become: true
@@ -93,16 +91,34 @@
   handlers:
     - import_tasks: handlers/monitoring.yml
 
+- hosts: discourse
+  tags:
+    - discourse
+  become: true
+  roles:
+    - { role: 'custom_roles/docker-discourse' }
+
 - hosts: bamboo
   become: true
   pre_tasks:
     - import_tasks: tasks/install-openjdk.yml
   roles:
-    - { role: 'custom_roles/bamboo' }
-    - mysql-connector-java
-    - { role: 'custom_roles/logrotate'}
+    - { role: 'custom_roles/ci-server/bamboo' }
+    - { role: 'custom_roles/ci-server/mysql-connector-java'}
+    - { role: 'custom_roles/ci-server/logrotate'}
   tags:
     - bamboo
+
+- hosts: mysql
+  become: true
+  vars:
+    ansible_python_interpreter: /usr/bin/python3.11
+  tags:
+    - mysql
+  roles:
+    - { role: 'custom_roles/ci-server/mysql' }
+    - { role: 'custom_roles/ci-server/mysql-cron-backup' }
+
 
 # - hosts: bambooagent
 #   become: true 
@@ -132,19 +148,6 @@
 #   tags:
 #     - bambooagent
 
-- hosts: mysql
-  become: true
-  vars:
-    ansible_python_interpreter: /usr/bin/python3.11
-  tags:
-    - mysql
-  roles:
-    - { role: 'custom_roles/mysql' }
-    - { role: 'custom_roles/mysql-cron-backup' }
 
-- hosts: discourse
-  tags:
-    - discourse
-  become: true
-  roles:
-    - { role: 'custom_roles/docker-discourse' }
+
+
