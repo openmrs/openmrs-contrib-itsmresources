@@ -25,19 +25,14 @@ roles:
 - name: timezone
   src: https://github.com/yatesr/ansible-timezone.git
   version: effd41e5d67c5230c1a6021f4e59e5d9bb5f7462
-# - name: ufw
-#   src: https://github.com/yatesr/ansible-ufw.git
-#   version: f0f7615a9b1c03f29d501e169caa9ea2538cdded
 # - name: logrotate
 #   src: https://github.com/nickhammond/ansible-logrotate
 #   version: 91d570f68c44261d2051a99a2b3c7d736306bf0d
 
 # from Galaxy
 - name: nginx
-  src: nginxinc.nginx
-- name: nginx-config
-  src: nginxinc.nginx_config
-
+  src: geerlingguy.nginx
+  version: "3.2.0"
 
 # Module to deploy docker apps 
 # https://github.com/openmrs/openmrs-contrib-itsmresources/wiki/How-to-deploy-new-docker-compose-application
