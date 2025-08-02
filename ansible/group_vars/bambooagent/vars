@@ -21,7 +21,7 @@ datadog_tags_extra:
   - "service:bamboo-agent"
 
 # Bamboo agent variables
-bamboo_server_url: "{{ vault_bamboo_server_url }}"
+bamboo_server_url: "https://ci-stg.openmrs.org"
 bambooagent_user: bamboo-agent
 bambooagent_group: bamboo-agent
 bambooagent_install_root: "/opt/bamboo-agent"

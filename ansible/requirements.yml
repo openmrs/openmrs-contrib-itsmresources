@@ -15,12 +15,13 @@ roles:
   src: geerlingguy.nginx
   version: "3.2.0"
 
-# Module to deploy our docker apps 
+# From Github
+- name: bambooagent
+  src: raffienficiaud.ansible_atlassian_bambooagent_role
+  version: 41546401f557921a17a906446925ca750a530f06
+
+
+# Module to deploy our docker apps, always pick latest commit
 # https://github.com/openmrs/openmrs-contrib-itsmresources/wiki/How-to-deploy-new-docker-compose-application
 - name: docker-compose-openmrs
   src: https://github.com/openmrs/openmrs-contrib-ansible-docker-compose.git
-
-# Module to install Atlassian Bamboo agent
-- name: atlassian_bambooagent_role
-  src: https://github.com/Beaty-Consultancy/ansible-atlassian-bambooagent-role.git
-  version: master
