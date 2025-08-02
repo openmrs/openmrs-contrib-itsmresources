@@ -104,6 +104,24 @@ nginx_vhosts:
         proxy_pass http://127.0.0.1:8080/;
       }
   - listen: "80"
+    server_name: "smtp.openmrs.org"
+    filename: "smtp.openmrs.org.80.conf"
+    extra_parameters: |
+      return 301 https://$host$request_uri;
+  - listen: "443 ssl"
+    server_name: "smtp.openmrs.org"
+    extra_parameters: |
+      access_log /var/log/nginx/smtp_access.log;
+      error_log /var/log/nginx/smtp_error.log;
+      ssl_certificate /etc/letsencrypt/live/adaba.openmrs.org/fullchain.pem;
+      ssl_certificate_key /etc/letsencrypt/live/adaba.openmrs.org/privkey.pem;
+      location ^~ /.well-known/acme-challenge/ {
+        root /usr/share/nginx/html;
+      }
+      location / {
+        proxy_pass http://localhost:8090/;
+      }
+  - listen: "80"
     server_name: "adaba.openmrs.org"
     filename: "adaba.openmrs.org.80.conf"
     extra_parameters: |

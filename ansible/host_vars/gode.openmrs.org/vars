@@ -86,14 +86,23 @@ nginx_vhosts:
         proxy_set_header  X-Forwarded-Host  $host;
         proxy_pass http://127.0.0.1:8080/;
       }
-      location /postfix {
-        proxy_pass http://localhost:8090;
-        proxy_set_header Host $host;
-        proxy_set_header X-Real-IP $remote_addr;
-        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-        proxy_set_header X-Forwarded-Proto $scheme;
-        proxy_set_header X-Forwarded-Host $host;
-        proxy_set_header X-Forwarded-Port $server_port;
+  - listen: "80"
+    server_name: "smtp-stg.openmrs.org"
+    filename: "smtp-stg.openmrs.org.80.conf"
+    extra_parameters: |
+      return 301 https://$host$request_uri;
+  - listen: "443 ssl"
+    server_name: "smtp-stg.openmrs.org"
+    extra_parameters: |
+      access_log /var/log/nginx/smtp_access.log;
+      error_log /var/log/nginx/smtp_error.log;
+      ssl_certificate /etc/letsencrypt/live/gode.openmrs.org/fullchain.pem;
+      ssl_certificate_key /etc/letsencrypt/live/gode.openmrs.org/privkey.pem;
+      location ^~ /.well-known/acme-challenge/ {
+        root /usr/share/nginx/html;
+      }
+      location / {
+        proxy_pass http://localhost:8090/;
       }
   - listen: "80"
     server_name: "atlas-stg.openmrs.org"
