@@ -98,6 +98,17 @@
   roles:
     - { role: 'custom_roles/docker-discourse' }
 
+- hosts: mysql
+  become: true
+  vars:
+    ansible_python_interpreter: /usr/bin/python3.11
+  tags:
+    - mysql
+  roles:
+    - { role: 'custom_roles/ci-server/mysql' }
+    - { role: 'custom_roles/ci-server/mysql-cron-backup' }
+
+
 - hosts: bamboo
   become: true
   pre_tasks:
@@ -109,15 +120,7 @@
   tags:
     - bamboo
 
-- hosts: mysql
-  become: true
-  vars:
-    ansible_python_interpreter: /usr/bin/python3.11
-  tags:
-    - mysql
-  roles:
-    - { role: 'custom_roles/ci-server/mysql' }
-    - { role: 'custom_roles/ci-server/mysql-cron-backup' }
+
 
 
 # - hosts: bambooagent

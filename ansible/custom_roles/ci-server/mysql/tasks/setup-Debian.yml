@@ -11,6 +11,15 @@
   set_fact:
     deb_mysql_python_package: "{% if 'python3' in ansible_python_interpreter|default('') %}python3-mysqldb{% else %}python-mysqldb{% endif %}"
 
+
+# This is probably needed as we install python 3.11 but we cannot make it the default
+# We install python 3.11 prior to running ansible
+# https://github.com/openmrs/openmrs-contrib-itsm-terraform/blob/master/conf/provisioning/ansible.sh#L16
+- name: Ensure MySQL PyMySQL python library installed.
+  pip:
+    name: "PyMySQL"
+    state: present
+
 - name: Ensure MySQL Python libraries are installed.
   apt:
     name: "{{ deb_mysql_python_package }}"
