@@ -21,12 +21,6 @@ users:
 datadog_tags_extra:
   - "service:database"
 
-# atlassian products need to connect to mysql
-# ufw_rules:
-#    mysql:
-#      port: 3306
-#      proto: tcp
-#      rule: allow
 
 # datadog_checks:
 #   mysql:

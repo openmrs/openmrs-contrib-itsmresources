@@ -2,12 +2,12 @@
 # bamboo
 datadog_tags_extra:
   - "service:bamboo"
+  - "service:database"
+
 
 letsencrypt_cert_domains:
    - jinghu.openmrs.org
    - ci-new.openmrs.org
-
-
 
 
 nginx_vhosts:
@@ -54,147 +54,10 @@ nginx_vhosts:
         proxy_pass http://127.0.0.1:8085/;
       }
 
-
-# # Correct nginx-config role variables
-# nginx_config_http_template_enable: true
-# nginx_config_http_template:
-#   # HTTP redirect for jinghu.openmrs.org
-#   - template_file: http/default.conf.j2
-#     deployment_location: /etc/nginx/conf.d/jinghu.openmrs.org.80.conf
-#     config:
-#       servers:
-#         - core:
-#             listen:
-#               - address: "0.0.0.0"
-#                 port: 80
-#                 opts:
-#                   - default_server
-#             server_name: jinghu.openmrs.org
-#           locations:
-#             - location: /
-#               core:
-#                 return: "301 https://$host$request_uri"
-
-#   # HTTPS for jinghu.openmrs.org (deployer)
-#   - template_file: http/default.conf.j2
-#     deployment_location: /etc/nginx/conf.d/jinghu.openmrs.org.conf
-#     config:
-#       servers:
-#         - core:
-#             listen:
-#               - address: "0.0.0.0"
-#                 port: 443
-#                 opts:
-#                   - ssl
-#                   - http2
-#             server_name: jinghu.openmrs.org
-#           log:
-#             access:
-#               - path: /var/log/nginx/deployer_access.log
-#             error:
-#               - file: /var/log/nginx/deployer_error.log
-#           ssl:
-#             certificate: /etc/letsencrypt/live/jinghu.openmrs.org/fullchain.pem
-#             certificate_key: /etc/letsencrypt/live/jinghu.openmrs.org/privkey.pem
-#           locations:
-#             - location: "^~ /.well-known/acme-challenge/"
-#               core:
-#                 root: /usr/share/nginx/html
-
-#   # HTTP redirect for ci-new.openmrs.org
-#   - template_file: http/default.conf.j2
-#     deployment_location: /etc/nginx/conf.d/ci-new.openmrs.org.80.conf
-#     config:
-#       servers:
-#         - core:
-#             listen:
-#               - address: "0.0.0.0"
-#                 port: 80
-#             server_name: ci-new.openmrs.org
-#           locations:
-#             - location: /
-#               core:
-#                 return: "301 https://$host$request_uri"
-
-#   # HTTPS for ci-new.openmrs.org (bamboo)
-#   - template_file: http/default.conf.j2
-#     deployment_location: /etc/nginx/conf.d/ci-new.openmrs.org.conf
-#     config:
-#       servers:
-#         - core:
-#             listen:
-#               - port: 443
-#                 ssl: true
-#             server_name: ci-new.openmrs.org
-#             client_max_body_size: "0"
-#             access_log: /var/log/nginx/ci-stg_access.log
-#             error_log: /var/log/nginx/ci-stg_error.log
-#             index: "index.html index.htm"
-#           ssl:
-#             certificate: /etc/letsencrypt/live/jinghu.openmrs.org/fullchain.pem
-#             certificate_key: /etc/letsencrypt/live/jinghu.openmrs.org/privkey.pem
-#           locations:
-#             - location: "^~ /.well-known/acme-challenge/"
-#               core:
-#                 root: /usr/share/nginx/html
-#             - location: "/authors/"
-#               custom_directives:
-#                 - "return 423;"
-#             - location: "/reports/"
-#               custom_directives:
-#                 - "return 423;"
-#             - location: "/"
-#               proxy:
-#                 pass: "http://127.0.0.1:8085/"
-#                 set_header:
-#                   - field: "HOST"
-#                     value: "$host"
-#                   - field: "X-Forwarded-Proto"
-#                     value: "$scheme"
-
-
 aws_access_key_id: '{{ vault_aws_access_key_id }}'
 aws_secret_access_key: '{{ vault_aws_secret_access_key }}'
 backup_tag: 'configured'
 
-# Bamboo Configuration
-bamboo_pass: '{{ vault_bamboo_pass }}'
-bamboo_hash_salt: '{{ vault_bamboo_hash_salt }}'
-bamboo_user: 'bamboo'
-bamboo_checksum: 'sha256:2346901a541ff3d5ed8171bf2224fdee42c7dccece8619e346742935dfacac45'
-bamboo_archive: "atlassian-bamboo-11.0.2.tar.gz"
-bamboo_url: "https://product-downloads.atlassian.com/software/bamboo/downloads/{{ bamboo_archive }}"
-bamboo_catalina: "/opt/bamboo"
-bamboo_home: "/data/bamboo_home"
-bamboo_jvm_maximum_memory: "6144m"
-bamboo_jvm_minimum_memory: "6144m"
-bamboo_proxy_name: 'ci-new.openmrs.org'
-bamboo_scheme: 'https'
-mysql_connector_java_dest: '{{ bamboo_catalina }}/lib'
-mysql_connector_java_user: '{{ bamboo_user }}'
-mysql_connector_java_archive: 'mysql-connector-java-8.0.17.tar.gz'
-mysql_connector_java_jar: 'mysql-connector-java-8.0.17.jar'
-mysql_connector_java_url: "https://cdn.mysql.com//archives/mysql-connector-java-8.0/{{ mysql_connector_java_archive }}"
-mysql_connector_java_checksum: 'sha256:20116c90f01402406fa3a0783c308fb0bf9937b1d99cb6130407a1ad77ae7dd9'
-
-logrotate_scripts:
-  - name: bamboologs
-    path: "{{ bamboo_catalina }}/logs/catalina.out"
-    options:
-      - daily
-      - size 500M
-      - rotate 2
-      - missingok
-  - name: tomcatlogs
-    path: "{{ bamboo_catalina }}/logs/*.log"
-    options:
-      - daily
-      - maxage 15
-  - name: accesslogs
-    path: "{{ bamboo_catalina }}/logs/access_log*"
-    options:
-      - daily
-      - maxage 15
 
 # Mysql configuration
 mysql_root_pass: '{{ vault_mysql_root_password }}'
@@ -253,3 +116,43 @@ gcoop_mysqldump_cron_entries:
     day: '*'
     database: 'bamboo'
     format: '%F'
+
+
+# Bamboo Configuration
+bamboo_pass: '{{ vault_bamboo_pass }}'
+bamboo_hash_salt: '{{ vault_bamboo_hash_salt }}'
+bamboo_user: 'bamboo'
+bamboo_checksum: 'sha256:2346901a541ff3d5ed8171bf2224fdee42c7dccece8619e346742935dfacac45'
+bamboo_archive: "atlassian-bamboo-11.0.2.tar.gz"
+bamboo_url: "https://product-downloads.atlassian.com/software/bamboo/downloads/{{ bamboo_archive }}"
+bamboo_catalina: "/opt/bamboo"
+bamboo_home: "/data/bamboo_home"
+bamboo_jvm_maximum_memory: "6144m"
+bamboo_jvm_minimum_memory: "6144m"
+bamboo_proxy_name: 'ci-new.openmrs.org'
+bamboo_scheme: 'https'
+mysql_connector_java_dest: '{{ bamboo_catalina }}/lib'
+mysql_connector_java_user: '{{ bamboo_user }}'
+mysql_connector_java_archive: 'mysql-connector-java-8.0.17.tar.gz'
+mysql_connector_java_jar: 'mysql-connector-java-8.0.17.jar'
+mysql_connector_java_url: "https://cdn.mysql.com//archives/mysql-connector-java-8.0/{{ mysql_connector_java_archive }}"
+mysql_connector_java_checksum: 'sha256:20116c90f01402406fa3a0783c308fb0bf9937b1d99cb6130407a1ad77ae7dd9'
+
+logrotate_scripts:
+  - name: bamboologs
+    path: "{{ bamboo_catalina }}/logs/catalina.out"
+    options:
+      - daily
+      - size 500M
+      - rotate 2
+      - missingok
+  - name: tomcatlogs
+    path: "{{ bamboo_catalina }}/logs/*.log"
+    options:
+      - daily
+      - maxage 15
+  - name: accesslogs
+    path: "{{ bamboo_catalina }}/logs/access_log*"
+    options:
+      - daily
+      - maxage 15
