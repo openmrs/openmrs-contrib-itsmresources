@@ -181,13 +181,20 @@ logrotate_scripts:
   - name: bamboologs
     path: "{{ bamboo_catalina }}/logs/catalina.out"
     options:
-      - su bamboo bamboo
-      - weekly
+      - daily
       - size 500M
       - rotate 2
       - missingok
-      - create 644 bamboo bamboo
-
+  - name: tomcatlogs
+    path: "{{ bamboo_catalina }}/logs/*.log"
+    options:
+      - daily
+      - maxage 15
+  - name: accesslogs
+    path: "{{ bamboo_catalina }}/logs/access_log*"
+    options:
+      - daily
+      - maxage 15
 
 # Mysql configuration
 mysql_root_pass: '{{ vault_mysql_root_password }}'
