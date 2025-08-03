@@ -129,7 +129,7 @@ bamboo_catalina: "/opt/bamboo"
 bamboo_home: "/data/bamboo_home"
 bamboo_jvm_maximum_memory: "6144m"
 bamboo_jvm_minimum_memory: "6144m"
-bamboo_proxy_name: 'ci-new.openmrs.org'
+bamboo_proxy_name: 'ci.openmrs.org'
 bamboo_scheme: 'https'
 mysql_connector_java_dest: '{{ bamboo_catalina }}/lib'
 mysql_connector_java_user: '{{ bamboo_user }}'

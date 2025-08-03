@@ -15,5 +15,4 @@ node default {
   include profiles::transifex
   include profiles::ssh_client
   include profiles::build_helper_scripts
-  include profiles::bamboo_agent
 }

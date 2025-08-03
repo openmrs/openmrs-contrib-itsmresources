@@ -124,8 +124,27 @@
 - hosts: bambooagent
   become: true 
   pre_tasks:
+    # Read existing capabilities to preserve any manual additions
+    - block:
+        - name: Reading the agent capability file
+          include_role:
+            name: bambooagent
+            tasks_from: read_capability
+      ignore_errors: true
+
+    # Install all the build environment (Java)
     - import_tasks: tasks/install-openjdk.yml
+
   roles:
     - role: bambooagent
+
+  post_tasks:
+    # Write the capabilities back to file
+    # it will require an agent restart to pick it up
+    - name: Updates agent capabilities
+      include_role:
+        name: bambooagent
+        tasks_from: write_capability
+  
   tags:
     - bambooagent
