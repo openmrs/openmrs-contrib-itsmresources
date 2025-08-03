@@ -12,7 +12,7 @@ datadog_tags_extra:
 
 letsencrypt_cert_domains:
    - worabe.openmrs.org
-   - ci.openmrs.org
+   - ci-old.openmrs.org
 
 nginx_vhosts:
   - listen: "80 default_server"

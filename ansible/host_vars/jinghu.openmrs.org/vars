@@ -7,7 +7,7 @@ datadog_tags_extra:
 
 letsencrypt_cert_domains:
    - jinghu.openmrs.org
-   - ci-new.openmrs.org
+   - ci.openmrs.org
 
 
 nginx_vhosts:
@@ -27,12 +27,12 @@ nginx_vhosts:
         root /usr/share/nginx/html;
       }
   - listen: "80"
-    server_name: "ci-new.openmrs.org"
-    filename: "ci-new.openmrs.org.80.conf"
+    server_name: "ci.openmrs.org"
+    filename: "ci.openmrs.org.80.conf"
     extra_parameters: |
       return 301 https://$host$request_uri;
   - listen: "443 ssl"
-    server_name: "ci-new.openmrs.org"
+    server_name: "ci.openmrs.org"
     extra_parameters: |
       client_max_body_size 0;
       access_log /var/log/nginx/ci_access.log;
