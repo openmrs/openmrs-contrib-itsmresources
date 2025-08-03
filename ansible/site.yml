@@ -137,8 +137,6 @@
 
   roles:
     - role: bambooagent
-      when:
-        - ansible_distribution == "Ubuntu"
 
   post_tasks:
     # Write the agent capabilities back to file
