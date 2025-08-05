@@ -1,6 +1,0 @@
----
-pylint:
-  run: no
-
-ignore-paths:
-  - .tox

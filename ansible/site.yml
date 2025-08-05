@@ -76,7 +76,7 @@
   tasks:
    - import_tasks: tasks/backup.yml
   roles:
-   - { role: 'custom_roles/aws-cli' }
+   - aws-cli
   handlers:
     - import_tasks: handlers/monitoring.yml
 
