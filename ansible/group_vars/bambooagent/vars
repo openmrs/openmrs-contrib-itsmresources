@@ -16,6 +16,10 @@ users:
     comment: Ahmed
     groups: 'admin'
     ssh_key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDP8mYKtK1QvKJacv4Gobo7u6RpZlhQJa1q3P8cJXb13rX1UyJt9fhahJjMJriQH9c4POhVmU/fQ+C2OGf1Htbz3KAigxTACFSM1r74J6wL7SfMfUmIjc3K5V618FvdLcmNgenyYnqBq4f89L8LZgWbzQKptccOfLNtLJgYeuyBgGK4s/f0AlwaTPg1y4EgQrfVvkTpIQzQeRd6H5dgrdwl2G3Lx2Eyy2Q6bOlStCxOXpGs4ObPCKY18q60d/56wt9/anMEmdqQM1ez7H7B/kK64MAv2GzJS3z/ieFap3EPLgbRmCeyAl4F/d/BIgXuHinTJ/KNhsoytfLZWGcH4ovqWu9guUBrQNprUo3eBpQC6SEAraFJQYjCb+2dySZ6yZRJT1l9bUKxOpaGUwFVqYngJ2tDkgANTk0HEFIiWoewUdRhwXvf+JMurbrRna1er4oJfqXmaw6L2x04nZmz61pm1BbuU6mrXtpsNeOODm/sud5XMFwDKaqkoe64gX1x0vE= syedmuhammadahmed@Ahmeds-MacBook-Air.local"
+  romain:
+    comment: Romain
+    groups: 'admin'
+    ssh_key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC3vSjbYnJPiHwF9LDXZm4h+f4b5AA2z3Uwrlo/GQDd8eVz8x9rc8dDUB8MpzsC/d+LZFJTM3qfda7WC5jUsA7q6suPbHDW0wobJ2iMD2iAa5og/xjvrVM9YPsvfrJ9UwNUtnHG7H1tAO50m8CWu+uomWKtfczXUwejl6kB3T41D6SC2oVpPEdDNGa6kJqwl1M4Y8HxoPSNLlf4hZkz6lEsh6njtOTtMgDsUKqVMXJaJYQCRRj/YrcP/q5R64enFKJY6WAERRt9PgMBgZE3fSIMLAw3Vevsp7Ey2gfFWjVooeA6XkyyomK4baRjPZZr1i6UFokn5st174NBXRbtgx3f romain@romain-laptop"
 
 datadog_tags_extra:
   - "service:bamboo-agent"
