@@ -33,3 +33,9 @@ ploong.openmrs.org
 [mysql]
 ;sawla.openmrs.org
 jinghu.openmrs.org
+
+[docker]
+ploong.openmrs.org
+
+[builddeps]
+ploong.openmrs.org

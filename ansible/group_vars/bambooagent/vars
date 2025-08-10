@@ -24,6 +24,9 @@ users:
 datadog_tags_extra:
   - "service:bamboo-agent"
 
+
+docker_data_dir: "/data/docker"
+
 # Bamboo agent variables
 bamboo_server_url: "https://ci.openmrs.org"
 bambooagent_user: bamboo-agent

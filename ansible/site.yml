@@ -147,3 +147,11 @@
         tasks_from: write_capability
   tags:
     - bambooagent
+
+
+- hosts: builddeps
+  become: true 
+  tasks:
+   - import_tasks: tasks/docker-buildx.yml
+  tags:
+    - builddeps
