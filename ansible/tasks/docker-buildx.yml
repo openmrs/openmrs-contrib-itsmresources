@@ -1,0 +1,5 @@
+---
+  - name: install docker-buildx
+    apt:
+      name: docker-buildx
+      state: present
