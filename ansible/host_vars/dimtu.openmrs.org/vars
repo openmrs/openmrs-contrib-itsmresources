@@ -21,7 +21,7 @@ users:
   comment: Bett Kipchumba (Mekom)
   groups: 'admin'
   ssh_key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDu7XwDnGyC+g7VlMcbnkVAFDwCft1zrjynwZ5NHNTrIB2RbvdtP1YC3GSwKVd2PgMahfebKeRxm2/8ByXabhl4e+2oPO0P7XaBV26HhF+t5ww6qJVb+jEfG0VwYw0DDPMGA7tdSDikL6k/SKs4ofMH3HTFHmOeGaMILQNlk6+52y5IelQVHQEd8IXv3zNX/uEcMExbOs+9dwwq64UThEoyu9+9TdoWF4zqvnj7/2sF6drKO2TykUf+GXYlmlSzVGGGoPhDAihx7u+FNBaX5FDMSqb7MTdIujJb1UZ0BiZiMsDnNBprAiYLcxN+jUb3MZWaZgxCAPAgKgczoZHxWY7KD7C1njkeNK81OuV1scIjEnrFf8ojJZvQ0KSKiGNBkaBAxA3y37BUP/0PR5qcqUna5vUj6GQGTa2CtFpKFLVtNQyYK8hwA6rnK5O0jYJyvwSwsRSQ8za7WtPY8OcwTGN66yNaJsrjuXXt2LXUqo8hnRJGPnWCCbDaxZjQ3RaHj1X5nJGOIFV8B7dPGW7eIvgToEMHlOFJxvcLIh/4cjorG6jIe2gukdDJfxuFiZUasS5PiGShDLcc+ryVb3KxOXOLO+IKhzukMSxs072ZHMZ9C1KuvnMaMXQ2G88qkROSuUqUbUecZ8AbZFRYadq4WQ6VT7YQS12bJIquB5tZCe+YVQ== bett"
-  
+
 
 datadog_tags_extra:
   - "service:dev-his"
@@ -181,7 +181,7 @@ nginx_vhosts:
         proxy_set_header  X-Forwarded-Proto $scheme;
         proxy_set_header  X-Real-IP $remote_addr;
         proxy_set_header  X-Forwarded-For $proxy_add_x_forwarded_for;
-        proxy_pass http://127.0.0.1:8082/;
+        proxy_pass http://127.0.0.1:8084/;
       }
   - listen: "80"
     server_name: "dev3-orig.openmrs.org"
