@@ -33,6 +33,7 @@ letsencrypt_cert_domains:
   - erp.dev-his.openmrs.org
   - lims.dev-his.openmrs.org
   - dev3-orig.openmrs.org
+  - auth.dev-his.openmrs.org
 
 nginx_keepalive_timeout: "600"
 nginx_keepalive_requests: "600"
@@ -154,6 +155,28 @@ nginx_vhosts:
         proxy_set_header  X-Forwarded-For $proxy_add_x_forwarded_for;
         rewrite  ^(.*)$ /VirtualHostBase/$scheme/$host/senaite/VirtualHostRoot/$1 break;
         proxy_pass http://127.0.0.1:8081/;
+      }
+  - listen: "80"
+    server_name: "auth.dev-his.openmrs.org"
+    filename: "auth.dev-his.openmrs.org.80.conf"
+    extra_parameters: |
+      return 301 https://$host$request_uri;
+  - listen: "443 ssl"
+    server_name: "auth.dev-his.openmrs.org"
+    extra_parameters: |
+      access_log /var/log/nginx/auth-dev-his_access.log;
+      error_log /var/log/nginx/auth-dev-his_error.log;
+      ssl_certificate /etc/letsencrypt/live/dimtu.openmrs.org/fullchain.pem;
+      ssl_certificate_key /etc/letsencrypt/live/dimtu.openmrs.org/privkey.pem;
+      location ^~ /.well-known/acme-challenge/ {
+        root /usr/share/nginx/html;
+      }
+      location / {
+        proxy_set_header HOST $host;
+        proxy_set_header  X-Forwarded-Proto $scheme;
+        proxy_set_header  X-Real-IP $remote_addr;
+        proxy_set_header  X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_pass http://127.0.0.1:8082/;
       }
   - listen: "80"
     server_name: "dev3-orig.openmrs.org"
