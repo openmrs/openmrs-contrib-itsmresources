@@ -1,0 +1,46 @@
+---
+- name: Install apt-transport-https package
+  become: true
+  ansible.builtin.apt:
+    name: apt-transport-https
+    state: present
+    lock_timeout: "{{ apt_lock_timeout | default(300) }}"
+  changed_when: false
+
+- name: clean up old repositories files
+  become: true
+  file:
+    path: '{{ item }}'
+    state: absent
+  with_items:
+    - /etc/apt/sources.list.d/netbird.list 
+    - /etc/apt/sources.list.d/wiretrustee.list
+    - /etc/apt/trusted.gpg.d/wiretrustee.gpg
+    - /usr/share/keyrings/netbird-archive-keyring.gpg
+    - /usr/share/keyrings/wiretrustee-archive-keyring.gpg
+
+- name: Add repository gpg key
+  become: true
+  ansible.builtin.get_url:
+    url: "https://pkgs.netbird.io/debian/public.key"
+    dest: /etc/apt/trusted.gpg.d/netbird.asc
+    mode: 0644
+    owner: root
+    group: root
+
+- name: Add repository
+  become: true
+  ansible.builtin.apt_repository:
+    repo: "deb https://pkgs.netbird.io/debian stable main"
+    state: present
+    filename: netbird
+    update_cache: true
+    mode: 0644
+
+- name: "install package netbird"
+  become: true
+  ansible.builtin.apt:
+    name: "netbird=0.36.4"
+    lock_timeout: "{{ apt_lock_timeout | default(300) }}"
+    allow_downgrade: yes
+  notify: restart service NetBird
