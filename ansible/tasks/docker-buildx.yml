@@ -3,3 +3,40 @@
     apt:
       name: docker-buildx
       state: present
+
+  - name: Stop docker service
+    command: systemctl stop docker.service
+    when: docker_unconfigured_data_dir.rc != 0
+
+  - name: Stop docker socket
+    command: systemctl stop docker.socket
+    when: docker_unconfigured_data_dir.rc != 0
+
+  - name: Ensure BuildKit configuration directory exists
+    file:
+      path: /etc/buildkit
+      state: directory
+      owner: root
+      group: root
+      mode: 0755
+
+  - name: Configure BuildKit Caching
+    copy:
+      owner: root
+      group: root
+      mode: 0644
+      src: files/docker/buildkitd.toml
+      dest: /etc/buildkit/buildkitd.toml
+      force: false
+
+  - name: Reload docker service
+    command: systemctl daemon-reload
+    when: docker_unconfigured_data_dir.rc != 0
+
+  - name: Start docker socket service
+    command: systemctl start docker.socket
+    when: docker_unconfigured_data_dir.rc != 0
+
+  - name: Start docker service
+    command: systemctl start docker.service
+    when: docker_unconfigured_data_dir.rc != 0
