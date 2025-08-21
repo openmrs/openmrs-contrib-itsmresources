@@ -44,3 +44,71 @@
     lock_timeout: "{{ apt_lock_timeout | default(300) }}"
     allow_downgrade: yes
   notify: restart service NetBird
+
+- name: "validate NetBird management URL is provided"
+  fail:
+    msg: "vault_netbird_management_url variable is required. Please add it to your vault file"
+  when: 
+    - netbird_register is true
+    - vault_netbird_management_url is not defined
+
+- name: "validate NetBird access token is provided"
+  fail:
+    msg: "vault_netbird_access_token variable is required. Please add it to your vault file"
+  when: 
+    - netbird_register is true
+    - vault_netbird_access_token is not defined
+
+- name: "create sanitized hostname for NetBird"
+  set_fact:
+    netbird_sanitized_hostname: "{{ inventory_hostname | regex_replace('\\.', '-') | regex_replace('_', '-') }}"
+
+- name: create Setup Key
+  uri: 
+    url: "{{ vault_netbird_management_url }}/api/setup-keys"
+    method: POST
+    return_content: yes
+    status_code: 200
+    body_format: json
+    headers: 
+      Authorization: "Token {{ vault_netbird_access_token }}"
+    body: 
+      name: "Setup Key for {{ netbird_sanitized_hostname }}"
+      type: "one-off"
+      expires_in: 86400
+      usage_limit: 1
+      auto_groups: "{{ netbird_auto_groups_ids.split(',') }}"
+  register: setup_key_data
+  when: 
+    - netbird_register is true
+    - vault_netbird_access_token is defined
+  ignore_errors: true
+
+- name: register NetBird peer
+  shell:
+    cmd: "netbird up --setup-key {{ setup_key_data.json.key }}  --management-url {{ vault_netbird_management_url }} --hostname {{ netbird_sanitized_hostname }} netbird up"
+  when: 
+    - netbird_register is true
+    - vault_netbird_management_url is defined
+    - setup_key_data is defined
+    - setup_key_data.json is defined
+  ignore_errors: true
+
+- name: get NetBird peers
+  uri: 
+    url: "{{ vault_netbird_management_url }}/api/peers"
+    method: GET
+    return_content: yes
+    status_code: 200
+    body_format: json
+    headers: 
+      Authorization: "Token {{ vault_netbird_access_token }}"
+  register: netbird_peers
+  ignore_errors: true
+- name: register NetBird peer id
+  set_fact:
+   netbird_peer_id: "{{ netbird_peers.json | community.general.json_query(query) }}"
+  vars:
+    query: "[?name=='{{ netbird_sanitized_hostname }}'].id"
+  when: netbird_register is true
+  ignore_errors: true
