@@ -1,32 +1,3 @@
-[worker.containerd]
-  platforms = [ "linux/amd64", "linux/arm64" ]
-
-  # gc enables/disables garbage collection
-  gc = true
-  # reservedSpace is the minimum amount of disk space guaranteed to be
-  # retained by this buildkit worker - any usage below this threshold will not
-  # be reclaimed during garbage collection.
-  # all disk space parameters can be an integer number of bytes (e.g.
-  # 512000000), a string with a unit (e.g. "512MB"), or a string percentage
-  # of the total disk space (e.g. "10%")
-  reservedSpace = "10GB"
-  # maxUsedSpace is the maximum amount of disk space that may be used by
-  # this buildkit worker - any usage above this threshold will be reclaimed
-  # during garbage collection.
-  maxUsedSpace = "50GB"
-  # minFreeSpace is the target amount of free disk space that the garbage
-  # collector will attempt to leave - however, it will never be bought below
-  # reservedSpace.
-  minFreeSpace = "20GB"
-
-  [[worker.containerd.gcpolicy]]
-    reservedSpace = "512MB"
-    keepDuration = 172800
-    filters = [ "type==source.local", "type==exec.cachemount", "type==source.git.checkout"]
-  [[worker.containerd.gcpolicy]]
-    all = true
-    reservedSpace = "1GB"
-
 [worker.oci]
   platforms = [ "linux/amd64", "linux/arm64" ]
 
