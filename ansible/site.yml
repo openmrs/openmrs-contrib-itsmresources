@@ -122,7 +122,7 @@
 
 
 - hosts: bambooagent
-  become: true 
+  become: true
   pre_tasks:
     # Read existing agent capabilities to preserve any manual additions
     - block:
@@ -150,8 +150,15 @@
 
 
 - hosts: builddeps
-  become: true 
+  become: true
   tasks:
    - import_tasks: tasks/docker-buildx.yml
   tags:
     - builddeps
+
+- hosts: netbird
+  become: true
+  tags:
+    - netbird
+  tasks:
+    - import_tasks: tasks/netbird-client.yml
