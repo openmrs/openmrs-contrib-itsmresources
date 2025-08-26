@@ -111,5 +111,4 @@
    netbird_peer_id: "{{ netbird_peers.json | community.general.json_query(query) }}"
   vars:
     query: "[?name=='{{ netbird_sanitized_hostname }}'].id"
-  when: netbird_register is true
   ignore_errors: true
