@@ -10,8 +10,6 @@
    - import_tasks: tasks/hostname.yml # should happen before installing datadog
    - import_tasks: tasks/updates.yml
    - import_tasks: tasks/cleanup.yml
-   - import_tasks: tasks/netbird-client.yml # this should be a temporary measure to install netbird client on the dimtu server 
-     when: install_netbird | default(false)
 
 - name: Standard Operating Environment
   hosts: all
@@ -124,7 +122,7 @@
 
 
 - hosts: bambooagent
-  become: true 
+  become: true
   pre_tasks:
     # Read existing agent capabilities to preserve any manual additions
     - block:
@@ -152,8 +150,15 @@
 
 
 - hosts: builddeps
-  become: true 
+  become: true
   tasks:
    - import_tasks: tasks/docker-buildx.yml
   tags:
     - builddeps
+
+- hosts: netbird
+  become: true
+  tags:
+    - netbird
+  tasks:
+    - import_tasks: tasks/netbird-client.yml
