@@ -27,7 +27,13 @@ ploong.openmrs.org
 jinghu.openmrs.org
 
 [docker]
+xiao.openmrs.org
+xindi.openmrs.org
+yu.openmrs.org
 ploong.openmrs.org
 
 [builddeps]
+xiao.openmrs.org
+xindi.openmrs.org
+yu.openmrs.org
 ploong.openmrs.org

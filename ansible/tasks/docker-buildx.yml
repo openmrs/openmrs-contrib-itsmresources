@@ -6,11 +6,9 @@
 
   - name: Stop docker service
     command: systemctl stop docker.service
-    when: docker_unconfigured_data_dir.rc != 0
 
   - name: Stop docker socket
     command: systemctl stop docker.socket
-    when: docker_unconfigured_data_dir.rc != 0
 
   - name: Ensure BuildKit configuration directory exists
     file:
@@ -27,16 +25,30 @@
       mode: 0644
       src: files/docker/buildkitd.toml
       dest: /etc/buildkit/buildkitd.toml
-      force: false
 
   - name: Reload docker service
     command: systemctl daemon-reload
-    when: docker_unconfigured_data_dir.rc != 0
 
   - name: Start docker socket service
     command: systemctl start docker.socket
-    when: docker_unconfigured_data_dir.rc != 0
 
   - name: Start docker service
     command: systemctl start docker.service
-    when: docker_unconfigured_data_dir.rc != 0
+
+  - name: Switch to default builder
+    command: docker buildx use default
+
+  - name: Delete any existing builders
+    command: |
+      docker buildx rm --all-inactive --force
+
+  - name: Create buildx builder
+    command: |
+      docker buildx create \
+        --name openmrs-builder \
+        --driver docker-container \
+        --driver-opt image=moby/buildkit:buildx-stable-1 \
+        --driver-opt env.BUILDKIT_STEP_LOG_MAX_SIZE=-1
+        --driver-opt env.BUILDKIT_STEP_LOG_MAX_SPEED=-1
+        --config /etc/buildkit/buildkitd.toml
+        --use
