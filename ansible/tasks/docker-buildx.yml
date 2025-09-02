@@ -44,7 +44,15 @@
 
   - name: Use buildx by default
     command: |
-       docker buildx install
+      docker buildx install
+
+  - name: Stop buildx builder
+    commnad: |
+      docker buildx stop openmrs-builder
+
+  - name: Remove buildx builder
+    commnad: |
+      docker buildx rm openmrs-builder
 
   - name: Create buildx builder
     command: |
