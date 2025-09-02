@@ -42,6 +42,10 @@
     command: |
       docker buildx rm --all-inactive --force
 
+  - name: Use buildx by default
+    command: |
+       docker buildx install
+
   - name: Create buildx builder
     command: |
       docker buildx create \
