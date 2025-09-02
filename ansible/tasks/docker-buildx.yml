@@ -60,7 +60,7 @@
         --name openmrs-builder \
         --driver docker-container \
         --driver-opt image=moby/buildkit:buildx-stable-1 \
-        --driver-opt env.BUILDKIT_STEP_LOG_MAX_SIZE=-1
-        --driver-opt env.BUILDKIT_STEP_LOG_MAX_SPEED=-1
-        --config /etc/buildkit/buildkitd.toml
+        --driver-opt env.BUILDKIT_STEP_LOG_MAX_SIZE=-1 \
+        --driver-opt env.BUILDKIT_STEP_LOG_MAX_SPEED=-1 \
+        --config /etc/buildkit/buildkitd.toml \
         --use
