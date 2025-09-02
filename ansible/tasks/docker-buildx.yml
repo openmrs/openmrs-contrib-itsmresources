@@ -36,19 +36,33 @@
     command: systemctl start docker.service
 
   - name: Switch to default builder
-    command: docker buildx use default
+    command: sudo -u bamboo-agent docker buildx use default
 
   - name: Delete any existing builders
     command: |
-      docker buildx rm --all-inactive --force
+      sudo -u bamboo-agent docker buildx rm --all-inactive --force
+
+  - name: Use buildx by default
+    command: |
+      sudo -u bamboo-agent docker buildx install
+
+  - name: Stop buildx builder
+    command: |
+      sudo -u bamboo-agent docker buildx stop openmrs-builder
+    ignore_errors: True
+
+  - name: Remove buildx builder
+    command: |
+      sudo -u bamboo-agent docker buildx rm openmrs-builder
+    ignore_errors: True
 
   - name: Create buildx builder
     command: |
-      docker buildx create \
+      sudo -u bamboo-agent docker buildx create \
         --name openmrs-builder \
         --driver docker-container \
         --driver-opt image=moby/buildkit:buildx-stable-1 \
-        --driver-opt env.BUILDKIT_STEP_LOG_MAX_SIZE=-1
-        --driver-opt env.BUILDKIT_STEP_LOG_MAX_SPEED=-1
-        --config /etc/buildkit/buildkitd.toml
+        --driver-opt env.BUILDKIT_STEP_LOG_MAX_SIZE=-1 \
+        --driver-opt env.BUILDKIT_STEP_LOG_MAX_SPEED=-1 \
+        --config /etc/buildkit/buildkitd.toml \
         --use
