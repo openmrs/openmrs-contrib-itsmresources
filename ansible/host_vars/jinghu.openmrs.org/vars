@@ -150,9 +150,11 @@ logrotate_scripts:
     path: "{{ bamboo_catalina }}/logs/*.log"
     options:
       - daily
+      - size 500M
       - maxage 15
   - name: accesslogs
     path: "{{ bamboo_catalina }}/logs/access_log*"
     options:
       - daily
+      - size 500M
       - maxage 15
