@@ -68,7 +68,7 @@ nginx_vhosts:
     server_name: "demo.openmrs.org"
     filename: "demo.openmrs.org.80.conf"
     extra_parameters: |
-      return 302 https://o2.openmrs.org$request_uri;
+      return 302 https://o3.openmrs.org$request_uri;
   - listen: "443 ssl"
     server_name: "demo.openmrs.org"
     extra_parameters: |
