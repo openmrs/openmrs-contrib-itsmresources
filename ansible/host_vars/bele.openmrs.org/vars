@@ -79,7 +79,7 @@ nginx_vhosts:
       location ^~ /.well-known/acme-challenge/ {
         root /usr/share/nginx/html;
       }
-      return 302 https://o2.openmrs.org$request_uri;
+      return 302 https://o3.openmrs.org$request_uri;
   - listen: "80"
     server_name: "mdsbuilder.openmrs.org"
     filename: "mdsbuilder.openmrs.org.80.conf"
