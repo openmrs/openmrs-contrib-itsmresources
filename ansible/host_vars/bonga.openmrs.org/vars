@@ -123,7 +123,7 @@ nginx_vhosts:
     server_name: "qa-refapp.openmrs.org"
     filename: "qa-refapp.openmrs.org.80.conf"
     extra_parameters: |
-      return 302 https://qa-refapp2.openmrs.org$request_uri;
+      return 302 https://test3.openmrs.org$request_uri;
   - listen: "443 ssl"
     server_name: "qa-refapp.openmrs.org"
     extra_parameters: |
@@ -134,7 +134,7 @@ nginx_vhosts:
       location ^~ /.well-known/acme-challenge/ {
         root /usr/share/nginx/html;
       }
-      return 302 https://qa-refapp2.openmrs.org$request_uri;
+      return 302 https://test3.openmrs.org$request_uri;
   - listen: "80"
     server_name: "qa-refapp2.openmrs.org"
     filename: "qa-refapp2.openmrs.org.80.conf"
