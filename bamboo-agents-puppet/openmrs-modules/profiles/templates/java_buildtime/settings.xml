@@ -71,6 +71,14 @@
                 </pluginRepository>
             </pluginRepositories>
       </profile>
+      <profile>
+        <id>artifactory</id>
+        <properties>
+          <artifactory.url>https://openmrs.jfrog.io/artifactory</artifactory.url>
+          <artifactory.username>ci</artifactory.username>
+          <artifactory.password><%= @maven_password %></artifactory.password>
+        </properties>
+      </profile>
   </profiles>
 
 </settings>
