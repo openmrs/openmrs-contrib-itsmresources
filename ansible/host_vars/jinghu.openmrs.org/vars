@@ -137,24 +137,3 @@ mysql_connector_java_archive: 'mysql-connector-java-8.0.17.tar.gz'
 mysql_connector_java_jar: 'mysql-connector-java-8.0.17.jar'
 mysql_connector_java_url: "https://cdn.mysql.com//archives/mysql-connector-java-8.0/{{ mysql_connector_java_archive }}"
 mysql_connector_java_checksum: 'sha256:20116c90f01402406fa3a0783c308fb0bf9937b1d99cb6130407a1ad77ae7dd9'
-
-logrotate_scripts:
-  - name: bamboologs
-    path: "{{ bamboo_catalina }}/logs/catalina.out"
-    options:
-      - daily
-      - size 500M
-      - rotate 2
-      - missingok
-  - name: tomcatlogs
-    path: "{{ bamboo_catalina }}/logs/*.log"
-    options:
-      - daily
-      - size 500M
-      - maxage 15
-  - name: accesslogs
-    path: "{{ bamboo_catalina }}/logs/access_log*"
-    options:
-      - daily
-      - size 500M
-      - maxage 15

@@ -1,0 +1,109 @@
+# Licensed to the Apache Software Foundation (ASF) under one or more
+# contributor license agreements.  See the NOTICE file distributed with
+# this work for additional information regarding copyright ownership.
+# The ASF licenses this file to You under the Apache License, Version 2.0
+# (the "License"); you may not use this file except in compliance with
+# the License.  You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+handlers = 1catalina.org.apache.juli.AsyncFileHandler, 2localhost.org.apache.juli.AsyncFileHandler, 3manager.org.apache.juli.AsyncFileHandler, 4host-manager.org.apache.juli.AsyncFileHandler, 5svnkit.org.apache.juli.AsyncFileHandler, java.util.logging.ConsoleHandler
+
+.handlers = 1catalina.org.apache.juli.AsyncFileHandler, java.util.logging.ConsoleHandler
+
+############################################################
+# Handler specific properties.
+# Describes specific configuration info for Handlers.
+############################################################
+
+1catalina.org.apache.juli.AsyncFileHandler.level = ALL
+1catalina.org.apache.juli.AsyncFileHandler.directory = ${catalina.base}/logs
+1catalina.org.apache.juli.AsyncFileHandler.prefix = catalina.
+1catalina.org.apache.juli.AsyncFileHandler.maxDays = 30
+1catalina.org.apache.juli.AsyncFileHandler.encoding = UTF-8
+
+2localhost.org.apache.juli.AsyncFileHandler.level = ALL
+2localhost.org.apache.juli.AsyncFileHandler.directory = ${catalina.base}/logs
+2localhost.org.apache.juli.AsyncFileHandler.prefix = localhost.
+2localhost.org.apache.juli.AsyncFileHandler.maxDays = 30
+2localhost.org.apache.juli.AsyncFileHandler.encoding = UTF-8
+
+3manager.org.apache.juli.AsyncFileHandler.level = ALL
+3manager.org.apache.juli.AsyncFileHandler.directory = ${catalina.base}/logs
+3manager.org.apache.juli.AsyncFileHandler.prefix = manager.
+3manager.org.apache.juli.AsyncFileHandler.maxDays = 30
+3manager.org.apache.juli.AsyncFileHandler.encoding = UTF-8
+
+4host-manager.org.apache.juli.AsyncFileHandler.level = ALL
+4host-manager.org.apache.juli.AsyncFileHandler.directory = ${catalina.base}/logs
+4host-manager.org.apache.juli.AsyncFileHandler.prefix = host-manager.
+4host-manager.org.apache.juli.AsyncFileHandler.maxDays = 30
+4host-manager.org.apache.juli.AsyncFileHandler.encoding = UTF-8
+
+java.util.logging.ConsoleHandler.level = ALL
+java.util.logging.ConsoleHandler.formatter = org.apache.juli.OneLineFormatter
+java.util.logging.ConsoleHandler.encoding = UTF-8
+
+
+############################################################
+# Facility specific properties.
+# Provides extra control for each logger.
+############################################################
+
+org.apache.catalina.core.ContainerBase.[Catalina].[localhost].level = INFO
+org.apache.catalina.core.ContainerBase.[Catalina].[localhost].handlers = 2localhost.org.apache.juli.AsyncFileHandler
+
+org.apache.catalina.core.ContainerBase.[Catalina].[localhost].[/manager].level = INFO
+org.apache.catalina.core.ContainerBase.[Catalina].[localhost].[/manager].handlers = 3manager.org.apache.juli.AsyncFileHandler
+
+org.apache.catalina.core.ContainerBase.[Catalina].[localhost].[/host-manager].level = INFO
+org.apache.catalina.core.ContainerBase.[Catalina].[localhost].[/host-manager].handlers = 4host-manager.org.apache.juli.AsyncFileHandler
+
+# For example, set the org.apache.catalina.util.LifecycleBase logger to log
+# each component that extends LifecycleBase changing state:
+#org.apache.catalina.util.LifecycleBase.level = FINE
+
+# To see debug messages for HTTP/2 handling, uncomment the following line:
+#org.apache.coyote.http2.level = FINE
+
+# To see debug messages for WebSocket handling, uncomment the following line:
+#org.apache.tomcat.websocket.level = FINE
+# Suppress clearReferencesThreads and clearThreadLocalMap notifications on shutdown
+org.apache.catalina.loader.WebappClassLoader.level = OFF
+
+# Supress some useless REST messages. See JRADEV-12212.
+com.sun.jersey.server.impl.application.WebApplicationImpl.level = WARNING
+com.atlassian.plugins.rest.doclet.level = WARNING
+com.sun.jersey.api.wadl.config.WadlGeneratorLoader.level = WARNING
+
+############################################################
+# SVNKit-specific settings
+# Set to level=FINEST to enable debug logging
+# Uncomment the block below to allow SVNkit debugging
+############################################################
+#5svnkit.org.apache.juli.AsyncFileHandler.level = ALL
+#5svnkit.org.apache.juli.AsyncFileHandler.directory = ${catalina.base}/logs
+#5svnkit.org.apache.juli.AsyncFileHandler.prefix = svnkit.
+#5svnkit.org.apache.juli.AsyncFileHandler.maxDays = 90
+#5svnkit.org.apache.juli.AsyncFileHandler.encoding = UTF-8
+#
+#svnkit.level = FINEST
+#svnkit.handlers = 5svnkit.org.apache.juli.AsyncFileHandler
+#
+#svnkit-network.level = FINEST
+#svnkit-network.handlers = 5svnkit.org.apache.juli.AsyncFileHandler
+#
+#svnkit-wc.level = FINEST
+#svnkit-wc.handlers = 5svnkit.org.apache.juli.AsyncFileHandler
+#
+#svnkit-fsfs.level = FINEST
+#svnkit-fsfs.handlers = 5svnkit.org.apache.juli.AsyncFileHandler
+#
+#svnkit-cli.level = FINEST
+#svnkit-cli.handlers = 5svnkit.org.apache.juli.AsyncFileHandler
