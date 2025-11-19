@@ -20,6 +20,14 @@ users:
     comment: Romain
     groups: 'admin'
     ssh_key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC3vSjbYnJPiHwF9LDXZm4h+f4b5AA2z3Uwrlo/GQDd8eVz8x9rc8dDUB8MpzsC/d+LZFJTM3qfda7WC5jUsA7q6suPbHDW0wobJ2iMD2iAa5og/xjvrVM9YPsvfrJ9UwNUtnHG7H1tAO50m8CWu+uomWKtfczXUwejl6kB3T41D6SC2oVpPEdDNGa6kJqwl1M4Y8HxoPSNLlf4hZkz6lEsh6njtOTtMgDsUKqVMXJaJYQCRRj/YrcP/q5R64enFKJY6WAERRt9PgMBgZE3fSIMLAw3Vevsp7Ey2gfFWjVooeA6XkyyomK4baRjPZZr1i6UFokn5st174NBXRbtgx3f romain@romain-laptop"
+  mgoodrich:
+    commend: Mark Goodrich
+    groups: 'admin'
+    ssh_key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCyhiNpbTaCmRddo6ymfJWEsSMpb7QPoOjNwHp7nBsYvlom1N8PWeSWLHRv2CDTzy6mWvpWD/f41FIsDgfR9b1a5Chyp4GiIRV8opMsBy17q9WlYKXAVE4h3tqBWzHQBCTqLCkc01AY/63VO1JfGS5D8aoWZccHu2yIVxuS9r0Z219OpPZ2GeDJXZkR2Kg+aVx44OMM1N78tJmgMAeWc7yWfPlIVFT/oLxYJvGMtdjcciOjV47skxNZjRsBdGHT6QYHQSEv8KsU7eMa0LtyFPOBJgNiO2cvUdAxyTJ9O+Yow2oyhc/qGpEm47a+Tcac+t2n1BhwICOd97GmqpiiTS1J mgoodrich@mgoodrich-ThinkPad-T560"
+  mseaton:
+    comment: Mike Seaton
+    groups: 'admin'
+    ssh_key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDf3vlCYkSe14rANkqxYxo8ujzFL+M4XRq0s85/luz/uLkjmalcKhznb79vtD2tESVA5SBb5kdbMP0KJ/xZ/WssCn58iscIk9fAf6eMaqmJQ/Oar7mSmOSj5S4avYCSS3F0X+RU31JYUrW7m4gRMO8E+j75/wGBA9zgbyLV/co5xmVwB6FQRydE07zXNBmVzwkKPnU8J2rtaiRg/29ZusmC7Hb5xfJexUJMZxvCApW2M1tspNIhQ06K4w8BqQBU2wWkUUFFQWMnhHyCQfOu39haZZrwiLHqhVt7mwv7LBom9j0Qttoh88H5DJ9RXJsXNB7OPvc4RA4LMWOjMXfkRhdkAWkONMDYQcTlwqbkxLVDsRAHPNgal4WOLk4wlp7uAo3TAp91mu3UIrER29jtYO9pnNDVXiHQIhV/kW1BI/vLkDZQw6voiJbJDZla9UZS5W4opTqg+2y6pGFOxgJTIRDZZSwycXrHtevbKEQcxExC5OGclTirO8z3fwe937M= mseaton@mspih"
 
 datadog_tags_extra:
   - "service:bamboo-agent"
