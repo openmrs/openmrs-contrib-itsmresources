@@ -20,7 +20,7 @@ users:
  dennis:
    comment: Dennis
    groups: 'admin'
-   ssh_key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBikFDy2gHpgU2Qe7rP7jKyueawfU6CUtKHbQapN1CSS dennis@openmrs.org"
+   ssh_key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIM0HmJb1mLtTrOWWEXwfZ8hHpSUkedmD5dmSmuBTuza+ dennis@bonga.openmrs.org"
 
 datadog_tags_extra:
   - "service:openmrs-refapp"

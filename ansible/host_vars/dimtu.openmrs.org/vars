@@ -12,16 +12,7 @@ users:
  dennis:
   comment: Dennis
   groups: 'admin'
-  ssh_key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBikFDy2gHpgU2Qe7rP7jKyueawfU6CUtKHbQapN1CSS dennis@openmrs.org"
- emmanuel:
-  comment: Emmanuel
-  groups: 'admin'
-  ssh_key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDV3cRBBruV3dAKdYfy2HA+bv4KpP1yYodhjDrnZIussouut9k2JFLw28E8rB8/T/fNe4E1Y3TidOLddwRndbKFLaiWSIPrMtufY9b4qoqfk0X9yCWxCY+yVf5e9y/1++TqUQEmM+Nv9dYcfAevY+V9CnBikZeJXVoDdiYhswYHe2j/d/KuuJGvo3iL12WnYhePJNQ+7DwuRWhs+c/ntlcnZg1ndj6S6ZL9ReN3nPCuRHLe5Y3Vi5zjYIW5aQ+/M9YLuvi7BpNgZzE8Sfoz0WT7otQzI4ZyNG1nBWbz7KtmL67QhHN8MjAAiZx/XOnkFMooI90VjQKrIUsKtmF4SCW00B7tdtssplIoPE8vFqX2mCEjohqkRhuCbS6FTJEtrZJ3e+ZGbx1+6D6JvQXdBRVHMmkCXP2FlKecpqrGWOEByt0/0a/30S1hlB4rE/M2ObZIDJaUXUG+k/de3NAi0a+mErjT12zkTX+lHS6n0mvE88aZV4G7dhP4/Jf/6CrTUA0= emmanuelnyachoke@Emmanuels-MacBook-Pro.local"
- bett:
-  comment: Bett Kipchumba (Mekom)
-  groups: 'admin'
-  ssh_key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDu7XwDnGyC+g7VlMcbnkVAFDwCft1zrjynwZ5NHNTrIB2RbvdtP1YC3GSwKVd2PgMahfebKeRxm2/8ByXabhl4e+2oPO0P7XaBV26HhF+t5ww6qJVb+jEfG0VwYw0DDPMGA7tdSDikL6k/SKs4ofMH3HTFHmOeGaMILQNlk6+52y5IelQVHQEd8IXv3zNX/uEcMExbOs+9dwwq64UThEoyu9+9TdoWF4zqvnj7/2sF6drKO2TykUf+GXYlmlSzVGGGoPhDAihx7u+FNBaX5FDMSqb7MTdIujJb1UZ0BiZiMsDnNBprAiYLcxN+jUb3MZWaZgxCAPAgKgczoZHxWY7KD7C1njkeNK81OuV1scIjEnrFf8ojJZvQ0KSKiGNBkaBAxA3y37BUP/0PR5qcqUna5vUj6GQGTa2CtFpKFLVtNQyYK8hwA6rnK5O0jYJyvwSwsRSQ8za7WtPY8OcwTGN66yNaJsrjuXXt2LXUqo8hnRJGPnWCCbDaxZjQ3RaHj1X5nJGOIFV8B7dPGW7eIvgToEMHlOFJxvcLIh/4cjorG6jIe2gukdDJfxuFiZUasS5PiGShDLcc+ryVb3KxOXOLO+IKhzukMSxs072ZHMZ9C1KuvnMaMXQ2G88qkROSuUqUbUecZ8AbZFRYadq4WQ6VT7YQS12bJIquB5tZCe+YVQ== bett"
-
+  ssh_key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIM0HmJb1mLtTrOWWEXwfZ8hHpSUkedmD5dmSmuBTuza+ dennis@bonga.openmrs.org"
 
 datadog_tags_extra:
   - "service:dev-his"
