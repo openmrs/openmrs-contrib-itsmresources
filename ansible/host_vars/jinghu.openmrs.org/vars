@@ -19,8 +19,8 @@ nginx_vhosts:
   - listen: "443 ssl"
     server_name: "jinghu.openmrs.org"
     extra_parameters: |
-      access_log /var/log/nginx/deployer_access.log;
-      error_log /var/log/nginx/deployer_error.log;
+      access_log /data/log/nginx/deployer_access.log;
+      error_log /data/log/nginx/deployer_error.log;
       ssl_certificate /etc/letsencrypt/live/jinghu.openmrs.org/fullchain.pem;
       ssl_certificate_key /etc/letsencrypt/live/jinghu.openmrs.org/privkey.pem;
       location ^~ /.well-known/acme-challenge/ {
@@ -35,8 +35,8 @@ nginx_vhosts:
     server_name: "ci.openmrs.org"
     extra_parameters: |
       client_max_body_size 0;
-      access_log /var/log/nginx/ci_access.log;
-      error_log /var/log/nginx/ci_error.log;
+      access_log /data/log/nginx/ci_access.log;
+      error_log /data/log/nginx/ci_error.log;
       ssl_certificate /etc/letsencrypt/live/jinghu.openmrs.org/fullchain.pem;
       ssl_certificate_key /etc/letsencrypt/live/jinghu.openmrs.org/privkey.pem;
       location ^~ /.well-known/acme-challenge/ {

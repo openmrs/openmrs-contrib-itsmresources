@@ -23,25 +23,25 @@ handlers = 1catalina.org.apache.juli.AsyncFileHandler, 2localhost.org.apache.jul
 ############################################################
 
 1catalina.org.apache.juli.AsyncFileHandler.level = ALL
-1catalina.org.apache.juli.AsyncFileHandler.directory = ${catalina.base}/logs
+1catalina.org.apache.juli.AsyncFileHandler.directory = /data/log/bamboo
 1catalina.org.apache.juli.AsyncFileHandler.prefix = catalina.
 1catalina.org.apache.juli.AsyncFileHandler.maxDays = 30
 1catalina.org.apache.juli.AsyncFileHandler.encoding = UTF-8
 
 2localhost.org.apache.juli.AsyncFileHandler.level = ALL
-2localhost.org.apache.juli.AsyncFileHandler.directory = ${catalina.base}/logs
+2localhost.org.apache.juli.AsyncFileHandler.directory = /data/log/bamboo
 2localhost.org.apache.juli.AsyncFileHandler.prefix = localhost.
 2localhost.org.apache.juli.AsyncFileHandler.maxDays = 30
 2localhost.org.apache.juli.AsyncFileHandler.encoding = UTF-8
 
 3manager.org.apache.juli.AsyncFileHandler.level = ALL
-3manager.org.apache.juli.AsyncFileHandler.directory = ${catalina.base}/logs
+3manager.org.apache.juli.AsyncFileHandler.directory = /data/log/bamboo
 3manager.org.apache.juli.AsyncFileHandler.prefix = manager.
 3manager.org.apache.juli.AsyncFileHandler.maxDays = 30
 3manager.org.apache.juli.AsyncFileHandler.encoding = UTF-8
 
 4host-manager.org.apache.juli.AsyncFileHandler.level = ALL
-4host-manager.org.apache.juli.AsyncFileHandler.directory = ${catalina.base}/logs
+4host-manager.org.apache.juli.AsyncFileHandler.directory = /data/log/bamboo
 4host-manager.org.apache.juli.AsyncFileHandler.prefix = host-manager.
 4host-manager.org.apache.juli.AsyncFileHandler.maxDays = 30
 4host-manager.org.apache.juli.AsyncFileHandler.encoding = UTF-8
@@ -88,7 +88,7 @@ com.sun.jersey.api.wadl.config.WadlGeneratorLoader.level = WARNING
 # Uncomment the block below to allow SVNkit debugging
 ############################################################
 #5svnkit.org.apache.juli.AsyncFileHandler.level = ALL
-#5svnkit.org.apache.juli.AsyncFileHandler.directory = ${catalina.base}/logs
+#5svnkit.org.apache.juli.AsyncFileHandler.directory = /data/log/bamboo
 #5svnkit.org.apache.juli.AsyncFileHandler.prefix = svnkit.
 #5svnkit.org.apache.juli.AsyncFileHandler.maxDays = 90
 #5svnkit.org.apache.juli.AsyncFileHandler.encoding = UTF-8
