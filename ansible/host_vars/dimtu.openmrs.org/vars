@@ -10,9 +10,17 @@ users:
   groups: 'admin'
   ssh_key: "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAx+1orGXyy5xp1vM1uDUIa/sj0/3Z04n0x2EBJvSGAs98LitJbrucMGOoC2o3vmDbQLhgjDDIp9WcXyNX2CRF9Ez3ZQFY3UYErA87zfXC3aUCXH72PypaiTngNYI/z2Z7r1xVlcsogxW4IeGitk144J4CD3rSA3hO2uTjnc1Vblrj92VjNLv+/0y9yRUgM7EF0hxKrb4NTYXRSAEM95KoJqzGKz8Kb9MPT4NsjBdOynVUGTaNv9mTV5QOZa+4n2W24zDPoRirws7koib8vbAj8J+IilBvOtXWzJdgEokbUmzbooaGT4OCjEwMpt0JUrBWrMlwazeiZEWaZVNgS97ubQ== danielkayiwa@Daniel-Kayiwas-MacBook-Pro.local"
  dennis:
-  comment: Dennis
+  comment: Dennis Kigen
   groups: 'admin'
   ssh_key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIM0HmJb1mLtTrOWWEXwfZ8hHpSUkedmD5dmSmuBTuza+ dennis@bonga.openmrs.org"
+ mgoodrich:
+  commend: Mark Goodrich
+  groups: 'admin'
+  ssh_key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCyhiNpbTaCmRddo6ymfJWEsSMpb7QPoOjNwHp7nBsYvlom1N8PWeSWLHRv2CDTzy6mWvpWD/f41FIsDgfR9b1a5Chyp4GiIRV8opMsBy17q9WlYKXAVE4h3tqBWzHQBCTqLCkc01AY/63VO1JfGS5D8aoWZccHu2yIVxuS9r0Z219OpPZ2GeDJXZkR2Kg+aVx44OMM1N78tJmgMAeWc7yWfPlIVFT/oLxYJvGMtdjcciOjV47skxNZjRsBdGHT6QYHQSEv8KsU7eMa0LtyFPOBJgNiO2cvUdAxyTJ9O+Yow2oyhc/qGpEm47a+Tcac+t2n1BhwICOd97GmqpiiTS1J mgoodrich@mgoodrich-ThinkPad-T560"
+ mseaton:
+  comment: Mike Seaton
+  groups: 'admin'
+  ssh_key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDf3vlCYkSe14rANkqxYxo8ujzFL+M4XRq0s85/luz/uLkjmalcKhznb79vtD2tESVA5SBb5kdbMP0KJ/xZ/WssCn58iscIk9fAf6eMaqmJQ/Oar7mSmOSj5S4avYCSS3F0X+RU31JYUrW7m4gRMO8E+j75/wGBA9zgbyLV/co5xmVwB6FQRydE07zXNBmVzwkKPnU8J2rtaiRg/29ZusmC7Hb5xfJexUJMZxvCApW2M1tspNIhQ06K4w8BqQBU2wWkUUFFQWMnhHyCQfOu39haZZrwiLHqhVt7mwv7LBom9j0Qttoh88H5DJ9RXJsXNB7OPvc4RA4LMWOjMXfkRhdkAWkONMDYQcTlwqbkxLVDsRAHPNgal4WOLk4wlp7uAo3TAp91mu3UIrER29jtYO9pnNDVXiHQIhV/kW1BI/vLkDZQw6voiJbJDZla9UZS5W4opTqguSoi+2y6pGFOxgJTIRDZZSwycXrHtevbKEQcxExC5OGclTirO8z3fwe937M= mseaton@mspih"
 
 datadog_tags_extra:
   - "service:dev-his"
