@@ -24,7 +24,6 @@ datadog_tags_extra:
 
 letsencrypt_cert_domains:
    - jinka.openmrs.org
-   - site.openmrs.org
    - shortener.openmrs.org
    - om.rs
    - mavenrepo.openmrs.org
@@ -33,7 +32,6 @@ letsencrypt_cert_domains:
    - issues.openmrs.org
    - tickets.openmrs.org
    - wiki.openmrs.org
-   - oldwordpress.openmrs.org
 
 
 docker_deployment:
