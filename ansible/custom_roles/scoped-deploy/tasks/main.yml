@@ -1,0 +1,45 @@
+---
+- name: Create deploy group
+  group:
+    name: deploy
+    system: true
+  tags: ['scoped-deploy']
+
+- name: Create deploy user
+  user:
+    name: deploy
+    group: deploy
+    groups: docker
+    shell: /usr/sbin/nologin
+    system: true
+    createhome: true
+    comment: Scoped deploy user
+  tags: ['scoped-deploy']
+
+- name: Install deploy SSH public key with restrictions
+  authorized_key:
+    user: deploy
+    key: "{{ deploy_ssh_key }}"
+    key_options: 'restrict,command="/opt/deploy.sh"'
+    manage_dir: true
+    exclusive: true
+  tags: ['scoped-deploy']
+
+- name: Install scoped deploy script
+  copy:
+    src: deploy.sh
+    dest: /opt/deploy.sh
+    owner: root
+    group: root
+    mode: "0755"
+  tags: ['scoped-deploy']
+
+- name: Install sudoers for deploy user
+  template:
+    src: sudoers-deploy.j2
+    dest: /etc/sudoers.d/deploy
+    owner: root
+    group: root
+    mode: "0440"
+    validate: '/usr/sbin/visudo -cf %s'
+  tags: ['scoped-deploy']

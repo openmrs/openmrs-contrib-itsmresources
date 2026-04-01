@@ -1,5 +1,8 @@
 ---
 
+# SSH public key for the scoped deploy user.
+deploy_ssh_key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHAgxLlisUi2cglaGSsvcu4k0Qypro9w7NFegFOOGCRL"
+
 # https://docs.docker.com/engine/installation/linux/ubuntulinux/#/enable-ufw-forwarding
 # ufw_config:
 #   globalconfig:
