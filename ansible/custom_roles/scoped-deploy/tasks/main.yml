@@ -10,7 +10,7 @@
     name: deploy
     group: deploy
     groups: docker
-    shell: /usr/sbin/nologin
+    shell: /bin/bash
     system: true
     createhome: true
     comment: Scoped deploy user
@@ -32,6 +32,14 @@
     owner: root
     group: root
     mode: "0755"
+  tags: ['scoped-deploy']
+
+- name: Ensure sudoers includes /etc/sudoers.d
+  lineinfile:
+    path: /etc/sudoers
+    regexp: '^[@#]includedir\s+/etc/sudoers\.d'
+    line: '@includedir /etc/sudoers.d'
+    validate: '/usr/sbin/visudo -cf %s'
   tags: ['scoped-deploy']
 
 - name: Install sudoers for deploy user
