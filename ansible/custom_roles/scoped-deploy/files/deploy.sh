@@ -37,11 +37,6 @@ case "$COMMAND" in
       exit 1
     fi
 
-    if [[ ! -d "/root/docker/$STACK" ]]; then
-      echo "Unknown stack: $STACK" >&2
-      exit 1
-    fi
-
     DESTROY_VOLUMES="false"
     HEALTH_CHECK="true"
     HEALTH_CHECK_TIMEOUT="300"
