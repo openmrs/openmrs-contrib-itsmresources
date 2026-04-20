@@ -72,7 +72,7 @@ nginx_vhosts:
       location / {
         root /usr/share/nginx/html;
       }
-  - listen: "80 default_server"
+  - listen: "80"
     server_name: "oldwordpress.openmrs.org"
     filename: "oldwordpress.openmrs.org.80.conf"
     extra_parameters: |
