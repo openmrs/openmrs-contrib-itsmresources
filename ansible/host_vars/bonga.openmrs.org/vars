@@ -50,6 +50,7 @@ nginx_vhosts:
   - listen: "443 ssl"
     server_name: "bonga.openmrs.org"
     extra_parameters: |
+      if ($ai_bot) { return 444; }
       access_log /var/log/nginx/deployer_access.log;
       error_log /var/log/nginx/deployer_error.log;
       ssl_certificate /etc/letsencrypt/live/bonga.openmrs.org/fullchain.pem;
@@ -65,6 +66,7 @@ nginx_vhosts:
   - listen: "443 ssl"
     server_name: "modules-refapp.openmrs.org"
     extra_parameters: |
+      if ($ai_bot) { return 444; }
       access_log /var/log/nginx/modules_access.log;
       error_log /var/log/nginx/modules_error.log;
       ssl_certificate /etc/letsencrypt/live/bonga.openmrs.org/fullchain.pem;
@@ -88,6 +90,7 @@ nginx_vhosts:
   - listen: "443 ssl"
     server_name: "uat-refapp.openmrs.org"
     extra_parameters: |
+      if ($ai_bot) { return 444; }
       access_log /var/log/nginx/uat_access.log;
       error_log /var/log/nginx/uat_error.log;
       ssl_certificate /etc/letsencrypt/live/bonga.openmrs.org/fullchain.pem;
@@ -104,6 +107,7 @@ nginx_vhosts:
   - listen: "443 ssl"
     server_name: "uat-refapp2.openmrs.org"
     extra_parameters: |
+      if ($ai_bot) { return 444; }
       access_log /var/log/nginx/uat2_access.log;
       error_log /var/log/nginx/uat2_error.log;
       ssl_certificate /etc/letsencrypt/live/bonga.openmrs.org/fullchain.pem;
@@ -127,6 +131,7 @@ nginx_vhosts:
   - listen: "443 ssl"
     server_name: "qa-refapp.openmrs.org"
     extra_parameters: |
+      if ($ai_bot) { return 444; }
       access_log /var/log/nginx/qa-refapp_access.log;
       error_log /var/log/nginx/qa-refapp_access.log;
       ssl_certificate /etc/letsencrypt/live/bonga.openmrs.org/fullchain.pem;
@@ -143,6 +148,7 @@ nginx_vhosts:
   - listen: "443 ssl"
     server_name: "qa-refapp2.openmrs.org"
     extra_parameters: |
+      if ($ai_bot) { return 444; }
       access_log /var/log/nginx/qa-refapp2_access.log;
       error_log /var/log/nginx/qa-refapp2_access.log;
       ssl_certificate /etc/letsencrypt/live/bonga.openmrs.org/fullchain.pem;
@@ -166,6 +172,7 @@ nginx_vhosts:
   - listen: "443 ssl"
     server_name: "uat-platform.openmrs.org"
     extra_parameters: |
+      if ($ai_bot) { return 444; }
       access_log /var/log/nginx/uatplatform_access.log;
       error_log /var/log/nginx/uatplatform_error.log;
       ssl_certificate /etc/letsencrypt/live/bonga.openmrs.org/fullchain.pem;
@@ -189,6 +196,7 @@ nginx_vhosts:
   - listen: "443 ssl"
     server_name: "test3.openmrs.org"
     extra_parameters: |
+      if ($ai_bot) { return 444; }
       access_log /var/log/nginx/test3_access.log;
       error_log /var/log/nginx/test3_error.log;
       ssl_certificate /etc/letsencrypt/live/bonga.openmrs.org/fullchain.pem;

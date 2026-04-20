@@ -50,6 +50,7 @@ nginx_vhosts:
   - listen: "443 ssl"
     server_name: "dimtu.openmrs.org"
     extra_parameters: |
+      if ($ai_bot) { return 444; }
       access_log /var/log/nginx/dimtu_access.log;
       error_log /var/log/nginx/dimtu_error.log;
       ssl_certificate /etc/letsencrypt/live/dimtu.openmrs.org/fullchain.pem;
@@ -65,6 +66,7 @@ nginx_vhosts:
   - listen: "443 ssl"
     server_name: "dev-his.openmrs.org"
     extra_parameters: |
+      if ($ai_bot) { return 444; }
       access_log /var/log/nginx/dev-his_access.log;
       error_log /var/log/nginx/dev-his_error.log;
       ssl_certificate /etc/letsencrypt/live/dimtu.openmrs.org/fullchain.pem;
@@ -83,6 +85,7 @@ nginx_vhosts:
   - listen: "443 ssl"
     server_name: "dev-his.openmrs.org"
     extra_parameters: |
+      if ($ai_bot) { return 444; }
       access_log /var/log/nginx/emr-dev-his_access.log;
       error_log /var/log/nginx/emr-dev-his_error.log;
       ssl_certificate /etc/letsencrypt/live/dimtu.openmrs.org/fullchain.pem;
@@ -101,6 +104,7 @@ nginx_vhosts:
   - listen: "443 ssl"
     server_name: "emr.dev-his.openmrs.org"
     extra_parameters: |
+      if ($ai_bot) { return 444; }
       access_log /var/log/nginx/emr-dev-his_access.log;
       error_log /var/log/nginx/emr-dev-his_error.log;
       ssl_certificate /etc/letsencrypt/live/dimtu.openmrs.org/fullchain.pem;
@@ -123,6 +127,7 @@ nginx_vhosts:
   - listen: "443 ssl"
     server_name: "erp.dev-his.openmrs.org"
     extra_parameters: |
+      if ($ai_bot) { return 444; }
       access_log /var/log/nginx/erp-dev-his_access.log;
       error_log /var/log/nginx/erp-dev-his_error.log;
       ssl_certificate /etc/letsencrypt/live/dimtu.openmrs.org/fullchain.pem;
@@ -145,6 +150,7 @@ nginx_vhosts:
   - listen: "443 ssl"
     server_name: "lims.dev-his.openmrs.org"
     extra_parameters: |
+      if ($ai_bot) { return 444; }
       access_log /var/log/nginx/lims-dev-his_access.log;
       error_log /var/log/nginx/lims-dev-his_error.log;
       ssl_certificate /etc/letsencrypt/live/dimtu.openmrs.org/fullchain.pem;
@@ -168,6 +174,7 @@ nginx_vhosts:
   - listen: "443 ssl"
     server_name: "auth.dev-his.openmrs.org"
     extra_parameters: |
+      if ($ai_bot) { return 444; }
       access_log /var/log/nginx/auth-dev-his_access.log;
       error_log /var/log/nginx/auth-dev-his_error.log;
       ssl_certificate /etc/letsencrypt/live/dimtu.openmrs.org/fullchain.pem;
@@ -196,6 +203,7 @@ nginx_vhosts:
   - listen: "443 ssl"
     server_name: "dev3-orig.openmrs.org"
     extra_parameters: |
+      if ($ai_bot) { return 444; }
       access_log /var/log/nginx/dev3_access.log;
       error_log /var/log/nginx/dev3_error.log;
       ssl_certificate /etc/letsencrypt/live/dimtu.openmrs.org/fullchain.pem;

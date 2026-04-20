@@ -25,6 +25,7 @@ nginx_vhosts:
   - listen: "443 ssl"
     server_name: "jinghu.openmrs.org"
     extra_parameters: |
+      if ($ai_bot) { return 444; }
       access_log /data/log/nginx/deployer_access.log;
       error_log /data/log/nginx/deployer_error.log;
       ssl_certificate /etc/letsencrypt/live/jinghu.openmrs.org/fullchain.pem;
@@ -40,6 +41,7 @@ nginx_vhosts:
   - listen: "443 ssl"
     server_name: "ci.openmrs.org"
     extra_parameters: |
+      if ($ai_bot) { return 444; }
       client_max_body_size 0;
       access_log /data/log/nginx/ci_access.log;
       error_log /data/log/nginx/ci_error.log;

@@ -52,6 +52,7 @@ nginx_vhosts:
   - listen: "443 ssl"
     server_name: "addons-stg.openmrs.org"
     extra_parameters: |
+      if ($ai_bot) { return 444; }
       access_log /var/log/nginx/addons_access.log;
       error_log /var/log/nginx/addons_error.log;
       ssl_certificate /etc/letsencrypt/live/gode.openmrs.org/fullchain.pem;
@@ -70,6 +71,7 @@ nginx_vhosts:
   - listen: "443 ssl"
     server_name: "id-stg.openmrs.org"
     extra_parameters: |
+      if ($ai_bot) { return 444; }
       access_log /var/log/nginx/id_access.log;
       error_log /var/log/nginx/id_error.log;
       ssl_certificate /etc/letsencrypt/live/gode.openmrs.org/fullchain.pem;
@@ -94,6 +96,7 @@ nginx_vhosts:
   - listen: "443 ssl"
     server_name: "smtp-stg.openmrs.org"
     extra_parameters: |
+      if ($ai_bot) { return 444; }
       access_log /var/log/nginx/smtp_access.log;
       error_log /var/log/nginx/smtp_error.log;
       ssl_certificate /etc/letsencrypt/live/gode.openmrs.org/fullchain.pem;
@@ -112,6 +115,7 @@ nginx_vhosts:
   - listen: "443 ssl"
     server_name: "atlas-stg.openmrs.org"
     extra_parameters: |
+      if ($ai_bot) { return 444; }
       access_log /var/log/nginx/atlas_access.log;
       error_log /var/log/nginx/atlas_error.log;
       ssl_certificate /etc/letsencrypt/live/gode.openmrs.org/fullchain.pem;
@@ -135,6 +139,7 @@ nginx_vhosts:
   - listen: "443 ssl"
     server_name: "modules-stg.openmrs.org"
     extra_parameters: |
+      if ($ai_bot) { return 444; }
       access_log /var/log/nginx/modules_access.log;
       error_log /var/log/nginx/modules_error.log;
       ssl_certificate /etc/letsencrypt/live/gode.openmrs.org/fullchain.pem;
@@ -148,6 +153,7 @@ nginx_vhosts:
   - listen: "443 ssl"
     server_name: "gode.openmrs.org"
     extra_parameters: |
+      if ($ai_bot) { return 444; }
       access_log /var/log/nginx/deployer_access.log;
       error_log /var/log/nginx/deployer_error.log;
       ssl_certificate /etc/letsencrypt/live/gode.openmrs.org/fullchain.pem;
