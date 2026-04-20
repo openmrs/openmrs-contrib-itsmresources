@@ -11,3 +11,15 @@
     dest: "{{ logrotate_conf_dir }}{{ item.name }}"
   loop: "{{ logrotate_scripts }}"
   when: logrotate_scripts is defined
+
+- name: Install hourly cron trigger for logrotate scripts that request it
+  ansible.builtin.copy:
+    content: |
+      #!/bin/sh
+      exec /usr/sbin/logrotate {{ logrotate_conf_dir }}{{ item.name }}
+    dest: "/etc/cron.hourly/logrotate-{{ item.name }}"
+    mode: "0755"
+  loop: "{{ logrotate_scripts }}"
+  when:
+    - logrotate_scripts is defined
+    - item.hourly | default(false)
