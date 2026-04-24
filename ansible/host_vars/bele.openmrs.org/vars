@@ -24,7 +24,7 @@ users:
  akanter:
    comment: Andy Kanter
    groups: 'admin'
-   key_options: command="sudo docker exec -it `sudo docker ps --filter name=cieladmin_db -q -l` bash -c 'mysql --user=\"$MYSQL_USER\" --password=\"$MYSQL_PASSWORD\" openmrs'" 
+   key_options: command="sudo docker exec -it `sudo docker ps --filter name=cieladmin_db -q -l` bash -c 'mysql --user=\"$MYSQL_USER\" --password=\"$MYSQL_PASSWORD\" openmrs'"
    ssh_key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCwbMh9MAexKoRwTP3rjvnTTTY5/hfuBY9v5K/gTiiZTjAbZijkvWZhp4OtVyqRAEn4m7BR2k87ln9GFGaGuKoLbsi+4N5M7QRYz9gBcfzhxEm9otOIPO9jO9oMqWKjMXnQRRUNjIvcow9skzwRwzyW/mfHxdb3Tr2UAAP8H2d44g5J7/KALWUf+6Z6tpDN/+gz76Au/fb4ncATTXP1rAK6G2+rd4GC19dk6yRgvHTyU3NnqTY/8vVJbe54zqy7zBPwEIwNWGUc5xnfrlnNxLWlguC+Ps/7mxlFdXy1M0d8Xd5b235tg6Dut72iV1kpxeSW2yt/JY60SVFqq/F8yTUh akanter"
  jwnasambu:
    comment: Juliet Wamalwa
@@ -33,7 +33,7 @@ users:
  filipelopes:
    comment: Filipe Lopes
    groups: 'admin'
-   key_options: command="sudo docker exec -it `sudo docker ps --filter name=cieladmin_db -q -l` bash -c 'mysql --user=\"$MYSQL_USER\" --password=\"$MYSQL_PASSWORD\" openmrs'" 
+   key_options: command="sudo docker exec -it `sudo docker ps --filter name=cieladmin_db -q -l` bash -c 'mysql --user=\"$MYSQL_USER\" --password=\"$MYSQL_PASSWORD\" openmrs'"
    ssh_key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILs5Y3deK5oc9+g+0LJ+mNcs6YCJPzbNRTUqkPWxH1DY contato@filipelopes.med.br"
 
 datadog_tags_extra:
@@ -49,6 +49,7 @@ docker_deployment:
  - oclclient-prd
  - cieladmin
  - formbuilder
+ - emr-3-ai
 
 letsencrypt_cert_domains:
   - bele.openmrs.org
@@ -58,6 +59,7 @@ letsencrypt_cert_domains:
   - o2.openmrs.org
   - o3.openmrs.org
   - formbuilder.o3.openmrs.org
+  - chartsearchai.openmrs.org
 
 
 nginx_keepalive_timeout: "600"
@@ -221,4 +223,26 @@ nginx_vhosts:
         proxy_set_header  X-Forwarded-For $proxy_add_x_forwarded_for;
         proxy_pass http://127.0.0.1:8087/;
       }
-
+  - listen: "80"
+    server_name: "chartsearchai.openmrs.org"
+    filename: "chartsearchai.openmrs.org.80.conf"
+    extra_parameters: |
+      return 301 https://$host$request_uri;
+  - listen: "443 ssl"
+    server_name: "chartsearchai.openmrs.org"
+    extra_parameters: |
+      access_log /var/log/nginx/chartsearchai_access.log;
+      error_log /var/log/nginx/chartsearchai_error.log;
+      ssl_certificate /etc/letsencrypt/live/bele.openmrs.org/fullchain.pem;
+      ssl_certificate_key /etc/letsencrypt/live/bele.openmrs.org/privkey.pem;
+      location ^~ /.well-known/acme-challenge/ {
+        root /usr/share/nginx/html;
+      }
+      location / {
+        return 301 https://chartsearchai.openmrs.org/openmrs/spa;
+      }
+      location /openmrs {
+        proxy_set_header HOST $host;
+        proxy_set_header  X-Forwarded-Proto $scheme;
+        proxy_pass http://127.0.0.1:8888/openmrs;
+      }
