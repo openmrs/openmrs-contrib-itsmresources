@@ -1,6 +1,7 @@
 ---
-# Use this playbook to force the certificate to be recreated
-# ( for example, to add a new CNAME)
+# Emergency use only: wipes /etc/letsencrypt to recover from corrupted
+# cert state. To add a new domain, edit `letsencrypt_cert_domains` and
+# run `site.yml --tags tls --limit <host>` instead.
 - hosts: tls
   become: true
   tasks:
