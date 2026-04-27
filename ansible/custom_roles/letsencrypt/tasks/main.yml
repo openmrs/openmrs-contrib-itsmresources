@@ -68,7 +68,7 @@
         != letsencrypt_server
 
   - name: Attempt to get the certificate using the webroot authenticator
-    command: "{{ letsencrypt_command }} -a webroot --webroot-path {{ letsencrypt_webroot_path }} certonly"
+    command: "{{ letsencrypt_command }} -a webroot --webroot-path {{ letsencrypt_webroot_path }} certonly {{ letsencrypt_renewal_command_args }}"
     become: true
     register: letsencrypt_webroot_result
     when: letsencrypt_authenticator == "webroot"
@@ -79,7 +79,7 @@
       - "'not yet due for renewal' not in (letsencrypt_webroot_result.stdout | default(''))"
 
   - name: Attempt to get the certificate using the standalone authenticator (in case eg the webserver isn't running yet)
-    command: "{{ letsencrypt_command }} -a standalone auth {{ letsencrypt_standalone_command_args }}"
+    command: "{{ letsencrypt_command }} -a standalone auth {{ letsencrypt_standalone_command_args }} {{ letsencrypt_renewal_command_args }}"
     become: true
     register: letsencrypt_standalone_result
     when: >

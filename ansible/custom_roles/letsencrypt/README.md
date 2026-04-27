@@ -33,7 +33,7 @@ The following variables are available:
 
 `letsencrypt_install_directory` should probably be left alone, but if you set it, it will change where the letsencrypt program is installed.
 
-`letsencrypt_renewal_command_args` add arguments to the `letsencrypt renewal` command that gets run using cron.  For example, use the renewal hooks to restart a web server.
+`letsencrypt_renewal_command_args` adds arguments to certbot when it renews or issues a certificate, both via the cron renewal job and via this role's playbook-driven webroot/standalone tasks. For example, set it to `--renew-hook "systemctl reload nginx"` to reload the web server after every successful cert deploy regardless of which path triggered the renewal.
 
 `letsencrypt_standalone_command_args` adds arguments to the standalone authentication method. This is mostly useful for specifying supported challenges, such as `--standalone-supported-challenges tls-sni-01` to limit the authentication to port 443 if something is already running on 80 or vice versa.
 
