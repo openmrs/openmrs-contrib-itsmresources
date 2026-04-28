@@ -37,18 +37,17 @@ users:
    ssh_key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILs5Y3deK5oc9+g+0LJ+mNcs6YCJPzbNRTUqkPWxH1DY contato@filipelopes.med.br"
 
 datadog_tags_extra:
+  - "service:openmrs-chartsearchai"
+  - "service:openmrs-demo"
   - "service:openmrs-refapp"
   - "service:openmrs-platform"
   - "service:ocl"
-  - "service:formbuilder"
 
 docker_deployment:
  - demo
  - mdsbuilder
  - emr-3-demo
- - oclclient-prd
  - cieladmin
- - formbuilder
  - emr-3-ai
 
 letsencrypt_cert_domains:
@@ -58,7 +57,6 @@ letsencrypt_cert_domains:
   - mdsbuilder.openmrs.org
   - o2.openmrs.org
   - o3.openmrs.org
-  - formbuilder.o3.openmrs.org
   - chartsearchai.openmrs.org
 
 
