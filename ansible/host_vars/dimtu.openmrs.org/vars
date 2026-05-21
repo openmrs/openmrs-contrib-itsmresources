@@ -114,9 +114,10 @@ nginx_vhosts:
       }
       location / {
         proxy_set_header HOST $host;
-        proxy_set_header  X-Forwarded-Proto $scheme;
-        proxy_set_header  X-Real-IP $remote_addr;
-        proxy_set_header  X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header   X-Forwarded-Proto $scheme;
+        proxy_set_header   X-Real-IP $forwarded_ip;
+        proxy_set_header   X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_cookie_flags JSESSIONID secure samesite=strict;
         proxy_pass http://127.0.0.1:8080/;
       }
   - listen: "80"
@@ -213,9 +214,10 @@ nginx_vhosts:
       }
       location / {
         proxy_set_header HOST $host;
-        proxy_set_header  X-Forwarded-Proto $scheme;
-        proxy_set_header  X-Real-IP $remote_addr;
-        proxy_set_header  X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header   X-Forwarded-Proto $scheme;
+        proxy_set_header   X-Real-IP $forwarded_ip;
+        proxy_set_header   X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_cookie_flags JSESSIONID secure samesite=strict;
         proxy_pass http://127.0.0.1:8090/;
       }
 aws_access_key_id: '{{ vault_aws_access_key_id }}'
