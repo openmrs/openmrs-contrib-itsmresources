@@ -51,6 +51,9 @@ nginx_extra_http_options: |
    map $old_tinyurl $new_tinyurl_path {
      include /etc/nginx/snippets/wiki_tinyurl_rewritemap.conf;
    }
+   map $host $legacy_redirect {
+     include /etc/nginx/snippets/openmrs_legacy_redirects.conf;
+   }
 
 
 nginx_vhosts:
@@ -270,6 +273,52 @@ nginx_vhosts:
       }
       location / {
         return 302 https://openmrs.atlassian.net/wiki$request_uri;
+      }
+  # Legacy openmrs.org redirect subdomains (migrated off DME HTTPRED)
+  - listen: "80"
+    server_name: "api.openmrs.org ask.openmrs.org blog.openmrs.org chat.openmrs.org connect.openmrs.org contribute.openmrs.org doc.openmrs.org donate.openmrs.org download.openmrs.org downloads.openmrs.org ebola.openmrs.org go.openmrs.org implementers.openmrs.org inc.openmrs.org irc.openmrs.org javadoc.openmrs.org jobs.openmrs.org kenya.openmrs.org license.openmrs.org lists.openmrs.org map.openmrs.org mozambique.openmrs.org newdev.openmrs.org occ.openmrs.org projects.openmrs.org roadmap.openmrs.org search.openmrs.org site.openmrs.org source.openmrs.org trac.openmrs.org uptime.openmrs.org dev.openmrs.org"
+    filename: "openmrs.org-redirects.80.conf"
+    extra_parameters: |
+      location ^~ /.well-known/acme-challenge/ {
+        root /usr/share/nginx/html;
+      }
+      location / {
+        return 301 $legacy_redirect;
+      }
+  - listen: "443 ssl"
+    server_name: "api.openmrs.org ask.openmrs.org blog.openmrs.org chat.openmrs.org connect.openmrs.org contribute.openmrs.org doc.openmrs.org donate.openmrs.org download.openmrs.org downloads.openmrs.org ebola.openmrs.org go.openmrs.org implementers.openmrs.org inc.openmrs.org irc.openmrs.org javadoc.openmrs.org jobs.openmrs.org kenya.openmrs.org license.openmrs.org lists.openmrs.org map.openmrs.org mozambique.openmrs.org newdev.openmrs.org occ.openmrs.org projects.openmrs.org roadmap.openmrs.org search.openmrs.org site.openmrs.org source.openmrs.org trac.openmrs.org uptime.openmrs.org dev.openmrs.org"
+    filename: "openmrs.org-redirects.443.conf"
+    extra_parameters: |
+      ssl_certificate /etc/letsencrypt/live/jinka.openmrs.org/fullchain.pem;
+      ssl_certificate_key /etc/letsencrypt/live/jinka.openmrs.org/privkey.pem;
+      location ^~ /.well-known/acme-challenge/ {
+        root /usr/share/nginx/html;
+      }
+      location / {
+        return 301 $legacy_redirect;
+      }
+  # openmrs.com / openmrs.net -> openmrs.org, preserving the request path.
+  - listen: "80"
+    server_name: "openmrs.com *.openmrs.com openmrs.net *.openmrs.net"
+    filename: "openmrs.com-net-redirects.80.conf"
+    extra_parameters: |
+      location ^~ /.well-known/acme-challenge/ {
+        root /usr/share/nginx/html;
+      }
+      location / {
+        return 301 https://openmrs.org$request_uri;
+      }
+  - listen: "443 ssl"
+    server_name: "openmrs.com www.openmrs.com openmrs.net www.openmrs.net"
+    filename: "openmrs.com-net-redirects.443.conf"
+    extra_parameters: |
+      ssl_certificate /etc/letsencrypt/live/jinka.openmrs.org/fullchain.pem;
+      ssl_certificate_key /etc/letsencrypt/live/jinka.openmrs.org/privkey.pem;
+      location ^~ /.well-known/acme-challenge/ {
+        root /usr/share/nginx/html;
+      }
+      location / {
+        return 301 https://openmrs.org$request_uri;
       }
 
 aws_access_key_id: '{{ vault_aws_access_key_id }}'
