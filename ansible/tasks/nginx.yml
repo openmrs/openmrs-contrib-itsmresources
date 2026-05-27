@@ -1,16 +1,35 @@
 ---
-  - name: Copy nginx root html
+  - name: Copy common nginx snippets
     copy:
       owner: root
       group: root
       mode: 0755
-      src: files/nginx/html/
-      dest: /usr/share/nginx/html/
-
-  - name: Copy nginx snippets
-    copy:
-      owner: root
-      group: root
-      mode: 0755
-      src: files/nginx/snippets/
+      src: files/nginx/common/snippets/
       dest: /etc/nginx/snippets/
+
+  - name: Copy main webserver nginx snippets
+    copy:
+      owner: root
+      group: root
+      mode: 0755
+      src: files/nginx/webmain/snippets/
+      dest: /etc/nginx/snippets/
+    when: "'webmain' in group_names"
+
+  - name: Copy main webserver nginx root html
+    copy:
+      owner: root
+      group: root
+      mode: 0755
+      src: files/nginx/webmain/html/
+      dest: /usr/share/nginx/html/
+    when: "'webmain' in group_names"
+
+  - name: Copy Atlassian domain-verification file for id servers
+    copy:
+      owner: root
+      group: root
+      mode: 0755
+      src: files/nginx/id/html/
+      dest: /usr/share/nginx/html/
+    when: "'id' in group_names"

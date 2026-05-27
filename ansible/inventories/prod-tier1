@@ -13,6 +13,9 @@ adaba.openmrs.org
 maji.openmrs.org
 jinka.openmrs.org
 
+[webmain]
+jinka.openmrs.org
+
 [tls]
 adaba.openmrs.org
 maji.openmrs.org
@@ -26,4 +29,7 @@ jinka.openmrs.org
 maji.openmrs.org
 
 [ldap]
+adaba.openmrs.org
+
+[id]
 adaba.openmrs.org
