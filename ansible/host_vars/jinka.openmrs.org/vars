@@ -32,7 +32,10 @@ letsencrypt_cert_domains:
    - issues.openmrs.org
    - tickets.openmrs.org
    - wiki.openmrs.org
-
+   - openmrs.com
+   - www.openmrs.com
+   - openmrs.net
+   - www.openmrs.net
 
 docker_deployment:
   - wordpress
