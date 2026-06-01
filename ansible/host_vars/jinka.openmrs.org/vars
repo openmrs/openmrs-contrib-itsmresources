@@ -58,6 +58,9 @@ nginx_extra_http_options: |
      include /etc/nginx/snippets/openmrs_legacy_redirects.conf;
    }
 
+# redirect base logging to /data
+nginx_error_log: "/data/log/nginx/error.log warn"
+nginx_access_log: "/data/log/nginx/access.log main buffer=16k flush=2m"
 
 nginx_vhosts:
   - listen: "80"
