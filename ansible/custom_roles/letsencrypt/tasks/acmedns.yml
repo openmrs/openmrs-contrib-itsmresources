@@ -1,0 +1,187 @@
+---
+# DNS-01 issuance via the self-hosted acme-dns server. Imported from main.yml only when
+# letsencrypt_authenticator == "acmedns"; the webroot/standalone paths are untouched.
+
+- name: Ensure the acme-dns server URL is configured
+  ansible.builtin.assert:
+    that:
+      - acme_dns_server_url | length > 0
+    fail_msg: >-
+      acme_dns_server_url must be set (the private API alias, e.g.
+      http://acme-internal.openmrs.org:8080).
+
+- name: Install acme-dns-client
+  become: true
+  block:
+    - name: Download acme-dns-client {{ acme_dns_client_version }}
+      ansible.builtin.get_url:
+        url: "{{ acme_dns_client_url }}"
+        dest: "/tmp/acme-dns-client-{{ acme_dns_client_version }}.tar.gz"
+        checksum: "{{ acme_dns_client_checksums[acme_dns_client_arch] }}"
+        mode: "0644"
+
+    - name: Create the acme-dns-client extraction directory
+      ansible.builtin.file:
+        path: "/tmp/acme-dns-client-{{ acme_dns_client_version }}"
+        state: directory
+        mode: "0755"
+
+    - name: Extract acme-dns-client
+      ansible.builtin.unarchive:
+        src: "/tmp/acme-dns-client-{{ acme_dns_client_version }}.tar.gz"
+        dest: "/tmp/acme-dns-client-{{ acme_dns_client_version }}"
+        remote_src: true
+        creates: "/tmp/acme-dns-client-{{ acme_dns_client_version }}/acme-dns-client"
+
+    - name: Install the acme-dns-client binary
+      ansible.builtin.copy:
+        src: "/tmp/acme-dns-client-{{ acme_dns_client_version }}/acme-dns-client"
+        dest: "{{ acme_dns_client_path }}"
+        remote_src: true
+        owner: root
+        group: root
+        mode: "0755"
+
+- name: Ensure the acme-dns client storage directory exists
+  ansible.builtin.file:
+    path: "{{ acme_dns_storage_dir }}"
+    state: directory
+    owner: root
+    group: root
+    mode: "0700"
+  become: true
+
+# Back clientstorage.json up to S3 via the existing /opt/backups -> backup-upload.sh path
+# (the host must be in the [backup] group for the upload cron to ship it). Without this, a
+# rebuilt host re-registers and every _acme-challenge CNAME has to be rewritten.
+- name: Install the acme-dns client storage backup script
+  ansible.builtin.copy:
+    src: backup-acme-dns-client.sh
+    dest: /usr/sbin/backup-acme-dns-client.sh
+    owner: root
+    group: root
+    mode: "0755"
+  become: true
+
+- name: Schedule the acme-dns client storage backup (before the nightly upload)
+  ansible.builtin.cron:
+    name: "acme-dns client storage backup"
+    minute: "0"
+    hour: "3"
+    job: "/usr/sbin/backup-acme-dns-client.sh {{ acme_dns_storage_dir }}/clientstorage.json"
+  become: true
+
+- name: Read the existing acme-dns client storage
+  ansible.builtin.slurp:
+    src: "{{ acme_dns_storage_dir }}/clientstorage.json"
+  register: acme_dns_storage_raw
+  become: true
+  failed_when: false
+
+- name: Determine which names are already registered
+  ansible.builtin.set_fact:
+    acme_dns_accounts: >-
+      {{ (acme_dns_storage_raw.content | b64decode | from_json)
+         if (acme_dns_storage_raw.content is defined)
+         else {} }}
+
+# apex and its wildcard share one _acme-challenge name, and acme-dns-client keys accounts by
+# domain with the "*." stripped, so collapse to the unique challenge names.
+- name: Compute the unique acme-dns challenge names
+  ansible.builtin.set_fact:
+    acme_dns_challenge_names: "{{ letsencrypt_cert_domains | map('regex_replace', '^\\*\\.', '') | unique | list }}"
+
+- name: Require an allowfrom CIDR before registering
+  ansible.builtin.assert:
+    that:
+      - acme_dns_allowfrom | length > 0
+    fail_msg: >-
+      acme_dns_allowfrom must be set to this host's private IP (e.g. 10.0.2.5/32) before
+      registering, so each acme-dns account can only be updated from this host.
+  when: acme_dns_register | bool
+
+- name: Register missing names with acme-dns
+  # After a successful POST the account is already saved, but `register` then prompts
+  # interactively ("monitor the CNAME record change?", CAA setup) and would block forever
+  # with no TTY - so feed "no" to every prompt via `yes no`, and cap the whole thing with
+  # `timeout` because the client's HTTP calls have no timeout of their own.
+  ansible.builtin.shell:
+    cmd: >-
+      yes no | timeout 120 {{ acme_dns_client_path }} register
+      -d {{ item }}
+      -s {{ acme_dns_server_url }}
+      -allow {{ acme_dns_allowfrom }}
+  become: true
+  loop: "{{ acme_dns_challenge_names }}"
+  when:
+    - acme_dns_register | bool
+    - item not in acme_dns_accounts
+  register: acme_dns_registrations
+  # acme-dns-client exits 0 even when the API call fails (e.g. it prints
+  # "Failed to do req: ... EOF"), so key success off its confirmation message instead of rc.
+  changed_when: "'successfully registered' in stdout"
+  failed_when: "'successfully registered' not in stdout"
+
+- name: Re-read the acme-dns client storage after registration
+  ansible.builtin.slurp:
+    src: "{{ acme_dns_storage_dir }}/clientstorage.json"
+  register: acme_dns_storage_raw
+  become: true
+  failed_when: false
+
+- name: Refresh the registered-accounts fact after registration
+  ansible.builtin.set_fact:
+    acme_dns_accounts: >-
+      {{ (acme_dns_storage_raw.content | b64decode | from_json)
+         if (acme_dns_storage_raw.content is defined)
+         else {} }}
+
+- name: Write the CNAME targets file for the Terraform repo
+  ansible.builtin.copy:
+    dest: "{{ acme_dns_storage_dir }}/cname-targets.txt"
+    owner: root
+    group: root
+    mode: "0644"
+    content: |
+      # _acme-challenge CNAME targets for {{ inventory_hostname }} ({{ letsencrypt_cert_domains | join(', ') }}).
+      # The fulldomain already ends in the acme-dns zone - paste verbatim into the Terraform
+      # repo (acme_challenge_cnames for openmrs.org names, manual-dns per-zone otherwise).
+      {% for name in acme_dns_challenge_names if name in acme_dns_accounts %}
+      _acme-challenge.{{ name }} CNAME {{ acme_dns_accounts[name].fulldomain }}
+      {% endfor %}
+  become: true
+
+- name: Read back the CNAME targets for display
+  ansible.builtin.slurp:
+    src: "{{ acme_dns_storage_dir }}/cname-targets.txt"
+  register: acme_dns_cname_file
+  become: true
+
+- name: Show the CNAME targets to paste into Terraform
+  ansible.builtin.debug:
+    msg: "{{ (acme_dns_cname_file.content | b64decode).split('\n') }}"
+
+- name: Issue/renew the certificate via acme-dns DNS-01
+  ansible.builtin.command: >-
+    {{ letsencrypt_command }}
+    -a manual --preferred-challenges dns
+    --manual-auth-hook {{ acme_dns_client_path }}
+    certonly {{ letsencrypt_renewal_command_args }}
+  become: true
+  register: letsencrypt_acmedns_result
+  ignore_errors: true
+  changed_when:
+    - letsencrypt_acmedns_result.rc is defined
+    - letsencrypt_acmedns_result.rc == 0
+    - "'not yet due for renewal' not in (letsencrypt_acmedns_result.stdout | default(''))"
+
+- name: Explain an expected first-run failure
+  ansible.builtin.debug:
+    msg: >-
+      certbot did not succeed. For a newly registered name this is expected until its
+      _acme-challenge CNAME exists in DNS: add the entries from
+      {{ acme_dns_storage_dir }}/cname-targets.txt in the Terraform repo, confirm with
+      `dig CNAME _acme-challenge.<name>`, then re-run this play (with acme_dns_register=false).
+  when:
+    - letsencrypt_acmedns_result.rc is defined
+    - letsencrypt_acmedns_result.rc != 0

@@ -83,14 +83,21 @@
     become: true
     register: letsencrypt_standalone_result
     when: >
-      letsencrypt_authenticator != "webroot"
-      or (letsencrypt_webroot_result.rc is defined
+      letsencrypt_authenticator == "standalone"
+      or (letsencrypt_authenticator == "webroot"
+          and letsencrypt_webroot_result.rc is defined
           and letsencrypt_webroot_result.rc != 0)
     changed_when:
       - letsencrypt_standalone_result.rc is defined
       - letsencrypt_standalone_result.rc == 0
       - "'not yet due for renewal' not in (letsencrypt_standalone_result.stdout | default(''))"
 
+  - name: Issue the certificate via acme-dns (DNS-01)
+    import_tasks: acmedns.yml
+    when: letsencrypt_authenticator == "acmedns"
+
+  # HTTP-style authenticators only. acmedns is left alone: certbot's manual run already
+  # persists authenticator = manual and the manual_auth_hook, which these would overwrite.
   - name: Fix the renewal file
     ini_file:
       section: renewalparams
@@ -98,6 +105,7 @@
       value: "{{ item.value }}"
       dest: "/etc/letsencrypt/renewal/{{ letsencrypt_cert_domains[0] }}.conf"
     become: true
+    when: letsencrypt_authenticator in ["webroot", "standalone"]
     with_dict:
       os_packages_only: False
       verb: certonly
@@ -113,6 +121,7 @@
       value: "{{ letsencrypt_webroot_path }}"
       dest: "/etc/letsencrypt/renewal/{{ letsencrypt_cert_domains[0] }}.conf"
     become: true
+    when: letsencrypt_authenticator in ["webroot", "standalone"]
     with_items: "{{ letsencrypt_cert_domains }}"
 
   - name: Install renewal cron

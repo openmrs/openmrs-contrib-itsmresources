@@ -13,6 +13,12 @@ letsencrypt_cert_domains:
   - wokru.openmrs.org
   - sec3.openmrs.org
 
+# Issue via DNS-01 against the self-hosted acme-dns server (private API alias). The existing
+# /.well-known/acme-challenge/ nginx blocks become unused but are harmless. acme_dns_allowfrom
+# defaults to this host's 10.0.2.x address (see the letsencrypt role defaults).
+letsencrypt_authenticator: acmedns
+acme_dns_server_url: "http://acme-internal.openmrs.org:8080"
+
 nginx_vhosts:
   - listen: "80"
     server_name: "wokru.openmrs.org"

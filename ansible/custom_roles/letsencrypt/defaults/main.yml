@@ -15,3 +15,29 @@
     minute: 0
   letsencrypt_renewal_command_args: ''
   letsencrypt_standalone_command_args: ''
+
+  # --- acmedns authenticator (DNS-01 via self-hosted acme-dns) ---
+  # Only used when letsencrypt_authenticator == "acmedns".
+  acme_dns_client_version: "0.3"
+  acme_dns_client_arch: "{{ 'arm64' if ansible_architecture == 'aarch64' else 'amd64' }}"
+  acme_dns_client_url: "https://github.com/acme-dns/acme-dns-client/releases/download/v{{ acme_dns_client_version }}/acme-dns-client_{{ acme_dns_client_version }}_linux_{{ acme_dns_client_arch }}.tar.gz"
+  # SHA256 of each release tarball (from the upstream checksums file); the download is
+  # verified against acme_dns_client_checksums[acme_dns_client_arch]. Update on version bump.
+  acme_dns_client_checksums:
+    amd64: "sha256:f7b1892ee9ce2eb22d9d3b5bd8d03d01e2660661d7d461da512f60cca64ae3ef"
+    arm64: "sha256:e07a3d698d82ef7aa5ee70c00e49117cd184290cb1788f2b34ec36c204070dd1"
+  acme_dns_client_path: /usr/local/bin/acme-dns-client
+  # acme-dns-client hardcodes this storage path and reuses it as certbot's auth hook.
+  acme_dns_storage_dir: /etc/acmedns
+  # Private API alias of the acme-dns server, e.g. http://acme-internal.openmrs.org:8080.
+  acme_dns_server_url: ""
+  # One-time gate: set true to register missing names (mints accounts + CNAME targets).
+  # Left false in steady state so a normal run never re-registers (which would mint new
+  # UUIDs and break every _acme-challenge CNAME).
+  acme_dns_register: false
+  # This host's address on the project private subnet (10.0.2.0/24), derived from facts.
+  # Override in host_vars if a host has more than one address on that subnet.
+  acme_dns_private_ip: "{{ ansible_all_ipv4_addresses | select('match', '^10\\.0\\.2\\.') | list | first | default('') }}"
+  # Restrict each acme-dns account to this host only (allowfrom). Empty when no private-net
+  # address is found, which trips the registration assert rather than registering wide open.
+  acme_dns_allowfrom: "{{ (acme_dns_private_ip ~ '/32') if (acme_dns_private_ip | length > 0) else '' }}"
