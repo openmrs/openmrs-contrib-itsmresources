@@ -100,41 +100,55 @@
       registering, so each acme-dns account can only be updated from this host.
   when: acme_dns_register | bool
 
-- name: Register missing names with acme-dns
-  # After a successful POST the account is already saved, but `register` then prompts
-  # interactively ("monitor the CNAME record change?", CAA setup) and would block forever
-  # with no TTY - so feed "no" to every prompt via `yes no`, and cap the whole thing with
-  # `timeout` because the client's HTTP calls have no timeout of their own.
-  ansible.builtin.shell:
-    cmd: >-
-      yes no | timeout 120 {{ acme_dns_client_path }} register
-      -d {{ item }}
-      -s {{ acme_dns_server_url }}
-      -allow {{ acme_dns_allowfrom }}
-  become: true
+# Register straight against the acme-dns HTTP API rather than `acme-dns-client register`:
+# that subcommand is interactive (prompts to monitor the CNAME / set up a CAA record) and
+# blocks forever with no TTY. acme-dns-client is still used as certbot's auth hook, which
+# is non-interactive and only reads the account store we write below.
+- name: Register missing names with acme-dns (via the API)
+  ansible.builtin.uri:
+    url: "{{ acme_dns_server_url }}/register"
+    method: POST
+    body_format: json
+    body:
+      allowfrom:
+        - "{{ acme_dns_allowfrom }}"
+    status_code: 201
+    timeout: 30
+    return_content: true
   loop: "{{ acme_dns_challenge_names }}"
+  loop_control:
+    label: "{{ item }}"
   when:
     - acme_dns_register | bool
     - item not in acme_dns_accounts
   register: acme_dns_registrations
-  # acme-dns-client exits 0 even when the API call fails (e.g. it prints
-  # "Failed to do req: ... EOF"), so key success off its confirmation message instead of rc.
-  changed_when: "'successfully registered' in stdout"
-  failed_when: "'successfully registered' not in stdout"
 
-- name: Re-read the acme-dns client storage after registration
-  ansible.builtin.slurp:
-    src: "{{ acme_dns_storage_dir }}/clientstorage.json"
-  register: acme_dns_storage_raw
-  become: true
-  failed_when: false
-
-- name: Refresh the registered-accounts fact after registration
+- name: Merge newly registered accounts into the stored set
   ansible.builtin.set_fact:
     acme_dns_accounts: >-
-      {{ (acme_dns_storage_raw.content | b64decode | from_json)
-         if (acme_dns_storage_raw.content is defined)
-         else {} }}
+      {{ acme_dns_accounts | combine({
+           item.item: {
+             'fulldomain': item.json.fulldomain,
+             'subdomain':  item.json.subdomain,
+             'username':   item.json.username,
+             'password':   item.json.password,
+             'server_url': acme_dns_server_url,
+           }
+         }) }}
+  loop: "{{ acme_dns_registrations.results | default([]) }}"
+  loop_control:
+    label: "{{ item.item | default('') }}"
+  when: not (item.skipped | default(false))
+
+- name: Persist the acme-dns client storage (goacmedns format read by the auth hook)
+  ansible.builtin.copy:
+    dest: "{{ acme_dns_storage_dir }}/clientstorage.json"
+    content: "{{ acme_dns_accounts | to_json }}"
+    owner: root
+    group: root
+    mode: "0600"
+  become: true
+  when: acme_dns_register | bool
 
 - name: Write the CNAME targets file for the Terraform repo
   ansible.builtin.copy:
