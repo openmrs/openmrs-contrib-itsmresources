@@ -1,0 +1,29 @@
+[general]
+listen   = "0.0.0.0:53"
+protocol = "both"
+domain   = "{{ acme_dns_domain }}"
+nsname   = "{{ acme_dns_nsname }}"
+nsadmin  = "{{ acme_dns_nsadmin }}"
+records = [
+  "{{ acme_dns_domain }}. A  {{ acme_dns_public_ip }}",
+  "{{ acme_dns_domain }}. NS {{ acme_dns_nsname }}.",
+  "{{ acme_dns_nsname }}. A {{ acme_dns_public_ip }}",
+]
+debug = false
+
+[database]
+engine     = "sqlite3"
+connection = "{{ acme_dns_data_dir }}/acme-dns.db"
+
+[api]
+ip   = "0.0.0.0"                        # bound on all NICs; the OpenStack secgroup restricts access
+port = "{{ acme_dns_api_port }}"        # private-only HTTP API (chiro security group: from 10.0.2.0/24)
+tls  = "none"                           # plain HTTP over the private network; no API cert needed
+disable_registration = {{ acme_dns_disable_registration | lower }}
+corsorigins = ["*"]
+use_header  = false
+
+[logconfig]
+loglevel  = "info"
+logtype   = "stdout"
+logformat = "text"

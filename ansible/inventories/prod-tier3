@@ -1,10 +1,12 @@
 [prod]
 bele.openmrs.org
 goba.openmrs.org
+chiro.openmrs.org
 
 [docker]
 bele.openmrs.org
 goba.openmrs.org
+chiro.openmrs.org
 
 [web]
 bele.openmrs.org
@@ -17,3 +19,7 @@ goba.openmrs.org
 [backup]
 bele.openmrs.org
 goba.openmrs.org
+chiro.openmrs.org
+
+[acme_dns]
+chiro.openmrs.org

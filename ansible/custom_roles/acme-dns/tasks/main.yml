@@ -1,0 +1,122 @@
+---
+- name: Ensure the public floating IP is configured
+  ansible.builtin.assert:
+    that:
+      - acme_dns_public_ip | length > 0
+    fail_msg: >-
+      acme_dns_public_ip must be set in host_vars (chiro's public floating IP); it cannot
+      be derived from facts because the default route is the private NIC.
+
+- name: Create acme-dns directories
+  ansible.builtin.file:
+    path: "{{ item }}"
+    state: directory
+    owner: root
+    group: root
+    mode: "0750"
+  with_items:
+    - "{{ acme_dns_conf_dir }}"
+    - "{{ acme_dns_data_dir }}"
+    - "{{ acme_dns_compose_dir }}"
+
+- name: Install sqlite3 (for online DB backups)
+  ansible.builtin.apt:
+    name: sqlite3
+    state: present
+    update_cache: true
+    cache_valid_time: 3600
+
+# acme-dns must own port 53, but on Ubuntu systemd-resolved's stub listener already binds
+# 127.0.0.53:53, which collides with the container's 0.0.0.0:53 bind. Disable the stub
+# listener and point resolv.conf at the upstream resolver so local lookups keep working.
+- name: Ensure the systemd-resolved drop-in directory exists
+  ansible.builtin.file:
+    path: /etc/systemd/resolved.conf.d
+    state: directory
+    owner: root
+    group: root
+    mode: "0755"
+
+- name: Disable the systemd-resolved stub listener (frees port 53)
+  ansible.builtin.copy:
+    dest: /etc/systemd/resolved.conf.d/acme-dns.conf
+    owner: root
+    group: root
+    mode: "0644"
+    content: |
+      [Resolve]
+      DNSStubListener=no
+  notify:
+    - restart systemd-resolved
+    - restart acme-dns
+
+- name: Point resolv.conf at the upstream resolver instead of the stub
+  ansible.builtin.file:
+    src: /run/systemd/resolve/resolv.conf
+    dest: /etc/resolv.conf
+    state: link
+    force: true
+  notify:
+    - restart systemd-resolved
+    - restart acme-dns
+
+- name: Template acme-dns config
+  ansible.builtin.template:
+    src: config.cfg.j2
+    dest: "{{ acme_dns_conf_dir }}/config.cfg"
+    owner: root
+    group: root
+    mode: "0640"
+  notify: restart acme-dns
+
+- name: Template docker-compose file
+  ansible.builtin.template:
+    src: docker-compose.yml.j2
+    dest: "{{ acme_dns_compose_dir }}/docker-compose.yml"
+    owner: root
+    group: root
+    mode: "0640"
+  notify: restart acme-dns
+
+- name: Install deploy.env (keeps deploy-compose from destroying the DB volume)
+  ansible.builtin.copy:
+    src: deploy.env
+    dest: "{{ acme_dns_compose_dir }}/deploy.env"
+    owner: root
+    group: root
+    mode: "0640"
+  notify: restart acme-dns
+
+- name: Allow DNS (53/tcp) from anywhere
+  community.general.ufw:
+    rule: allow
+    port: "53"
+    proto: tcp
+
+- name: Allow DNS (53/udp) from anywhere
+  community.general.ufw:
+    rule: allow
+    port: "53"
+    proto: udp
+
+- name: Allow the acme-dns API from the private network only
+  community.general.ufw:
+    rule: allow
+    port: "{{ acme_dns_api_port }}"
+    proto: tcp
+    src: "{{ acme_dns_api_allow_cidr }}"
+
+- name: Install the acme-dns DB backup script
+  ansible.builtin.copy:
+    src: backup-acme-dns-db.sh
+    dest: /usr/sbin/backup-acme-dns-db.sh
+    owner: root
+    group: root
+    mode: "0755"
+
+- name: Schedule the acme-dns DB backup (before the nightly upload)
+  ansible.builtin.cron:
+    name: "acme-dns db backup"
+    minute: "0"
+    hour: "3"
+    job: "/usr/sbin/backup-acme-dns-db.sh {{ acme_dns_data_dir }}/acme-dns.db"

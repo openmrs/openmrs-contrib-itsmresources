@@ -1,0 +1,12 @@
+#!/bin/bash
+# Managed by Ansible (custom_roles/aws-cli provides aws_cli_bin) - do not edit by hand.
+
+set -eux
+
+VM=${1}
+echo "Uploading Nightly backups for $(date)"
+
+for file in $(find /opt/backups -type f); do
+  echo "File $file"
+  ({{ aws_cli_bin }} s3 cp --sse "aws:kms" $file s3://openmrs-backups/${VM}/ && rm -f $file ) || echo "Error on file $file"
+done

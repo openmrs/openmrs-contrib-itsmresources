@@ -1,0 +1,18 @@
+---
+acme_dns_image: "joohoi/acme-dns:v2.0.2"
+acme_dns_domain: "acme.openmrs.org"
+acme_dns_nsname: "auth.acme.openmrs.org"
+acme_dns_nsadmin: "infrastructure.openmrs.org"   # @ -> .
+
+# chiro's PUBLIC floating IP (Terraform: `chiro` output ip_address). MUST be set in
+# host_vars/chiro - it cannot be derived from ansible facts, because the VM's default
+# route is the private NIC (10.0.2.x), not the floating IP. acme-dns advertises this in
+# the A records it serves for acme.openmrs.org / auth.acme.openmrs.org.
+acme_dns_public_ip: ""
+
+acme_dns_conf_dir: /etc/acme-dns
+acme_dns_data_dir: /var/lib/acme-dns
+acme_dns_compose_dir: /root/docker/acme-dns
+acme_dns_api_port: 8080
+acme_dns_disable_registration: false   # flip to true after accounts are registered
+acme_dns_api_allow_cidr: "10.0.2.0/24" # ufw defense-in-depth; the OpenStack secgroup is primary

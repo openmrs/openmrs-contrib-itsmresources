@@ -1,0 +1,15 @@
+---
+# Dedicated micro-VM running the self-hosted acme-dns server (DNS-01 challenges).
+# Private subnet 10.0.2.0/24; public 53, private-only API.
+
+datadog_tags_extra:
+  - "service:acme-dns"
+
+# Standard docker-host settings (chiro is in the [docker] group only to pick up the
+# deploy-compose tooling; it runs no app stacks of its own).
+docker_deployment: []
+
+# chiro's PUBLIC floating IP (Terraform: `chiro` output ip_address). REQUIRED - the
+# acme-dns role asserts this is set. acme-dns serves it in the A records for
+# acme.openmrs.org / auth.acme.openmrs.org.
+acme_dns_public_ip: "149.165.171.233"

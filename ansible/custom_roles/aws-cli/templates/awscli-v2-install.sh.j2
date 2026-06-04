@@ -1,0 +1,20 @@
+#!/bin/bash
+# {{ ansible_managed }}
+# Installs or updates AWS CLI v2 from Amazon's official installer. The installer requires
+# --update to overwrite an existing install but rejects it on a fresh one, so we add the
+# flag only when an install is already present. Used both for the initial install and by
+# the weekly update cron, so there is a single source of truth for how v2 lands.
+set -euo pipefail
+
+TMP="$(mktemp -d)"
+trap 'rm -rf "${TMP}"' EXIT
+
+curl -fsSL "{{ aws_cli_v2_url }}" -o "${TMP}/awscliv2.zip"
+unzip -q "${TMP}/awscliv2.zip" -d "${TMP}"
+
+install_args=(--bin-dir "{{ aws_cli_v2_bin_dir }}" --install-dir "{{ aws_cli_v2_install_dir }}")
+if [ -d "{{ aws_cli_v2_install_dir }}" ]; then
+  install_args+=(--update)
+fi
+
+"${TMP}/aws/install" "${install_args[@]}"

@@ -76,7 +76,7 @@
   tasks:
    - import_tasks: tasks/backup.yml
   roles:
-   - aws-cli
+   - { role: 'custom_roles/aws-cli' }
   handlers:
     - import_tasks: handlers/monitoring.yml
 
@@ -91,6 +91,15 @@
    - { role: 'custom_roles/scoped-deploy' }
   handlers:
     - import_tasks: handlers/monitoring.yml
+
+# Must run after the `docker` play, which installs the deploy-compose script the
+# acme-dns role relies on to bring its container up.
+- hosts: acme_dns
+  become: true
+  tags:
+    - acme_dns
+  roles:
+    - { role: 'custom_roles/acme-dns' }
 
 - hosts: discourse
   tags:

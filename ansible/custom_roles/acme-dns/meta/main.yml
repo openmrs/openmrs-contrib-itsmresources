@@ -1,0 +1,12 @@
+---
+dependencies: []
+
+galaxy_info:
+  author: OpenMRS Infrastructure
+  description: Self-hosted acme-dns server for DNS-01 ACME challenges
+  license: MPL-2.0
+  min_ansible_version: "2.10"
+  platforms:
+    - name: Ubuntu
+      versions:
+        - noble

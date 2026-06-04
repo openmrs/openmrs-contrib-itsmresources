@@ -1,0 +1,14 @@
+---
+# Defined before "restart acme-dns" on purpose: handlers run in definition order, so the
+# stub listener is gone (port 53 freed) before deploy-compose tries to bind it.
+- name: restart systemd-resolved
+  ansible.builtin.systemd:
+    name: systemd-resolved
+    state: restarted
+
+# Args: <project> <force-destroy-volumes> <force-restart>. force-restart adds
+# --force-recreate so a stale/half-created container is always rebuilt from the compose
+# file; force-destroy-volumes stays false so deploy.env's DESTROY_VOLUMES=false protects
+# the accounts DB.
+- name: restart acme-dns
+  ansible.builtin.command: /usr/local/bin/deploy-compose acme-dns false true

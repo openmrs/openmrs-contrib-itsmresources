@@ -15,11 +15,11 @@
       group: '{{ backup_user }}'
       mode: "0755"
   - name: Copy backup uploader
-    copy:
+    template:
       owner: root
       group: root
       mode: 0755
-      src: files/backups/backup-upload.sh
+      src: "{{ playbook_dir }}/templates/backups/backup-upload.sh.j2"
       dest: "/usr/sbin/backup-upload.sh"
   - name: Backup cron
     cron:

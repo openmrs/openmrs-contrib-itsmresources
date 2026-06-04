@@ -1,0 +1,31 @@
+---
+# Upstream variables (unchanged from badpacketsllc.aws_cli).
+profiles: [{}]
+aws_cli_user: "{{ ansible_user_id }}"
+aws_cli_user_group: "{{ aws_cli_user }}"
+aws_user_dir: "/home/{{ aws_cli_user }}/.aws"
+aws_cli_package_state: present
+
+# --- AWS CLI v2 support (added when vendoring) ---
+# Ubuntu dropped the `awscli` apt package in 24.04 (noble), so on newer Ubuntu we install
+# AWS CLI v2 from Amazon's official installer instead. Override per-host if needed.
+aws_cli_use_v2_installer: "{{ ansible_distribution == 'Ubuntu' and (ansible_distribution_major_version | int) >= 24 }}"
+
+# Where the `aws` binary ends up. Consumers (e.g. backup-upload.sh) reference this rather
+# than assuming a fixed path: the apt package installs to /usr/bin/aws, the v2 installer to
+# /usr/local/bin/aws. Settable if you point the v2 installer elsewhere.
+aws_cli_v2_install_dir: /usr/local/aws-cli
+aws_cli_v2_bin_dir: /usr/local/bin
+aws_cli_bin: "{{ (aws_cli_v2_bin_dir ~ '/aws') if (aws_cli_use_v2_installer | bool) else '/usr/bin/aws' }}"
+
+aws_cli_v2_arch: "{{ 'aarch64' if ansible_architecture == 'aarch64' else 'x86_64' }}"
+aws_cli_v2_url: "https://awscli.amazonaws.com/awscli-exe-linux-{{ aws_cli_v2_arch }}.zip"
+
+# The v2 installer has no package manager behind it, so unattended-upgrades can't keep it
+# current the way it did the old apt `awscli`. A weekly cron re-runs the installer with
+# `--update` to fill that gap. Disable per-host with aws_cli_v2_auto_update: false.
+aws_cli_v2_auto_update: true
+aws_cli_v2_update_schedule:
+  weekday: "0"
+  hour: "20"
+  minute: "30"

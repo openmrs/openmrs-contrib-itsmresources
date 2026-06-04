@@ -1,0 +1,12 @@
+---
+services:
+  acme-dns:
+    image: {{ acme_dns_image }}
+    restart: unless-stopped
+    ports:
+      - "53:53/tcp"
+      - "53:53/udp"
+      - "{{ acme_dns_api_port }}:{{ acme_dns_api_port }}/tcp"
+    volumes:
+      - {{ acme_dns_conf_dir }}:/etc/acme-dns:ro
+      - {{ acme_dns_data_dir }}:/var/lib/acme-dns

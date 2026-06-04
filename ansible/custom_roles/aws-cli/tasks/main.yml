@@ -1,0 +1,85 @@
+---
+- name: Install or remove awscli
+  package:
+    name: awscli
+    state: "{{ aws_cli_package_state }}"
+  become: yes
+  when: >
+    ansible_distribution != 'Amazon'
+    and not (aws_cli_use_v2_installer | bool)
+
+- name: Install or remove aws-cli
+  package:
+    name: aws-cli
+    state: "{{ aws_cli_package_state }}"
+  become: yes
+  when: >
+    ansible_distribution == 'Amazon'
+
+- name: Install AWS CLI v2 from the official installer
+  become: yes
+  when: aws_cli_use_v2_installer | bool
+  block:
+    - name: Ensure the v2 installer prerequisites are present
+      package:
+        name:
+          - curl
+          - unzip
+        state: present
+
+    - name: Install the AWS CLI v2 install/update script
+      ansible.builtin.template:
+        src: awscli-v2-install.sh.j2
+        dest: /usr/local/sbin/awscli-v2-install.sh
+        owner: root
+        group: root
+        mode: "0755"
+
+    - name: Install AWS CLI v2
+      ansible.builtin.command:
+        cmd: /usr/local/sbin/awscli-v2-install.sh
+        creates: "{{ aws_cli_bin }}"
+
+    - name: Schedule weekly AWS CLI v2 updates
+      ansible.builtin.cron:
+        name: "awscli-v2-update"
+        weekday: "{{ aws_cli_v2_update_schedule.weekday }}"
+        hour: "{{ aws_cli_v2_update_schedule.hour }}"
+        minute: "{{ aws_cli_v2_update_schedule.minute }}"
+        job: "/usr/local/sbin/awscli-v2-install.sh >> /var/log/awscli-v2-update.log 2>&1"
+        state: "{{ 'present' if (aws_cli_v2_auto_update | bool) else 'absent' }}"
+
+- name: Create aws cli configuration files
+  block:
+    - name: Set home directory to /root
+      set_fact:
+        aws_user_dir: /root/.aws
+      when: >
+        aws_cli_user == 'root'
+
+    - name: Create aws cli directory
+      file:
+        path: "{{ aws_user_dir }}"
+        state: directory
+        owner: "{{ aws_cli_user }}"
+        group: "{{ aws_cli_user_group }}"
+        mode: 0700
+
+    - name: Create aws cli config file
+      template:
+        src: aws_config.j2
+        dest: "{{ aws_user_dir }}/config"
+        owner: "{{ aws_cli_user }}"
+        group: "{{ aws_cli_user_group }}"
+        mode: 0600
+
+    - name: Create aws cli credentials file
+      template:
+        src: aws_credentials.j2
+        dest: "{{ aws_user_dir }}/credentials"
+        owner: "{{ aws_cli_user }}"
+        group: "{{ aws_cli_user_group }}"
+        mode: 0600
+  when:
+    - profiles != None
+    - profiles != [{}]
