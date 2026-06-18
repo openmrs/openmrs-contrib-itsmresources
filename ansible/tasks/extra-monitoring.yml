@@ -8,6 +8,31 @@
       dest: /etc/datadog-agent/checks.d/
     notify: restart datadog-agent
 
+  - name: Copy Cloudflare IP-list change-detection check
+    copy:
+      owner: dd-agent
+      group: dd-agent
+      mode: 0755
+      src: files/monitoring/checks/cloudflare_ips_check.py
+      dest: /etc/datadog-agent/checks.d/
+    when: "'cloudflare' in group_names"
+    notify: restart datadog-agent
+
+  - name: Configure Cloudflare IP-list change-detection check
+    copy:
+      owner: dd-agent
+      group: dd-agent
+      mode: 0644
+      dest: /etc/datadog-agent/conf.d/cloudflare_ips_check.yaml
+      content: |
+        init_config:
+
+        instances:
+          - expected_etag: "{{ cloudflare_ips_expected_etag }}"
+            min_collection_interval: 86400
+    when: "'cloudflare' in group_names"
+    notify: restart datadog-agent
+
   - name: Ensure obsolete docker_daemon conf files are absent
     file:
       state: absent

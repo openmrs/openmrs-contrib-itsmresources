@@ -9,6 +9,9 @@ dhparam_file: /etc/nginx/ssl/dhparam.pem
 nginx_extra_http_options: |
     include /etc/nginx/snippets/tls_defaults.conf;
     include /etc/nginx/snippets/bad_bots.conf;
+    {% if 'cloudflare' in group_names %}
+    include /etc/nginx/snippets/cloudflare_realip.conf;
+    {% endif %}
 
 datadog_checks:
   ssl_check_expire_days:

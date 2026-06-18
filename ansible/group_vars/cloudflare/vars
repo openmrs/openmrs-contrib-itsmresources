@@ -1,0 +1,13 @@
+---
+# Hosts that proxy one or more vhosts through Cloudflare (orange cloud).
+#
+# Membership in `cloudflare` REQUIRES membership in `tls`: the real-IP snippet is pulled in
+# from nginx_extra_http_options, which is defined in group_vars/tls/vars and gated on
+# `'cloudflare' in group_names`. Every webserver should already be in `tls`, so in practice
+# this is automatic -- but a cloudflare-only host would silently never include the snippet.
+
+# Expected etag of Cloudflare's published IP list (api.cloudflare.com/client/v4/ips).
+# cloudflare_ips_check.py compares the live etag against this and alerts on drift. When it
+# changes, refresh this value and the ranges in
+# files/nginx/cloudflare/snippets/cloudflare_realip.conf together.
+cloudflare_ips_expected_etag: "38f79d050aa027e3be3865e495dcc9bc"

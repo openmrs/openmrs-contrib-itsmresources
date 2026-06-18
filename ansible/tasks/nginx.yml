@@ -7,6 +7,15 @@
       src: files/nginx/common/snippets/
       dest: /etc/nginx/snippets/
 
+  - name: Copy Cloudflare real-IP nginx snippet
+    copy:
+      owner: root
+      group: root
+      mode: 0755
+      src: files/nginx/cloudflare/snippets/
+      dest: /etc/nginx/snippets/
+    when: "'cloudflare' in group_names"
+
   - name: Copy main webserver nginx snippets
     copy:
       owner: root
