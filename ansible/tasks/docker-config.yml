@@ -17,11 +17,11 @@
     when: docker_unconfigured_data_dir.rc != 0
 
   - name: Configure docker data directory
-    copy:
+    template:
       owner: root
       group: root
       mode: 0644
-      src: files/docker/docker_daemon.json
+      src: templates/docker/docker_daemon.json.j2
       dest: /etc/docker/daemon.json
     when: docker_unconfigured_data_dir.rc != 0
 
