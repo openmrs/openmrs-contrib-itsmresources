@@ -1,9 +1,11 @@
 [prod]
+aksum.openmrs.org
 bele.openmrs.org
 goba.openmrs.org
 chiro.openmrs.org
 
 [docker]
+aksum.openmrs.org
 bele.openmrs.org
 goba.openmrs.org
 chiro.openmrs.org
@@ -17,6 +19,7 @@ bele.openmrs.org
 goba.openmrs.org
 
 [backup]
+aksum.openmrs.org
 bele.openmrs.org
 goba.openmrs.org
 chiro.openmrs.org
