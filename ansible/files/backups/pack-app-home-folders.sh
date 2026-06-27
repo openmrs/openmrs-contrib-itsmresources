@@ -12,6 +12,11 @@ set -eux
 VM=${1}
 echo "Packing application home folders $(date)"
 
+if [ ! -d /data ]; then
+  echo "No /data directory present; nothing to pack."
+  exit 0
+fi
+
 for file in $(find /data/ -maxdepth 1 -name "*_home"); do
   echo "Folder $file"
   if [ $file = "/data/bamboo_home" ]
