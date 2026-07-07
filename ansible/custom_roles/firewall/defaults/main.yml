@@ -1,0 +1,7 @@
+---
+# Master switch: the role is a no-op unless a host opts in (e.g. in host_vars).
+firewall_enabled: false
+
+# When true, inbound 80/443 is limited to cloudflare_ip_ranges instead of any source.
+# Only valid on hosts set up for Cloudflare (enforced by an assert in tasks/main.yml).
+restrict_http_to_cloudflare: false

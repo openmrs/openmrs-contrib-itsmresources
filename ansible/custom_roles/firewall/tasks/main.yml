@@ -1,0 +1,56 @@
+---
+# Minimal host firewall: default-deny incoming, SSH always allowed, and the web ports
+# opened either to any source or, when fronted by Cloudflare, to the CF edge ranges only.
+# With default-deny the CF case needs no explicit deny -- unlisted sources are dropped.
+
+- name: Configure host firewall
+  when: firewall_enabled | bool
+  block:
+    - name: Restricting HTTP(S) to Cloudflare requires the Cloudflare setup
+      ansible.builtin.assert:
+        that:
+          - "'cloudflare' in group_names"
+          - cloudflare_ip_ranges | default([]) | length > 0
+        fail_msg: >-
+          restrict_http_to_cloudflare is true but this host is not set up for Cloudflare
+          (needs cloudflare group membership and a non-empty cloudflare_ip_ranges).
+      when: restrict_http_to_cloudflare | bool
+
+    - name: Install ufw
+      ansible.builtin.apt:
+        name: ufw
+        state: present
+
+    # Added before enabling so turning ufw on can't drop the control connection.
+    - name: Allow SSH
+      community.general.ufw:
+        rule: allow
+        port: "22"
+        proto: tcp
+
+    - name: Allow HTTP/HTTPS from Cloudflare only
+      community.general.ufw:
+        rule: allow
+        port: "{{ item.1 }}"
+        proto: tcp
+        src: "{{ item.0 }}"
+      loop: "{{ cloudflare_ip_ranges | product(['80', '443']) | list }}"
+      loop_control:
+        label: "{{ item.0 }} -> {{ item.1 }}"
+      when: restrict_http_to_cloudflare | bool
+
+    - name: Allow HTTP/HTTPS from any source
+      community.general.ufw:
+        rule: allow
+        port: "{{ item }}"
+        proto: tcp
+      loop:
+        - "80"
+        - "443"
+      when: not (restrict_http_to_cloudflare | bool)
+
+    - name: Enable ufw with default deny incoming
+      community.general.ufw:
+        state: enabled
+        policy: deny
+        direction: incoming

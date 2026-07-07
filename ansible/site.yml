@@ -21,6 +21,14 @@
    - { role: 'custom_roles/sudo' }
    - { role: 'custom_roles/sshd' }
 
+- name: Host firewall
+  hosts: all
+  become: true
+  tags:
+    - firewall
+  roles:
+   - { role: 'custom_roles/firewall' }
+
 - name: All monitoring related stuff
   hosts: all
   become: true
