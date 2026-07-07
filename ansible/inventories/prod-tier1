@@ -23,6 +23,7 @@ jinka.openmrs.org
 
 [backup]
 adaba.openmrs.org
+maji.openmrs.org
 jinka.openmrs.org
 
 [discourse]
@@ -33,3 +34,6 @@ adaba.openmrs.org
 
 [id]
 adaba.openmrs.org
+
+[cloudflare]
+maji.openmrs.org

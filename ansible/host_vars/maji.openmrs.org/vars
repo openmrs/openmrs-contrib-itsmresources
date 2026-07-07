@@ -19,6 +19,9 @@ letsencrypt_cert_domains:
   - maji.openmrs.org
   - talk.openmrs.org
 
+letsencrypt_authenticator: acmedns
+acme_dns_server_url: "http://acme-internal.openmrs.org:8080"
+
 nginx_vhosts:
  - listen: "80 default_server reuseport"
    server_name: "talk.openmrs.org"
