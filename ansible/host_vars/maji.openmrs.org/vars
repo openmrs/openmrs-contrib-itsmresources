@@ -20,12 +20,12 @@ letsencrypt_cert_domains:
   - talk.openmrs.org
 
 nginx_vhosts:
- - listen: "80 default_server"
+ - listen: "80 default_server reuseport"
    server_name: "talk.openmrs.org"
    filename: "talk.openmrs.org.80.conf"
    extra_parameters: |
      return 301 https://$host$request_uri;
- - listen: "443 ssl"
+ - listen: "443 ssl reuseport"
    server_name: "talk.openmrs.org"
    extra_parameters: |
      access_log /var/log/nginx/talk_access.log;
