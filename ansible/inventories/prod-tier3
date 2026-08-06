@@ -26,3 +26,6 @@ chiro.openmrs.org
 
 [acme_dns]
 chiro.openmrs.org
+
+[cloudflare]
+bele.openmrs.org
