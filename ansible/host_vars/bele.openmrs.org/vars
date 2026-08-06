@@ -57,7 +57,8 @@ letsencrypt_cert_domains:
 
 letsencrypt_authenticator: acmedns
 acme_dns_server_url: "http://acme-internal.openmrs.org:8080"
-
+firewall_enabled: true
+restrict_http_to_cloudflare: true
 
 nginx_keepalive_timeout: "600"
 nginx_keepalive_requests: "600"
