@@ -30,6 +30,7 @@
     state: "{{ item.state }}"
   loop:
     - { dest: "{{ bamboo_catalina }}", owner: "{{ bamboo_user }}", group: "{{ bamboo_user }}", mode: "0755", state: "directory" }
+    - { dest: "{{ bamboo_log_dir }}", owner: "{{ bamboo_user }}", group: "{{ bamboo_user }}", mode: "0755", state: "directory" }
   notify: Restart Bamboo
   tags: hswong3i.bamboo
 

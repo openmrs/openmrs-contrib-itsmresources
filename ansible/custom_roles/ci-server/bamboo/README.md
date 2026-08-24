@@ -113,20 +113,27 @@ Role Variables
 <td>Atlassian Support recommended JVM arguments.</td>
 </tr>
 <tr class="even">
+<td>bamboo_log_dir</td>
+<td>yes</td>
+<td>{{ bamboo_catalina }}/logs</td>
+<td></td>
+<td>Location for the Bamboo Apache Tomcat log files (catalina.out, access log and the java.util.logging handlers).</td>
+</tr>
+<tr class="odd">
 <td>bamboo_pass</td>
 <td>yes</td>
 <td></td>
 <td></td>
 <td>Password for Bamboo system user.</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>bamboo_proxy_name</td>
 <td>no</td>
 <td><code>null</code></td>
 <td></td>
 <td>Pass value as <code>proxyName</code> to <a href="https://github.com/pantarei/ansible-role-bamboo/blob/master/templates/usr/share/bamboo/conf/server.xml.j2">template</a>.</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>bamboo_scheme</td>
 <td>no</td>
 <td><code>null</code></td>
@@ -137,28 +144,28 @@ Role Variables
 </ul></td>
 <td>Install Bamboo in standalone mode if <code>null</code>, or integrating with Apache using HTTP if <code>http</code>, or integrating with Apache using HTTPS if <code>https</code>.</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>bamboo_server_port</td>
 <td>yes</td>
 <td>8007</td>
 <td></td>
 <td>Bamboo Apache Tomcat server port.</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>bamboo_uid</td>
 <td>no</td>
 <td></td>
 <td></td>
 <td>Specifying the UID for shared storage. NOTE: This value should only be set once before deploying and then never changed.</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>bamboo_url</td>
 <td>yes</td>
 <td><a href="https://github.com/pantarei/ansible-role-bamboo/blob/master/defaults/main.yml">defaults/main.yml</a></td>
 <td></td>
 <td>URL for download archive.</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>bamboo_user</td>
 <td>yes</td>
 <td></td>

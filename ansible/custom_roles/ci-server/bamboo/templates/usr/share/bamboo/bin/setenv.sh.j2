@@ -7,6 +7,14 @@
 BAMBOO_HOME="{{ bamboo_home }}"
 
 #
+# catalina.sh redirects the console output of the server to CATALINA_OUT, defaulting to
+# ${CATALINA_BASE}/logs/catalina.out.  It reads this file before applying that default, so
+# setting it here keeps catalina.out in the same place however Bamboo is started.
+#
+CATALINA_OUT="{{ bamboo_log_dir }}/catalina.out"
+export CATALINA_OUT
+
+#
 #  Occasionally Atlassian Support may recommend that you set some specific JVM arguments.  You can use this variable below to do that.
 #
 JVM_SUPPORT_RECOMMENDED_ARGS="{{ bamboo_jvm_support_recommended_args }}"
