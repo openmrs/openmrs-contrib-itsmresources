@@ -1,0 +1,45 @@
+---
+# Opt-in swap file. A no-op unless the host sets swap_file_size_mb (e.g. in host_vars);
+# swap_file_path defaults to /swapfile.
+# Without swap the kernel cannot page out idle anonymous memory (an idle JVM's heap, say),
+# so under memory pressure it can only drop page cache -- including the mmap'd weights of a
+# model another container is using, which are then read back from disk while it answers.
+
+- name: Configure swap file
+  when: swap_file_size_mb | default(0) | int > 0
+  vars:
+    swap_file: "{{ swap_file_path | default('/swapfile') }}"
+  block:
+    - name: Allocate swap file
+      ansible.builtin.command: "fallocate -l {{ swap_file_size_mb }}M {{ swap_file }}"
+      args:
+        creates: "{{ swap_file }}"
+      register: swap_file_allocated
+
+    - name: Restrict swap file permissions
+      ansible.builtin.file:
+        path: "{{ swap_file }}"
+        owner: root
+        group: root
+        mode: "0600"
+
+    - name: Format swap file
+      ansible.builtin.command: "mkswap {{ swap_file }}"
+      when: swap_file_allocated is changed
+
+    - name: Check whether the swap file is active
+      ansible.builtin.command: swapon --show=NAME --noheadings
+      register: active_swap
+      changed_when: false
+
+    - name: Enable swap file
+      ansible.builtin.command: "swapon {{ swap_file }}"
+      when: swap_file not in active_swap.stdout_lines
+
+    - name: Keep swap file enabled across reboots
+      ansible.posix.mount:
+        path: none
+        src: "{{ swap_file }}"
+        fstype: swap
+        opts: sw
+        state: present

@@ -39,6 +39,10 @@ datadog_tags_extra:
   - "service:openmrs-platform"
   - "service:ocl"
 
+# 15 GB, no swap, and five docker stacks: give the kernel somewhere to page idle JVM heaps
+# instead of dropping chartsearchai's model weights from page cache mid-answer.
+swap_file_size_mb: 4096
+
 docker_deployment:
  - demo
  - mdsbuilder
