@@ -10,6 +10,7 @@
    - import_tasks: tasks/hostname.yml # should happen before installing datadog
    - import_tasks: tasks/updates.yml
    - import_tasks: tasks/cleanup.yml
+   - import_tasks: tasks/swap.yml
 
 - name: Standard Operating Environment
   hosts: all

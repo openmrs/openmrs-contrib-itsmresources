@@ -1,0 +1,53 @@
+---
+# Opt-in swap file. A no-op unless the host sets swap_file_size_mb (e.g. in host_vars);
+# swap_file_path defaults to /swapfile. The size is only used when the file is created:
+# to resize, swapoff and delete the file on the host, then re-run.
+# Without swap the kernel cannot page out idle anonymous memory (an idle JVM's heap, say),
+# so under memory pressure it can only drop page cache -- including the mmap'd weights of a
+# model another container is using, which are then read back from disk while it answers.
+
+- name: Configure swap file
+  when: swap_file_size_mb | default(0) | int > 0
+  vars:
+    swap_file: "{{ swap_file_path | default('/swapfile') }}"
+  block:
+    - name: Create swap file
+      ansible.builtin.shell: |
+        rm -f {{ swap_file }}.tmp
+        avail=$(df --output=avail -m {{ swap_file | dirname }} | tail -n 1 | tr -d ' ')
+        if ! [ "$avail" -ge {{ swap_file_size_mb | int + 1024 }} ]; then
+          echo "{{ swap_file | dirname }} has $avail MB free, too little for {{ swap_file_size_mb }} MB of swap plus 1024 MB to spare" >&2
+          exit 1
+        fi
+        fallocate -l {{ swap_file_size_mb }}M {{ swap_file }}.tmp &&
+          chmod 0600 {{ swap_file }}.tmp &&
+          mkswap {{ swap_file }}.tmp &&
+          mv {{ swap_file }}.tmp {{ swap_file }} ||
+          { rm -f {{ swap_file }}.tmp; exit 1; }
+      args:
+        creates: "{{ swap_file }}"
+
+    - name: Restrict swap file permissions
+      ansible.builtin.file:
+        path: "{{ swap_file }}"
+        owner: root
+        group: root
+        mode: "0600"
+
+    - name: Check whether the swap file is active
+      ansible.builtin.shell: swapon --show=NAME --noheadings | grep -qxF "$(readlink -f {{ swap_file }})"
+      register: active_swap
+      changed_when: false
+      failed_when: active_swap.rc > 1
+
+    - name: Enable swap file
+      ansible.builtin.command: "swapon {{ swap_file }}"
+      when: active_swap.rc == 1
+
+    - name: Keep swap file enabled across reboots
+      ansible.posix.mount:
+        path: none
+        src: "{{ swap_file }}"
+        fstype: swap
+        opts: sw
+        state: present
