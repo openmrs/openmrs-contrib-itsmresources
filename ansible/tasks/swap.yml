@@ -35,13 +35,14 @@
         mode: "0600"
 
     - name: Check whether the swap file is active
-      ansible.builtin.command: swapon --show=NAME --noheadings
+      ansible.builtin.shell: swapon --show=NAME --noheadings | grep -qxF "$(readlink -f {{ swap_file }})"
       register: active_swap
       changed_when: false
+      failed_when: active_swap.rc > 1
 
     - name: Enable swap file
       ansible.builtin.command: "swapon {{ swap_file }}"
-      when: swap_file not in active_swap.stdout_lines
+      when: active_swap.rc == 1
 
     - name: Keep swap file enabled across reboots
       ansible.posix.mount:
