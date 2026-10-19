@@ -48,17 +48,51 @@
       state: absent
       path: /opt/datadog-agent/agent/checks.d
 
-  - name: Upgrade Datadog-Agent Embdedded pip
-    command: /opt/datadog-agent/embedded/bin/pip install --upgrade pip
+  - name: Check Datadog-Agent embedded pip is usable
+    command: /opt/datadog-agent/embedded/bin/python3 -c "import pip._internal.resolution.resolvelib.resolver"
+    register: datadog_embedded_pip_check
+    changed_when: false
+    failed_when: false
 
-  - name: Install checks python module for custom dd-checks
-    command: /opt/datadog-agent/embedded/bin/pip install checks
+  - name: Repair Datadog-Agent embedded pip
+    when: datadog_embedded_pip_check.rc != 0
+    block:
+      - name: Locate Datadog-Agent embedded site-packages
+        command: /opt/datadog-agent/embedded/bin/python3 -c "import sysconfig; print(sysconfig.get_paths()['purelib'])"
+        register: datadog_embedded_site_packages
+        changed_when: false
 
-  - name: Backup & Upgrades Check - Python Module Installation
-    command: /opt/datadog-agent/embedded/bin/pip install utils
+      - name: Find Datadog-Agent embedded pip installs
+        find:
+          paths: "{{ datadog_embedded_site_packages.stdout }}"
+          patterns:
+            - pip
+            - pip-*.dist-info
+          file_type: directory
+        register: datadog_embedded_pip_dirs
 
-  - name:  Upgrade Python OpenSSL Module for SSL Expiry Check
-    command: /opt/datadog-agent/embedded/bin/pip install --upgrade pyopenssl
+      - name: Remove Datadog-Agent embedded pip installs
+        file:
+          path: "{{ item.path }}"
+          state: absent
+        loop: "{{ datadog_embedded_pip_dirs.files }}"
+
+      - name: Reinstall datadog-agent to restore its bundled pip
+        command: apt-get install --reinstall -y datadog-agent
+        notify: restart datadog-agent
+
+  - name: Install Python modules for custom dd-checks
+    pip:
+      executable: /opt/datadog-agent/embedded/bin/pip
+      name:
+        - checks
+        - utils
+
+  - name: Upgrade Python OpenSSL Module for SSL Expiry Check
+    pip:
+      executable: /opt/datadog-agent/embedded/bin/pip
+      name: pyopenssl
+      state: latest
 
 
   ## Adding some versions as dynamic tags for datadog

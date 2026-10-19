@@ -1,4 +1,5 @@
 [prod]
+adwa.openmrs.org
 bonga.openmrs.org
 gode.openmrs.org
 dimtu.openmrs.org
@@ -6,12 +7,14 @@ mota.openmrs.org
 wokru.openmrs.org
 
 [docker]
+adwa.openmrs.org
 bonga.openmrs.org
 gode.openmrs.org
 dimtu.openmrs.org
 wokru.openmrs.org
 
 [web]
+adwa.openmrs.org
 bonga.openmrs.org
 gode.openmrs.org
 dimtu.openmrs.org
@@ -19,6 +22,7 @@ mota.openmrs.org
 wokru.openmrs.org
 
 [tls]
+adwa.openmrs.org
 bonga.openmrs.org
 gode.openmrs.org
 dimtu.openmrs.org

@@ -1,4 +1,7 @@
 {
+{% if docker_default_publish_ip | default('') %}
+    "ip": "{{ docker_default_publish_ip }}",
+{% endif %}
     "runtimes": {
         "nvidia": {
             "path": "nvidia-container-runtime",

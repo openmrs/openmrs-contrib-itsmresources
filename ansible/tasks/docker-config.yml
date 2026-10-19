@@ -1,45 +1,39 @@
 ---
-  - name: Retrieve original docker data directory
-    command: docker info --format  {% raw %}'{{json .DockerRootDir}}'{% endraw %}
-    register: docker_original_data_dir
-
-  - name: Test if docker data directory is configured
-    shell: echo {{docker_original_data_dir.stdout}} | fgrep -q "{{docker_data_dir}}"
-    register: docker_unconfigured_data_dir
-    ignore_errors: yes
-
-  - name: Stop docker service
-    command: systemctl stop docker.service
-    when: docker_unconfigured_data_dir.rc != 0
-
-  - name: Stop docker socket
-    command: systemctl stop docker.socket
-    when: docker_unconfigured_data_dir.rc != 0
-
-  - name: Configure docker data directory
+  - name: Configure the docker daemon
     template:
       owner: root
       group: root
       mode: 0644
       src: templates/docker/docker_daemon.json.j2
       dest: /etc/docker/daemon.json
-    when: docker_unconfigured_data_dir.rc != 0
+    register: docker_daemon_config
 
-  # - name: Move docker data directory
-  #   command: mv {{docker_original_data_dir.stdout}} {{docker_data_dir}}
-  #   when: docker_unconfigured_data_dir.rc != 0
+  # daemon.json is read only at daemon start, so a config change needs a stop/start rather
+  # than a reload. docker.socket is stopped alongside the service because socket activation
+  # would otherwise restart the daemon against the old config before the start step runs.
+  - name: Restart docker to pick up the daemon configuration
+    when: docker_daemon_config is changed
+    block:
+      - name: Stop docker service
+        ansible.builtin.systemd:
+          name: docker.service
+          state: stopped
 
-  - name: Reload docker service
-    command: systemctl daemon-reload
-    when: docker_unconfigured_data_dir.rc != 0
+      - name: Stop docker socket
+        ansible.builtin.systemd:
+          name: docker.socket
+          state: stopped
 
-  - name: Start docker socket service
-    command: systemctl start docker.socket
-    when: docker_unconfigured_data_dir.rc != 0
+      - name: Start docker socket
+        ansible.builtin.systemd:
+          name: docker.socket
+          state: started
+          daemon_reload: true
 
-  - name: Start docker service
-    command: systemctl start docker.service
-    when: docker_unconfigured_data_dir.rc != 0
+      - name: Start docker service
+        ansible.builtin.systemd:
+          name: docker.service
+          state: started
 
   - name: Adding dd-agent to docker group
     user: name='dd-agent'
