@@ -1,30 +1,12 @@
 ---
 # LDAP, ID, Crowd
 
-users:
-  jayasanka:
-    comment: Jayasanka Weerasinghe
-    groups: 'admin'
-    ssh_key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDAxRE0WsKB8J7Qkg3LiCaspqsYzIjuv2BTPnzywBlVs5LCyzDNpT2QqaJxlrI8fEucQFAzMSIPwgBV+HzhhQ3uoPbjALAhMkoxPHM8dVdqbvKIrIpJq3sOEw41GGWmP454aXqAv6YwGwxPpAF5w/46p1c81HXqpEYkDB5TN9u0tG7R/fY8eUt+bQcnqU+QJiThKp/vxCm8fBQ7O708A0WpK9zWYh0Ut2Oc3FhkdaFlA4HyHwfX+Yp4YDjVcpDxVPICvlEb8lLh8+H3Rm5Rk3gmOnXmKCEy7eqYD0LXJmqA//b6RhukZI/nUk5JnixtOXGhhKvd7ijoM42YlxtJu7bbiFyCmHUw3WLox+oEaOe4mHLqUBvmN+jeI9NY+XWHv2T7UQTCfch2EI9/eVLhFtepauBwhOnBOjwa7gQFBiV1RuI6j80pFv8BvciSc/LKhFcsAJStYt3pd841jA2+GBErNJowEuKBAYKrTZqD7SgneW0CzoHpu5hrPmhiZkjFIjGRhLs3LSjzHkl/efyEzmbkwjuVp5fmCnpkV4QIwS644ZMPTx1qXJ0uRSSnAsvlN+45+HhgFC2risS1h+LDzbBLib58xaz7OR1GhbymbA+EFoms2Pa5aN7MwcGLYEDLl1Ggk/zJ+u52/E66xsZHy6lRQJ2kriRDCWz/lgJZALOSIw== jayasanka@Jayasankas-MacBook-Pro.local"
-  beatyconsultancy:
-    comment: Ricky Beaty
-    groups: 'admin'
-    ssh_key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDhEHnDulUJn5h73lxAfDH4WqylJgsIjyQ/M1wdVCOLzT3O1akgek4JJiNtMQYO19kNGP4ZG5vxevxCVizYt0PGAYINSOyzvoV3//txd/UhjQ6eE27QhmjxDfh56v3sucDN342unRgo3IGzv/T6tDKPDRXOepz9E/s1s6Ps/HgprSW/UmlK/kD1EB7bGIkAh75afcDQdzU+ix3N4ADnLKCJOvhOFaAD/IGCjMp6DcOMjdYAAh34BaWlIgzvdU9UoJMhJC4WHXInSrZRjQei7VTSJp7TH8VCBgvITybt2U+9XauxeBlyRenx3pQRqnfeHK1/YP7LVoLOkSZp9vf/9sM2XBNu6gVnTbJOmKaFDsQ8MiW7E2pkAL770qJFT+NM0u0Yxv1dG2d3HLb3ELxqnumE4D8nr24JMxt6BJmgXGO1O1oPdSGhiIWOFP1nAUO2OSwWtncxFAQzerql0LyB7u0A85YpaXYM/2wWLJo63tP/S+InbXNK+c2+M8cXgwiHAGqV9sRp1oTomc4j3Wuq0tATyF/mIsWH7pQZ2LDq+c6PWwr4TFTEIIGEnr7USaahBf4KZzPoQaFa9P4IiHU0frMX/fF0wSluZu0QnBW5RvE0aV1tBmW8RcptsPpV8TN+aFakbk3jH3Pjxhcd4Eyah+J/FHxkJJ4i3h6wSMAfTc3WvQ=="
-  syedahmedmansoor:
-    comment: Ahmed
-    groups: 'admin'
-    ssh_key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDP8mYKtK1QvKJacv4Gobo7u6RpZlhQJa1q3P8cJXb13rX1UyJt9fhahJjMJriQH9c4POhVmU/fQ+C2OGf1Htbz3KAigxTACFSM1r74J6wL7SfMfUmIjc3K5V618FvdLcmNgenyYnqBq4f89L8LZgWbzQKptccOfLNtLJgYeuyBgGK4s/f0AlwaTPg1y4EgQrfVvkTpIQzQeRd6H5dgrdwl2G3Lx2Eyy2Q6bOlStCxOXpGs4ObPCKY18q60d/56wt9/anMEmdqQM1ez7H7B/kK64MAv2GzJS3z/ieFap3EPLgbRmCeyAl4F/d/BIgXuHinTJ/KNhsoytfLZWGcH4ovqWu9guUBrQNprUo3eBpQC6SEAraFJQYjCb+2dySZ6yZRJT1l9bUKxOpaGUwFVqYngJ2tDkgANTk0HEFIiWoewUdRhwXvf+JMurbrRna1er4oJfqXmaw6L2x04nZmz61pm1BbuU6mrXtpsNeOODm/sud5XMFwDKaqkoe64gX1x0vE= syedmuhammadahmed@Ahmeds-MacBook-Air.local"
-
-
-
 datadog_tags_extra:
   - "service:ldap"
   - "service-group:id"
   - "service:id"
   - "service:keycloak"
   - "service:postfix"
-
-
 
 letsencrypt_cert_domains:
    - adaba.openmrs.org
@@ -34,19 +16,17 @@ letsencrypt_cert_domains:
    - id-new.openmrs.org # TODO: discard once id is free
 
 docker_deployment:
-  #  - ldap
-  # - id
    - id-new
    - ldap-new
 
 nginx_vhosts:
-  - listen: "80 default_server"
+  - listen: "80"
     server_name: "ldap.openmrs.org"
     filename: "ldap.openmrs.org.80.conf"
     extra_parameters: |
       return 301 https://$host$request_uri;
   - listen: "443 ssl"
-    server_name: "ldap.openmrs.org"
+    server_name: "adaba.openmrs.org"
     extra_parameters: |
       access_log /var/log/nginx/demo_access.log;
       error_log /var/log/nginx/demo_error.log;
@@ -55,27 +35,27 @@ nginx_vhosts:
       location ^~ /.well-known/acme-challenge/ {
         root /usr/share/nginx/html;
       }
-  - listen: "80"
-    server_name: "id.openmrs.org"
-    filename: "id.openmrs.org.80.conf"
-    extra_parameters: |
-      return 301 https://id-new.openmrs.org$request_uri;
-  - listen: "443 ssl"
-    server_name: "id.openmrs.org"
-    extra_parameters: |
-      access_log /var/log/nginx/deployer_access.log;
-      error_log /var/log/nginx/deployer_error.log;
-      ssl_certificate /etc/letsencrypt/live/adaba.openmrs.org/fullchain.pem;
-      ssl_certificate_key /etc/letsencrypt/live/adaba.openmrs.org/privkey.pem;
-      location ^~ /.well-known/acme-challenge/ {
-        root /usr/share/nginx/html;
-      }
-      location =/atlassian-domain-verification.html { # Used to verify domain by Atlassian to manage accounts
-        root /usr/share/nginx/html;
-      }
-      location / {
-        return 301 https://id-new.openmrs.org$request_uri;
-      }
+  # - listen: "80"
+  #   server_name: "id.openmrs.org"
+  #   filename: "id.openmrs.org.80.conf"
+  #   extra_parameters: |
+  #     return 301 https://id-new.openmrs.org$request_uri;
+  # - listen: "443 ssl"
+  #   server_name: "id.openmrs.org"
+  #   extra_parameters: |
+  #     access_log /var/log/nginx/deployer_access.log;
+  #     error_log /var/log/nginx/deployer_error.log;
+  #     ssl_certificate /etc/letsencrypt/live/adaba.openmrs.org/fullchain.pem;
+  #     ssl_certificate_key /etc/letsencrypt/live/adaba.openmrs.org/privkey.pem;
+  #     location ^~ /.well-known/acme-challenge/ {
+  #       root /usr/share/nginx/html;
+  #     }
+  #     location =/atlassian-domain-verification.html { # Used to verify domain by Atlassian to manage accounts
+  #       root /usr/share/nginx/html;
+  #     }
+  #     location / {
+  #       return 301 https://id-new.openmrs.org$request_uri;
+  #     }
   - listen: "80"
     server_name: "id-new.openmrs.org"
     filename: "id-new.openmrs.org.80.conf"
@@ -98,7 +78,7 @@ nginx_vhosts:
         return 301 https://id.atlassian.com/login/saml/start?connection=saml-63b5137b-03a2-4f78-8a73-cac56cdb2433;
       }
       location / {
-        proxy_set_header  X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header  X-Forwarded-For   $remote_addr;
         proxy_set_header  X-Forwarded-Proto $scheme; # Needed for admin console to work
         proxy_set_header  X-Forwarded-Host  $host;
         proxy_pass http://127.0.0.1:8080/;
@@ -121,7 +101,7 @@ nginx_vhosts:
       location / {
         proxy_pass http://localhost:8090/;
       }
-  - listen: "80"
+  - listen: "80 default_server"
     server_name: "adaba.openmrs.org"
     filename: "adaba.openmrs.org.80.conf"
     extra_parameters: |
@@ -143,4 +123,3 @@ nginx_vhosts:
 aws_access_key_id: '{{ vault_aws_access_key_id }}'
 aws_secret_access_key: '{{ vault_aws_secret_access_key }}'
 backup_tag: 'configured'
-
