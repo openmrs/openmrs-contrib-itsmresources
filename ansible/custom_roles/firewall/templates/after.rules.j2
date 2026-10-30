@@ -1,0 +1,50 @@
+#
+# rules.input-after
+#
+# Rules that should be run after the ufw command line added rules. Custom
+# rules should be added to one of these chains:
+#   ufw-after-input
+#   ufw-after-output
+#   ufw-after-forward
+#
+
+# Don't delete these required lines, otherwise there will be errors
+*filter
+:ufw-after-input - [0:0]
+:ufw-after-output - [0:0]
+:ufw-after-forward - [0:0]
+# End required lines
+
+# don't log noisy services by default
+-A ufw-after-input -p udp --dport 137 -j ufw-skip-to-policy-input
+-A ufw-after-input -p udp --dport 138 -j ufw-skip-to-policy-input
+-A ufw-after-input -p tcp --dport 139 -j ufw-skip-to-policy-input
+-A ufw-after-input -p tcp --dport 445 -j ufw-skip-to-policy-input
+-A ufw-after-input -p udp --dport 67 -j ufw-skip-to-policy-input
+-A ufw-after-input -p udp --dport 68 -j ufw-skip-to-policy-input
+
+# don't log noisy broadcast
+-A ufw-after-input -m addrtype --dst-type BROADCAST -j ufw-skip-to-policy-input
+
+# don't delete the 'COMMIT' line or these rules won't be processed
+COMMIT
+
+# Container egress denies -- managed by ansible (custom_roles/firewall).
+#
+# Forwarded container traffic reaches DOCKER-USER before any ufw chain, so these cannot be
+# ufw rules; ufw only owns the file and re-applies it. The chain declaration flushes
+# DOCKER-USER on reload, so repeats don't stack -- and the trailing RETURN has to be
+# restated because it replaces the one docker adds.
+#
+# Matching the outbound interface exempts container-to-container traffic, which egresses a
+# bridge (br-*/docker0) rather than the uplink.
+*filter
+:DOCKER-USER - [0:0]
+{% for destination in docker_egress_allowed_destinations %}
+-A DOCKER-USER -o {{ docker_egress_uplink_interface }} -d {{ destination }} -j RETURN
+{% endfor %}
+{% for destination in docker_egress_denied_destinations %}
+-A DOCKER-USER -o {{ docker_egress_uplink_interface }} -d {{ destination }} -j DROP
+{% endfor %}
+-A DOCKER-USER -j RETURN
+COMMIT

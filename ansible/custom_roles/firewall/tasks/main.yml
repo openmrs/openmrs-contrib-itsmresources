@@ -18,6 +18,15 @@
         - firewall_allow_http | bool
         - restrict_http_to_cloudflare | bool
 
+    - name: Denying container egress requires an uplink interface to match on
+      ansible.builtin.assert:
+        that:
+          - docker_egress_uplink_interface | default('') | length > 0
+        fail_msg: >-
+          docker_egress_uplink_interface is empty; set it in host_vars (the default comes
+          from ansible_default_ipv4.interface, which is unset on this host).
+      when: docker_egress_deny_enabled | bool
+
     - name: Install ufw
       ansible.builtin.apt:
         name: ufw
@@ -55,8 +64,28 @@
         - firewall_allow_http | bool
         - not (restrict_http_to_cloudflare | bool)
 
+    - name: Deny container egress to link-local and private ranges
+      ansible.builtin.template:
+        owner: root
+        group: root
+        mode: "0640"
+        src: "{{ item }}.j2"
+        dest: "/etc/ufw/{{ item }}"
+      loop:
+        - after.rules
+        - after6.rules
+      register: firewall_after_rules
+      when: docker_egress_deny_enabled | bool
+
     - name: Enable ufw with default deny incoming
       community.general.ufw:
         state: enabled
         policy: deny
         direction: incoming
+
+    # `state: enabled` is a no-op on an already-enabled ufw, so edits to the rules files
+    # need an explicit reload to reach the kernel.
+    - name: Reload ufw
+      community.general.ufw:
+        state: reloaded
+      when: firewall_after_rules is changed

@@ -1,0 +1,46 @@
+#
+# Rules that should be run after the ufw command line added rules. Custom
+# rules should be added to one of these chains:
+#   ufw6-after-input
+#   ufw6-after-output
+#   ufw6-after-forward
+#
+
+# Don't delete these required lines, otherwise there will be errors
+*filter
+:ufw6-after-input - [0:0]
+:ufw6-after-output - [0:0]
+:ufw6-after-forward - [0:0]
+# End required lines
+
+# don't log noisy services by default
+-A ufw6-after-input -p udp --dport 137 -j ufw6-skip-to-policy-input
+-A ufw6-after-input -p udp --dport 138 -j ufw6-skip-to-policy-input
+-A ufw6-after-input -p tcp --dport 139 -j ufw6-skip-to-policy-input
+-A ufw6-after-input -p tcp --dport 445 -j ufw6-skip-to-policy-input
+-A ufw6-after-input -p udp --dport 546 -j ufw6-skip-to-policy-input
+-A ufw6-after-input -p udp --dport 547 -j ufw6-skip-to-policy-input
+
+# don't delete the 'COMMIT' line or these rules won't be processed
+COMMIT
+
+# Container egress denies -- managed by ansible (custom_roles/firewall).
+#
+# The v6 counterpart of the block in after.rules; see that file for why these live here
+# rather than in ufw's own chains. Docker gives containers no IPv6 connectivity unless the
+# daemon is configured for it, so until then this chain is created but never jumped to.
+#
+# Unlike v4 there is no RFC1918 to deny: an internal v6 host normally has a globally
+# routable address, so these ranges close the metadata/link-local and ULA paths but not
+# "the internal network" -- that needs the host's own prefix in
+# docker_egress_denied_destinations6.
+*filter
+:DOCKER-USER - [0:0]
+{% for destination in docker_egress_allowed_destinations6 %}
+-A DOCKER-USER -o {{ docker_egress_uplink_interface }} -d {{ destination }} -j RETURN
+{% endfor %}
+{% for destination in docker_egress_denied_destinations6 %}
+-A DOCKER-USER -o {{ docker_egress_uplink_interface }} -d {{ destination }} -j DROP
+{% endfor %}
+-A DOCKER-USER -j RETURN
+COMMIT

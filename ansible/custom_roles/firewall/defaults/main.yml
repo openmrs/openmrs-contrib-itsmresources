@@ -7,3 +7,29 @@ firewall_allow_http: "{{ restrict_http_to_cloudflare }}"
 
 # When true, inbound 80/443 is limited to cloudflare_ip_ranges instead of any source.
 restrict_http_to_cloudflare: false
+
+# When true, ufw's after.rules/after6.rules also deny containers the destinations below.
+# Container traffic never reaches ufw's own chains, so this is applied as a DOCKER-USER
+# block that ufw re-applies on reload and at boot.
+docker_egress_deny_enabled: false
+
+# Interface the container denies match on. Container-to-container traffic leaves via a
+# bridge instead, so it is exempt.
+docker_egress_uplink_interface: "{{ ansible_default_ipv4.interface }}"
+
+docker_egress_denied_destinations:
+  - "169.254.0.0/16"
+  - "10.0.0.0/8"
+  - "172.16.0.0/12"
+  - "192.168.0.0/16"
+
+# No RFC1918 equivalent exists on v6, so add the host's own prefix here if its internal
+# network is globally routable.
+docker_egress_denied_destinations6:
+  - "fe80::/10"
+  - "fc00::/7"
+
+# Off-host private addresses containers must still reach (e.g. a resolver on the private
+# network). Evaluated before the denies.
+docker_egress_allowed_destinations: []
+docker_egress_allowed_destinations6: []
