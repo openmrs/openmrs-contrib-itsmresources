@@ -1,0 +1,9 @@
+---
+# Volumes to archive, each a dict with:
+#   name:   prefix for the archive in /opt/backups (and so in S3); unique per host
+#   volume: Docker volume name, including any Compose project prefix (e.g. hermes_agents-data)
+backup_docker_volumes: []
+
+# Must finish before backup-upload.sh runs at 04:00.
+backup_docker_volume_hour: "3"
+backup_docker_volume_minute: "0"

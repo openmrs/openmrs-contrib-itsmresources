@@ -1,0 +1,22 @@
+---
+- name: Install the Docker volume backup script
+  ansible.builtin.copy:
+    src: backup-docker-volume.sh
+    dest: /usr/sbin/backup-docker-volume.sh
+    owner: root
+    group: root
+    mode: "0755"
+  when: backup_docker_volumes | length > 0
+
+- name: Schedule Docker volume backups (before the nightly upload)
+  ansible.builtin.cron:
+    name: "backup-docker-volume {{ item.name }}"
+    user: root
+    minute: "{{ backup_docker_volume_minute }}"
+    hour: "{{ backup_docker_volume_hour }}"
+    job: >-
+      /usr/sbin/backup-docker-volume.sh {{ item.name | quote }} {{ item.volume | quote }}
+      >> /home/{{ backup_user }}/backups-{{ item.name }}.log 2>&1
+  loop: "{{ backup_docker_volumes }}"
+  loop_control:
+    label: "{{ item.name }}"
