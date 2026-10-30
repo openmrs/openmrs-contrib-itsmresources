@@ -1,0 +1,23 @@
+---
+- name: Install the Postgres-in-Docker backup script
+  ansible.builtin.copy:
+    src: backup-postgres-docker.sh
+    dest: /usr/sbin/backup-postgres-docker.sh
+    owner: root
+    group: root
+    mode: "0755"
+  when: backup_postgres_docker | length > 0
+
+- name: Schedule Postgres-in-Docker backups (before the nightly upload)
+  ansible.builtin.cron:
+    name: "backup-postgres-docker {{ item.name }}"
+    user: root
+    minute: "{{ backup_postgres_docker_minute }}"
+    hour: "{{ backup_postgres_docker_hour }}"
+    job: >-
+      /usr/sbin/backup-postgres-docker.sh {{ item.name | quote }} {{ item.compose_dir | quote }}
+      {{ item.service | quote }} {{ item.user | quote }} {{ item.database | quote }}
+      >> /home/{{ backup_user }}/backups-{{ item.name }}.log 2>&1
+  loop: "{{ backup_postgres_docker }}"
+  loop_control:
+    label: "{{ item.name }}"

@@ -85,6 +85,8 @@
    - import_tasks: tasks/backup.yml
   roles:
    - { role: 'custom_roles/aws-cli' }
+   - { role: 'custom_roles/backup-postgres-docker' }
+   - { role: 'custom_roles/backup-docker-volume' }
   handlers:
     - import_tasks: handlers/monitoring.yml
 

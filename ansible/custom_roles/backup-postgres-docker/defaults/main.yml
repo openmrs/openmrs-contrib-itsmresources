@@ -1,0 +1,12 @@
+---
+# Databases to dump, each a dict with:
+#   name:        prefix for the dump file in /opt/backups (and so in S3); unique per host
+#   compose_dir: directory holding the Compose project, e.g. /root/docker/hermes
+#   service:     Compose service running Postgres
+#   user:        Postgres role to dump as
+#   database:    database to dump
+backup_postgres_docker: []
+
+# Must finish before backup-upload.sh runs at 04:00.
+backup_postgres_docker_hour: "3"
+backup_postgres_docker_minute: "0"
