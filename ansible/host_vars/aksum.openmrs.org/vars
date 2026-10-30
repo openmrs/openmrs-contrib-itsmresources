@@ -1,2 +1,58 @@
 ---
 docker_data_dir: "/var/lib/docker"
+
+# Nothing on this host is meant to be reachable off-box, so published ports that do not
+# name an address land on loopback rather than 0.0.0.0.
+docker_default_publish_ip: "127.0.0.1"
+
+datadog_tags_extra:
+  - "service:litellm"
+  - "service:hermes"
+
+firewall_enabled: true
+docker_egress_deny_enabled: true
+
+# Generated as terraform outputs when backup is configured
+aws_access_key_id: '{{ vault_aws_access_key_id }}'
+aws_secret_access_key: '{{ vault_aws_secret_access_key }}'
+backup_tag: 'configured'
+
+backup_postgres_docker:
+  - name: hermes-litellm
+    compose_dir: /root/docker/hermes
+    service: postgres
+    user: litellm
+    database: litellm
+
+backup_docker_volumes:
+  - name: hermes-agents
+    volume: hermes_agents-data
+
+docker_deployment:
+  - hermes
+
+letsencrypt_cert_domains:
+  - aksum.openmrs.org
+
+nginx_vhosts:
+  - listen: "80"
+    server_name: "aksum.openmrs.org"
+    filename: "aksum.openmrs.org.80.conf"
+    extra_parameters: |
+      return 301 https://$host$request_uri;
+  - listen: "443 ssl"
+    server_name: "aksum.openmrs.org"
+    extra_parameters: |
+      access_log /data/log/nginx/aksum_access.log;
+      error_log /data/log/nginx/aksum_error.log;
+      ssl_certificate /etc/letsencrypt/live/aksum.openmrs.org/fullchain.pem;
+      ssl_certificate_key /etc/letsencrypt/live/aksum.openmrs.org/privkey.pem;
+      location ^~ /.well-known/acme-challenge/ {
+        root /usr/share/nginx/html;
+      }
+      location / {
+        proxy_set_header  X-Forwarded-For   $remote_addr;
+        proxy_set_header  X-Forwarded-Proto $scheme;
+        proxy_set_header  X-Forwarded-Host  $host;
+        proxy_pass http://127.0.0.1:4000/;
+      }
