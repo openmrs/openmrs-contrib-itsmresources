@@ -76,7 +76,7 @@ datadog_checks:
     instances:
         - service_check_rw: true
   ntp:
-    # https://github.com/DataDog/datadog-agent/issues/20369 from agent 7.66 versions 
+    # https://github.com/DataDog/datadog-agent/issues/20369 from agent 7.66 versions
     init_config:
     instances:
       - hosts:
@@ -89,6 +89,10 @@ backup_tag: 'not-applicable'
 backup_user: 'not-applicable'
 
 docker_data_dir: "/var/lib/docker"
+
+# The upstream DNS resolver is on the private network
+docker_egress_allowed_destinations:
+  - "10.0.2.2/32"
 
 nginx_enable: true
 nginx_start: true
