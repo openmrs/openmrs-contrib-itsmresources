@@ -1,4 +1,10 @@
 ---
+users:
+  nethmi:
+    comment: Nethmi Rodrigo
+    groups: 'admin'
+    ssh_key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJXR3UZIYGOBiABJAf18BeXyis47cjNMO8Rh0RlnIbfh"
+
 docker_data_dir: "/var/lib/docker"
 
 # Nothing on this host is meant to be reachable off-box, so published ports that do not
