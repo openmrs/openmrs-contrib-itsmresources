@@ -96,12 +96,12 @@ nginx_vhosts:
   #       proxy_pass http://localhost:8090/;
   #     }
   - listen: "80"
-    server_name: ".openmrs.org"
-    filename: ".openmrs.org.80.conf"
+    server_name: "atlas-stg.openmrs.org"
+    filename: "atlas-stg.openmrs.org.80.conf"
     extra_parameters: |
       return 301 https://$host$request_uri;
   - listen: "443 ssl"
-    server_name: ".openmrs.org"
+    server_name: "atlas-stg.openmrs.org"
     extra_parameters: |
       if ($ai_bot) { return 444; }
       client_max_body_size 3m; # allow for 2m logo image upload + request
